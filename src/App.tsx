@@ -1,12 +1,13 @@
 import { lazy, Suspense, useRef, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HomeExtensions } from './components/HomeExtensions';
 import { SocialProofBar } from './components/SocialProofBar';
 import { StartingPointQuiz } from './components/StartingPointQuiz';
-
+import { ExitIntentModal } from './components/ExitIntentModal';
 
 // Lazy-loaded pages
 const ReachUs   = lazy(() => import('./pages/ReachUs'));
@@ -14,6 +15,11 @@ const Studio    = lazy(() => import('./pages/Studio'));
 const FocusRoom = lazy(() => import('./pages/FocusRoom'));
 const About     = lazy(() => import('./pages/About'));
 const Journal   = lazy(() => import('./pages/Journal'));
+const Community = lazy(() => import('./pages/Community'));
+const SignUp    = lazy(() => import('./pages/SignUp'));
+const Login     = lazy(() => import('./pages/Login'));
+const Profile   = lazy(() => import('./pages/Profile'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 const NotFound  = lazy(() => import('./pages/NotFound'));
 
 // Pulsing dot fallback
@@ -92,6 +98,18 @@ function AppRoutes() {
       <Route path="/about"    element={<PageLayout><About /></PageLayout>} />
       <Route path="/journal"  element={<PageLayout><Journal /></PageLayout>} />
       <Route path="/journal/:id" element={<PageLayout><Journal /></PageLayout>} />
+      <Route path="/community" element={<PageLayout><Community /></PageLayout>} />
+      <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
+      <Route path="/profile"  element={<PageLayout><Profile /></PageLayout>} />
+      <Route path="/account"  element={<PageLayout><Profile /></PageLayout>} />
+      
+      {/* Auth Routes */}
+      <Route path="/signup" element={<Suspense fallback={<PageLoader />}><SignUp /></Suspense>} />
+      <Route path="/login"  element={<Suspense fallback={<PageLoader />}><Login /></Suspense>} />
+      
+      {/* Stubs */}
+      <Route path="/reset-password" element={<Suspense fallback={<PageLoader />}><Login /></Suspense>} />
+
       <Route path="*"         element={<PageLayout><NotFound /></PageLayout>} />
     </Routes>
   );
@@ -100,9 +118,12 @@ function AppRoutes() {
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+          <ExitIntentModal />
+        </BrowserRouter>
+      </AuthProvider>
     </HelmetProvider>
   );
 }

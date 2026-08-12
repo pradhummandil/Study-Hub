@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { subscribeNewsletter } from '../lib/newsletterApi';
 
 type Post = {
   id: number;
@@ -78,12 +79,23 @@ const rest = POSTS.filter((p) => !p.featured).slice(0, 6);
 export default function Journal() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscribeMessage, setSubscribeMessage] = useState<string | null>(null);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter subscribe:', email);
-    setSubscribed(true);
-    setEmail('');
+    setSubscribeMessage(null);
+    if (!email) return;
+
+    setSubscribing(true);
+    const res = await subscribeNewsletter(email);
+    if (res.success) {
+      setSubscribed(true);
+      setEmail('');
+    } else {
+      setSubscribeMessage(res.message || 'Subscription failed.');
+    }
+    setSubscribing(false);
   };
 
   return (
@@ -129,6 +141,12 @@ export default function Journal() {
               {q}
             </button>
           ))}
+          <Link
+            to="/community"
+            className="liquid-glass rounded-full px-4 py-2 text-xs text-gradient-accent border border-amber-400/30 hover:border-amber-400/60 font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 inline-flex items-center gap-1"
+          >
+            Ask in the community →
+          </Link>
         </div>
       </div>
 
@@ -206,7 +224,9 @@ export default function Journal() {
             No roundups, no sponsorships. Just one thing worth thinking about.
           </p>
           {subscribed ? (
-            <p className="mt-8 text-foreground text-sm">You're in. Check your inbox.</p>
+            <p className="mt-8 text-foreground text-sm font-medium animate-fade-rise">
+              You're in — expect one honest email a week.
+            </p>
           ) : (
             <form onSubmit={handleSubscribe} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
@@ -219,11 +239,15 @@ export default function Journal() {
               />
               <button
                 type="submit"
-                className="liquid-glass rounded-full px-6 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                disabled={subscribing}
+                className="liquid-glass rounded-full px-6 py-3 text-sm text-foreground hover:scale-[1.03] transition-transform shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 disabled:opacity-50"
               >
-                Subscribe
+                {subscribing ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
+          )}
+          {subscribeMessage && (
+            <p className="mt-4 text-xs text-red-300 font-medium animate-fade-rise">{subscribeMessage}</p>
           )}
         </div>
       </div>

@@ -103,6 +103,38 @@ export default function About() {
         </div>
       </div>
 
+      {/* ── Case Study Block (NOTE: Placeholder content — to be swapped with verified student data) ── */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-16">
+        <div className="liquid-glass-card rounded-2xl p-8 sm:p-10 border border-white/10">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Case Study</p>
+          <h2
+            className="text-3xl sm:text-4xl font-normal leading-tight text-foreground mb-6"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            How Aryan went from <span className="text-gradient-accent">stuck</span> to AIR 4,200.
+          </h2>
+
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            Aryan spent 8+ hours a day studying for JEE Advanced, but his mock test scores remained plateaued below 30%. He was re-watching video lectures at 2x speed without actively testing retention, leaving him exhausted yet unprepared.
+          </p>
+
+          <blockquote
+            className="italic text-2xl sm:text-3xl text-foreground my-8 py-4 border-y border-white/10 leading-snug"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            "I was studying 10 hours a day, but I was just consuming content. Once we audited my schedule, everything clicked."
+          </blockquote>
+
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            During a 20-minute guidance call, we audited his schedule and swapped passive video consumption for 45-minute timed active recall blocks and subject-wise PYQ cycles. We cut his daily study hours from 10 to 6 focused hours.
+          </p>
+
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            Within 6 weeks, his retention jumped significantly. He stopped re-reading chapters and entered his exam with confidence, clearing JEE Advanced with AIR 4,200.
+          </p>
+        </div>
+      </div>
+
       {/* Closing CTA */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 pb-32 text-center">
         <h2

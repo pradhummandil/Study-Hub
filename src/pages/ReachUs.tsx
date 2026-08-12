@@ -1,85 +1,50 @@
-import { useState, useEffect } from 'react';
-import Cal, { getCalApi } from '@calcom/embed-react';
-import { Compass, Map, MessageCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { getCalApi } from '@calcom/embed-react';
 import { Helmet } from 'react-helmet-async';
+import { CAL_COM_LINK } from '../config';
+import { ShieldCheck, Lock, MailX, RefreshCw } from 'lucide-react';
 
-const CAL_COM_LINK = "pradhum-mandil-pbjkfk/20-min-guidance-call";
-
-const whatWeCovers = [
+const faqs = [
   {
-    icon: Compass,
-    title: 'Diagnose',
-    desc: 'We figure out exactly where your prep is breaking down — not the symptoms, the actual root.',
+    q: 'What happens on the call?',
+    a: "We talk through where you're at, what exam or goal you're targeting, and what's currently blocking you. You'll leave with 2–3 concrete changes to make right away.",
   },
   {
-    icon: Map,
-    title: 'Plan',
-    desc: 'A realistic weekly roadmap you can actually stick to, built around your real schedule.',
+    q: 'Is it really free?',
+    a: 'Yes. The 20-minute initial call is completely free, with no obligation to sign up for ongoing guidance or anything else.',
   },
   {
-    icon: MessageCircle,
-    title: 'Follow-up',
-    desc: 'You leave with concrete next steps, not just a hit of motivation that fades by Tuesday.',
-  },
-];
-
-const faqItems = [
-  {
-    q: 'Is the first call really free?',
-    a: "Yes, completely. No card, no catch. I'd rather earn your trust with a useful conversation than ask for money upfront. If it helps, great. If not, you've lost 20 minutes — not money.",
-  },
-  {
-    q: 'What should I prepare before the call?',
-    a: "Nothing formal. Knowing roughly which exam or goal you're working toward is enough. If you have a sense of where you're stuck, even better — but we can figure that out together on the call.",
-  },
-  {
-    q: 'Can I book more than one session?',
-    a: 'Absolutely. The first call is free; follow-up sessions are paid. Many students check in every few weeks to adjust their plan. We keep it flexible — no packages you have to commit to upfront.',
+    q: 'How should I prepare?',
+    a: "Just bring your current schedule or study plan (if you have one) and a list of your biggest questions. You don't need to clean anything up — raw is better.",
   },
   {
     q: 'What if I need to reschedule?',
-    a: 'Use the Cal.com link — you can reschedule directly up to a few hours before the call. If something urgent comes up last-minute, just message me and we\'ll sort it out.',
+    a: 'You can reschedule or cancel anytime up to 2 hours before the call using the link in your confirmation email.',
   },
 ];
-
-const FAQItem = ({ q, a }: { q: string; a: string }) => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-border last:border-none">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-start py-5 text-left gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
-        aria-expanded={open}
-      >
-        <span className="text-foreground text-base leading-snug group-hover:text-foreground/80 transition-colors">{q}</span>
-        <span
-          className="text-muted-foreground mt-0.5 shrink-0 transition-transform duration-300"
-          style={{ transform: open ? 'rotate(45deg)' : 'rotate(0)' }}
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
-          </svg>
-        </span>
-      </button>
-      {open && (
-        <p className="text-muted-foreground text-sm leading-relaxed pb-5">{a}</p>
-      )}
-    </div>
-  );
-};
 
 export default function ReachUs() {
   const [calLoaded, setCalLoaded] = useState(false);
 
   useEffect(() => {
-    (async function () {
-      const cal = await getCalApi();
-      cal("ui", {
-        theme: "dark",
-        styles: { branding: { brandColor: "#ffffff" } },
-        hideEventTypeDetails: false,
-        layout: "month_view",
-      });
+    (async () => {
+      try {
+        const cal = await getCalApi();
+        cal('ui', {
+          theme: 'dark',
+          hideEventTypeDetails: false,
+          layout: 'month_view',
+        });
+        cal('on', {
+          action: 'eventTypeSelected',
+          callback: () => setCalLoaded(true),
+        });
+        // Set loaded after initialization delay
+        setTimeout(() => setCalLoaded(true), 1500);
+      } catch (err) {
+        console.error('Cal.com embed initialization failed:', err);
+        setCalLoaded(true);
+      }
     })();
   }, []);
 
@@ -87,11 +52,11 @@ export default function ReachUs() {
     <>
       <Helmet>
         <title>Reach Us — Study Hub</title>
-        <meta name="description" content="Book a free 20-minute 1-on-1 guidance call. No sales pitch — just a real conversation about where you're stuck and what to do next." />
+        <meta name="description" content="Book a free 20-minute guidance call. No sales pitch, no commitment — just real advice for your study plan." />
       </Helmet>
 
-      {/* Hero Strip */}
-      <div className="relative z-10 px-6 pt-24 pb-16 text-center max-w-4xl mx-auto">
+      {/* Hero */}
+      <div className="relative z-10 px-6 pt-24 pb-12 text-center max-w-4xl mx-auto">
         <h1
           className="animate-fade-rise text-5xl sm:text-6xl font-normal leading-[0.95] tracking-[-2px] text-foreground"
           style={{ fontFamily: "'Instrument Serif', serif" }}
@@ -118,13 +83,35 @@ export default function ReachUs() {
           ))}
         </div>
 
-        {/* Primary booking CTA — gradient-cta, the highest-intent button on this page */}
+        {/* Primary booking CTA */}
         <button
           onClick={() => document.getElementById('booking-embed')?.scrollIntoView({ behavior: 'smooth' })}
           className="animate-fade-rise-delay-2 gradient-cta rounded-full px-10 py-4 text-base mt-8 inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
           Book a free call ↓
         </button>
+      </div>
+
+      {/* Trust Badges Strip */}
+      <div className="animate-fade-rise-delay-2 relative z-10 max-w-3xl mx-auto px-6 mb-6">
+        <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-muted-foreground py-3 px-6 rounded-full liquid-glass border border-white/5 max-w-2xl mx-auto">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-green-400 shrink-0" />
+            <span>Verified by Cal.com</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>Secure booking</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <MailX className="w-4 h-4 text-muted-foreground shrink-0" />
+            <span>No spam, ever</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <RefreshCw className="w-4 h-4 text-muted-foreground shrink-0" />
+            <span>Cancel anytime</span>
+          </div>
+        </div>
       </div>
 
       {/* Booking embed */}
@@ -135,47 +122,31 @@ export default function ReachUs() {
               <div className="w-10 h-10 rounded-full liquid-glass animate-pulse" />
             </div>
           )}
-          <Cal
-            calLink={CAL_COM_LINK}
-            style={{ width: "100%", height: "600px", overflow: "scroll" }}
-            config={{ layout: "month_view", theme: "dark" }}
+          <iframe
+            src={`https://cal.com/${CAL_COM_LINK}?embed=true&theme=dark`}
+            className="w-full h-[600px] rounded-xl border-0"
+            title="Book a call"
             onLoad={() => setCalLoaded(true)}
           />
         </div>
       </div>
 
-      {/* What we'll cover */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-16">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-12">What we'll cover</p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {whatWeCovers.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="liquid-glass-card rounded-xl p-6 flex flex-col gap-4">
-              <div className="w-10 h-10 rounded-lg liquid-glass flex items-center justify-center shrink-0">
-                <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-              </div>
+      {/* FAQs */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-16 pb-32">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground text-center mb-12">Frequently asked</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {faqs.map(({ q, a }) => (
+            <div key={q} className="liquid-glass-card rounded-2xl p-8">
               <h3
-                className="text-xl text-foreground font-normal"
+                className="text-xl text-foreground font-normal mb-3"
                 style={{ fontFamily: "'Instrument Serif', serif" }}
               >
-                {title}
+                {q}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{a}</p>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* FAQ */}
-      <div className="relative z-10 max-w-2xl mx-auto px-6 pb-32 mt-4">
-        <h2
-          className="text-3xl font-normal text-foreground mb-10 tracking-[-1px]"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
-        >
-          Questions I actually get asked.
-        </h2>
-        {faqItems.map((item) => (
-          <FAQItem key={item.q} {...item} />
-        ))}
       </div>
     </>
   );

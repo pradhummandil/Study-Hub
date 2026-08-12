@@ -1,17 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getNewsletterSignupCount } from '../lib/newsletterApi';
 
 const STORAGE_KEY = 'proof_bar_dismissed_v1';
 
-const MESSAGES = [
+const BASE_MESSAGES = [
   '🟢 3 students booked calls this week',
   'New resource added to Studio',
   'Avg response time: 18 hours',
   '4.9/5 from last 20 sessions',
-  '🟢 500+ students guided so far',
 ];
-
-// Build a single string; we duplicate it in the DOM for seamless CSS marquee
-const TICKER = MESSAGES.join('   ·   ');
 
 export const SocialProofBar = () => {
   const [dismissed, setDismissed] = useState<boolean>(() => {
@@ -19,7 +16,24 @@ export const SocialProofBar = () => {
     catch { return false; }
   });
 
+  const [signupCount, setSignupCount] = useState<number>(0);
+
+  useEffect(() => {
+    getNewsletterSignupCount().then((count) => {
+      if (count > 0) {
+        setSignupCount(count);
+      }
+    });
+  }, []);
+
   if (dismissed) return null;
+
+  const dynamicMessage = signupCount > 0
+    ? `🟢 Join ${signupCount}+ students already subscribed`
+    : '🟢 500+ students guided so far';
+
+  const messages = [...BASE_MESSAGES, dynamicMessage];
+  const tickerText = messages.join('   ·   ');
 
   const dismiss = () => {
     setDismissed(true);
@@ -36,10 +50,10 @@ export const SocialProofBar = () => {
       <div className="flex-1 overflow-hidden py-2">
         <div className="marquee-track">
           <span className="text-xs text-muted-foreground px-4 select-none">
-            {TICKER}&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+            {tickerText}&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
           </span>
           <span className="text-xs text-muted-foreground px-4 select-none" aria-hidden="true">
-            {TICKER}&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+            {tickerText}&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
           </span>
         </div>
       </div>
