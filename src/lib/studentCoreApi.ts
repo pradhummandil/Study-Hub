@@ -53,7 +53,7 @@ export async function saveStudentProfile(profile: Partial<StudentProfile>): Prom
       target_rank: profile.target_rank ?? existing?.target_rank,
       target_score: profile.target_score ?? existing?.target_score,
       daily_study_minutes: profile.daily_study_minutes || existing?.daily_study_minutes || 180,
-      current_level: profile.current_level || existing?.current_level || 'Intermediate',
+      current_level: profile.current_level || existing?.current_level || 'Some preparation done',
       exam_date: profile.exam_date ?? existing?.exam_date,
       onboarding_completed: profile.onboarding_completed ?? true,
       subject_ratings: profile.subject_ratings || existing?.subject_ratings || {},

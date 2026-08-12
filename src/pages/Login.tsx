@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 import { AuthLayout } from '../components/AuthLayout';
 import { useAuth } from '../context/AuthContext';
+import { getStudentProfile } from '../lib/studentCoreApi';
 
 const GoogleIcon = () => (
   <svg width="18" height="18" viewBox="0 0 48 48">
@@ -33,6 +34,7 @@ function mapAuthError(msg: string): string {
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signIn, signInWithGoogle } = useAuth();
 
   const [email, setEmail] = useState('');
@@ -41,6 +43,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const fromPath = (location.state as any)?.from?.pathname;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +60,14 @@ export default function Login() {
       if (apiError) {
         setError(mapAuthError(apiError.message));
       } else {
-        navigate('/dashboard');
+        const profile = await getStudentProfile();
+        if (!profile || !profile.onboarding_completed) {
+          navigate('/setup', { replace: true });
+        } else if (fromPath) {
+          navigate(fromPath, { replace: true });
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
       }
     } catch (err: any) {
       setError(mapAuthError(err.message || 'An unexpected error occurred.'));
@@ -107,7 +118,6 @@ export default function Login() {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Email Field */}
           <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
             <Mail className="w-5 h-5 text-white/40 shrink-0" />
             <input
@@ -120,7 +130,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Password Field */}
           <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
             <Lock className="w-5 h-5 text-white/40 shrink-0" />
             <input
@@ -141,7 +150,6 @@ export default function Login() {
             </button>
           </div>
 
-          {/* Forgot Password Link */}
           <div className="text-right -mt-1">
             <Link
               to="/reset-password"
@@ -151,7 +159,6 @@ export default function Login() {
             </Link>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -161,14 +168,12 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="flex items-center my-6">
           <div className="flex-1 border-t border-white/10" />
           <span className="px-4 text-xs text-white/40 uppercase tracking-widest">or</span>
           <div className="flex-1 border-t border-white/10" />
         </div>
 
-        {/* Google Sign In */}
         <button
           type="button"
           onClick={handleGoogleSignIn}
@@ -179,7 +184,6 @@ export default function Login() {
           <span>Continue with Google</span>
         </button>
 
-        {/* Footer Link */}
         <p className="text-white/60 text-sm text-center mt-6">
           New here?{' '}
           <Link to="/signup" className="text-white underline hover:text-white/90 transition-colors font-medium">

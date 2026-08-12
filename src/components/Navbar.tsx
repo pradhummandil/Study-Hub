@@ -14,6 +14,8 @@ const primaryNavItems = [
 ];
 
 const secondaryNavItems = [
+  { label: 'Exam Catalog', path: '/exams', icon: BookOpen },
+  { label: 'Exam Simulator', path: '/exam-simulator', icon: Trophy },
   { label: 'Roadmap', path: '/roadmap', icon: BookOpen },
   { label: 'Practice & PYQs', path: '/practice', icon: Zap },
   { label: 'Mock Tests', path: '/mock-tests', icon: Trophy },
@@ -21,6 +23,9 @@ const secondaryNavItems = [
   { label: 'Mistakes Notebook', path: '/mistakes', icon: Flame },
   { label: 'Flashcards Decks', path: '/flashcards', icon: Layers },
   { label: 'Adaptive Practice', path: '/adaptive-practice', icon: Zap },
+  { label: 'Pricing & Plans', path: '/pricing', icon: Award },
+  { label: 'Referrals & Rewards', path: '/referrals', icon: Users },
+  { label: 'Mentor Portal', path: '/mentor', icon: Users },
   { label: 'Leaderboards', path: '/leaderboards', icon: Award },
   { label: 'Studio', path: '/studio', icon: LayoutDashboard },
 ];

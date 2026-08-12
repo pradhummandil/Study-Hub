@@ -1,0 +1,94 @@
+// src/components/auth/RequireAuth.tsx
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { Lock, Sparkles, UserPlus, LogIn, ArrowRight } from 'lucide-react';
+
+interface RequireAuthProps {
+  children: React.ReactNode;
+}
+
+export const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
+  // Auth Loading State — Premium Lightweight Loader
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center">
+        <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4">
+          <Sparkles className="w-6 h-6 text-cyan-400 animate-spin" />
+        </div>
+        <h2 className="text-xl font-bold text-foreground tracking-tight">Study Hub</h2>
+        <p className="text-xs text-muted-foreground mt-1">Preparing your study space...</p>
+        <div className="w-32 h-1 bg-white/10 rounded-full mt-4 overflow-hidden">
+          <div className="w-full h-full bg-gradient-to-r from-cyan-400 to-indigo-500 animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
+  // If user is authenticated, render the protected component directly
+  if (user) {
+    return <>{children}</>;
+  }
+
+  // Logged-out Auth Gate Screen
+  return (
+    <div className="min-h-[80vh] py-16 px-6 max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
+      <div className="liquid-glass-card rounded-3xl p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden w-full">
+        {/* Glow backdrop */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan-500/10 blur-3xl rounded-full pointer-events-none" />
+
+        <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto mb-6">
+          <Lock className="w-8 h-8 text-cyan-400" />
+        </div>
+
+        <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-cyan-500/20">
+          Personalized Education Platform
+        </span>
+
+        <h1
+          className="text-3xl sm:text-4xl font-normal text-foreground tracking-tight mb-3"
+          style={{ fontFamily: "'Instrument Serif', serif" }}
+        >
+          Your personal study dashboard is waiting.
+        </h1>
+
+        <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
+          Sign in to save your progress, build your roadmap, practice official PYQs, and get personalized study recommendations tailored to your goals.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            to="/login"
+            state={{ from: location }}
+            className="w-full sm:w-auto gradient-cta px-8 py-3 rounded-full text-xs text-slate-950 font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-lg"
+          >
+            <LogIn className="w-4 h-4" />
+            <span>Sign In</span>
+          </Link>
+
+          <Link
+            to="/signup"
+            state={{ from: location }}
+            className="w-full sm:w-auto liquid-glass px-8 py-3 rounded-full text-xs text-foreground font-semibold border border-white/20 hover:border-white/40 transition-all flex items-center justify-center gap-2"
+          >
+            <UserPlus className="w-4 h-4 text-cyan-400" />
+            <span>Create Free Account</span>
+          </Link>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-center gap-6 text-xs text-muted-foreground">
+          <Link to="/exams" className="hover:text-cyan-400 transition-colors flex items-center gap-1">
+            Explore Exams <ArrowRight className="w-3 h-3" />
+          </Link>
+          <span>•</span>
+          <Link to="/studio" className="hover:text-cyan-400 transition-colors">
+            Learning Library
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};

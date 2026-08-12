@@ -2,6 +2,8 @@ import { lazy, Suspense, useRef, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
+import { StudentProvider } from './context/StudentContext';
+import { RequireAuth } from './components/auth/RequireAuth';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HomeExtensions } from './components/HomeExtensions';
@@ -10,6 +12,7 @@ import { StartingPointQuiz } from './components/StartingPointQuiz';
 import { ExitIntentModal } from './components/ExitIntentModal';
 import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
 import { MobileNav } from './components/layout/MobileNav';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy-loaded pages
 const ReachUs   = lazy(() => import('./pages/ReachUs'));
@@ -40,15 +43,56 @@ const AdaptivePractice = lazy(() => import('./pages/AdaptivePractice'));
 const Insights       = lazy(() => import('./pages/Insights'));
 const ExamReadiness  = lazy(() => import('./pages/ExamReadiness'));
 const Leaderboards   = lazy(() => import('./pages/Leaderboards'));
+const Settings       = lazy(() => import('./pages/Settings'));
+const ResourcePage   = lazy(() => import('./pages/ResourcePage'));
+const ExamExplorer   = lazy(() => import('./pages/ExamExplorer'));
+const ExamDetailPage = lazy(() => import('./pages/ExamDetailPage'));
+
+// Phase 5 Pages
+const Pricing             = lazy(() => import('./pages/Pricing'));
+const Referrals           = lazy(() => import('./pages/Referrals'));
+const ExamSimulatorPage   = lazy(() => import('./pages/ExamSimulatorPage'));
+const ExamSimulatorPlayer = lazy(() => import('./pages/ExamSimulatorPlayer'));
+const ExamSimulatorResult = lazy(() => import('./pages/ExamSimulatorResult'));
+const MentorPortal        = lazy(() => import('./pages/MentorPortal'));
+const InstitutionPortal   = lazy(() => import('./pages/InstitutionPortal'));
+
+// Admin pages
+const AdminLayout       = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminDashboard    = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminUsers        = lazy(() => import('./pages/admin/AdminUsers'));
+const AdminResources    = lazy(() => import('./pages/admin/AdminResources'));
+const AdminQuestions    = lazy(() => import('./pages/admin/AdminQuestions'));
+const AdminExams        = lazy(() => import('./pages/admin/AdminExams'));
+const AdminRoadmaps     = lazy(() => import('./pages/admin/AdminRoadmaps'));
+const AdminMockTests    = lazy(() => import('./pages/admin/AdminMockTests'));
+const AdminReports      = lazy(() => import('./pages/admin/AdminReports'));
+const AdminStudyAI      = lazy(() => import('./pages/admin/AdminStudyAI'));
+const AdminAnnouncements = lazy(() => import('./pages/admin/AdminAnnouncements'));
+const AdminAnalytics    = lazy(() => import('./pages/admin/AdminAnalytics'));
+const AdminSystemHealth = lazy(() => import('./pages/admin/AdminSystemHealth'));
+const AdminAuditLog     = lazy(() => import('./pages/admin/AdminAuditLog'));
+const AdminAiQuality    = lazy(() => import('./pages/admin/AdminAiQuality'));
 
 // Pulsing dot fallback
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="w-2 h-2 rounded-full bg-muted-foreground skeleton-pulse" />
+  <div className="flex flex-col items-center justify-center min-h-[60vh]">
+    <div className="w-8 h-8 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin mb-3" />
+    <p className="text-xs text-muted-foreground">Study Hub — Preparing your study space...</p>
   </div>
 );
 
-// Home page — video bg only on this route
+// Admin loader
+const AdminLoader = () => (
+  <div className="flex items-center justify-center min-h-screen bg-[#062B3D]">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-8 h-8 rounded-full border-2 border-[#5CE1E6] border-t-transparent animate-spin" />
+      <p className="text-[#5CE1E6] text-sm">Loading admin console...</p>
+    </div>
+  </div>
+);
+
+// Home page
 function HomePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -63,7 +107,6 @@ function HomePage() {
 
   return (
     <>
-      {/* Hero — locked to exactly the viewport height so the video fills it correctly */}
       <div className="relative h-screen w-full overflow-hidden bg-background">
         <video
           ref={videoRef}
@@ -73,50 +116,48 @@ function HomePage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover object-bottom z-0"
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
-          onError={(e) => console.error("Video failed to load:", e.currentTarget.error)}
-          onLoadedData={() => console.log("Video loaded successfully")}
-          onPlay={() => console.log("Video is now playing")}
-          onPause={() => console.log("Video paused")}
         />
         <div className="relative z-10 flex flex-col h-full">
           <Navbar />
-          {/* SocialProofBar sits between nav and hero — overlaid on video via liquid-glass */}
           <SocialProofBar />
           <HeroSection />
         </div>
       </div>
-
-      {/* Quiz sits between hero and HomeExtensions — outside video container */}
       <StartingPointQuiz />
-
-      {/* HomeExtensions sits below the hero in normal document flow — outside the video container */}
       <HomeExtensions />
     </>
   );
 }
 
-// Other pages share a plain bg layout
+// Layout wrapper
 function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-screen w-full bg-background pb-16 md:pb-0">
       <Navbar />
-      {/* SocialProofBar on every non-home page, sits below nav in document flow */}
       <SocialProofBar />
-      <Suspense fallback={<PageLoader />}>{children}</Suspense>
+      <ErrorBoundary name="page">
+        <Suspense fallback={<PageLoader />}>{children}</Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
 
 function FloatingAIButtonWrapper() {
   const location = useLocation();
-  // Don't show on the StudyAI page itself
-  const hide = location.pathname === '/study-ai';
+  const hide = location.pathname === '/study-ai' || location.pathname.startsWith('/admin');
   return <FloatingAIButton show={!hide} />;
+}
+
+function MobileNavWrapper() {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) return null;
+  return <MobileNav />;
 }
 
 function AppRoutes() {
   return (
     <Routes>
+      {/* Public Unauthenticated Routes */}
       <Route path="/" element={<HomePage />} />
       <Route path="/reach-us" element={<PageLayout><ReachUs /></PageLayout>} />
       <Route path="/studio"   element={<PageLayout><Studio /></PageLayout>} />
@@ -125,37 +166,80 @@ function AppRoutes() {
       <Route path="/journal"  element={<PageLayout><Journal /></PageLayout>} />
       <Route path="/journal/:id" element={<PageLayout><Journal /></PageLayout>} />
       <Route path="/community" element={<PageLayout><Community /></PageLayout>} />
-      <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
-      <Route path="/setup"     element={<PageLayout><ExamSetup /></PageLayout>} />
-      <Route path="/roadmap"   element={<PageLayout><Roadmap /></PageLayout>} />
-      <Route path="/roadmap/:topicId" element={<PageLayout><TopicRoadmap /></PageLayout>} />
-      <Route path="/practice"  element={<PageLayout><Practice /></PageLayout>} />
-      <Route path="/practice/session/:id" element={<PageLayout><PracticeSession /></PageLayout>} />
-      <Route path="/mock-tests" element={<PageLayout><MockTests /></PageLayout>} />
-      <Route path="/mock-tests/:id" element={<Suspense fallback={<PageLoader />}><MockTestPlayer /></Suspense>} />
-      <Route path="/mock-tests/:id/result" element={<PageLayout><MockResult /></PageLayout>} />
-      <Route path="/performance" element={<PageLayout><Performance /></PageLayout>} />
-      <Route path="/mistakes" element={<PageLayout><Mistakes /></PageLayout>} />
-      <Route path="/revision" element={<PageLayout><Revision /></PageLayout>} />
-      <Route path="/flashcards" element={<PageLayout><Flashcards /></PageLayout>} />
-      <Route path="/adaptive-practice" element={<PageLayout><AdaptivePractice /></PageLayout>} />
-      <Route path="/insights" element={<PageLayout><Insights /></PageLayout>} />
-      <Route path="/exam-readiness" element={<PageLayout><ExamReadiness /></PageLayout>} />
-      <Route path="/leaderboards" element={<PageLayout><Leaderboards /></PageLayout>} />
-      <Route path="/profile"  element={<PageLayout><Profile /></PageLayout>} />
-      <Route path="/account"  element={<PageLayout><Profile /></PageLayout>} />
+      <Route path="/pricing" element={<PageLayout><Pricing /></PageLayout>} />
+      <Route path="/referrals" element={<PageLayout><Referrals /></PageLayout>} />
+      <Route path="/mentor" element={<PageLayout><MentorPortal /></PageLayout>} />
+      <Route path="/institution" element={<PageLayout><InstitutionPortal /></PageLayout>} />
+      <Route path="/resource/:slug" element={<PageLayout><ResourcePage /></PageLayout>} />
 
-      {/* StudyMate AI — full-page, no shared layout (has own header) */}
-      <Route path="/study-ai" element={<Suspense fallback={<PageLoader />}><StudyAI /></Suspense>} />
-      
+      {/* Public Exam Catalog & Detail pages */}
+      <Route path="/exams" element={<PageLayout><ExamExplorer /></PageLayout>} />
+      <Route path="/exams/:slug" element={<PageLayout><ExamDetailPage /></PageLayout>} />
+
       {/* Auth Routes */}
       <Route path="/signup" element={<Suspense fallback={<PageLoader />}><SignUp /></Suspense>} />
       <Route path="/login"  element={<Suspense fallback={<PageLoader />}><Login /></Suspense>} />
-      
-      {/* Stubs */}
       <Route path="/reset-password" element={<Suspense fallback={<PageLoader />}><Login /></Suspense>} />
 
-      <Route path="*"         element={<PageLayout><NotFound /></PageLayout>} />
+      {/* Auth-Gated Personalized Student Routes */}
+      <Route path="/dashboard" element={<RequireAuth><PageLayout><Dashboard /></PageLayout></RequireAuth>} />
+      <Route path="/setup"     element={<RequireAuth><PageLayout><ExamSetup /></PageLayout></RequireAuth>} />
+      <Route path="/roadmap"   element={<RequireAuth><PageLayout><Roadmap /></PageLayout></RequireAuth>} />
+      <Route path="/roadmap/:topicId" element={<RequireAuth><PageLayout><TopicRoadmap /></PageLayout></RequireAuth>} />
+      <Route path="/practice"  element={<RequireAuth><PageLayout><Practice /></PageLayout></RequireAuth>} />
+      <Route path="/practice/session/:id" element={<RequireAuth><PageLayout><PracticeSession /></PageLayout></RequireAuth>} />
+      <Route path="/mock-tests" element={<RequireAuth><PageLayout><MockTests /></PageLayout></RequireAuth>} />
+      <Route path="/mock-tests/:id" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="Mock Test"><MockTestPlayer /></ErrorBoundary></Suspense></RequireAuth>} />
+      <Route path="/mock-tests/:id/result" element={<RequireAuth><PageLayout><MockResult /></PageLayout></RequireAuth>} />
+      <Route path="/performance" element={<RequireAuth><PageLayout><Performance /></PageLayout></RequireAuth>} />
+      <Route path="/mistakes" element={<RequireAuth><PageLayout><Mistakes /></PageLayout></RequireAuth>} />
+      <Route path="/revision" element={<RequireAuth><PageLayout><Revision /></PageLayout></RequireAuth>} />
+      <Route path="/flashcards" element={<RequireAuth><PageLayout><Flashcards /></PageLayout></RequireAuth>} />
+      <Route path="/adaptive-practice" element={<RequireAuth><PageLayout><AdaptivePractice /></PageLayout></RequireAuth>} />
+      <Route path="/insights" element={<RequireAuth><PageLayout><Insights /></PageLayout></RequireAuth>} />
+      <Route path="/exam-readiness" element={<RequireAuth><PageLayout><ExamReadiness /></PageLayout></RequireAuth>} />
+      <Route path="/leaderboards" element={<RequireAuth><PageLayout><Leaderboards /></PageLayout></RequireAuth>} />
+      <Route path="/profile"  element={<RequireAuth><PageLayout><Profile /></PageLayout></RequireAuth>} />
+      <Route path="/account"  element={<RequireAuth><PageLayout><Profile /></PageLayout></RequireAuth>} />
+      <Route path="/settings" element={<RequireAuth><PageLayout><Settings /></PageLayout></RequireAuth>} />
+      
+      <Route path="/exam-simulator" element={<RequireAuth><PageLayout><ExamSimulatorPage /></PageLayout></RequireAuth>} />
+      <Route path="/exam-simulator/runner/:id" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="Exam Simulator Runner"><ExamSimulatorPlayer /></ErrorBoundary></Suspense></RequireAuth>} />
+      <Route path="/exam-simulator/result/:id" element={<RequireAuth><PageLayout><ExamSimulatorResult /></PageLayout></RequireAuth>} />
+
+      {/* StudyMate AI */}
+      <Route path="/study-ai" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="StudyMate AI"><StudyAI /></ErrorBoundary></Suspense></RequireAuth>} />
+      
+      {/* Admin Routes */}
+      <Route
+        path="/admin"
+        element={
+          <Suspense fallback={<AdminLoader />}>
+            <ErrorBoundary name="Admin">
+              <AdminLayout />
+            </ErrorBoundary>
+          </Suspense>
+        }
+      >
+        <Route index element={<Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense>} />
+        <Route path="users" element={<Suspense fallback={<PageLoader />}><AdminUsers /></Suspense>} />
+        <Route path="resources" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
+        <Route path="resources/health" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
+        <Route path="questions" element={<Suspense fallback={<PageLoader />}><AdminQuestions /></Suspense>} />
+        <Route path="exams" element={<Suspense fallback={<PageLoader />}><AdminExams /></Suspense>} />
+        <Route path="roadmaps" element={<Suspense fallback={<PageLoader />}><AdminRoadmaps /></Suspense>} />
+        <Route path="mock-tests" element={<Suspense fallback={<PageLoader />}><AdminMockTests /></Suspense>} />
+        <Route path="community" element={<Suspense fallback={<PageLoader />}><AdminReports /></Suspense>} />
+        <Route path="reports" element={<Suspense fallback={<PageLoader />}><AdminReports /></Suspense>} />
+        <Route path="study-ai" element={<Suspense fallback={<PageLoader />}><AdminStudyAI /></Suspense>} />
+        <Route path="ai-quality" element={<Suspense fallback={<PageLoader />}><AdminAiQuality /></Suspense>} />
+        <Route path="announcements" element={<Suspense fallback={<PageLoader />}><AdminAnnouncements /></Suspense>} />
+        <Route path="analytics" element={<Suspense fallback={<PageLoader />}><AdminAnalytics /></Suspense>} />
+        <Route path="system" element={<Suspense fallback={<PageLoader />}><AdminSystemHealth /></Suspense>} />
+        <Route path="audit-log" element={<Suspense fallback={<PageLoader />}><AdminAuditLog /></Suspense>} />
+      </Route>
+
+      <Route path="*" element={<PageLayout><NotFound /></PageLayout>} />
     </Routes>
   );
 }
@@ -172,14 +256,15 @@ export default function App() {
   return (
     <HelmetProvider>
       <AuthProvider>
-        <BrowserRouter>
-          <AppRoutes />
-          <FloatingAIButtonWrapper />
-          <ExitIntentModal />
-          <MobileNav />
-        </BrowserRouter>
+        <StudentProvider>
+          <BrowserRouter>
+            <AppRoutes />
+            <FloatingAIButtonWrapper />
+            <ExitIntentModal />
+            <MobileNavWrapper />
+          </BrowserRouter>
+        </StudentProvider>
       </AuthProvider>
     </HelmetProvider>
   );
 }
-

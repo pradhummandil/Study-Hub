@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Allow: /studio
+Allow: /about
+Allow: /resource/*
+Allow: /reach-us
+
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /study-ai
+Disallow: /settings
+Disallow: /practice
+Disallow: /mock-tests
+Disallow: /roadmap
+Disallow: /performance
+Disallow: /mistakes
+Disallow: /revision
+Disallow: /flashcards
+Disallow: /adaptive-practice
+Disallow: /insights
+Disallow: /exam-readiness
+Disallow: /profile
+Disallow: /leaderboards
+Disallow: /community
+Disallow: /focus-room
+Disallow: /journal
+
+Crawl-delay: 10
+Sitemap: https://studyhub.app/sitemap.xml

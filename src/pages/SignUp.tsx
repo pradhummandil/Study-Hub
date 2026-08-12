@@ -43,7 +43,6 @@ export default function SignUp() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Capture referral code if present in URL query string
   useEffect(() => {
     try {
       const urlParams = new URLSearchParams(window.location.search);
@@ -68,7 +67,6 @@ export default function SignUp() {
       if (apiError) {
         setError(mapAuthError(apiError.message));
       } else {
-        // TODO: Record referral tracking and rewards in backend
         try {
           const refCode = localStorage.getItem('studyhub_ref_code');
           if (refCode) {
@@ -76,7 +74,7 @@ export default function SignUp() {
           }
         } catch {}
 
-        navigate('/dashboard');
+        navigate('/setup', { replace: true });
       }
     } catch (err: any) {
       setError(mapAuthError(err.message || 'An unexpected error occurred.'));
@@ -127,7 +125,6 @@ export default function SignUp() {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Full Name Field */}
           <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
             <UserIcon className="w-5 h-5 text-white/40 shrink-0" />
             <input
@@ -139,7 +136,6 @@ export default function SignUp() {
             />
           </div>
 
-          {/* Email Field */}
           <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
             <Mail className="w-5 h-5 text-white/40 shrink-0" />
             <input
@@ -152,7 +148,6 @@ export default function SignUp() {
             />
           </div>
 
-          {/* Password Field */}
           <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
             <Lock className="w-5 h-5 text-white/40 shrink-0" />
             <input
@@ -173,7 +168,6 @@ export default function SignUp() {
             </button>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -183,14 +177,12 @@ export default function SignUp() {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="flex items-center my-6">
           <div className="flex-1 border-t border-white/10" />
           <span className="px-4 text-xs text-white/40 uppercase tracking-widest">or</span>
           <div className="flex-1 border-t border-white/10" />
         </div>
 
-        {/* Google Sign In */}
         <button
           type="button"
           onClick={handleGoogleSignIn}
@@ -201,7 +193,6 @@ export default function SignUp() {
           <span>Continue with Google</span>
         </button>
 
-        {/* Footer Link */}
         <p className="text-white/60 text-sm text-center mt-6">
           Already have an account?{' '}
           <Link to="/login" className="text-white underline hover:text-white/90 transition-colors font-medium">

@@ -104,7 +104,7 @@ export default function Leaderboards() {
               scope === 'circle' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold' : 'text-muted-foreground border-white/5'
             }`}
           >
-            GATE CS Circle
+            Academic Circle
           </button>
         </div>
       </div>
@@ -122,6 +122,12 @@ export default function Leaderboards() {
             <div className="py-12 text-center text-xs text-muted-foreground">
               <div className="w-3 h-3 rounded-full bg-muted-foreground skeleton-pulse mx-auto mb-2" />
               Loading rankings...
+            </div>
+          ) : leaderboard.length === 0 ? (
+            <div className="py-16 text-center text-xs text-muted-foreground space-y-2">
+              <Trophy className="w-8 h-8 text-muted-foreground/40 mx-auto" />
+              <p className="font-bold text-foreground">No participants on this leaderboard yet</p>
+              <p className="max-w-xs mx-auto">Complete your first practice session or answer community doubts to unlock ranking position.</p>
             </div>
           ) : (
             <div className="space-y-3 mt-4">

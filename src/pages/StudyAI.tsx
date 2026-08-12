@@ -8,6 +8,10 @@ import type { Message, ExamType, StudyMode, QuizQuestion, QuizResult, ChatSessio
 import { sendStudyMessage, generateMessageId } from '../lib/studyAi';
 import { useAuth } from '../context/AuthContext';
 import { buildStudentIntelligenceContext, formatContextPrompt } from '../lib/intelligence/coach';
+import { retrieveKnowledgeChunks, buildGroundedContextPrompt } from '../lib/rag/knowledgeEngine';
+import { buildCitationsMarkdown } from '../lib/rag/citations';
+import { getTutorInstruction } from '../lib/study-ai/tutorEngine';
+import { ReportAnswerModal } from '../components/study-ai/ReportAnswerModal';
 
 import { StudyAIHeader } from '../components/study-ai/StudyAIHeader';
 import { StudyAIWelcome } from '../components/study-ai/StudyAIWelcome';
@@ -107,9 +111,11 @@ export default function StudyAI() {
   const [rateLimited, setRateLimited] = useState(false);
   const pendingUserMessage = useRef<Message | null>(null);
 
-  // Context
+  // Context & Reporting state
   const [selectedExam, setSelectedExam] = useState<ExamType>('General');
   const [selectedMode, setSelectedMode] = useState<StudyMode>('Explain');
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const [reportMsgId, setReportMsgId] = useState('msg_latest');
 
   // Quiz state
   const [quizState, setQuizState] = useState<{
@@ -296,14 +302,19 @@ export default function StudyAI() {
           });
         }
 
-        // 3. Call Gemini API with rich structured student intelligence context
+        // 3. RAG Knowledge Retrieval & Grounded Context
+        const { chunks: ragChunks, citations: ragCitations } = await retrieveKnowledgeChunks(content, selectedExam);
+        const ragPrompt = buildGroundedContextPrompt(ragChunks, ragCitations);
+        const tutorPrompt = getTutorInstruction(selectedMode as any);
+
         const intelContext = await buildStudentIntelligenceContext(selectedExam);
         const formattedIntelPrompt = formatContextPrompt(intelContext);
 
         const context = {
           exam: selectedExam,
           mode: selectedMode,
-          student_context: formattedIntelPrompt,
+          student_context: `${formattedIntelPrompt}${tutorPrompt}`,
+          rag_context: ragPrompt,
         };
 
         // Build complete history payload
@@ -356,6 +367,12 @@ export default function StudyAI() {
         }
 
         setIsConnected(true);
+
+        // Format grounded response with citations
+        let finalResponseText = response.response;
+        if (ragCitations.length > 0) {
+          finalResponseText += buildCitationsMarkdown(ragCitations);
+        }
 
         // Check if response contains quiz JSON
         const quizQuestions = tryParseQuizFromResponse(response.response);
@@ -786,14 +803,31 @@ export default function StudyAI() {
                   }
                 />
 
-                <p className="text-center text-[10px] mt-2" style={{ color: 'rgba(255,255,255,0.22)' }}>
-                  StudyMate AI · Built for students · Focused on learning
+                <p className="text-center text-[10px] mt-2 flex items-center justify-center gap-2" style={{ color: 'rgba(255,255,255,0.22)' }}>
+                  <span>StudyMate AI · Built for students · Grounded Learning</span>
+                  <span>•</span>
+                  <button
+                    onClick={() => {
+                      setReportMsgId(`msg_${Date.now()}`);
+                      setReportModalOpen(true);
+                    }}
+                    className="hover:text-cyan-400 underline transition-colors"
+                  >
+                    Report Answer
+                  </button>
                 </p>
               </div>
             )}
           </div>
         </div>
       </div>
+
+      <ReportAnswerModal
+        isOpen={reportModalOpen}
+        onClose={() => setReportModalOpen(false)}
+        messageId={reportMsgId}
+        userId={userId || 'anon_user'}
+      />
     </>
   );
 }

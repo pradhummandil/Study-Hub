@@ -1,0 +1,23 @@
+{
+  "name": "Study Hub",
+  "short_name": "StudyHub",
+  "description": "Your personal Student Operating System — Personalized Learning, AI Coach, Practice & Community for GATE, JEE, NEET & more",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#062B3D",
+  "theme_color": "#5CE1E6",
+  "scope": "/",
+  "lang": "en-IN",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/images/logo-transparent.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/images/logo-transparent.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Dashboard", "url": "/dashboard", "description": "View your study dashboard" },
+    { "name": "Practice", "url": "/practice", "description": "Practice questions" },
+    { "name": "StudyMate AI", "url": "/study-ai", "description": "Chat with StudyMate AI" }
+  ],
+  "screenshots": []
+}
