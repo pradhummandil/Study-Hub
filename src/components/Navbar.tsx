@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { SITE_NAME } from '../config';
 import { useAuth } from '../context/AuthContext';
 import { LogOut, Clock, Settings, ChevronDown, LayoutDashboard } from 'lucide-react';
 
@@ -8,6 +7,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Studio', path: '/studio' },
   { label: 'Focus Room', path: '/focus-room' },
+  { label: 'Study AI', path: '/study-ai' },
   { label: 'About', path: '/about' },
   { label: 'Journal', path: '/journal' },
   { label: 'Community', path: '/community' },
@@ -61,10 +61,14 @@ export const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-3xl tracking-tight text-foreground transition-opacity hover:opacity-90 flex items-baseline select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
+          aria-label="Study Hub home"
+          className="transition-opacity hover:opacity-90 flex items-center shrink-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 rounded-lg py-1"
         >
-          {SITE_NAME}<sup className="text-xs ml-0.5 font-sans">®</sup>
+          <img
+            src="/images/logo-transparent.png"
+            alt="Study Hub"
+            className="h-9 sm:h-10 md:h-11 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop nav links */}
@@ -98,99 +102,103 @@ export const Navbar = () => {
                 aria-expanded={userMenuOpen}
               >
                 {avatarUrl ? (
-                  <img src={avatarUrl} alt={firstName} className="w-7 h-7 rounded-full object-cover shrink-0" />
+                  <img
+                    src={avatarUrl}
+                    alt={fullName}
+                    className="w-7 h-7 rounded-full object-cover border border-white/20"
+                  />
                 ) : (
-                  <span className="w-7 h-7 rounded-full bg-white/10 text-white font-semibold text-xs flex items-center justify-center shrink-0 border border-white/10">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 text-white font-semibold text-xs flex items-center justify-center border border-white/20">
                     {initialLetter}
-                  </span>
+                  </div>
                 )}
-                <span className="text-white text-sm font-medium truncate max-w-[110px]">{firstName}</span>
-                <ChevronDown className="w-4 h-4 text-white/60 shrink-0" />
+                <span className="text-xs font-medium text-foreground tracking-wide">{firstName}</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {/* Floating Dropdown Menu — Absolutely positioned, zero layout shift */}
+              {/* User Dropdown */}
               {userMenuOpen && (
-                <div className="liquid-glass-card rounded-2xl p-3 shadow-2xl absolute right-0 top-full mt-2 w-56 flex flex-col gap-1 border border-white/10 z-50 animate-fade-rise text-left">
+                <div
+                  className="absolute right-0 top-full mt-2 w-56 rounded-2xl liquid-glass border border-white/15 p-2 shadow-2xl z-50 animate-fade-rise"
+                  role="menu"
+                >
                   <div className="px-3 py-2 border-b border-white/10 mb-1">
-                    <p className="text-xs font-medium text-foreground truncate">
-                      {user.user_metadata?.full_name || 'User'}
-                    </p>
-                    <p className="text-[11px] text-muted-foreground truncate">{user.email}</p>
+                    <p className="text-xs font-semibold text-foreground truncate">{fullName}</p>
+                    <p className="text-[10px] text-muted-foreground truncate">{user.email}</p>
                   </div>
-
                   <Link
                     to="/dashboard"
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                    role="menuitem"
                   >
-                    <LayoutDashboard className="w-4 h-4 text-muted-foreground" />
+                    <LayoutDashboard className="w-4 h-4 text-cyan-400" />
                     Dashboard
                   </Link>
-
-                  <Link
-                    to="/focus-room"
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
-                  >
-                    <Clock className="w-4 h-4 text-muted-foreground" />
-                    Focus Room
-                  </Link>
-
                   <Link
                     to="/profile"
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                    role="menuitem"
                   >
-                    <Settings className="w-4 h-4 text-muted-foreground" />
-                    Settings
+                    <Settings className="w-4 h-4 text-indigo-400" />
+                    Profile & Settings
                   </Link>
-
-                  <button
-                    onClick={() => {
-                      setUserMenuOpen(false);
-                      signOut();
-                    }}
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-red-400 hover:text-red-300 hover:bg-white/5 rounded-xl transition-colors text-left w-full mt-1 border-t border-white/5 pt-2"
+                  <Link
+                    to="/focus-room"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                    role="menuitem"
                   >
-                    <LogOut className="w-4 h-4 text-red-400" />
-                    Log out
+                    <Clock className="w-4 h-4 text-violet-400" />
+                    Focus Timer
+                  </Link>
+                  <div className="my-1 border-t border-white/10" />
+                  <button
+                    onClick={() => signOut()}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+                    role="menuitem"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign out
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            /* Logged Out Controls */
-            <>
+            <div className="flex items-center gap-3">
               <Link
                 to="/login"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
               >
-                Login
+                Log in
               </Link>
               <Link
                 to="/signup"
-                className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground hover:scale-[1.03] transition-transform duration-300 inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 font-medium"
+                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               >
-                Sign Up
+                Get Started
               </Link>
-            </>
+            </div>
           )}
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile Hamburger Toggle */}
         <button
-          onClick={() => setMobileOpen(true)}
-          className="md:hidden text-foreground p-2 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-          aria-label="Open navigation menu"
-          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded p-2"
+          aria-label="Toggle navigation menu"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          {mobileOpen ? (
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </nav>
 
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile Menu Drawer Overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-50 md:hidden"
@@ -206,12 +214,17 @@ export const Navbar = () => {
           {/* Drawer */}
           <div className="absolute inset-x-4 top-4 liquid-glass rounded-2xl p-8 flex flex-col space-y-2 shadow-2xl">
             <div className="flex justify-between items-center mb-6">
-              <span
-                className="text-2xl tracking-tight text-foreground"
-                style={{ fontFamily: "'Instrument Serif', serif" }}
+              <Link
+                to="/"
+                aria-label="Study Hub home"
+                className="flex items-center shrink-0"
               >
-                {SITE_NAME}<sup className="text-xs ml-0.5 font-sans">®</sup>
-              </span>
+                <img
+                  src="/images/logo-transparent.png"
+                  alt="Study Hub"
+                  className="h-8 w-auto object-contain"
+                />
+              </Link>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="text-muted-foreground hover:text-foreground transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
@@ -243,58 +256,47 @@ export const Navbar = () => {
                 <div className="w-full h-12 rounded-full skeleton-pulse liquid-glass" />
               ) : user ? (
                 <>
-                  <div className="px-2 py-1 flex items-center gap-3">
+                  <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-white/5">
                     {avatarUrl ? (
-                      <img src={avatarUrl} alt={firstName} className="w-10 h-10 rounded-full object-cover" />
+                      <img src={avatarUrl} alt={fullName} className="w-9 h-9 rounded-full object-cover" />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-white/10 text-white font-semibold flex items-center justify-center border border-white/10">
+                      <div className="w-9 h-9 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center">
                         {initialLetter}
                       </div>
                     )}
-                    <div>
-                      <p className="text-sm font-medium text-foreground">
-                        {user.user_metadata?.full_name || 'Logged in'}
-                      </p>
-                      <p className="text-xs text-muted-foreground">{user.email}</p>
+                    <div className="overflow-hidden">
+                      <p className="text-sm font-semibold text-foreground truncate">{fullName}</p>
+                      <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                     </div>
                   </div>
                   <Link
                     to="/dashboard"
-                    className="liquid-glass rounded-full px-6 py-3 text-sm text-foreground text-center block"
+                    className="w-full text-center py-3 rounded-full bg-cyan-500/20 text-cyan-300 font-medium text-sm hover:bg-cyan-500/30 transition-colors"
                   >
                     Dashboard
                   </Link>
-                  <Link
-                    to="/profile"
-                    className="liquid-glass rounded-full px-6 py-3 text-sm text-muted-foreground text-center block"
-                  >
-                    Settings
-                  </Link>
                   <button
-                    onClick={() => {
-                      setMobileOpen(false);
-                      signOut();
-                    }}
-                    className="text-red-400 text-sm text-center py-2 hover:text-red-300 transition-colors"
+                    onClick={() => signOut()}
+                    className="w-full text-center py-3 rounded-full bg-red-500/10 text-red-400 font-medium text-sm hover:bg-red-500/20 transition-colors"
                   >
-                    Log out
+                    Sign out
                   </button>
                 </>
               ) : (
-                <>
-                  <Link
-                    to="/signup"
-                    className="liquid-glass rounded-full px-6 py-3.5 text-sm text-foreground text-center block font-medium"
-                  >
-                    Sign Up
-                  </Link>
+                <div className="flex flex-col gap-2">
                   <Link
                     to="/login"
-                    className="text-center text-sm text-muted-foreground hover:text-foreground py-2 block"
+                    className="w-full text-center py-3 rounded-full border border-white/20 text-foreground font-medium text-sm hover:bg-white/10 transition-colors"
                   >
                     Log in
                   </Link>
-                </>
+                  <Link
+                    to="/signup"
+                    className="w-full text-center py-3 rounded-full gradient-cta text-white font-semibold text-sm"
+                  >
+                    Get Started
+                  </Link>
+                </div>
               )}
             </div>
           </div>

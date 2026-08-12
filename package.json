@@ -8,12 +8,16 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "upload-resources": "node scripts/bulk-upload-resources.js"
+    "test-gemini": "node scripts/test-gemini.js",
+    "upload-resources": "node scripts/bulk-upload-resources.js",
+    "merge-resource-manifests": "node scripts/merge-resource-manifests.js",
+    "import-resources": "node scripts/import-resources-to-supabase.js"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@supabase/supabase-js": "^2.112.3",
     "clsx": "^2.1.1",
+    "framer-motion": "^13.1.0",
     "lucide-react": "^1.30.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

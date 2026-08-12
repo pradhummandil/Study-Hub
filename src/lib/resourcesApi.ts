@@ -6,11 +6,19 @@ export interface ResourceItem {
   description: string | null;
   category: string;
   exam_tag: string | null;
+  year?: number | null;
+  subject?: string | null;
   file_url: string;
   thumbnail_url: string | null;
   file_type: string | null;
   download_count: number;
   created_at: string;
+}
+
+export interface GetResourcesResult {
+  resources: ResourceItem[];
+  totalCount: number;
+  examCounts: Record<string, number>;
 }
 
 export async function getResources(): Promise<ResourceItem[]> {
@@ -35,7 +43,11 @@ export async function incrementDownloadCount(resourceId: string): Promise<void> 
   try {
     const { error } = await supabase.rpc('increment_resource_download', { resource_id: resourceId });
     if (error) {
-      console.warn('RPC increment_resource_download failed, fallback update:', error.message);
+      // Fallback direct update if RPC is missing
+      const { data } = await supabase.from('resources').select('download_count').eq('id', resourceId).maybeSingle();
+      if (data) {
+        await supabase.from('resources').update({ download_count: (data.download_count || 0) + 1 }).eq('id', resourceId);
+      }
     }
   } catch (err) {
     console.warn('Failed to increment download count:', err);

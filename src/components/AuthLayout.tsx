@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { SITE_NAME } from '../config';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -89,10 +88,14 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         <div className="liquid-glass rounded-full px-6 py-3 flex items-center justify-between max-w-5xl mx-auto w-full">
           <Link
             to="/"
-            className="text-2xl tracking-tight text-white flex items-baseline select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            aria-label="Study Hub home"
+            className="transition-opacity hover:opacity-90 flex items-center shrink-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-lg"
           >
-            {SITE_NAME}<sup className="text-xs ml-0.5 font-sans">®</sup>
+            <img
+              src="/images/logo-transparent.png"
+              alt="Study Hub"
+              className="h-9 w-auto object-contain"
+            />
           </Link>
           <Link
             to="/"

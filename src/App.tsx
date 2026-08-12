@@ -1,5 +1,5 @@
 import { lazy, Suspense, useRef, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -8,6 +8,7 @@ import { HomeExtensions } from './components/HomeExtensions';
 import { SocialProofBar } from './components/SocialProofBar';
 import { StartingPointQuiz } from './components/StartingPointQuiz';
 import { ExitIntentModal } from './components/ExitIntentModal';
+import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
 
 // Lazy-loaded pages
 const ReachUs   = lazy(() => import('./pages/ReachUs'));
@@ -21,6 +22,7 @@ const Login     = lazy(() => import('./pages/Login'));
 const Profile   = lazy(() => import('./pages/Profile'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const NotFound  = lazy(() => import('./pages/NotFound'));
+const StudyAI   = lazy(() => import('./pages/StudyAI'));
 
 // Pulsing dot fallback
 const PageLoader = () => (
@@ -88,6 +90,13 @@ function PageLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
+function FloatingAIButtonWrapper() {
+  const location = useLocation();
+  // Don't show on the StudyAI page itself
+  const hide = location.pathname === '/study-ai';
+  return <FloatingAIButton show={!hide} />;
+}
+
 function AppRoutes() {
   return (
     <Routes>
@@ -102,6 +111,9 @@ function AppRoutes() {
       <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
       <Route path="/profile"  element={<PageLayout><Profile /></PageLayout>} />
       <Route path="/account"  element={<PageLayout><Profile /></PageLayout>} />
+
+      {/* StudyMate AI — full-page, no shared layout (has own header) */}
+      <Route path="/study-ai" element={<Suspense fallback={<PageLoader />}><StudyAI /></Suspense>} />
       
       {/* Auth Routes */}
       <Route path="/signup" element={<Suspense fallback={<PageLoader />}><SignUp /></Suspense>} />
@@ -121,6 +133,7 @@ export default function App() {
       <AuthProvider>
         <BrowserRouter>
           <AppRoutes />
+          <FloatingAIButtonWrapper />
           <ExitIntentModal />
         </BrowserRouter>
       </AuthProvider>

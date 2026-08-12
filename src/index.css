@@ -235,3 +235,37 @@
   pointer-events: none;
 }
 
+/* ── StudyMate AI colour system ───────────────────────────────── */
+:root {
+  --ai-cyan:     #5CE1E6;
+  --ai-indigo:   #7C83FD;
+  --ai-lavender: #B49CFF;
+  --ai-peach:    #FFB38A;
+  --ai-navy:     #062B3D;
+  --ai-muted:    #9FB3C8;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* StudyMate AI glass bubble */
+.ai-glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(92, 225, 230, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* AI gradient text */
+.text-gradient-ai {
+  background: linear-gradient(135deg, #5CE1E6 0%, #7C83FD 50%, #B49CFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
