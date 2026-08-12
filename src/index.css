@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 201 100% 13%;
+    --foreground: 0 0% 100%;
+    --muted-foreground: 240 4% 66%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --muted: 0 0% 10%;
+    --accent: 0 0% 10%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+}
+
+/* Liquid Glass Effect */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Liquid Glass — stronger variant for cards */
+.liquid-glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 4px 32px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg,
+    rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 40%,
+    rgba(255,255,255,0) 60%, rgba(255,255,255,0.12) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Fade Rise Animations — page-load (no delay variations needed for scroll) */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-rise         { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay   { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+.animate-fade-rise-delay-3 { animation: fade-rise 0.8s ease-out 0.6s both; }
+
+/* Scroll-triggered fade-rise — applied via useInView hook */
+.scroll-fade-rise {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.scroll-fade-rise.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-fade-rise-delay {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out 0.15s, transform 0.7s ease-out 0.15s;
+}
+.scroll-fade-rise-delay.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-fade-rise-delay-2 {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out 0.3s, transform 0.7s ease-out 0.3s;
+}
+.scroll-fade-rise-delay-2.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skeleton pulse */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.skeleton-pulse {
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+}
+
+/* Focus visible ring for accessibility */
+.focus-ring:focus-visible {
+  outline: none;
+  ring: 2px;
+  ring-color: rgba(255,255,255,0.4);
+  ring-offset: 2px;
+}
+
+/* ── Accent colour system ─────────────────────────────────────── */
+:root {
+  --accent-gradient-start: 38 92% 68%;   /* warm amber/gold  */
+  --accent-gradient-end:   271 76% 68%;  /* soft violet      */
+  --accent-glow:           38 92% 68%;
+}
+
+/* Gradient text — use sparingly on one key word per heading */
+.text-gradient-accent {
+  background: linear-gradient(120deg,
+    hsl(var(--accent-gradient-start)),
+    hsl(var(--accent-gradient-end)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary CTA variant — use on max 2 buttons site-wide */
+.gradient-cta {
+  position: relative;
+  background: linear-gradient(120deg,
+    hsl(var(--accent-gradient-start)),
+    hsl(var(--accent-gradient-end)));
+  color: hsl(0 0% 4%);
+  font-weight: 500;
+  box-shadow: 0 0 24px hsla(var(--accent-glow) / 0.35);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.gradient-cta:hover {
+  box-shadow: 0 0 36px hsla(var(--accent-glow) / 0.5);
+  transform: scale(1.03);
+}
+
+/* Ambient glow orb — decorative only, z-0, behind content */
+.ambient-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    hsla(var(--accent-gradient-start) / 0.15),
+    transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SocialProofBar marquee — two identical spans, animation shifts by -50% */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Liquid glass — light background variant (About page inverted section) */
+.liquid-glass-light {
+  background: rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(145deg,
+    rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.04) 40%,
+    rgba(0,0,0,0) 60%, rgba(0,0,0,0.06) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
