@@ -125,6 +125,7 @@ function buildSystemInstruction(context: Record<string, string> = {}): string {
 
   const subjectCtx = context.subject ? `\n\nSubject focus: ${context.subject}.` : '';
   const topicCtx = context.topic ? ` Topic: ${context.topic}.` : '';
+  const studentCtx = context.student_context ? `\n\n${context.student_context}` : '';
 
   return `You are StudyMate AI, an educational study assistant built specifically for students preparing for competitive exams and academic learning.
 
@@ -163,7 +164,8 @@ IMPORTANT RULES:
 - Never claim to know official exam answer keys, cutoffs, or rankings without verified data
 - Never invent official exam policies or dates — clearly say "verify with the official source"
 - For AI-generated practice questions, always label them as "AI-generated practice questions"
-- Be encouraging and motivating — students are working hard${examCtx}${modeCtx}${subjectCtx}${topicCtx}`;
+- When asked "What should I study today?", use the provided student performance context to give a personalized, empirical answer. If data is missing or incomplete, politely say: "I don't have enough performance data yet. Try a 10-question practice session first!"
+- Be encouraging and motivating — students are working hard${examCtx}${modeCtx}${subjectCtx}${topicCtx}${studentCtx}`;
 }
 
 function getModeInstruction(mode: string): string {

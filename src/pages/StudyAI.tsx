@@ -2,11 +2,12 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, Sparkles, CloudUpload } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
 import type { Message, ExamType, StudyMode, QuizQuestion, QuizResult, ChatSession } from '../types/study-ai';
 import { sendStudyMessage, generateMessageId } from '../lib/studyAi';
 import { useAuth } from '../context/AuthContext';
+import { buildStudentIntelligenceContext, formatContextPrompt } from '../lib/intelligence/coach';
 
 import { StudyAIHeader } from '../components/study-ai/StudyAIHeader';
 import { StudyAIWelcome } from '../components/study-ai/StudyAIWelcome';
@@ -295,10 +296,14 @@ export default function StudyAI() {
           });
         }
 
-        // 3. Call Gemini API
+        // 3. Call Gemini API with rich structured student intelligence context
+        const intelContext = await buildStudentIntelligenceContext(selectedExam);
+        const formattedIntelPrompt = formatContextPrompt(intelContext);
+
         const context = {
           exam: selectedExam,
           mode: selectedMode,
+          student_context: formattedIntelPrompt,
         };
 
         // Build complete history payload
@@ -410,6 +415,22 @@ export default function StudyAI() {
     },
     [activeChatId, isLoading, messages, selectedExam, selectedMode, isAuthenticated, userId, setSearchParams]
   );
+
+  const location = useLocation();
+  const initialPromptHandled = useRef(false);
+
+  useEffect(() => {
+    if (!initialPromptHandled.current && location.state) {
+      const stateObj = location.state as { prompt?: string; mode?: StudyMode; subject?: string };
+      if (stateObj.prompt) {
+        initialPromptHandled.current = true;
+        if (stateObj.mode) setSelectedMode(stateObj.mode);
+        setTimeout(() => {
+          sendMessage(stateObj.prompt!);
+        }, 300);
+      }
+    }
+  }, [location.state, sendMessage]);
 
   // ── Quick action click ─────────────────────────────────────────────────────
   const handleQuickAction = useCallback(

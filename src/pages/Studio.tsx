@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, FileText, Download, ExternalLink, Bookmark, Sparkles, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Search, FileText, Download, ExternalLink, Bookmark, Sparkles, RefreshCw, CheckCircle2, Zap } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../context/AuthContext';
 import { getSavedResources, saveResource, removeResourceByTitle } from '../lib/dashboardApi';
@@ -10,6 +11,7 @@ const EXAM_TAGS = ['All exams', 'GATE', 'JEE Advanced', 'JEE Advanced AAT', 'JEE
 const PAGE_SIZE = 24;
 
 export default function Studio() {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [resources, setResources] = useState<ResourceItem[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
@@ -469,8 +471,24 @@ export default function Studio() {
                       </div>
                     </div>
 
+                    {/* Resource Intelligence Action Strip */}
+                    <div className="px-6 py-2 border-t border-white/5 flex items-center justify-between text-[11px] gap-2">
+                      <button
+                        onClick={() => navigate('/study-ai', { state: { prompt: `Analyze and explain core concepts in ${r.title} for ${r.exam_tag || 'GATE'}`, mode: 'Explain' } })}
+                        className="text-purple-400 hover:text-purple-300 flex items-center gap-1 font-semibold"
+                      >
+                        <Sparkles className="w-3 h-3" /> Ask StudyMate
+                      </button>
+                      <button
+                        onClick={() => navigate('/study-ai', { state: { prompt: `Create a 5 question quiz on ${r.title}`, mode: 'Quiz' } })}
+                        className="text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold"
+                      >
+                        <Zap className="w-3 h-3" /> Create Quiz
+                      </button>
+                    </div>
+
                     {/* Card Actions Footer */}
-                    <div className="p-6 pt-0 mt-2 flex items-center gap-3">
+                    <div className="p-6 pt-2 flex items-center gap-3">
                       {/* View Button (Opens PDF in new tab) */}
                       <button
                         onClick={(e) => handleViewClick(e, r)}

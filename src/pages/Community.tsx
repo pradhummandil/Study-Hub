@@ -1,135 +1,642 @@
+// src/pages/Community.tsx
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { MessageCircle, MessageSquare, Users, Compass, ExternalLink } from 'lucide-react';
-
-/* REPLACE_WITH_REAL_INVITE_LINK — Swap these placeholders when community links go live */
-const WHATSAPP_INVITE_URL = 'https://chat.whatsapp.com/CjmJnyoEOTl2tTNrGYQs7r?s=sh&p=a&ilr=4';
-const DISCORD_INVITE_URL = 'https://discord.gg/2v6g7k8';
+import {
+  Users, MessageCircle, MessageSquare, Plus, Search,
+  CheckCircle2, Heart, Sparkles, X, Send
+} from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import {
+  fetchStudyCircles,
+  toggleCircleMembership,
+  fetchCommunityPosts,
+  createCommunityPost,
+  fetchPostComments,
+  addPostComment,
+  markHelpfulAnswer,
+  togglePostReaction
+} from '../lib/community/communityApi';
+import { submitReport } from '../lib/community/moderation';
+import type { StudyCircle, CommunityPost, CommunityComment, PostType } from '../types/ecosystem';
 
 export default function Community() {
+  const { user } = useAuth();
+  const [circles, setCircles] = useState<StudyCircle[]>([]);
+  const [selectedCircle, setSelectedCircle] = useState<StudyCircle | null>(null);
+  
+  // Feed state
+  const [posts, setPosts] = useState<CommunityPost[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
+  const [activeTab, setActiveTab] = useState<PostType | 'all' | 'unanswered'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Create post modal state
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newTitle, setNewTitle] = useState('');
+  const [newContent, setNewContent] = useState('');
+  const [newPostType, setNewPostType] = useState<PostType>('question');
+  const [postError, setPostError] = useState<string | null>(null);
+  const [isPosting, setIsPosting] = useState(false);
+
+  // Active Post Detail Modal
+  const [activePost, setActivePost] = useState<CommunityPost | null>(null);
+  const [comments, setComments] = useState<CommunityComment[]>([]);
+  const [newComment, setNewComment] = useState('');
+  const [commentError, setCommentError] = useState<string | null>(null);
+
+  // Report Modal
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [reportTarget, setReportTarget] = useState<{ type: 'post' | 'comment'; id: string } | null>(null);
+  const [reportReason, setReportReason] = useState<'Spam' | 'Harassment' | 'Inappropriate' | 'Misleading academic information' | 'Copyright concern' | 'Other'>('Spam');
+  const [reportDetails, setReportDetails] = useState('');
+
+  // Load circles on mount
+  useEffect(() => {
+    let isMounted = true;
+    async function loadCircles() {
+      const data = await fetchStudyCircles(user?.id);
+      if (isMounted) {
+        setCircles(data);
+        if (data.length > 0) setSelectedCircle(data[0]);
+      }
+    }
+    loadCircles();
+    return () => { isMounted = false; };
+  }, [user]);
+
+  // Load posts when circle/tab/search changes
+  useEffect(() => {
+    let isMounted = true;
+    async function loadPosts() {
+      setLoadingPosts(true);
+      const data = await fetchCommunityPosts({
+        circleId: selectedCircle?.id,
+        type: activeTab === 'unanswered' ? 'question' : (activeTab as any),
+        unansweredOnly: activeTab === 'unanswered',
+        searchQuery,
+        userId: user?.id,
+      });
+      if (isMounted) {
+        setPosts(data);
+        setLoadingPosts(false);
+      }
+    }
+    loadPosts();
+    return () => { isMounted = false; };
+  }, [selectedCircle, activeTab, searchQuery, user]);
+
+  const handleJoinToggle = async (circle: StudyCircle) => {
+    if (!user) return;
+    const nextMemberState = !circle.is_member;
+    setCircles((prev) =>
+      prev.map((c) => (c.id === circle.id ? { ...c, is_member: nextMemberState, member_count: c.member_count + (nextMemberState ? 1 : -1) } : c))
+    );
+    if (selectedCircle?.id === circle.id) {
+      setSelectedCircle((prev) => prev ? { ...prev, is_member: nextMemberState } : null);
+    }
+    await toggleCircleMembership(user.id, circle.id, nextMemberState);
+  };
+
+  const handleCreatePost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+    setIsPosting(true);
+    setPostError(null);
+
+    const res = await createCommunityPost({
+      userId: user.id,
+      circleId: selectedCircle?.id,
+      type: newPostType,
+      title: newTitle,
+      content: newContent,
+      exam: selectedCircle?.exam || 'GATE',
+    });
+
+    setIsPosting(false);
+    if (!res.success) {
+      setPostError(res.error || 'Failed to create post.');
+    } else {
+      setShowCreateModal(false);
+      setNewTitle('');
+      setNewContent('');
+      if (res.post) setPosts((prev) => [res.post!, ...prev]);
+    }
+  };
+
+  const handleOpenPostDetails = async (post: CommunityPost) => {
+    setActivePost(post);
+    const comms = await fetchPostComments(post.id);
+    setComments(comms);
+  };
+
+  const handleAddComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user || !activePost || !newComment.trim()) return;
+
+    const res = await addPostComment(activePost.id, user.id, newComment);
+    if (!res.success) {
+      setCommentError(res.error || 'Failed to add comment.');
+    } else {
+      setNewComment('');
+      setCommentError(null);
+      if (res.comment) setComments((prev) => [...prev, res.comment!]);
+    }
+  };
+
+  const handleMarkHelpful = async (comment: CommunityComment) => {
+    if (!user || !activePost) return;
+    await markHelpfulAnswer(comment.id, activePost.id, comment.user_id);
+    setComments((prev) => prev.map((c) => (c.id === comment.id ? { ...c, is_helpful: true } : c)));
+    setActivePost((prev) => prev ? { ...prev, is_answered: true } : null);
+  };
+
+  const handleReaction = async (postId: string, type: 'helpful' | 'like') => {
+    if (!user) return;
+    await togglePostReaction(user.id, postId, type);
+    setPosts((prev) =>
+      prev.map((p) => {
+        if (p.id !== postId) return p;
+        return {
+          ...p,
+          like_count: type === 'like' ? p.like_count + 1 : p.like_count,
+          helpful_count: type === 'helpful' ? p.helpful_count + 1 : p.helpful_count,
+        };
+      })
+    );
+  };
+
+  const handleReportSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user || !reportTarget) return;
+
+    await submitReport({
+      reporter_id: user.id,
+      target_type: reportTarget.type,
+      target_id: reportTarget.id,
+      reason: reportReason,
+      details: reportDetails,
+    });
+
+    setShowReportModal(false);
+    setReportDetails('');
+  };
+
   return (
     <>
       <Helmet>
-        <title>Community — Study Hub</title>
-        <meta name="description" content="Join 500+ students working through the same exams, habits, and doubts. Quiet study rooms and WhatsApp check-ins." />
+        <title>Study Circles & Community — Study Hub</title>
+        <meta name="description" content="Academic study circles, peer doubts, verified answers, and quiet collaborative study groups." />
       </Helmet>
 
-      {/* Hero */}
-      <div className="relative z-10 px-6 pt-24 pb-12 text-center max-w-4xl mx-auto">
+      {/* Hero Header */}
+      <div className="relative z-10 px-6 pt-12 pb-8 max-w-6xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono mb-4">
+          <Users className="w-3.5 h-3.5" /> Academic Community
+        </div>
         <h1
-          className="animate-fade-rise text-5xl sm:text-6xl font-normal leading-[0.95] tracking-[-2px] text-foreground"
+          className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          You're not doing this <span className="text-gradient-accent">alone.</span>
+          Study Circles & <span className="text-gradient-accent">Peer Doubts.</span>
         </h1>
-
-        <p className="animate-fade-rise-delay text-muted-foreground max-w-xl mx-auto mt-6 leading-relaxed">
-          Join students working through the same stuff — same anxiety, same 2am doubts, same wins.
+        <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto mt-2 leading-relaxed">
+          Focused academic discussions, PYQ doubt resolution, and study resources. Free of social noise.
         </p>
       </div>
 
-      {/* Primary Community CTA Card (WhatsApp) */}
-      <div className="relative z-10 max-w-xl mx-auto px-6 mb-6">
-        <div className="liquid-glass-card rounded-2xl p-8 sm:p-10 text-center border border-white/10 relative overflow-hidden shadow-2xl">
-          {/* Subtle ambient glow behind primary card */}
-          <div className="ambient-glow" style={{ top: '-100px', left: '20%', opacity: 0.5 }} />
-
-          <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-5 border border-emerald-500/20">
-            <MessageCircle className="w-6 h-6" />
-          </div>
-
-          <h2
-            className="text-3xl sm:text-4xl font-normal leading-snug text-foreground mb-3"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            Join the WhatsApp community
+      {/* Main Layout: Left Circles Sidebar + Right Feed */}
+      <div className="relative z-10 px-6 max-w-6xl mx-auto pb-28 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        {/* Left Sidebar: Study Circles List */}
+        <div className="space-y-4">
+          <h2 className="text-xs uppercase tracking-widest text-muted-foreground font-semibold px-2">
+            Study Circles
           </h2>
 
-          <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
-            Weekly study check-ins, instant Q&A, and a quiet space where everyone is building the same habit.
-          </p>
+          <div className="space-y-2">
+            {circles.map((c) => {
+              const isSelected = selectedCircle?.id === c.id;
+              return (
+                <div
+                  key={c.id}
+                  onClick={() => setSelectedCircle(c)}
+                  className={`p-3.5 rounded-2xl border text-xs cursor-pointer transition-all ${
+                    isSelected
+                      ? 'bg-slate-900 border-cyan-500/50 shadow-lg text-foreground'
+                      : 'liquid-glass border-white/5 text-muted-foreground hover:text-foreground hover:bg-white/5'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-foreground text-xs">{c.name}</span>
+                    <span className="text-[10px] text-cyan-400 font-mono">{c.member_count} members</span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground line-clamp-2">{c.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
-          <a
-            href={WHATSAPP_INVITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gradient-cta rounded-full px-8 py-3.5 text-base font-medium inline-flex items-center justify-center gap-2 mt-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-          >
-            <span>Join WhatsApp Group</span>
-            <ExternalLink className="w-4 h-4 opacity-80" />
-          </a>
+        {/* Right 3 Columns: Circle Header, Controls, Feed */}
+        <div className="lg:col-span-3 space-y-6">
+          
+          {/* Selected Circle Banner */}
+          {selectedCircle && (
+            <div className="liquid-glass-card rounded-3xl p-6 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    {selectedCircle.exam}
+                  </span>
+                  <span className="text-xs text-muted-foreground">• {selectedCircle.member_count} learners active</span>
+                </div>
+                <h2 className="text-2xl font-bold text-foreground">{selectedCircle.name}</h2>
+                <p className="text-xs text-muted-foreground mt-1 max-w-xl">{selectedCircle.description}</p>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <button
+                  onClick={() => handleJoinToggle(selectedCircle)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                    selectedCircle.is_member
+                      ? 'bg-white/10 text-slate-300 border border-white/10 hover:bg-red-500/20 hover:text-red-300'
+                      : 'gradient-cta text-slate-950 font-bold'
+                  }`}
+                >
+                  {selectedCircle.is_member ? 'Joined Circle ✓' : 'Join Circle'}
+                </button>
+
+                <button
+                  onClick={() => setShowCreateModal(true)}
+                  className="px-4 py-2 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg transition-transform hover:scale-105"
+                >
+                  <Plus className="w-4 h-4" /> Ask Question
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Filter Bar & Search */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            {/* Category Tabs */}
+            <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+              {[
+                { id: 'all', label: 'All Posts' },
+                { id: 'question', label: 'Questions' },
+                { id: 'unanswered', label: 'Need Help (Unanswered)' },
+                { id: 'discussion', label: 'Discussions' },
+                { id: 'tip', label: 'Study Tips' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`px-3 py-1.5 rounded-xl border transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-bold'
+                      : 'liquid-glass text-muted-foreground border-white/5 hover:text-foreground'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full sm:w-56 shrink-0">
+              <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search posts..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-slate-900 border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan-500/40"
+              />
+            </div>
+          </div>
+
+          {/* Feed Posts List */}
+          {loadingPosts ? (
+            <div className="py-16 text-center text-xs text-muted-foreground">
+              <div className="w-3 h-3 rounded-full bg-muted-foreground skeleton-pulse mx-auto mb-2" />
+              Loading discussions...
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="liquid-glass-card rounded-3xl p-12 text-center border border-white/10">
+              <MessageSquare className="w-8 h-8 text-muted-foreground/60 mx-auto mb-3" />
+              <h3 className="text-base font-bold text-foreground mb-1">Your study circle is quiet right now</h3>
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto mb-6">
+                Start the first academic discussion or ask a PYQ doubt.
+              </p>
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="gradient-cta rounded-full px-6 py-2.5 text-xs font-bold text-slate-950 inline-flex items-center gap-1.5"
+              >
+                <Plus className="w-4 h-4" /> Start Discussion
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {posts.map((post) => (
+                <div
+                  key={post.id}
+                  className="liquid-glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-500/30 transition-all space-y-3"
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                        post.type === 'question' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                      }`}>
+                        {post.type}
+                      </span>
+                      {post.is_answered && (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" /> Helpful Answer Marked
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">
+                      {new Date(post.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3
+                      onClick={() => handleOpenPostDetails(post)}
+                      className="text-base font-bold text-foreground hover:text-cyan-300 transition-colors cursor-pointer"
+                    >
+                      {post.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground line-clamp-3 mt-1 leading-relaxed">
+                      {post.content}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-white/5 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => handleReaction(post.id, 'helpful')}
+                        className="flex items-center gap-1 hover:text-cyan-300 transition-colors"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>{post.helpful_count} Helpful</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleReaction(post.id, 'like')}
+                        className="flex items-center gap-1 hover:text-purple-300 transition-colors"
+                      >
+                        <Heart className="w-3.5 h-3.5 text-purple-400" />
+                        <span>{post.like_count}</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleOpenPostDetails(post)}
+                        className="flex items-center gap-1 hover:text-foreground transition-colors"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>{post.comment_count} Answers</span>
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setReportTarget({ type: 'post', id: post.id });
+                        setShowReportModal(true);
+                      }}
+                      className="text-[10px] text-slate-500 hover:text-red-400 transition-colors"
+                    >
+                      Report
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Secondary Community Option (Discord) */}
-      <div className="relative z-10 max-w-xl mx-auto px-6 mb-20">
-        <div className="liquid-glass rounded-xl p-5 text-center border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left sm:text-left">
-            <p className="text-sm font-medium text-foreground">Prefer Discord?</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Quiet study streams and voice channels.</p>
+      {/* Create Post Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-lg rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
+            <button
+              onClick={() => setShowCreateModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <h3 className="text-xl font-bold mb-1">Create Academic Post</h3>
+            <p className="text-xs text-muted-foreground mb-4">Posting to {selectedCircle?.name || 'Community'}</p>
+
+            {postError && <p className="text-xs text-red-400 mb-3">{postError}</p>}
+
+            <form onSubmit={handleCreatePost} className="space-y-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Category</label>
+                <select
+                  value={newPostType}
+                  onChange={(e) => setNewPostType(e.target.value as PostType)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200"
+                >
+                  <option value="question">Question (PYQ / Concept Doubt)</option>
+                  <option value="discussion">Academic Discussion</option>
+                  <option value="tip">Study Strategy / Tip</option>
+                  <option value="resource">Notes / Resource</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Title</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. How to solve Subnetting CIDR Masking questions?"
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Details & Question Text</label>
+                <textarea
+                  required
+                  rows={5}
+                  placeholder="Provide context, question steps, or doubts clearly..."
+                  value={newContent}
+                  onChange={(e) => setNewContent(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-4 py-2 text-xs text-slate-400 hover:text-slate-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isPosting}
+                  className="gradient-cta rounded-full px-6 py-2 text-xs text-slate-950 font-bold"
+                >
+                  {isPosting ? 'Publishing...' : 'Publish Post'}
+                </button>
+              </div>
+            </form>
           </div>
-
-          <a
-            href={DISCORD_INVITE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="liquid-glass rounded-full px-5 py-2 text-xs text-foreground font-medium hover:scale-105 transition-transform flex items-center gap-1.5 shrink-0"
-          >
-            <span>Discord Server</span>
-            <ExternalLink className="w-3 h-3 text-muted-foreground" />
-          </a>
         </div>
-      </div>
+      )}
 
-      {/* What Happens in There Section */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pb-32">
-        <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Community values</p>
-          <h2
-            className="text-3xl sm:text-4xl font-normal leading-tight text-foreground"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            What happens in there
-          </h2>
-        </div>
+      {/* Active Post Details & Comments Modal */}
+      {activePost && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
+            <button
+              onClick={() => setActivePost(null)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
+            >
+              <X className="w-4 h-4" />
+            </button>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="liquid-glass-card rounded-2xl p-8 flex flex-col justify-between border border-white/5">
-            <div className="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center mb-6">
-              <MessageSquare className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-foreground mb-2">Ask anything, anytime</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Get answers from students who cleared the exact exam you're taking. No judgment, no dumb questions.
+            <div className="mb-4">
+              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">
+                {activePost.type}
+              </span>
+              <h2 className="text-xl font-bold text-foreground mt-2">{activePost.title}</h2>
+              <p className="text-xs text-slate-300 whitespace-pre-line mt-2 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-white/5">
+                {activePost.content}
               </p>
             </div>
-          </div>
 
-          <div className="liquid-glass-card rounded-2xl p-8 flex flex-col justify-between border border-white/5">
-            <div className="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center mb-6">
-              <Users className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-foreground mb-2">Weekly study-together sessions</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Silent focus sessions on Google Meet and Discord so you never have to study completely alone.
-              </p>
-            </div>
-          </div>
+            {/* Answers & Comments Section */}
+            <div className="border-t border-white/10 pt-4 space-y-4">
+              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Student Answers & Discussion ({comments.length})
+              </h3>
 
-          <div className="liquid-glass-card rounded-2xl p-8 flex flex-col justify-between border border-white/5">
-            <div className="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center mb-6">
-              <Compass className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-foreground mb-2">See what others are working through</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Share notes, roadmaps, and daily streak check-ins to stay accountable when motivation drops.
-              </p>
+              {comments.length === 0 ? (
+                <p className="text-xs text-slate-500 py-4 text-center">No responses yet. Be the first to answer!</p>
+              ) : (
+                <div className="space-y-3">
+                  {comments.map((c) => (
+                    <div
+                      key={c.id}
+                      className={`p-3.5 rounded-2xl border text-xs space-y-2 ${
+                        c.is_helpful
+                          ? 'bg-cyan-500/10 border-cyan-500/40 text-slate-100'
+                          : 'bg-slate-950 border-slate-800 text-slate-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-bold text-cyan-300">{c.author_name || 'Student'}</span>
+                        {c.is_helpful ? (
+                          <span className="text-cyan-400 font-bold flex items-center gap-1 text-[10px]">
+                            <CheckCircle2 className="w-3 h-3" /> Marked as Helpful Answer
+                          </span>
+                        ) : (
+                          user && activePost.user_id === user.id && (
+                            <button
+                              onClick={() => handleMarkHelpful(c)}
+                              className="text-emerald-400 hover:underline text-[10px] font-bold"
+                            >
+                              ✓ Mark as Helpful Answer
+                            </button>
+                          )
+                        )}
+                      </div>
+                      <p className="whitespace-pre-line leading-relaxed">{c.content}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Add Comment Input */}
+              <form onSubmit={handleAddComment} className="pt-2 flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Write a clear, academic answer..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-400"
+                />
+                <button
+                  type="submit"
+                  className="gradient-cta rounded-xl px-4 py-2.5 text-xs font-bold text-slate-950 flex items-center gap-1"
+                >
+                  <Send className="w-3.5 h-3.5" /> Answer
+                </button>
+              </form>
+              {commentError && <p className="text-xs text-red-400">{commentError}</p>}
             </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Report Modal */}
+      {showReportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-md rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
+            <button
+              onClick={() => setShowReportModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <h3 className="text-lg font-bold mb-2">Report Content</h3>
+            <p className="text-xs text-slate-400 mb-4">Help keep Study Hub safe and academically serious.</p>
+
+            <form onSubmit={handleReportSubmit} className="space-y-3">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Reason</label>
+                <select
+                  value={reportReason}
+                  onChange={(e) => setReportReason(e.target.value as any)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200"
+                >
+                  <option value="Spam">Spam / Advertising</option>
+                  <option value="Harassment">Harassment / Abusive behavior</option>
+                  <option value="Inappropriate">Inappropriate username or content</option>
+                  <option value="Misleading academic information">Misleading academic information</option>
+                  <option value="Copyright concern">Copyright concern</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Details (Optional)</label>
+                <textarea
+                  rows={3}
+                  placeholder="Additional context for moderators..."
+                  value={reportDetails}
+                  onChange={(e) => setReportDetails(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowReportModal(false)}
+                  className="px-4 py-2 text-xs text-slate-400 hover:text-slate-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="py-2 px-5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs"
+                >
+                  Submit Report
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -1,0 +1,21 @@
+{
+  "name": "Study Hub",
+  "short_name": "StudyHub",
+  "description": "Student Operating System — Personalized Learning, Intelligence Engine & Ecosystem",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#062B3D",
+  "theme_color": "#5CE1E6",
+  "icons": [
+    {
+      "src": "/images/logo-transparent.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo-transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import { SocialProofBar } from './components/SocialProofBar';
 import { StartingPointQuiz } from './components/StartingPointQuiz';
 import { ExitIntentModal } from './components/ExitIntentModal';
 import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
+import { MobileNav } from './components/layout/MobileNav';
 
 // Lazy-loaded pages
 const ReachUs   = lazy(() => import('./pages/ReachUs'));
@@ -21,8 +22,24 @@ const SignUp    = lazy(() => import('./pages/SignUp'));
 const Login     = lazy(() => import('./pages/Login'));
 const Profile   = lazy(() => import('./pages/Profile'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
-const NotFound  = lazy(() => import('./pages/NotFound'));
-const StudyAI   = lazy(() => import('./pages/StudyAI'));
+const NotFound       = lazy(() => import('./pages/NotFound'));
+const StudyAI        = lazy(() => import('./pages/StudyAI'));
+const ExamSetup      = lazy(() => import('./pages/ExamSetup'));
+const Roadmap        = lazy(() => import('./pages/Roadmap'));
+const TopicRoadmap   = lazy(() => import('./pages/TopicRoadmap'));
+const Practice       = lazy(() => import('./pages/Practice'));
+const PracticeSession = lazy(() => import('./pages/PracticeSession'));
+const MockTests      = lazy(() => import('./pages/MockTests'));
+const MockTestPlayer = lazy(() => import('./pages/MockTestPlayer'));
+const MockResult     = lazy(() => import('./pages/MockResult'));
+const Performance    = lazy(() => import('./pages/Performance'));
+const Mistakes       = lazy(() => import('./pages/Mistakes'));
+const Revision       = lazy(() => import('./pages/Revision'));
+const Flashcards     = lazy(() => import('./pages/Flashcards'));
+const AdaptivePractice = lazy(() => import('./pages/AdaptivePractice'));
+const Insights       = lazy(() => import('./pages/Insights'));
+const ExamReadiness  = lazy(() => import('./pages/ExamReadiness'));
+const Leaderboards   = lazy(() => import('./pages/Leaderboards'));
 
 // Pulsing dot fallback
 const PageLoader = () => (
@@ -81,7 +98,7 @@ function HomePage() {
 // Other pages share a plain bg layout
 function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen w-full bg-background">
+    <div className="relative min-h-screen w-full bg-background pb-16 md:pb-0">
       <Navbar />
       {/* SocialProofBar on every non-home page, sits below nav in document flow */}
       <SocialProofBar />
@@ -109,6 +126,22 @@ function AppRoutes() {
       <Route path="/journal/:id" element={<PageLayout><Journal /></PageLayout>} />
       <Route path="/community" element={<PageLayout><Community /></PageLayout>} />
       <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
+      <Route path="/setup"     element={<PageLayout><ExamSetup /></PageLayout>} />
+      <Route path="/roadmap"   element={<PageLayout><Roadmap /></PageLayout>} />
+      <Route path="/roadmap/:topicId" element={<PageLayout><TopicRoadmap /></PageLayout>} />
+      <Route path="/practice"  element={<PageLayout><Practice /></PageLayout>} />
+      <Route path="/practice/session/:id" element={<PageLayout><PracticeSession /></PageLayout>} />
+      <Route path="/mock-tests" element={<PageLayout><MockTests /></PageLayout>} />
+      <Route path="/mock-tests/:id" element={<Suspense fallback={<PageLoader />}><MockTestPlayer /></Suspense>} />
+      <Route path="/mock-tests/:id/result" element={<PageLayout><MockResult /></PageLayout>} />
+      <Route path="/performance" element={<PageLayout><Performance /></PageLayout>} />
+      <Route path="/mistakes" element={<PageLayout><Mistakes /></PageLayout>} />
+      <Route path="/revision" element={<PageLayout><Revision /></PageLayout>} />
+      <Route path="/flashcards" element={<PageLayout><Flashcards /></PageLayout>} />
+      <Route path="/adaptive-practice" element={<PageLayout><AdaptivePractice /></PageLayout>} />
+      <Route path="/insights" element={<PageLayout><Insights /></PageLayout>} />
+      <Route path="/exam-readiness" element={<PageLayout><ExamReadiness /></PageLayout>} />
+      <Route path="/leaderboards" element={<PageLayout><Leaderboards /></PageLayout>} />
       <Route path="/profile"  element={<PageLayout><Profile /></PageLayout>} />
       <Route path="/account"  element={<PageLayout><Profile /></PageLayout>} />
 
@@ -128,6 +161,14 @@ function AppRoutes() {
 }
 
 export default function App() {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.warn('SW registration failed:', err);
+      });
+    }
+  }, []);
+
   return (
     <HelmetProvider>
       <AuthProvider>
@@ -135,8 +176,10 @@ export default function App() {
           <AppRoutes />
           <FloatingAIButtonWrapper />
           <ExitIntentModal />
+          <MobileNav />
         </BrowserRouter>
       </AuthProvider>
     </HelmetProvider>
   );
 }
+
