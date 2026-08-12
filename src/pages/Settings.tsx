@@ -94,21 +94,24 @@ export default function Settings() {
       </Helmet>
 
       <div className="max-w-6xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Settings & Personalization</h1>
-            <p className="text-xs text-muted-foreground mt-1">Manage your learning pathway, study target, and privacy preferences.</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1 font-semibold">Preferences & Control</p>
+            <h1 className="text-4xl sm:text-5xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Settings & Personalization
+            </h1>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">Manage your learning pathway, study target, and privacy preferences.</p>
           </div>
 
           <Link
             to="/setup"
-            className="gradient-cta rounded-full px-4 py-2 text-xs text-slate-950 font-bold flex items-center gap-1.5 shadow-md"
+            className="gradient-cta rounded-full px-5 py-2.5 text-xs text-slate-950 font-semibold flex items-center gap-1.5 shadow-md shrink-0"
           >
             <RefreshCcw className="w-3.5 h-3.5" /> Re-run Setup Wizard
           </Link>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col md:flex-row gap-8 mt-6">
           {/* Sidebar Navigation */}
           <div className="w-full md:w-64 flex-shrink-0 overflow-x-auto md:overflow-visible">
             <div className="flex md:flex-col gap-2 pb-4 md:pb-0">
@@ -116,9 +119,9 @@ export default function Settings() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`text-left px-4 py-3 rounded-xl whitespace-nowrap text-xs transition-colors ${
+                  className={`text-left px-4 py-3 rounded-xl whitespace-nowrap text-xs font-medium cursor-pointer transition-all ${
                     activeTab === tab.id
-                      ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
+                      ? 'liquid-glass text-cyan-300 font-semibold border border-cyan-500/30'
                       : 'text-muted-foreground hover:bg-white/5 hover:text-foreground'
                   }`}
                 >

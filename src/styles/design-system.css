@@ -1,0 +1,38 @@
+/* Study Hub — Global Design System Tokens */
+
+:root {
+  /* Typography Stack */
+  --font-display: 'Instrument Serif', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Typography Scale */
+  --text-display-xl: clamp(3rem, 6vw, 5.75rem);
+  --text-display-l: clamp(2.75rem, 5vw, 4.75rem);
+  --text-h1: clamp(2.4rem, 4vw, 4rem);
+  --text-h2: clamp(2rem, 3vw, 3rem);
+  --text-h3: clamp(1.5rem, 2vw, 2rem);
+  --text-h4: 1.25rem;
+  --text-body-lg: 1.125rem;
+  --text-body-base: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+
+  /* Line Heights */
+  --leading-display: 0.95;
+  --leading-heading: 1.05;
+  --leading-body: 1.6;
+  --leading-tight: 1.2;
+
+  /* Tracking / Letter Spacing */
+  --tracking-display: -0.04em;
+  --tracking-heading: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-button: -0.01em;
+  --tracking-label: 0.08em;
+
+  /* Container & Spacing System */
+  --container-max-width: 1280px;
+  --container-padding: clamp(1.25rem, 4vw, 2.5rem);
+  --section-gap: clamp(3rem, 8vw, 6rem);
+}

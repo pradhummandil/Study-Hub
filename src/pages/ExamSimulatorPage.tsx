@@ -1,18 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Shield, Clock, Calculator, Play, ChevronRight, BookOpen, AlertCircle } from 'lucide-react';
-import { SAMPLE_EXAM_CONFIGS } from '../lib/exam/examSimulator';
+import { Shield, Clock, Calculator, Play, ChevronRight, BookOpen, AlertCircle, History } from 'lucide-react';
+import { useStudentContext } from '../context/StudentContext';
+import { fetchExamTests, type ExamTestSummary } from '../lib/exam/examSimulatorApi';
 
 export default function ExamSimulatorPage() {
   const navigate = useNavigate();
-  const [selectedExamId, setSelectedExamId] = useState(SAMPLE_EXAM_CONFIGS[0].id);
-  const [testMode, setTestMode] = useState<'full' | 'section' | 'subject' | 'topic' | 'weak_area'>('full');
+  const { targetExam } = useStudentContext();
 
-  const selectedConfig = SAMPLE_EXAM_CONFIGS.find((c) => c.id === selectedExamId) || SAMPLE_EXAM_CONFIGS[0];
+  const [tests, setTests] = useState<ExamTestSummary[]>([]);
+  const [selectedTestId, setSelectedTestId] = useState<string>('');
+  const [testMode, setTestMode] = useState<'all' | 'full' | 'section' | 'subject' | 'topic' | 'weak_area'>('all');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadTests() {
+      setLoading(true);
+      const data = await fetchExamTests({ exam: targetExam, mode: testMode });
+      setTests(data);
+      if (data.length > 0) {
+        setSelectedTestId(data[0].id);
+      }
+      setLoading(false);
+    }
+    loadTests();
+  }, [targetExam, testMode]);
+
+  const selectedConfig = tests.find((c) => c.id === selectedTestId) || tests[0];
 
   const handleStartExam = () => {
-    navigate(`/exam-simulator/runner/${selectedConfig.id}?mode=${testMode}`);
+    if (!selectedConfig) return;
+    navigate(`/exam-simulator/runner/${selectedConfig.id}?mode=${selectedConfig.mode}`);
   };
 
   return (
@@ -21,7 +40,7 @@ export default function ExamSimulatorPage() {
         <title>Adaptive Exam Simulator | Study Hub</title>
         <meta
           name="description"
-          content="Experience authentic exam environments for GATE, JEE, NEET, UPSC with section timers, negative marking, and question palettes."
+          content="Experience authentic exam environments for GATE, JEE, NEET, UPSC with section timers, negative marking, scientific calculator, and question palettes."
         />
       </Helmet>
 
@@ -29,31 +48,41 @@ export default function ExamSimulatorPage() {
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
-            <Shield className="w-4 h-4 text-[#5CE1E6]" /> Authentic Exam Testing Engine
+            <Shield className="w-4 h-4 text-[#5CE1E6]" /> {targetExam} Authentic Exam Engine
           </div>
           <h1 className="text-3xl md:text-5xl font-black text-white">
             Adaptive Exam Simulator
           </h1>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Recreates exact official test interfaces, negative marking rules, timers, and section navigation for calm, focused preparation.
+            Choose a real exam, subject, topic or weakness and build a focused simulation test with section timers and negative marking.
           </p>
+
+          <div className="flex justify-center pt-2">
+            <button
+              onClick={() => navigate('/exam-simulator/history')}
+              className="px-4 py-2 rounded-xl bg-slate-900 border border-cyan-500/30 text-cyan-300 text-xs font-bold flex items-center gap-2 hover:bg-slate-800 transition-colors"
+            >
+              <History className="w-4 h-4" /> View My Attempt History
+            </button>
+          </div>
         </div>
 
         {/* Mode Selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs font-bold">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs font-bold">
           {[
+            { id: 'all', label: 'All Modes' },
             { id: 'full', label: 'Full Exam' },
             { id: 'section', label: 'Section Test' },
             { id: 'subject', label: 'Subject Test' },
             { id: 'topic', label: 'Topic Test' },
-            { id: 'weak_area', label: 'Weak-Area Test' },
+            { id: 'weak_area', label: 'Weak-Area' },
           ].map((m) => (
             <button
               key={m.id}
               onClick={() => setTestMode(m.id as any)}
               className={`py-3 rounded-xl transition-all ${
                 testMode === m.id
-                  ? 'bg-cyan-500 text-slate-950 shadow-md'
+                  ? 'bg-cyan-500 text-slate-950 shadow-md font-extrabold'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -62,86 +91,113 @@ export default function ExamSimulatorPage() {
           ))}
         </div>
 
-        {/* Exam Configuration Selector */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {SAMPLE_EXAM_CONFIGS.map((cfg) => {
-            const isSelected = cfg.id === selectedExamId;
-            return (
-              <div
-                key={cfg.id}
-                onClick={() => setSelectedExamId(cfg.id)}
-                className={`cursor-pointer rounded-3xl p-6 transition-all flex flex-col justify-between space-y-6 border ${
-                  isSelected
-                    ? 'bg-slate-900 border-cyan-400 shadow-xl shadow-cyan-500/10 ring-1 ring-cyan-400'
-                    : 'bg-slate-900/60 border-slate-800 hover:border-cyan-500/40'
-                }`}
-              >
-                <div className="space-y-4">
-                  <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-[11px] font-bold uppercase tracking-wider">
-                    {cfg.exam}
-                  </span>
-                  <h3 className="text-lg font-bold text-white">{cfg.title}</h3>
-                  <div className="space-y-2 text-xs text-slate-400">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-amber-400" /> {cfg.durationMinutes} Minutes
+        {/* Exam Test Cards Discovery Grid */}
+        {loading ? (
+          <div className="py-12 text-center text-xs text-slate-400 animate-pulse">Loading tests catalog for {targetExam}...</div>
+        ) : tests.length === 0 ? (
+          <div className="p-8 text-center bg-slate-900/60 rounded-3xl border border-slate-800 text-slate-400 text-xs">
+            No tests found for the selected mode. Try selecting "All Modes".
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {tests.map((cfg) => {
+              const isSelected = cfg.id === selectedTestId;
+              const sourceBadge =
+                cfg.sourceType === 'official_pyq'
+                  ? 'OFFICIAL PYQ'
+                  : cfg.sourceType === 'ai_generated'
+                  ? 'AI-GENERATED PRACTICE'
+                  : 'ADMIN TEST';
+
+              return (
+                <div
+                  key={cfg.id}
+                  onClick={() => setSelectedTestId(cfg.id)}
+                  className={`cursor-pointer rounded-3xl p-6 transition-all flex flex-col justify-between space-y-6 border ${
+                    isSelected
+                      ? 'bg-slate-900 border-cyan-400 shadow-xl shadow-cyan-500/10 ring-1 ring-cyan-400'
+                      : 'bg-slate-900/60 border-slate-800 hover:border-cyan-500/40'
+                  }`}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-bold uppercase tracking-wider font-mono">
+                        {cfg.exam} • {cfg.examYear}
+                      </span>
+                      <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-md ${
+                        cfg.sourceType === 'official_pyq' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                      }`}>
+                        {sourceBadge}
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calculator className="w-4 h-4 text-cyan-400" />
-                      {cfg.calculatorAllowed ? 'On-screen Calculator Allowed' : 'No Calculator Permitted'}
+
+                    <h3 className="text-base font-bold text-white leading-snug">{cfg.title}</h3>
+                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">{cfg.description}</p>
+
+                    <div className="space-y-2 text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-amber-400" /> {cfg.durationMinutes} Minutes • {cfg.questionCount} Questions
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calculator className="w-4 h-4 text-cyan-400" />
+                        {cfg.calculatorAllowed ? 'On-screen Calculator Allowed' : 'No Calculator Permitted'}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-cyan-400 font-semibold">
-                  <span>Select Exam Config</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-cyan-400 font-semibold">
+                    <span>Select Test Setup</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Selected Test Setup Banner & Launch Button */}
+        {selectedConfig && (
+          <div className="p-8 rounded-3xl bg-slate-900/90 border border-cyan-500/30 space-y-6 shadow-2xl">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-[#5CE1E6]" /> Exam Setup Overview — {selectedConfig.title}
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
+              <div>
+                <h4 className="font-semibold text-[#5CE1E6] mb-2">Sections & Marking Rules</h4>
+                <ul className="space-y-2">
+                  {selectedConfig.sections.map((sec, idx) => (
+                    <li key={idx} className="flex justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono">
+                      <span>{sec.name} ({sec.questionCount} Qs)</span>
+                      <span className="text-cyan-300 font-bold">+{sec.marksPerQuestion} / -{Math.round(sec.marksPerQuestion * sec.negativeMarkingRatio * 100) / 100}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Exam Setup Details & Start Banner */}
-        <div className="p-8 rounded-3xl bg-slate-900/90 border border-cyan-500/30 space-y-6">
-          <h3 className="text-lg font-bold text-white flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-[#5CE1E6]" /> Exam Setup Overview — {selectedConfig.title}
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
-            <div>
-              <h4 className="font-semibold text-[#5CE1E6] mb-2">Sections & Marking Rules</h4>
-              <ul className="space-y-2">
-                {selectedConfig.sections.map((sec, idx) => (
-                  <li key={idx} className="flex justify-between p-2.5 rounded-xl bg-slate-950 border border-slate-800">
-                    <span>{sec.name} ({sec.questionCount} Qs)</span>
-                    <span className="font-mono text-cyan-300">+{sec.marksPerQuestion} / -{Math.round(sec.marksPerQuestion * sec.negativeMarkingRatio * 100) / 100}</span>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <h4 className="font-semibold text-[#5CE1E6] mb-2">Official Test Instructions</h4>
+                <ul className="space-y-2 text-slate-300 list-disc list-inside">
+                  {selectedConfig.instructions.map((inst, i) => (
+                    <li key={i}>{inst}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-[#5CE1E6] mb-2">Official Instructions</h4>
-              <ul className="space-y-1.5 text-slate-400 list-disc list-inside">
-                {selectedConfig.instructions.map((inst, i) => (
-                  <li key={i}>{inst}</li>
-                ))}
-              </ul>
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center gap-3 text-xs text-amber-300">
+              <AlertCircle className="w-5 h-5 shrink-0" />
+              <span>Calm Test Environment: Gamification badges and notifications are suppressed during test execution. Answers autosave automatically.</span>
             </div>
-          </div>
 
-          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center gap-3 text-xs text-amber-300">
-            <AlertCircle className="w-5 h-5 shrink-0" />
-            <span>Calm Realistic Interface: Inside the simulation, gamification elements and distractions are suppressed for test focus.</span>
+            <button
+              onClick={handleStartExam}
+              className="w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-indigo-600 font-bold text-slate-950 flex items-center justify-center gap-2 hover:brightness-110 transition-all text-sm shadow-xl shadow-cyan-500/20"
+            >
+              <Play className="w-5 h-5 fill-slate-950" /> Launch {selectedConfig.exam} Simulation Test
+            </button>
           </div>
-
-          <button
-            onClick={handleStartExam}
-            className="w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-indigo-600 font-bold text-slate-950 flex items-center justify-center gap-2 hover:brightness-110 transition-all text-sm shadow-xl shadow-cyan-500/20"
-          >
-            <Play className="w-5 h-5 fill-slate-950" /> Launch {selectedConfig.exam} Simulation Session
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );

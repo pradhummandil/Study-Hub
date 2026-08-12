@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
-  Layers,
   Sparkles,
   Plus,
   RotateCw,
   Play,
 } from 'lucide-react';
+import { useStudentContext } from '../context/StudentContext';
 import type { FlashcardDeck, Flashcard, SpacedRating } from '../types/intelligence';
 import {
   fetchFlashcardDecks,
@@ -18,6 +18,8 @@ import {
 } from '../lib/intelligence/flashcards';
 
 export default function FlashcardsPage() {
+  const { targetExam } = useStudentContext();
+
   const [decks, setDecks] = useState<FlashcardDeck[]>([]);
   const [cards, setCards] = useState<Flashcard[]>([]);
 
@@ -39,11 +41,11 @@ export default function FlashcardsPage() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [targetExam]);
 
   async function loadData() {
-    const d = await fetchFlashcardDecks('GATE');
-    const c = await fetchFlashcards({ exam: 'GATE' });
+    const d = await fetchFlashcardDecks(targetExam);
+    const c = await fetchFlashcards({ exam: targetExam });
     setDecks(d);
     setCards(c);
   }
@@ -143,27 +145,25 @@ export default function FlashcardsPage() {
 
       <div className="min-h-screen pb-16 pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-              <Layers className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-100 tracking-tight">Flashcard Decks</h1>
-              <p className="text-slate-400 text-sm mt-0.5">Quick active recall powered by spaced repetition.</p>
-            </div>
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-semibold">Active Recall System</p>
+            <h1 className="text-4xl sm:text-5xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Flashcard Decks
+            </h1>
+            <p className="text-muted-foreground text-sm mt-1">Quick active recall powered by spaced repetition.</p>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowAiModal(true)}
-              className="px-4 py-2.5 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 font-semibold text-sm flex items-center gap-2 transition-colors"
+              className="liquid-glass px-4 py-2.5 rounded-full text-purple-300 border border-purple-500/30 font-medium text-xs flex items-center gap-2 hover:bg-purple-500/10 transition-colors cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-purple-400" /> AI Generate Deck
             </button>
             <button
               onClick={() => setShowCreateDeckModal(true)}
-              className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm flex items-center gap-2 transition-colors shadow-lg shadow-cyan-500/20"
+              className="gradient-cta px-5 py-2.5 rounded-full text-slate-950 font-semibold text-xs flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer shadow-lg"
             >
               <Plus className="w-4 h-4" /> Create Deck
             </button>

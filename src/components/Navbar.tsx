@@ -1,51 +1,63 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy } from 'lucide-react';
+import { useStudentContext } from '../context/StudentContext';
+import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
+import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall } from 'lucide-react';
 import { NotificationBellDropdown } from './notifications/NotificationBellDropdown';
 import { fetchProfileGamification } from '../lib/profile/profileApi';
 import type { StudentGamification } from '../types/ecosystem';
 
 const primaryNavItems = [
   { label: 'Dashboard', path: '/dashboard' },
+  { label: 'Studio', path: '/studio' },
   { label: 'Study AI', path: '/study-ai' },
-  { label: 'Focus Room', path: '/focus-room' },
   { label: 'Community', path: '/community' },
+  { label: 'Journal', path: '/journal' },
+  { label: 'About', path: '/about' },
+  { label: 'Reach Us', path: '/reach-us' },
 ];
 
 const secondaryNavItems = [
-  { label: 'Exam Catalog', path: '/exams', icon: BookOpen },
-  { label: 'Exam Simulator', path: '/exam-simulator', icon: Trophy },
   { label: 'Roadmap', path: '/roadmap', icon: BookOpen },
   { label: 'Practice & PYQs', path: '/practice', icon: Zap },
   { label: 'Mock Tests', path: '/mock-tests', icon: Trophy },
+  { label: 'Performance', path: '/performance', icon: TrendingUp },
+  { label: 'Exam Catalog', path: '/exams', icon: BookOpen },
+  { label: 'Exam Simulator', path: '/exam-simulator', icon: Trophy },
+  { label: 'Focus Room', path: '/focus-room', icon: RotateCcw },
   { label: 'Spaced Revision', path: '/revision', icon: RotateCcw },
   { label: 'Mistakes Notebook', path: '/mistakes', icon: Flame },
   { label: 'Flashcards Decks', path: '/flashcards', icon: Layers },
   { label: 'Adaptive Practice', path: '/adaptive-practice', icon: Zap },
   { label: 'Pricing & Plans', path: '/pricing', icon: Award },
   { label: 'Referrals & Rewards', path: '/referrals', icon: Users },
-  { label: 'Mentor Portal', path: '/mentor', icon: Users },
   { label: 'Leaderboards', path: '/leaderboards', icon: Award },
-  { label: 'Studio', path: '/studio', icon: LayoutDashboard },
+  { label: 'Journal', path: '/journal', icon: FileText },
+  { label: 'About Us', path: '/about', icon: Info },
+  { label: 'Reach Us', path: '/reach-us', icon: PhoneCall },
 ];
 
 export const Navbar = () => {
   const location = useLocation();
   const { user, loading, signOut } = useAuth();
+  const studentContext = useStudentContext();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+  const [examMenuOpen, setExamMenuOpen] = useState(false);
   const [gamification, setGamification] = useState<StudentGamification | null>(null);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
+  const examRef = useRef<HTMLDivElement>(null);
 
   // Close menus on route change
   useEffect(() => {
     setMobileOpen(false);
     setUserMenuOpen(false);
     setMoreMenuOpen(false);
+    setExamMenuOpen(false);
   }, [location.pathname]);
 
   // Prevent body scroll when mobile menu open
@@ -62,7 +74,7 @@ export const Navbar = () => {
     }
   }, [user, location.pathname]);
 
-  // Close user dropdown on outside click
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -81,6 +93,8 @@ export const Navbar = () => {
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
+  const isSecondaryActive = secondaryNavItems.some((item) => isActive(item.path));
+
   const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
   const fullName = user?.user_metadata?.full_name || user?.email || 'User';
   const firstName = fullName.split(' ')[0].split('@')[0];
@@ -88,7 +102,6 @@ export const Navbar = () => {
 
   return (
     <>
-      {/* Nav container has fixed height h-[88px] to ensure zero layout shift when dropdown opens */}
       <nav className="relative z-40 flex flex-row items-center justify-between px-6 md:px-8 h-[88px] max-w-7xl mx-auto w-full shrink-0">
         {/* Logo */}
         <Link
@@ -120,28 +133,36 @@ export const Navbar = () => {
           ))}
 
           {/* More ▾ Dropdown */}
-          <div className="relative" ref={moreRef}>
+          <div className="relative inline-block" ref={moreRef}>
             <button
+              type="button"
               onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 focus-visible:outline-none"
+              className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 cursor-pointer ${
+                moreMenuOpen || isSecondaryActive
+                  ? 'text-foreground font-semibold'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+              aria-label="More features menu"
+              aria-expanded={moreMenuOpen}
             >
               <span>More</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${moreMenuOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-foreground' : ''}`} />
             </button>
 
             {moreMenuOpen && (
-              <div className="absolute left-0 top-full mt-2 w-56 rounded-2xl liquid-glass border border-white/15 p-2 shadow-2xl z-50 animate-fade-rise">
+              <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
                 {secondaryNavItems.map(({ label, path, icon: Icon }) => (
                   <Link
                     key={label}
                     to={path}
-                    className={`flex items-center gap-2.5 px-3 py-2 text-xs rounded-xl transition-colors ${
+                    onClick={() => setMoreMenuOpen(false)}
+                    className={`flex items-center gap-2.5 px-3 py-2.5 text-xs rounded-xl transition-colors ${
                       isActive(path)
-                        ? 'bg-white/10 text-cyan-300 font-semibold'
-                        : 'text-foreground hover:bg-white/5'
+                        ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
+                        : 'text-foreground hover:bg-white/10'
                     }`}
                   >
-                    <Icon className="w-4 h-4 text-cyan-400" />
+                    <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
                     <span>{label}</span>
                   </Link>
                 ))}
@@ -156,6 +177,49 @@ export const Navbar = () => {
             <div className="w-28 h-9 rounded-full skeleton-pulse liquid-glass" />
           ) : user ? (
             <>
+              {/* Exam Context Selector Badge */}
+              <div className="relative" ref={examRef}>
+                <button
+                  type="button"
+                  onClick={() => setExamMenuOpen(!examMenuOpen)}
+                  className="liquid-glass rounded-full px-3 py-1 text-xs border border-cyan-500/30 text-cyan-300 font-bold flex items-center gap-1.5 hover:bg-cyan-500/10 transition-colors"
+                >
+                  <Shield className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>{studentContext.targetExam} {studentContext.targetExamYear}</span>
+                  <ChevronDown className={`w-3 h-3 text-cyan-400 transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {examMenuOpen && (
+                  <div className="!absolute left-0 top-full mt-2 w-52 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-cyan-500/30 p-2 shadow-2xl z-50 animate-fade-rise">
+                    <div className="px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 border-b border-white/10 mb-1">
+                      Switch Exam Context
+                    </div>
+                    {(Object.keys(EXAM_CONFIGS) as ExamCategory[]).map((eKey) => {
+                      const isSel = studentContext.targetExam === eKey;
+                      return (
+                        <button
+                          key={eKey}
+                          onClick={() => {
+                            studentContext.switchExam(eKey);
+                            setExamMenuOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs rounded-xl transition-colors flex items-center justify-between ${
+                            isSel
+                              ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
+                              : 'text-slate-200 hover:bg-white/10'
+                          }`}
+                        >
+                          <span>{eKey}</span>
+                          <span className="text-[10px] text-slate-400 font-mono">
+                            {EXAM_CONFIGS[eKey].currentCycle}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
               {/* Notification Bell */}
               <NotificationBellDropdown />
 
@@ -196,7 +260,7 @@ export const Navbar = () => {
                 {/* User Dropdown */}
                 {userMenuOpen && (
                   <div
-                    className="absolute right-0 top-full mt-2 w-56 rounded-2xl liquid-glass border border-white/15 p-2 shadow-2xl z-50 animate-fade-rise"
+                    className="!absolute right-0 top-full mt-2 w-56 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise"
                     role="menu"
                   >
                     <div className="px-3 py-2 border-b border-white/10 mb-1">
@@ -205,6 +269,7 @@ export const Navbar = () => {
                     </div>
                     <Link
                       to="/dashboard"
+                      onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
@@ -213,6 +278,7 @@ export const Navbar = () => {
                     </Link>
                     <Link
                       to="/profile"
+                      onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
@@ -221,6 +287,7 @@ export const Navbar = () => {
                     </Link>
                     <Link
                       to="/community"
+                      onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
@@ -229,7 +296,10 @@ export const Navbar = () => {
                     </Link>
                     <div className="my-1 border-t border-white/10" />
                     <button
-                      onClick={() => signOut()}
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        signOut();
+                      }}
                       className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
                       role="menuitem"
                     >
@@ -290,10 +360,11 @@ export const Navbar = () => {
             onClick={() => setMobileOpen(false)}
           />
           {/* Drawer */}
-          <div className="absolute inset-x-4 top-4 liquid-glass rounded-2xl p-8 flex flex-col space-y-2 shadow-2xl">
-            <div className="flex justify-between items-center mb-6">
+          <div className="absolute inset-x-4 top-4 bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
               <Link
                 to="/"
+                onClick={() => setMobileOpen(false)}
                 aria-label="Study Hub home"
                 className="flex items-center shrink-0"
               >
@@ -318,9 +389,10 @@ export const Navbar = () => {
               <Link
                 key={label}
                 to={path}
-                className={`text-left text-xl py-4 border-b border-white/5 last:border-none transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded ${
+                onClick={() => setMobileOpen(false)}
+                className={`text-left text-base py-3 border-b border-white/5 last:border-none transition-colors block focus-visible:outline-none rounded ${
                   isActive(path)
-                    ? 'text-foreground font-medium'
+                    ? 'text-cyan-300 font-bold'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
@@ -349,12 +421,16 @@ export const Navbar = () => {
                   </div>
                   <Link
                     to="/dashboard"
+                    onClick={() => setMobileOpen(false)}
                     className="w-full text-center py-3 rounded-full bg-cyan-500/20 text-cyan-300 font-medium text-sm hover:bg-cyan-500/30 transition-colors"
                   >
                     Dashboard
                   </Link>
                   <button
-                    onClick={() => signOut()}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      signOut();
+                    }}
                     className="w-full text-center py-3 rounded-full bg-red-500/10 text-red-400 font-medium text-sm hover:bg-red-500/20 transition-colors"
                   >
                     Sign out
@@ -364,12 +440,14 @@ export const Navbar = () => {
                 <div className="flex flex-col gap-2">
                   <Link
                     to="/login"
+                    onClick={() => setMobileOpen(false)}
                     className="w-full text-center py-3 rounded-full border border-white/20 text-foreground font-medium text-sm hover:bg-white/10 transition-colors"
                   >
                     Log in
                   </Link>
                   <Link
                     to="/signup"
+                    onClick={() => setMobileOpen(false)}
                     className="w-full text-center py-3 rounded-full gradient-cta text-white font-semibold text-sm"
                   >
                     Get Started

@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2,
   Filter,
-  Flame,
   Sparkles,
   Zap,
   BookOpen,
@@ -33,6 +32,15 @@ export default function MistakesPage() {
   const [activeModalMistake, setActiveModalMistake] = useState<MistakeRecord | null>(null);
   const [practiceSimilarQuestion, setPracticeSimilarQuestion] = useState<any | null>(null);
   const [flashcardSaved, setFlashcardSaved] = useState<boolean>(false);
+
+  // Manual Add Mistake Modal
+  const [showAddModal, setShowAddModal] = useState<boolean>(false);
+  const [addQuestionText, setAddQuestionText] = useState('');
+  const [addSubject, setAddSubject] = useState('Computer Networks');
+  const [addTopic, setAddTopic] = useState('');
+  const [addWrongAns, setAddWrongAns] = useState('');
+  const [addCorrectAns, setAddCorrectAns] = useState('');
+  const [addExplanation, setAddExplanation] = useState('');
 
   useEffect(() => {
     loadMistakes();
@@ -101,20 +109,25 @@ export default function MistakesPage() {
 
       <div className="min-h-screen pb-16 pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-              <Flame className="w-6 h-6 animate-pulse" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-100 tracking-tight">My Mistakes</h1>
-              <p className="text-slate-400 text-sm mt-0.5">Every mistake is a step toward mastery.</p>
-            </div>
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-semibold">Learning Weak Spots</p>
+            <h1 className="text-4xl sm:text-5xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              My Mistakes
+            </h1>
+            <p className="text-muted-foreground text-sm mt-1">Every mistake is a step toward mastery.</p>
           </div>
+
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="gradient-cta px-5 py-2.5 rounded-full text-slate-950 font-semibold text-xs flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer shadow-lg"
+          >
+            <PlusCircle className="w-4 h-4" /> + Add Mistake
+          </button>
         </div>
 
         {/* Filter & Sort Bar */}
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl mb-8 space-y-4">
+        <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 mb-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3 text-sm">
               <span className="text-slate-400 flex items-center gap-1.5 font-medium">
@@ -260,10 +273,10 @@ export default function MistakesPage() {
                 {/* Card Action Buttons */}
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/60 text-xs font-semibold">
                   <button
-                    onClick={() => setActiveModalMistake(m)}
-                    className="py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center gap-1 transition-colors"
+                    onClick={() => navigate(`/question/${m.question_id}`)}
+                    className="py-2 px-3 rounded-lg bg-[#5CE1E6]/20 hover:bg-[#5CE1E6]/30 text-[#5CE1E6] border border-[#5CE1E6]/30 flex items-center justify-center gap-1 transition-colors"
                   >
-                    <BookOpen className="w-3.5 h-3.5" /> Details
+                    <BookOpen className="w-3.5 h-3.5" /> Open Question
                   </button>
 
                   <button
@@ -405,6 +418,143 @@ export default function MistakesPage() {
                   </div>
                 </div>
               </motion.div>
+            </div>
+          )}
+
+          {/* Add Mistake Modal */}
+          {showAddModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+              <div className="w-full max-w-lg rounded-3xl p-6 bg-slate-900 border border-slate-800 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+                    <PlusCircle className="w-5 h-5 text-cyan-400" /> Log New Mistake
+                  </h3>
+                  <button onClick={() => setShowAddModal(false)} className="text-slate-400 hover:text-white">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!addQuestionText.trim() || !addTopic.trim()) return;
+                    const newRecord: MistakeRecord = {
+                      id: `mistake_manual_${Date.now()}`,
+                      user_id: 'user',
+                      question_id: `q_manual_${Date.now()}`,
+                      question_snapshot: {
+                        question_text: addQuestionText,
+                        question_type: 'MCQ',
+                        difficulty: 'Medium',
+                      },
+                      exam: 'GATE',
+                      subject: addSubject,
+                      topic: addTopic,
+                      mistake_type: 'concept_gap',
+                      severity: 'medium',
+                      student_answer: addWrongAns,
+                      correct_answer: addCorrectAns,
+                      explanation: addExplanation,
+                      time_taken: 30,
+                      attempt_count: 1,
+                      mastered: false,
+                      created_at: new Date().toISOString(),
+                    };
+                    setMistakes((prev) => [newRecord, ...prev]);
+                    setShowAddModal(false);
+                    setAddQuestionText('');
+                    setAddTopic('');
+                    setAddWrongAns('');
+                    setAddCorrectAns('');
+                    setAddExplanation('');
+                  }}
+                  className="space-y-3 text-xs"
+                >
+                  <div>
+                    <label className="text-slate-400 block mb-1">Subject & Topic</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        value={addSubject}
+                        onChange={(e) => setAddSubject(e.target.value)}
+                        placeholder="Subject (e.g. OS)"
+                        className="bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                        required
+                      />
+                      <input
+                        type="text"
+                        value={addTopic}
+                        onChange={(e) => setAddTopic(e.target.value)}
+                        placeholder="Topic (e.g. Deadlocks)"
+                        className="bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-slate-400 block mb-1">Question Statement</label>
+                    <textarea
+                      value={addQuestionText}
+                      onChange={(e) => setAddQuestionText(e.target.value)}
+                      placeholder="What was the question?"
+                      rows={3}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="text-slate-400 block mb-1">What you answered</label>
+                      <input
+                        type="text"
+                        value={addWrongAns}
+                        onChange={(e) => setAddWrongAns(e.target.value)}
+                        placeholder="Your wrong answer"
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-slate-400 block mb-1">Correct Answer</label>
+                      <input
+                        type="text"
+                        value={addCorrectAns}
+                        onChange={(e) => setAddCorrectAns(e.target.value)}
+                        placeholder="Correct answer"
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-slate-400 block mb-1">Correct Concept & Notes</label>
+                    <textarea
+                      value={addExplanation}
+                      onChange={(e) => setAddExplanation(e.target.value)}
+                      placeholder="Why was your answer wrong and what is the correct concept?"
+                      rows={2}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-200"
+                    />
+                  </div>
+
+                  <div className="flex justify-end gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowAddModal(false)}
+                      className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-5 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold"
+                    >
+                      Save Mistake
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           )}
         </AnimatePresence>

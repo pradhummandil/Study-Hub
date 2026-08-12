@@ -6,6 +6,7 @@ import {
   CheckCircle2, Heart, Sparkles, X, Send
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useStudentContext } from '../context/StudentContext';
 import {
   fetchStudyCircles,
   toggleCircleMembership,
@@ -21,13 +22,16 @@ import type { StudyCircle, CommunityPost, CommunityComment, PostType } from '../
 
 export default function Community() {
   const { user } = useAuth();
+  const { targetExam, subjects: userSubjects } = useStudentContext();
+
   const [circles, setCircles] = useState<StudyCircle[]>([]);
   const [selectedCircle, setSelectedCircle] = useState<StudyCircle | null>(null);
   
   // Feed state
   const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
-  const [activeTab, setActiveTab] = useState<PostType | 'all' | 'unanswered'>('all');
+  const [activeTab, setActiveTab] = useState<'my_exam' | 'for_you' | 'my_subjects' | 'following' | 'latest' | 'explore_all'>('my_exam');
+  const [postTypeFilter, setPostTypeFilter] = useState<PostType | 'all' | 'unanswered'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Create post modal state
@@ -50,19 +54,25 @@ export default function Community() {
   const [reportReason, setReportReason] = useState<'Spam' | 'Harassment' | 'Inappropriate' | 'Misleading academic information' | 'Copyright concern' | 'Other'>('Spam');
   const [reportDetails, setReportDetails] = useState('');
 
-  // Load circles on mount
+  // Load circles on mount or targetExam change
   useEffect(() => {
     let isMounted = true;
     async function loadCircles() {
       const data = await fetchStudyCircles(user?.id);
       if (isMounted) {
-        setCircles(data);
-        if (data.length > 0) setSelectedCircle(data[0]);
+        // Prioritize circles matching active exam
+        const sorted = [...data].sort((a, b) => {
+          if (a.exam === targetExam && b.exam !== targetExam) return -1;
+          if (a.exam !== targetExam && b.exam === targetExam) return 1;
+          return 0;
+        });
+        setCircles(sorted);
+        if (sorted.length > 0) setSelectedCircle(sorted[0]);
       }
     }
     loadCircles();
     return () => { isMounted = false; };
-  }, [user]);
+  }, [user, targetExam]);
 
   // Load posts when circle/tab/search changes
   useEffect(() => {
@@ -71,19 +81,29 @@ export default function Community() {
       setLoadingPosts(true);
       const data = await fetchCommunityPosts({
         circleId: selectedCircle?.id,
-        type: activeTab === 'unanswered' ? 'question' : (activeTab as any),
-        unansweredOnly: activeTab === 'unanswered',
+        type: postTypeFilter === 'unanswered' ? 'question' : (postTypeFilter as any),
+        unansweredOnly: postTypeFilter === 'unanswered',
         searchQuery,
         userId: user?.id,
       });
+
       if (isMounted) {
-        setPosts(data);
+        let filtered = data;
+        if (activeTab === 'my_exam') {
+          filtered = data.filter((p) => !p.exam || p.exam === targetExam);
+        } else if (activeTab === 'my_subjects') {
+          filtered = data.filter((p) => userSubjects.some((s) => p.title.toLowerCase().includes(s.toLowerCase()) || p.content.toLowerCase().includes(s.toLowerCase())));
+        } else if (activeTab === 'following') {
+          filtered = data.filter((p) => (p as any).is_member);
+        }
+
+        setPosts(filtered);
         setLoadingPosts(false);
       }
     }
     loadPosts();
     return () => { isMounted = false; };
-  }, [selectedCircle, activeTab, searchQuery, user]);
+  }, [selectedCircle, activeTab, postTypeFilter, searchQuery, user, targetExam, userSubjects]);
 
   const handleJoinToggle = async (circle: StudyCircle) => {
     if (!user) return;
@@ -276,24 +296,24 @@ export default function Community() {
             </div>
           )}
 
-          {/* Filter Bar & Search */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-            {/* Category Tabs */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+          {/* Personalization Context Tabs & Type Filters */}
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
               {[
-                { id: 'all', label: 'All Posts' },
-                { id: 'question', label: 'Questions' },
-                { id: 'unanswered', label: 'Need Help (Unanswered)' },
-                { id: 'discussion', label: 'Discussions' },
-                { id: 'tip', label: 'Study Tips' },
+                { id: 'my_exam', label: `My Exam (${targetExam})` },
+                { id: 'for_you', label: 'For You' },
+                { id: 'my_subjects', label: 'My Subjects' },
+                { id: 'following', label: 'Following' },
+                { id: 'latest', label: 'Latest' },
+                { id: 'explore_all', label: 'Explore All Exams' },
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-3 py-1.5 rounded-xl border transition-all ${
+                  className={`px-3.5 py-1.5 rounded-full border transition-all ${
                     activeTab === tab.id
-                      ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-bold'
-                      : 'liquid-glass text-muted-foreground border-white/5 hover:text-foreground'
+                      ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400 shadow-md'
+                      : 'liquid-glass text-muted-foreground border-white/10 hover:text-foreground'
                   }`}
                 >
                   {tab.label}
@@ -301,7 +321,31 @@ export default function Community() {
               ))}
             </div>
 
-            {/* Search Input */}
+            {/* Sub-Filter Bar & Search */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
+                {[
+                  { id: 'all', label: 'All Types' },
+                  { id: 'question', label: 'Questions' },
+                  { id: 'unanswered', label: 'Need Help (Unanswered)' },
+                  { id: 'tip', label: 'Tips & Guides' },
+                  { id: 'resource_share', label: 'Shared Notes' },
+                ].map((ft) => (
+                  <button
+                    key={ft.id}
+                    onClick={() => setPostTypeFilter(ft.id as any)}
+                    className={`px-3 py-1 rounded-lg border transition-all ${
+                      postTypeFilter === ft.id
+                        ? 'bg-purple-500/20 text-purple-300 border-purple-500/40 font-semibold'
+                        : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white'
+                    }`}
+                  >
+                    {ft.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Search Input */}
             <div className="relative w-full sm:w-56 shrink-0">
               <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -313,6 +357,7 @@ export default function Community() {
               />
             </div>
           </div>
+        </div>
 
           {/* Feed Posts List */}
           {loadingPosts ? (

@@ -178,44 +178,44 @@ export default function Dashboard() {
         <div className="lg:col-span-2 space-y-8">
           {/* Quick Metrics Bar (Real Data Only) */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-center">
+            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
               <Clock className="w-5 h-5 text-cyan-400 mx-auto mb-2" />
-              <div className="text-xl font-bold text-slate-100 font-mono">{hoursDone}h</div>
-              <span className="text-[11px] text-slate-400">Study Time Today</span>
+              <div className="text-2xl font-semibold text-foreground tracking-tight">{hoursDone}h</div>
+              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Study Time Today</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-center">
+            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
               <BookOpen className="w-5 h-5 text-indigo-400 mx-auto mb-2" />
-              <div className="text-xl font-bold text-slate-100 font-mono">{actualQuestionsSolved}</div>
-              <span className="text-[11px] text-slate-400">Questions Solved</span>
+              <div className="text-2xl font-semibold text-foreground tracking-tight">{actualQuestionsSolved}</div>
+              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Questions Solved</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-center">
+            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
               <Award className="w-5 h-5 text-emerald-400 mx-auto mb-2" />
-              <div className="text-xl font-bold text-slate-100 font-mono">{hasRealAttempts ? `${actualAccuracyPct}%` : '—'}</div>
-              <span className="text-[11px] text-slate-400">Accuracy</span>
+              <div className="text-2xl font-semibold text-foreground tracking-tight">{hasRealAttempts ? `${actualAccuracyPct}%` : '—'}</div>
+              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Accuracy</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-center">
+            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
               <Flame className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <div className="text-xl font-bold text-slate-100 font-mono">{actualStreakDays}</div>
-              <span className="text-[11px] text-slate-400">Streak Days</span>
+              <div className="text-2xl font-semibold text-foreground tracking-tight">{actualStreakDays}</div>
+              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Streak Days</span>
             </div>
           </div>
 
           {/* Honest Empty State for New Users */}
           {!hasRealAttempts && (
-            <div className="p-6 rounded-3xl bg-gradient-to-r from-cyan-500/10 via-indigo-500/10 to-purple-500/10 border border-cyan-500/30 text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center mx-auto">
+            <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 text-center space-y-3 border border-white/15">
+              <div className="w-12 h-12 rounded-2xl liquid-glass text-cyan-300 flex items-center justify-center mx-auto border border-cyan-500/30">
                 <Sparkles className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-100">Your study journey starts here.</h3>
-              <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
+              <h3 className="text-lg font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>Your study journey starts here.</h3>
+              <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed">
                 Complete your first 10-question practice or focus session to unlock your real performance insights, accuracy tracking, and streak progress.
               </p>
               <Link
                 to="/practice"
-                className="gradient-cta px-6 py-2.5 rounded-full text-xs text-slate-950 font-bold inline-flex items-center gap-1.5 shadow-md"
+                className="gradient-cta px-6 py-2.5 rounded-full text-xs text-slate-950 font-semibold inline-flex items-center gap-1.5 shadow-md"
               >
                 <span>Start First Practice</span> <ArrowRight className="w-4 h-4" />
               </Link>
@@ -226,8 +226,9 @@ export default function Dashboard() {
           <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
             <div className="flex items-center justify-between">
               <div>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Today's Schedule</p>
                 <h2 className="text-2xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                  TODAY'S STUDY PLAN
+                  Study Plan
                 </h2>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   {isCollegeView
@@ -235,7 +236,7 @@ export default function Dashboard() {
                     : `Customized for your ${profile?.target_exam || 'GATE'} target`}
                 </p>
               </div>
-              <div className="liquid-glass px-3 py-1 rounded-full text-xs text-muted-foreground font-mono">
+              <div className="liquid-glass px-3 py-1 rounded-full text-xs text-muted-foreground">
                 {planItems.length} Tasks Scheduled
               </div>
             </div>
@@ -247,9 +248,9 @@ export default function Dashboard() {
                   className="liquid-glass rounded-2xl p-4 flex items-center justify-between gap-4 border border-white/5 hover:border-white/20 transition-all"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-cyan-400 font-semibold shrink-0 w-12">{item.time}</span>
+                    <span className="text-xs text-cyan-400 font-medium shrink-0 w-12">{item.time}</span>
                     <div>
-                      <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
+                      <h3 className="text-sm font-medium text-foreground">{item.title}</h3>
                       <p className="text-xs text-muted-foreground">{item.subTitle} • {item.durationMinutes} min</p>
                     </div>
                   </div>
@@ -257,7 +258,7 @@ export default function Dashboard() {
                   <Link
                     to={item.actionPath}
                     state={item.actionState}
-                    className="gradient-cta rounded-full px-4 py-1.5 text-xs text-slate-950 font-bold inline-flex items-center gap-1 shrink-0 hover:scale-105 transition-transform"
+                    className="gradient-cta rounded-full px-4 py-1.5 text-xs text-slate-950 font-semibold inline-flex items-center gap-1 shrink-0 hover:scale-105 transition-transform"
                   >
                     <Play className="w-3 h-3 fill-slate-950" />
                     <span>Start</span>
@@ -270,7 +271,7 @@ export default function Dashboard() {
           {/* College / Competitive Specific Section */}
           {isCollegeView ? (
             <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
-              <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
+              <h2 className="text-xl font-normal text-foreground flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
                 <BookOpen className="w-5 h-5 text-cyan-400" />
                 Current Semester Subjects
               </h2>
@@ -279,15 +280,15 @@ export default function Dashboard() {
                   ? profile.college_subjects
                   : ['Computer Networks', 'DBMS', 'Operating Systems', 'Software Engineering']
                 ).map((subj, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                  <div key={idx} className="p-4 rounded-2xl liquid-glass border border-white/10 flex items-center justify-between">
                     <div>
-                      <h4 className="text-sm font-bold text-slate-200">{subj}</h4>
-                      <p className="text-[11px] text-slate-400">Semester Coursework</p>
+                      <h4 className="text-sm font-medium text-foreground">{subj}</h4>
+                      <p className="text-[11px] text-muted-foreground">Semester Coursework</p>
                     </div>
                     <Link
                       to="/practice"
                       state={{ subject: subj }}
-                      className="px-3 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-300 font-semibold text-xs border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
+                      className="px-3 py-1.5 rounded-full liquid-glass text-cyan-300 font-medium text-xs border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
                     >
                       Revise
                     </Link>
@@ -297,21 +298,21 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
-              <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
+              <h2 className="text-xl font-normal text-foreground flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
                 <Target className="w-5 h-5 text-indigo-400" />
                 {profile?.target_exam || 'GATE'} Priority PYQ Practice
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {recommendations.slice(0, 2).map((rec) => (
-                  <div key={rec.id} className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between">
+                  <div key={rec.id} className="p-4 rounded-2xl liquid-glass border border-white/10 flex flex-col justify-between">
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-indigo-400">{rec.priority} Priority</span>
-                      <h4 className="text-sm font-bold text-slate-200 mt-1">{rec.title}</h4>
-                      <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{rec.reason}</p>
+                      <span className="text-[10px] uppercase font-semibold text-indigo-400 tracking-wider">{rec.priority} Priority</span>
+                      <h4 className="text-sm font-medium text-foreground mt-1">{rec.title}</h4>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-2">{rec.reason}</p>
                     </div>
                     <Link
                       to={rec.action}
-                      className="mt-3 py-1.5 rounded-xl bg-indigo-500/20 text-indigo-300 font-bold text-xs text-center border border-indigo-500/30 hover:bg-indigo-500/30 transition-colors"
+                      className="mt-3 py-1.5 rounded-full liquid-glass text-indigo-300 font-medium text-xs text-center border border-indigo-500/30 hover:bg-indigo-500/30 transition-colors"
                     >
                       Start Practice →
                     </Link>

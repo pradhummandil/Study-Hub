@@ -92,7 +92,7 @@ export function NotificationBellDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-2xl liquid-glass border border-white/15 p-4 shadow-2xl z-50 animate-fade-rise">
+        <div className="!absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-4 shadow-2xl z-50 animate-fade-rise">
           <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
             <div className="flex items-center gap-2">
               <h3 className="text-xs font-bold text-foreground">Notifications</h3>

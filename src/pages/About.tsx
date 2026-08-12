@@ -1,157 +1,245 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import {
+  Sparkles,
+  BookOpen,
+  Zap,
+  RotateCcw,
+  Flame,
+  Layers,
+  Clock,
+  Users,
+  Trophy,
+  ArrowRight,
+  CheckCircle2,
+} from 'lucide-react';
 
-const principles = [
+const pillars = [
   {
-    num: '01',
-    title: 'Consistency beats intensity.',
-    body: "Two focused hours every day beats a 12-hour marathon on Sunday. We build systems that hold when motivation doesn't.",
+    title: 'Learn',
+    subtitle: 'Understand core concepts',
+    description:
+      'Clear explanations, curated resource studio, and 24/7 StudyMate AI coach to guide you through tough topics.',
+    icon: BookOpen,
+    accent: 'text-cyan-400',
   },
   {
-    num: '02',
-    title: "Everyone's roadmap looks different.",
-    body: 'Your exam, your schedule, your gaps. Cookie-cutter plans fail because they were never built for you to begin with.',
+    title: 'Practice',
+    subtitle: 'Solve real exam questions',
+    description:
+      'Official GATE, JEE & NEET PYQs, topic drills, and full exam simulations under timed conditions.',
+    icon: Zap,
+    accent: 'text-amber-400',
   },
   {
-    num: '03',
-    title: 'Asking for help is a skill, not a weakness.',
-    body: "The students who improve fastest aren't the smartest — they're the ones who ask the right questions and actually act on the answers.",
+    title: 'Improve',
+    subtitle: 'Target your exact weak spots',
+    description:
+      'Mistakes notebook, spaced repetition revision, performance analytics, and adaptive practice recommendations.',
+    icon: RotateCcw,
+    accent: 'text-emerald-400',
   },
 ];
 
+const ecosystemItems = [
+  { title: 'StudyMate AI', path: '/study-ai', icon: Sparkles, desc: 'AI Study Partner' },
+  { title: 'Resource Studio', path: '/studio', icon: BookOpen, desc: 'Official PYQs & Notes' },
+  { title: 'Personalized Roadmap', path: '/roadmap', icon: CheckCircle2, desc: 'Custom Learning Path' },
+  { title: 'Practice & PYQs', path: '/practice', icon: Zap, desc: 'Topic-wise Question Bank' },
+  { title: 'Mock Tests', path: '/mock-tests', icon: Trophy, desc: 'Full Syllabus Simulations' },
+  { title: 'Spaced Revision', path: '/revision', icon: RotateCcw, desc: 'Memory Decay Protection' },
+  { title: 'Mistakes Notebook', path: '/mistakes', icon: Flame, desc: 'Error Analysis & Fixes' },
+  { title: 'Flashcards Decks', path: '/flashcards', icon: Layers, desc: 'Active Recall Practice' },
+  { title: 'Focus Room', path: '/focus-room', icon: Clock, desc: 'Distraction-Free Timer' },
+  { title: 'Study Circles', path: '/community', icon: Users, desc: 'Academic Peer Community' },
+];
+
 export default function About() {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <>
       <Helmet>
-        <title>About — Study Hub</title>
-        <meta name="description" content="I'm not a platform. I'm one person who remembers being lost too. Here's why I started guiding students." />
+        <title>About Study Hub — Built for the Way Students Actually Learn</title>
+        <meta
+          name="description"
+          content="Study Hub brings learning, practice, guidance, revision and focused preparation into one connected experience for GATE, JEE, NEET & CUET aspirants."
+        />
       </Helmet>
 
       {/* Hero */}
-      <div className="relative z-10 px-6 pt-24 pb-16 max-w-4xl mx-auto">
+      <div className="relative z-10 px-6 pt-16 pb-12 max-w-4xl mx-auto text-center space-y-4">
+        <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block border border-cyan-500/20 font-sans">
+          About Study Hub
+        </span>
         <h1
-          className="animate-fade-rise text-4xl sm:text-6xl font-normal leading-tight max-w-3xl tracking-[-1.5px] text-foreground"
+          className="animate-fade-rise text-4xl sm:text-6xl font-normal leading-[0.98] tracking-[-1.5px] text-foreground"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          I'm not a platform. I'm one person who remembers being <span className="text-gradient-accent">lost</span> too.
+          Built for the way students <span className="text-gradient-accent">actually learn.</span>
         </h1>
-        <p className="animate-fade-rise-delay text-muted-foreground mt-6 max-w-2xl leading-relaxed text-base sm:text-lg">
-          I spent two years staring at a study plan I'd built and rebuilt a dozen times, wondering why nothing was sticking. Eventually I figured it out — and now I help others skip the part where they have to figure it out alone.
+        <p className="animate-fade-rise-delay text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-sans mt-4">
+          Study Hub brings learning, practice, guidance, revision and focused preparation into one connected experience for students navigating competitive exams and college coursework.
         </p>
       </div>
 
-      {/* Photo + Story */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pb-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Photo placeholder */}
-          <div className="liquid-glass-card rounded-2xl aspect-[4/5] flex flex-col items-center justify-center gap-3">
-            <div className="w-12 h-12 rounded-full liquid-glass flex items-center justify-center">
-              <svg className="w-6 h-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
+      {/* Founder Section */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-12">
+        <div className="liquid-glass-card rounded-3xl p-8 sm:p-12 border border-white/10 grid md:grid-cols-12 gap-8 items-center shadow-2xl">
+          {/* Photo Frame Column */}
+          <div className="md:col-span-5 flex flex-col items-center">
+            <div className="relative w-full max-w-[280px] aspect-[4/5] rounded-3xl overflow-hidden liquid-glass border border-white/20 p-2 shadow-2xl group">
+              {/* Ambient Glow behind image */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-indigo-500/10 to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+
+              {!imgError ? (
+                <img
+                  src="/images/pradhum-mandil.jpg"
+                  alt="Pradhum Mandil — Founder of Study Hub"
+                  onError={() => setImgError(true)}
+                  className="w-full h-full object-cover rounded-2xl relative z-10 transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <div className="w-full h-full rounded-2xl bg-slate-950 flex flex-col items-center justify-center p-6 text-center relative z-10">
+                  <div className="w-16 h-16 rounded-full gradient-cta text-slate-950 font-bold text-2xl flex items-center justify-center mb-3">
+                    PM
+                  </div>
+                  <p className="text-foreground text-sm font-semibold">Pradhum Mandil</p>
+                  <p className="text-xs text-muted-foreground">Founder, Study Hub</p>
+                </div>
+              )}
             </div>
-            <p className="text-xs text-muted-foreground tracking-wide">Add your photo</p>
           </div>
 
-          {/* Narrative */}
-          <div className="flex flex-col gap-6">
-            <p className="text-muted-foreground leading-relaxed">
-              I prepared for competitive exams twice. The first time, I had no real system — just a pile of books, a YouTube queue, and a vague sense that working harder would eventually click. It didn't. I failed, felt embarrassed, and took almost a year to regroup.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              The second time was different, not because I worked more, but because I finally understood what I actually needed to change. It wasn't the books or the hours — it was the sequence, the specificity, and the willingness to cut what wasn't working. I cleared. And I started noting down what had actually helped.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              That's what this is. Not a coaching institute, not a content platform. Just a person who's been through it, keeps up with what works now, and talks to students one at a time. If that's the kind of help you're looking for, I'm here.
-            </p>
+          {/* Founder Narrative Column */}
+          <div className="md:col-span-7 space-y-4 text-left">
+            <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold font-sans">
+              About the Founder
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-foreground leading-tight"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              Pradhum Mandil
+            </h2>
+            <p className="text-xs text-cyan-300 font-medium font-sans">Founder & Lead Developer, Study Hub</p>
+
+            <div className="space-y-3 text-sm text-muted-foreground leading-relaxed font-sans pt-2 border-t border-white/10">
+              <p>
+                Building tools that make studying more organized, personalized, and effective for students preparing for GATE, JEE, NEET, and academic coursework.
+              </p>
+              <p>
+                After experiencing the frustration of scattered study materials, unorganized timetables, and passive video watching firsthand, I set out to build Study Hub — bringing structured PYQ practice, spaced revision, and AI coaching into a single, cohesive command center.
+              </p>
+              <p>
+                Every feature in Study Hub is designed around one guiding core principle: <strong className="text-foreground">give students absolute clarity on what to study next.</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* What I believe — full-bleed light break section for visual rhythm */}
-      <div style={{ background: 'hsl(0 0% 96%)' }} className="w-full py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-xs uppercase tracking-widest mb-16" style={{ color: 'hsl(0 0% 40%)' }}>
-            What I believe
+      {/* Why Study Hub (3 Pillars) */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">Our Framework</p>
+          <h2
+            className="text-3xl sm:text-5xl font-normal text-foreground"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Why Study Hub
+          </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-md mx-auto font-sans">
+            Three core pillars designed to take you from confusion to exam confidence.
           </p>
-          <div className="flex flex-col gap-6">
-            {principles.map(({ num, title, body }) => (
-              <div
-                key={num}
-                className="liquid-glass-light rounded-2xl p-8 flex gap-8 items-start"
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {pillars.map(({ title, subtitle, description, icon: Icon, accent }) => (
+            <div key={title} className="liquid-glass-card rounded-3xl p-8 border border-white/10 space-y-4">
+              <div className="w-12 h-12 rounded-2xl liquid-glass border border-white/10 flex items-center justify-center">
+                <Icon className={`w-6 h-6 ${accent}`} />
+              </div>
+              <h3
+                className="text-2xl font-normal text-foreground"
+                style={{ fontFamily: "'Instrument Serif', serif" }}
               >
-                <span
-                  className="text-3xl shrink-0 w-14"
-                  style={{ fontFamily: "'Instrument Serif', serif", color: 'hsl(0 0% 55%)' }}
-                >
-                  {num}
-                </span>
+                {title}
+              </h3>
+              <p className="text-xs text-cyan-300 font-medium font-sans">{subtitle}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed font-sans">{description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Product Ecosystem Grid */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">Complete Student OS</p>
+          <h2
+            className="text-3xl sm:text-5xl font-normal text-foreground"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            The Study Hub Ecosystem
+          </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-md mx-auto font-sans">
+            Every feature connects seamlessly into your daily prep routine.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {ecosystemItems.map(({ title, path, icon: Icon, desc }) => (
+            <Link
+              key={title}
+              to={path}
+              className="liquid-glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-500/30 hover:scale-[1.02] transition-all group flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl liquid-glass border border-white/10 flex items-center justify-center shrink-0">
+                  <Icon className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                </div>
                 <div>
-                  <h3
-                    className="text-xl font-medium mb-2"
-                    style={{ fontFamily: "'Instrument Serif', serif", color: 'hsl(0 0% 8%)' }}
-                  >
+                  <h4 className="text-sm font-semibold text-foreground group-hover:text-cyan-300 transition-colors font-sans">
                     {title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'hsl(0 0% 35%)' }}>
-                    {body}
-                  </p>
+                  </h4>
+                  <p className="text-[11px] text-muted-foreground font-sans">{desc}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Case Study Block (NOTE: Placeholder content — to be swapped with verified student data) ── */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-16">
-        <div className="liquid-glass-card rounded-2xl p-8 sm:p-10 border border-white/10">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Case Study</p>
-          <h2
-            className="text-3xl sm:text-4xl font-normal leading-tight text-foreground mb-6"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            How Aryan went from <span className="text-gradient-accent">stuck</span> to AIR 4,200.
-          </h2>
-
-          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-            Aryan spent 8+ hours a day studying for JEE Advanced, but his mock test scores remained plateaued below 30%. He was re-watching video lectures at 2x speed without actively testing retention, leaving him exhausted yet unprepared.
-          </p>
-
-          <blockquote
-            className="italic text-2xl sm:text-3xl text-foreground my-8 py-4 border-y border-white/10 leading-snug"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            "I was studying 10 hours a day, but I was just consuming content. Once we audited my schedule, everything clicked."
-          </blockquote>
-
-          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-            During a 20-minute guidance call, we audited his schedule and swapped passive video consumption for 45-minute timed active recall blocks and subject-wise PYQ cycles. We cut his daily study hours from 10 to 6 focused hours.
-          </p>
-
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Within 6 weeks, his retention jumped significantly. He stopped re-reading chapters and entered his exam with confidence, clearing JEE Advanced with AIR 4,200.
-          </p>
+              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all shrink-0" />
+            </Link>
+          ))}
         </div>
       </div>
 
       {/* Closing CTA */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 pb-32 text-center">
-        <h2
-          className="text-3xl sm:text-4xl font-normal text-foreground tracking-[-1px]"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
-        >
-          Let's figure out your next step together.
-        </h2>
-        <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed">
-          First call is free. No commitment required — just show up.
-        </p>
-        <Link
-          to="/reach-us"
-          className="liquid-glass rounded-full px-10 py-4 text-base text-foreground mt-10 inline-flex items-center justify-center hover:scale-[1.03] transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-        >
-          Begin Journey
-        </Link>
+        <div className="liquid-glass-card rounded-3xl py-14 px-8 border border-white/10 shadow-2xl">
+          <h2
+            className="text-3xl sm:text-5xl font-normal text-foreground tracking-[-1px]"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Ready to stop studying in circles?
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed text-sm font-sans">
+            Book a free 20-minute guidance session or explore the study command center today.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <Link
+              to="/reach-us"
+              className="gradient-cta rounded-full px-8 py-3.5 text-sm font-semibold text-slate-950 hover:scale-105 transition-transform"
+            >
+              Book a Free Call
+            </Link>
+            <Link
+              to="/dashboard"
+              className="liquid-glass rounded-full px-8 py-3.5 text-sm font-medium text-foreground hover:bg-white/10 transition-colors border border-white/10"
+            >
+              Open Command Center
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );

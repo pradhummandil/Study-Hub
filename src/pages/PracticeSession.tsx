@@ -1,14 +1,15 @@
 // src/pages/PracticeSession.tsx
 import { useState, useEffect, useRef } from 'react';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
-  ArrowLeft, ArrowRight, CheckCircle2, Bookmark, Sparkles, AlertTriangle
+  ArrowLeft, ArrowRight, CheckCircle2, Bookmark, Sparkles, AlertTriangle, RotateCcw
 } from 'lucide-react';
 import { fetchPracticeQuestions, recordQuestionAttempt, toggleSaveMistake, calculateSessionSummary } from '../lib/practiceApi';
 import type { PracticeQuestion, PracticeSessionResult } from '../types/student-core';
 
 export default function PracticeSession() {
+  const { id: sessionId } = useParams<{ id: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -29,20 +30,63 @@ export default function PracticeSession() {
   // Timer ref
   const currentQuestionStartTime = useRef<number>(Date.now());
 
+  // Load questions and restore saved session state from localStorage if available
   useEffect(() => {
-    async function loadQuestions() {
+    async function loadSessionData() {
       setLoading(true);
+
+      // Check for persisted local session state
+      const sessionKey = `practice_session_state_${sessionId}`;
+      const savedStateRaw = localStorage.getItem(sessionKey);
+
       const qList = await fetchPracticeQuestions({ exam, subject });
       setQuestions(qList);
+
+      if (savedStateRaw) {
+        try {
+          const parsed = JSON.parse(savedStateRaw);
+          setCurrentIndex(parsed.currentIndex || 0);
+          setUserAnswers(parsed.userAnswers || {});
+          setSubmittedQuestions(parsed.submittedQuestions || {});
+          setMarkedForReview(parsed.markedForReview || {});
+          setSavedMistakes(parsed.savedMistakes || {});
+          setTimeTakenMap(parsed.timeTakenMap || {});
+          if (parsed.sessionCompleted) {
+            setSessionCompleted(true);
+            setSummary(parsed.summary);
+          }
+        } catch {
+          // ignore
+        }
+      }
+
       setLoading(false);
       currentQuestionStartTime.current = Date.now();
     }
-    loadQuestions();
-  }, [exam, subject]);
+    loadSessionData();
+  }, [sessionId, exam, subject]);
+
+  // Persist session state to localStorage on state changes
+  useEffect(() => {
+    if (!sessionId || loading || questions.length === 0) return;
+    const sessionKey = `practice_session_state_${sessionId}`;
+    const stateToSave = {
+      currentIndex,
+      userAnswers,
+      submittedQuestions,
+      markedForReview,
+      savedMistakes,
+      timeTakenMap,
+      sessionCompleted,
+      summary,
+      updatedAt: Date.now(),
+    };
+    localStorage.setItem(sessionKey, JSON.stringify(stateToSave));
+  }, [sessionId, currentIndex, userAnswers, submittedQuestions, markedForReview, savedMistakes, timeTakenMap, sessionCompleted, summary, loading, questions.length]);
 
   const currentQ = questions[currentIndex];
 
-  // Track time spent on current question when navigating
+  // Track time spent on current question
   const recordCurrentQuestionTime = () => {
     if (!currentQ) return;
     const now = Date.now();
@@ -149,10 +193,16 @@ export default function PracticeSession() {
     setSessionCompleted(true);
   };
 
+  const handleRetrySession = () => {
+    const newSessionId = `practice_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    navigate(`/practice/session/${newSessionId}?exam=${exam}&subject=${encodeURIComponent(subject)}`);
+  };
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-3 h-3 rounded-full bg-muted-foreground skeleton-pulse" />
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <div className="w-8 h-8 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin mb-3" />
+        <p className="text-xs text-muted-foreground">Preparing practice session...</p>
       </div>
     );
   }
@@ -165,7 +215,7 @@ export default function PracticeSession() {
           <title>Session Results — Study Hub</title>
         </Helmet>
         <div className="px-6 pt-12 max-w-4xl mx-auto pb-24 text-center">
-          <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-emerald-500/20">
+          <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-emerald-500/20 font-mono">
             Session Completed
           </span>
           <h1
@@ -178,21 +228,21 @@ export default function PracticeSession() {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-3xl mx-auto">
             <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 text-center">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Accuracy</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Accuracy</p>
               <p className="text-3xl font-semibold text-emerald-400 font-sans mt-1">{summary.accuracyPct}%</p>
             </div>
             <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 text-center">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Correct</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Correct</p>
               <p className="text-3xl font-semibold text-foreground font-sans mt-1">{summary.correctCount} / {summary.totalQuestions}</p>
             </div>
             <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 text-center">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Time Spent</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Time Spent</p>
               <p className="text-3xl font-semibold text-cyan-400 font-mono mt-1">
                 {Math.floor(summary.totalTimeSeconds / 60)}m {summary.totalTimeSeconds % 60}s
               </p>
             </div>
             <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 text-center">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Questions</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-mono">Questions</p>
               <p className="text-3xl font-semibold text-foreground font-sans mt-1">{summary.totalQuestions}</p>
             </div>
           </div>
@@ -200,7 +250,7 @@ export default function PracticeSession() {
           {/* Strong / Weak Topics breakdown */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 max-w-3xl mx-auto text-left">
             <div className="liquid-glass-card rounded-2xl p-6 border border-emerald-500/30">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3 flex items-center gap-1.5">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3 flex items-center gap-1.5 font-mono">
                 <CheckCircle2 className="w-4 h-4" /> Strong Topics
               </h3>
               {summary.strongTopics.length > 0 ? (
@@ -211,7 +261,7 @@ export default function PracticeSession() {
             </div>
 
             <div className="liquid-glass-card rounded-2xl p-6 border border-rose-500/30">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-rose-400 mb-3 flex items-center gap-1.5">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-rose-400 mb-3 flex items-center gap-1.5 font-mono">
                 <AlertTriangle className="w-4 h-4" /> Needs Attention
               </h3>
               {summary.weakTopics.length > 0 ? (
@@ -225,8 +275,14 @@ export default function PracticeSession() {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <button
+              onClick={handleRetrySession}
+              className="gradient-cta rounded-full px-6 py-2.5 text-xs text-black font-semibold hover:scale-105 transition-transform flex items-center gap-1.5"
+            >
+              <RotateCcw className="w-4 h-4" /> Retry Practice Session
+            </button>
+            <button
               onClick={() => navigate(`/practice?subject=${encodeURIComponent(subject)}`)}
-              className="gradient-cta rounded-full px-6 py-2.5 text-xs text-black font-semibold hover:scale-105 transition-transform"
+              className="liquid-glass rounded-full px-6 py-2.5 text-xs text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/10 transition-colors"
             >
               Practice Weak Topics →
             </button>
@@ -295,7 +351,7 @@ export default function PracticeSession() {
           {/* Header Metadata */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2 text-xs">
-              <span className="liquid-glass px-2.5 py-1 rounded-lg text-emerald-400 font-semibold border border-emerald-500/20">
+              <span className="liquid-glass px-2.5 py-1 rounded-lg text-emerald-400 font-semibold border border-emerald-500/20 font-mono">
                 {currentQ.question_type}
               </span>
               <span className="text-muted-foreground">• Topic: {currentQ.topic}</span>
@@ -386,7 +442,7 @@ export default function PracticeSession() {
             /* Solution & Explanation Box */
             <div className="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4 animate-fade-rise">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Explanation & Verification</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300 font-mono">Explanation & Verification</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleToggleMistake}

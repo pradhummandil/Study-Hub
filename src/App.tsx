@@ -12,6 +12,7 @@ import { StartingPointQuiz } from './components/StartingPointQuiz';
 import { ExitIntentModal } from './components/ExitIntentModal';
 import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
 import { MobileNav } from './components/layout/MobileNav';
+import { Footer } from './components/layout/Footer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy-loaded pages
@@ -20,6 +21,7 @@ const Studio    = lazy(() => import('./pages/Studio'));
 const FocusRoom = lazy(() => import('./pages/FocusRoom'));
 const About     = lazy(() => import('./pages/About'));
 const Journal   = lazy(() => import('./pages/Journal'));
+const JournalArticlePage = lazy(() => import('./pages/JournalArticlePage'));
 const Community = lazy(() => import('./pages/Community'));
 const SignUp    = lazy(() => import('./pages/SignUp'));
 const Login     = lazy(() => import('./pages/Login'));
@@ -54,6 +56,10 @@ const Referrals           = lazy(() => import('./pages/Referrals'));
 const ExamSimulatorPage   = lazy(() => import('./pages/ExamSimulatorPage'));
 const ExamSimulatorPlayer = lazy(() => import('./pages/ExamSimulatorPlayer'));
 const ExamSimulatorResult = lazy(() => import('./pages/ExamSimulatorResult'));
+const ExamSimulatorReview = lazy(() => import('./pages/ExamSimulatorReview'));
+const ExamSimulatorHistory = lazy(() => import('./pages/ExamSimulatorHistory'));
+const PracticeHistory     = lazy(() => import('./pages/PracticeHistory'));
+const QuestionDetail      = lazy(() => import('./pages/QuestionDetail'));
 const MentorPortal        = lazy(() => import('./pages/MentorPortal'));
 const InstitutionPortal   = lazy(() => import('./pages/InstitutionPortal'));
 
@@ -125,6 +131,7 @@ function HomePage() {
       </div>
       <StartingPointQuiz />
       <HomeExtensions />
+      <Footer />
     </>
   );
 }
@@ -132,12 +139,15 @@ function HomePage() {
 // Layout wrapper
 function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen w-full bg-background pb-16 md:pb-0">
-      <Navbar />
-      <SocialProofBar />
-      <ErrorBoundary name="page">
-        <Suspense fallback={<PageLoader />}>{children}</Suspense>
-      </ErrorBoundary>
+    <div className="relative min-h-screen w-full bg-background pb-16 md:pb-0 flex flex-col justify-between">
+      <div>
+        <Navbar />
+        <SocialProofBar />
+        <ErrorBoundary name="page">
+          <Suspense fallback={<PageLoader />}>{children}</Suspense>
+        </ErrorBoundary>
+      </div>
+      <Footer />
     </div>
   );
 }
@@ -164,7 +174,7 @@ function AppRoutes() {
       <Route path="/focus-room" element={<PageLayout><FocusRoom /></PageLayout>} />
       <Route path="/about"    element={<PageLayout><About /></PageLayout>} />
       <Route path="/journal"  element={<PageLayout><Journal /></PageLayout>} />
-      <Route path="/journal/:id" element={<PageLayout><Journal /></PageLayout>} />
+      <Route path="/journal/:slug" element={<PageLayout><JournalArticlePage /></PageLayout>} />
       <Route path="/community" element={<PageLayout><Community /></PageLayout>} />
       <Route path="/pricing" element={<PageLayout><Pricing /></PageLayout>} />
       <Route path="/referrals" element={<PageLayout><Referrals /></PageLayout>} />
@@ -187,7 +197,9 @@ function AppRoutes() {
       <Route path="/roadmap"   element={<RequireAuth><PageLayout><Roadmap /></PageLayout></RequireAuth>} />
       <Route path="/roadmap/:topicId" element={<RequireAuth><PageLayout><TopicRoadmap /></PageLayout></RequireAuth>} />
       <Route path="/practice"  element={<RequireAuth><PageLayout><Practice /></PageLayout></RequireAuth>} />
+      <Route path="/practice/history" element={<RequireAuth><PageLayout><PracticeHistory /></PageLayout></RequireAuth>} />
       <Route path="/practice/session/:id" element={<RequireAuth><PageLayout><PracticeSession /></PageLayout></RequireAuth>} />
+      <Route path="/question/:questionId" element={<RequireAuth><PageLayout><QuestionDetail /></PageLayout></RequireAuth>} />
       <Route path="/mock-tests" element={<RequireAuth><PageLayout><MockTests /></PageLayout></RequireAuth>} />
       <Route path="/mock-tests/:id" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="Mock Test"><MockTestPlayer /></ErrorBoundary></Suspense></RequireAuth>} />
       <Route path="/mock-tests/:id/result" element={<RequireAuth><PageLayout><MockResult /></PageLayout></RequireAuth>} />
@@ -204,8 +216,10 @@ function AppRoutes() {
       <Route path="/settings" element={<RequireAuth><PageLayout><Settings /></PageLayout></RequireAuth>} />
       
       <Route path="/exam-simulator" element={<RequireAuth><PageLayout><ExamSimulatorPage /></PageLayout></RequireAuth>} />
+      <Route path="/exam-simulator/history" element={<RequireAuth><PageLayout><ExamSimulatorHistory /></PageLayout></RequireAuth>} />
       <Route path="/exam-simulator/runner/:id" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="Exam Simulator Runner"><ExamSimulatorPlayer /></ErrorBoundary></Suspense></RequireAuth>} />
       <Route path="/exam-simulator/result/:id" element={<RequireAuth><PageLayout><ExamSimulatorResult /></PageLayout></RequireAuth>} />
+      <Route path="/exam-simulator/review/:id" element={<RequireAuth><PageLayout><ExamSimulatorReview /></PageLayout></RequireAuth>} />
 
       {/* StudyMate AI */}
       <Route path="/study-ai" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="StudyMate AI"><StudyAI /></ErrorBoundary></Suspense></RequireAuth>} />

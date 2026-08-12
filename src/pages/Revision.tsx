@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import {
   Clock,
   AlertTriangle,
-  RotateCcw,
   Sparkles,
   Play,
   BookOpen,
@@ -66,17 +65,13 @@ export default function RevisionPage() {
 
       <div className="min-h-screen pb-16 pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <div className="flex items-center space-x-3 mb-2">
-              <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
-                <RotateCcw className="w-6 h-6 animate-spin-slow" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-slate-100 tracking-tight">Revision Center</h1>
-                <p className="text-slate-400 text-sm mt-0.5">Review the right concept at the right time.</p>
-              </div>
-            </div>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2 font-semibold">Spaced Repetition Engine</p>
+            <h1 className="text-4xl sm:text-5xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Revision Center
+            </h1>
+            <p className="text-muted-foreground text-sm mt-1">Review the right concept at the right time.</p>
           </div>
 
           {!sessionActive && dueItems.length > 0 && (
@@ -86,40 +81,40 @@ export default function RevisionPage() {
                 setCurrentIndex(0);
                 setRevealed(false);
               }}
-              className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold shadow-lg shadow-cyan-500/20 flex items-center gap-2 transition-all transform hover:scale-105"
+              className="gradient-cta px-6 py-3 rounded-full text-slate-950 font-semibold shadow-lg flex items-center gap-2 transition-transform hover:scale-105 cursor-pointer"
             >
-              <Play className="w-5 h-5 fill-current" /> Start Revision Session ({dueItems.length})
+              <Play className="w-4 h-4 fill-slate-950" /> Start Revision Session ({dueItems.length})
             </button>
           )}
         </div>
 
         {/* Revision Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-slate-400 text-sm mb-2">
+          <div className="liquid-glass-card p-6 rounded-2xl border border-white/10">
+            <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold uppercase tracking-wider mb-2">
               <span>Due Today</span>
               <Clock className="w-4 h-4 text-cyan-400" />
             </div>
-            <div className="text-3xl font-extrabold text-cyan-400">{stats.dueToday}</div>
-            <p className="text-xs text-slate-500 mt-1">Ready for memory retention review</p>
+            <div className="text-3xl font-semibold text-cyan-400 tracking-tight">{stats.dueToday}</div>
+            <p className="text-xs text-muted-foreground mt-1">Ready for memory retention review</p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-slate-400 text-sm mb-2">
+          <div className="liquid-glass-card p-6 rounded-2xl border border-white/10">
+            <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold uppercase tracking-wider mb-2">
               <span>Overdue</span>
               <AlertTriangle className="w-4 h-4 text-amber-400" />
             </div>
-            <div className="text-3xl font-extrabold text-amber-400">{stats.overdue}</div>
-            <p className="text-xs text-slate-500 mt-1">High priority for memory decay protection</p>
+            <div className="text-3xl font-semibold text-amber-400 tracking-tight">{stats.overdue}</div>
+            <p className="text-xs text-muted-foreground mt-1">High priority for memory decay protection</p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl">
-            <div className="flex items-center justify-between text-slate-400 text-sm mb-2">
+          <div className="liquid-glass-card p-6 rounded-2xl border border-white/10">
+            <div className="flex items-center justify-between text-muted-foreground text-xs font-semibold uppercase tracking-wider mb-2">
               <span>Upcoming</span>
               <BookOpen className="w-4 h-4 text-indigo-400" />
             </div>
-            <div className="text-3xl font-extrabold text-indigo-400">{stats.upcoming}</div>
-            <p className="text-xs text-slate-500 mt-1">Scheduled for future spaced intervals</p>
+            <div className="text-3xl font-semibold text-indigo-400 tracking-tight">{stats.upcoming}</div>
+            <p className="text-xs text-muted-foreground mt-1">Scheduled for future spaced intervals</p>
           </div>
         </div>
 

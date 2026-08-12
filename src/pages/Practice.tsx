@@ -1,18 +1,21 @@
 // src/pages/Practice.tsx
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Filter, Play } from 'lucide-react';
+import { Filter, Play, History } from 'lucide-react';
 import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
-import { getStudentProfile } from '../lib/studentCoreApi';
-import { fetchPracticeQuestions } from '../lib/practiceApi';
+import { useStudentContext } from '../context/StudentContext';
+import { fetchPracticeQuestions, getLocalSavedMistakes } from '../lib/practiceApi';
 
 export default function Practice() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { targetExam } = useStudentContext();
+
   const urlSubject = searchParams.get('subject') || '';
 
-  const [exam, setExam] = useState<ExamCategory>('GATE');
+  const [activeTab, setActiveTab] = useState<'pyqs' | 'topic' | 'weak' | 'recent' | 'saved' | 'ai'>('pyqs');
+  const [exam, setExam] = useState<ExamCategory>(targetExam);
   const [subject, setSubject] = useState<string>(urlSubject);
   const [year, setYear] = useState<string>('All');
   const [difficulty, setDifficulty] = useState<string>('All');
@@ -20,26 +23,29 @@ export default function Practice() {
   const [questionCount, setQuestionCount] = useState<number>(10);
   const [loading, setLoading] = useState(true);
   const [availableCount, setAvailableCount] = useState(0);
+  const [savedCount, setSavedCount] = useState(0);
+
+  useEffect(() => {
+    setExam(targetExam);
+  }, [targetExam]);
 
   useEffect(() => {
     async function init() {
       setLoading(true);
-      const profile = await getStudentProfile();
-      const currentExam = profile?.target_exam || 'GATE';
-      setExam(currentExam);
-      if (!subject) {
-        const subs = EXAM_CONFIGS[currentExam]?.subjects || EXAM_CONFIGS['GATE'].subjects;
+      const subs = EXAM_CONFIGS[exam]?.subjects || EXAM_CONFIGS['GATE'].subjects;
+      if (!subject || !subs.includes(subject)) {
         setSubject(subs[0]);
       }
-      const questions = await fetchPracticeQuestions({ exam: currentExam });
+      const questions = await fetchPracticeQuestions({ exam });
       setAvailableCount(questions.length);
+      setSavedCount(getLocalSavedMistakes().length);
       setLoading(false);
     }
     init();
-  }, []);
+  }, [exam]);
 
   const handleStartSession = () => {
-    const sessionId = `session_${Date.now()}`;
+    const sessionId = `practice_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const params = new URLSearchParams();
     if (exam) params.set('exam', exam);
     if (subject) params.set('subject', subject);
@@ -47,6 +53,7 @@ export default function Practice() {
     if (difficulty !== 'All') params.set('difficulty', difficulty);
     if (questionType !== 'All') params.set('type', questionType);
     params.set('count', String(questionCount));
+    params.set('tab', activeTab);
 
     navigate(`/practice/session/${sessionId}?${params.toString()}`);
   };
@@ -56,13 +63,13 @@ export default function Practice() {
   return (
     <>
       <Helmet>
-        <title>Practice PYQs — Study Hub</title>
+        <title>Practice PYQs & Topic Bank — Study Hub</title>
         <meta name="description" content="Turn years of real exam questions into daily practice." />
       </Helmet>
 
-      <div className="px-6 pt-12 max-w-5xl mx-auto text-center">
-        <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-emerald-500/20">
-          PYQ & Topic Practice
+      <div className="px-6 pt-12 max-w-5xl mx-auto text-center space-y-4">
+        <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block border border-emerald-500/20 font-mono">
+          {exam} Verified Question Bank
         </span>
         <h1
           className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
@@ -70,21 +77,57 @@ export default function Practice() {
         >
           Practice Previous Questions
         </h1>
-        <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-          Turn years of real exam questions into daily practice.
+        <p className="text-sm text-muted-foreground max-w-md mx-auto">
+          Official PYQs with step-by-step verified explanations.
         </p>
+
+        {/* Action Bar */}
+        <div className="flex justify-center gap-3 pt-2">
+          <Link
+            to="/practice/history"
+            className="liquid-glass rounded-xl px-4 py-2 text-xs font-semibold text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/10 flex items-center gap-1.5"
+          >
+            <History className="w-4 h-4" /> Practice History
+          </Link>
+        </div>
+      </div>
+
+      {/* Practice Category Tabs */}
+      <div className="px-6 mt-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl liquid-glass border border-white/10 text-xs font-medium">
+          {[
+            { id: 'pyqs', label: 'Official PYQs' },
+            { id: 'topic', label: 'Topic Drill' },
+            { id: 'weak', label: 'Weak Areas' },
+            { id: 'recent', label: 'Recent' },
+            { id: 'saved', label: `Saved (${savedCount})` },
+            { id: 'ai', label: 'AI Drills' },
+          ].map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActiveTab(t.id as any)}
+              className={`py-2.5 rounded-xl transition-all cursor-pointer ${
+                activeTab === t.id
+                  ? 'gradient-cta text-slate-950 font-semibold shadow-md'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Filter & Setup Card */}
-      <div className="px-6 mt-10 max-w-4xl mx-auto pb-24">
+      <div className="px-6 mt-6 max-w-4xl mx-auto pb-24">
         <div className="liquid-glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-8 shadow-2xl">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
               <Filter className="w-5 h-5 text-emerald-400" />
-              Practice Session Filters
+              Practice Filters & Options
             </h2>
             <span className="text-xs text-muted-foreground font-mono">
-              {availableCount} Questions Indexed
+              {availableCount} Questions Indexed for {exam}
             </span>
           </div>
 
@@ -123,13 +166,14 @@ export default function Practice() {
 
             {/* Year Filter */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Exam Year</label>
+              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider font-mono">Exam Year</label>
               <select
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
               >
-                <option value="All" className="bg-slate-900 text-foreground">All Years (2020–2026)</option>
+                <option value="All" className="bg-slate-900 text-foreground">All Years (2007–2026)</option>
+                <option value="2026" className="bg-slate-900 text-foreground">2026</option>
                 <option value="2025" className="bg-slate-900 text-foreground">2025</option>
                 <option value="2024" className="bg-slate-900 text-foreground">2024</option>
                 <option value="2023" className="bg-slate-900 text-foreground">2023</option>
@@ -164,7 +208,6 @@ export default function Practice() {
                 <option value="MCQ" className="bg-slate-900 text-foreground">MCQ (Single Choice)</option>
                 <option value="MSQ" className="bg-slate-900 text-foreground">MSQ (Multiple Select)</option>
                 <option value="Numerical" className="bg-slate-900 text-foreground">Numerical (NAT Input)</option>
-                <option value="True/False" className="bg-slate-900 text-foreground">True / False</option>
               </select>
             </div>
 
@@ -186,7 +229,7 @@ export default function Practice() {
           {/* Action CTA */}
           <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">
-              Official PYQ answers are verified with detailed step-by-step explanations.
+              Progress & attempts are automatically saved to your student profile.
             </p>
             <button
               onClick={handleStartSession}

@@ -27,8 +27,9 @@ export default {
         input: 'hsl(var(--input))',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
-        body: ['var(--font-body)', 'sans-serif'],
+        display: ['var(--font-display)', 'Instrument Serif', 'serif'],
+        sans: ['var(--font-sans)', 'Inter', 'sans-serif'],
+        body: ['var(--font-body)', 'Inter', 'sans-serif'],
       },
     },
   },
