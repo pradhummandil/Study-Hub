@@ -35,7 +35,7 @@ export default function VideoWatchPage() {
   // Notes state
   const [notes, setNotes] = useState<VideoNote[]>([]);
   const [newNoteText, setNewNoteText] = useState('');
-  const [noteTimestamp, setNoteTimestamp] = useState(0);
+  const noteTimestamp = 0;
 
   // Embed URL
   useEffect(() => {
