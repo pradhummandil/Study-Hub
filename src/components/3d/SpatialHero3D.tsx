@@ -146,6 +146,47 @@ export const SpatialHero3D: React.FC<SpatialHero3DProps> = ({ className = '' }) 
     timerGroup.position.set(1.1, -1.0, 1.2);
     group.add(timerGroup);
 
+    // Layer Z3: Foreground Object 4 — StudyMate AI Diamond Crystal
+    const aiGroup = new THREE.Group();
+    const octaGeo = new THREE.OctahedronGeometry(0.4, 0);
+    const octaMesh = new THREE.Mesh(octaGeo, materials.terracotta);
+    octaMesh.castShadow = true;
+    aiGroup.add(octaMesh);
+    const aiRingGeo = new THREE.TorusGeometry(0.6, 0.015, 16, 40);
+    const aiRingMesh = new THREE.Mesh(aiRingGeo, materials.scholarGreen);
+    aiRingMesh.rotation.x = Math.PI / 4;
+    aiGroup.add(aiRingMesh);
+    aiGroup.position.set(-1.2, 1.1, 1.1);
+    group.add(aiGroup);
+
+    // Layer Z3: Foreground Object 5 — Student Avatar Silhouette Capsule
+    const studentGroup = new THREE.Group();
+    const headGeo = new THREE.SphereGeometry(0.25, 24, 24);
+    const headMesh = new THREE.Mesh(headGeo, materials.forestCover);
+    headMesh.position.y = 0.4;
+    studentGroup.add(headMesh);
+    const bodyGeo = new THREE.CylinderGeometry(0.18, 0.35, 0.6, 24);
+    const bodyMesh = new THREE.Mesh(bodyGeo, materials.scholarGreen);
+    studentGroup.add(bodyMesh);
+    studentGroup.position.set(0.1, -1.2, 0.7);
+    studentGroup.rotation.z = -0.1;
+    group.add(studentGroup);
+
+    // Raycaster for independent object hover responses
+    const raycaster = new THREE.Raycaster();
+    const mouseVector = new THREE.Vector2();
+    let hoveredObject: THREE.Object3D | null = null;
+
+    // Interactive target objects mapping
+    const interactiveGroups = [
+      { group: bookGroup, name: 'book', baseZ: 0, scaleTarget: 1 },
+      { group: paperGroup, name: 'paper', baseZ: 0.8, scaleTarget: 1 },
+      { group: flashcardGroup, name: 'flashcard', baseZ: 0.9, scaleTarget: 1 },
+      { group: timerGroup, name: 'timer', baseZ: 1.2, scaleTarget: 1 },
+      { group: aiGroup, name: 'ai', baseZ: 1.1, scaleTarget: 1 },
+      { group: studentGroup, name: 'student', baseZ: 0.7, scaleTarget: 1 },
+    ];
+
     // Mouse movement parallax state
     let targetRotX = 0;
     let targetRotY = 0;
@@ -156,8 +197,12 @@ export const SpatialHero3D: React.FC<SpatialHero3DProps> = ({ className = '' }) 
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      targetRotY = x * 0.25;
-      targetRotX = y * 0.2;
+      targetRotY = x * 0.28;
+      targetRotX = y * 0.22;
+
+      // Update raycaster
+      mouseVector.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseVector.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     };
     window.addEventListener('mousemove', handleMouseMove);
 
@@ -176,13 +221,37 @@ export const SpatialHero3D: React.FC<SpatialHero3DProps> = ({ className = '' }) 
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
+      // Raycast test for hover elevation
+      raycaster.setFromCamera(mouseVector, camera);
+      const intersects = raycaster.intersectObjects(group.children, true);
+
+      hoveredObject = null;
+      if (intersects.length > 0) {
+        let obj: THREE.Object3D | null = intersects[0].object;
+        while (obj && obj.parent && obj.parent !== group) {
+          obj = obj.parent;
+        }
+        hoveredObject = obj;
+      }
+
       // Smooth mouse lerp
       currentRotX += (targetRotX - currentRotX) * 0.06;
       currentRotY += (targetRotY - currentRotY) * 0.06;
       group.rotation.x = currentRotX;
       group.rotation.y = currentRotY + Math.sin(elapsedTime * 0.5) * 0.03;
 
-      // Independent micro floating animation for depth objects
+      // Update interactive groups with independent floating & hover responses
+      interactiveGroups.forEach((item) => {
+        const isHovered = hoveredObject === item.group;
+        item.scaleTarget = isHovered ? 1.18 : 1.0;
+
+        // Smooth scale interpolation
+        item.group.scale.x += (item.scaleTarget - item.group.scale.x) * 0.1;
+        item.group.scale.y += (item.scaleTarget - item.group.scale.y) * 0.1;
+        item.group.scale.z += (item.scaleTarget - item.group.scale.z) * 0.1;
+      });
+
+      // Micro floating animation for depth objects with independent phases
       bookGroup.position.y = 0.2 + Math.sin(elapsedTime * 1.2) * 0.08;
       paperGroup.position.y = 0.8 + Math.cos(elapsedTime * 1.4) * 0.1;
       paperGroup.rotation.z = 0.15 + Math.sin(elapsedTime * 0.8) * 0.05;
@@ -194,9 +263,17 @@ export const SpatialHero3D: React.FC<SpatialHero3DProps> = ({ className = '' }) 
       timerGroup.rotation.y = elapsedTime * 0.6;
       ringMesh.rotation.z = elapsedTime * 0.2;
 
-      // Scroll camera zoom lerp
-      const targetZ = Math.max(4.8, 6.5 - scrollY * 0.0035);
+      aiGroup.position.y = 1.1 + Math.sin(elapsedTime * 2.0) * 0.12;
+      aiGroup.rotation.y = elapsedTime * 0.9;
+      aiRingMesh.rotation.z = -elapsedTime * 0.5;
+
+      studentGroup.position.y = -1.2 + Math.cos(elapsedTime * 1.0) * 0.05;
+
+      // Scroll camera zoom & composition morph
+      const targetZ = Math.max(4.2, 6.5 - scrollY * 0.004);
+      const targetY = scrollY * 0.0015;
       camera.position.z += (targetZ - camera.position.z) * 0.08;
+      camera.position.y += (targetY - camera.position.y) * 0.08;
 
       renderer.render(scene, camera);
     };
