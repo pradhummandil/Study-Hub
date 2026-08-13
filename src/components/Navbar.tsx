@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useStudentContext } from '../context/StudentContext';
 import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
-import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall, Video } from 'lucide-react';
+import { LogOut, Settings, ChevronDown, LayoutDashboard, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall, Video, Award } from 'lucide-react';
 import { NotificationBellDropdown } from './notifications/NotificationBellDropdown';
 import { Logo } from './ui/Logo';
 import { fetchProfileGamification } from '../lib/profile/profileApi';
@@ -60,10 +61,24 @@ export const Navbar = () => {
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [examMenuOpen, setExamMenuOpen] = useState(false);
   const [gamification, setGamification] = useState<StudentGamification | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
   const examRef = useRef<HTMLDivElement>(null);
+
+  // Scroll listener for compact glass morphing
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 25) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menus on route change
   useEffect(() => {
@@ -113,27 +128,45 @@ export const Navbar = () => {
   const firstName = fullName.split(' ')[0].split('@')[0];
   const initialLetter = (fullName[0] || 'U').toUpperCase();
 
+  const activeNavItems = user ? loggedInPrimaryNavItems : publicNavItems;
+
   return (
-    <>
-      <nav className="relative z-40 flex flex-row items-center justify-between px-6 md:px-8 h-[88px] max-w-7xl mx-auto w-full shrink-0">
+    <header className="sticky top-0 z-40 w-full transition-all duration-300">
+      <nav
+        className={`relative z-40 flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
+          isScrolled
+            ? 'h-[68px] bg-white/80 backdrop-blur-xl shadow-sm border-b border-slate-200/60 rounded-b-2xl'
+            : 'h-[88px] bg-transparent'
+        }`}
+      >
         {/* Logo */}
         <Logo size="md" />
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-6">
-          {(user ? loggedInPrimaryNavItems : publicNavItems).map(({ label, path }) => (
-            <Link
-              key={label}
-              to={path}
-              className={`text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded ${
-                isActive(path)
-                  ? 'text-foreground font-semibold'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
+        {/* Desktop Nav with Animated layoutId Active Pill */}
+        <div className="hidden md:flex items-center space-x-2 relative">
+          {activeNavItems.map(({ label, path }) => {
+            const active = isActive(path);
+            return (
+              <Link
+                key={label}
+                to={path}
+                className={`relative px-3 py-1.5 text-sm transition-colors rounded-full focus-visible:outline-none ${
+                  active
+                    ? 'text-[#062B3D] font-bold'
+                    : 'text-slate-600 hover:text-[#062B3D] font-medium'
+                }`}
+              >
+                {active && (
+                  <motion.div
+                    layoutId="navbar-active-pill"
+                    className="absolute inset-0 bg-[#287BFF]/10 rounded-full border border-[#287BFF]/20 pointer-events-none"
+                    transition={{ type: 'spring', stiffness: 280, damping: 26 }}
+                  />
+                )}
+                <span className="relative z-10">{label}</span>
+              </Link>
+            );
+          })}
 
           {/* More ▾ Dropdown — Only shown when logged in */}
           {user && (
@@ -141,10 +174,10 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-                className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 cursor-pointer ${
+                className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-1.5 px-3 rounded-full cursor-pointer ${
                   moreMenuOpen || isSecondaryActive
-                    ? 'text-foreground font-semibold'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'text-[#062B3D] font-bold bg-[#287BFF]/10'
+                    : 'text-slate-600 hover:text-[#062B3D] font-medium'
                 }`}
                 aria-label="More features menu"
                 aria-expanded={moreMenuOpen}
@@ -319,13 +352,13 @@ export const Navbar = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/login"
-                className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                className="text-xs font-medium text-slate-600 hover:text-[#062B3D] transition-colors px-3 py-2 focus-visible:outline-none rounded"
               >
                 Log in
               </Link>
               <Link
                 to="/signup"
-                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
               >
                 Start studying
               </Link>
@@ -454,6 +487,6 @@ export const Navbar = () => {
           </div>
         </div>
       )}
-    </>
+    </header>
   );
 };

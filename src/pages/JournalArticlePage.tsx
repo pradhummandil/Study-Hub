@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Clock, Share2, Check } from 'lucide-react';
+import { ArrowLeft, Clock, Share2, Check, Sparkles, ShieldCheck, Trophy, Info } from 'lucide-react';
 import { ARTICLES, type Article } from '../content/journal/articles';
 import { ArticleCard } from '../components/journal/ArticleCard';
+import { SourceBadge } from '../components/journal/SourceBadge';
+import { TryThisBox } from '../components/journal/TryThisBox';
 
 export default function JournalArticlePage() {
   const { id, slug } = useParams<{ id?: string; slug?: string }>();
@@ -16,9 +18,9 @@ export default function JournalArticlePage() {
   useEffect(() => {
     if (!activeSlug) return;
 
-    // Match by slug or numeric ID fallback
+    // Match by slug or fallback to first article
     const found = ARTICLES.find(
-      (a) => a.slug === activeSlug || ARTICLES.indexOf(a) + 1 === Number(activeSlug)
+      (a) => a.slug === activeSlug || a.id === activeSlug || ARTICLES.indexOf(a) + 1 === Number(activeSlug)
     );
 
     if (found) {
@@ -53,7 +55,6 @@ export default function JournalArticlePage() {
       try {
         await navigator.share(shareData);
       } catch {
-        // Fallback to copy link
         navigator.clipboard.writeText(window.location.href);
         setCopied(true);
         setTimeout(() => setCopied(false), 2500);
@@ -69,12 +70,23 @@ export default function JournalArticlePage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
         <div className="w-8 h-8 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin mb-3" />
-        <p className="text-xs text-muted-foreground">Loading story...</p>
+        <p className="text-xs text-muted-foreground font-sans">Loading story...</p>
       </div>
     );
   }
 
-  const relatedArticles = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3);
+  // Related Articles matching category, exam, or tags
+  const relatedArticles = ARTICLES.filter(
+    (a) =>
+      a.slug !== article.slug &&
+      (a.category === article.category ||
+        (a.exam && article.exam && a.exam === article.exam) ||
+        a.tags.some((t) => article.tags.includes(t)))
+  ).slice(0, 3);
+
+  const isResearchedStory = Boolean(
+    article.sourceNames && article.sourceNames.length > 0
+  );
 
   return (
     <>
@@ -86,7 +98,7 @@ export default function JournalArticlePage() {
         <meta property="og:image" content={article.image} />
       </Helmet>
 
-      {/* Reading Progress Bar */}
+      {/* Top Fixed Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50 pointer-events-none">
         <div
           className="h-full bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 transition-all duration-150"
@@ -95,8 +107,8 @@ export default function JournalArticlePage() {
       </div>
 
       <article className="min-h-screen pb-24 pt-8 px-4 sm:px-6 lg:px-8">
-        {/* Top Back Navigation */}
-        <div className="max-w-4xl mx-auto mb-8">
+        {/* Top Navigation Bar */}
+        <div className="max-w-4xl mx-auto mb-8 font-sans">
           <Link
             to="/journal"
             className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors liquid-glass px-4 py-2 rounded-full border border-white/10"
@@ -107,10 +119,20 @@ export default function JournalArticlePage() {
 
         {/* Article Header */}
         <header className="max-w-3xl mx-auto text-center space-y-6">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 font-sans">
             <span className="liquid-glass rounded-full px-3 py-1 text-xs font-semibold text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">
               {article.category}
             </span>
+            {article.exam && (
+              <span className="liquid-glass rounded-full px-3 py-1 text-xs font-semibold text-amber-300 border border-amber-500/30 uppercase tracking-widest flex items-center gap-1">
+                <Trophy className="w-3.5 h-3.5" /> {article.exam} {article.examYear || ''}
+              </span>
+            )}
+            {article.verified && (
+              <span className="liquid-glass rounded-full px-3 py-1 text-xs font-semibold text-emerald-400 border border-emerald-500/30 uppercase tracking-widest flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5" /> Verified Story
+              </span>
+            )}
           </div>
 
           <h1
@@ -124,7 +146,7 @@ export default function JournalArticlePage() {
             {article.excerpt}
           </p>
 
-          {/* Author & Meta Bar */}
+          {/* Author & Read Meta Strip */}
           <div className="flex items-center justify-between border-y border-white/10 py-4 max-w-xl mx-auto text-xs text-muted-foreground font-sans">
             <div className="flex items-center gap-3">
               {article.author.avatar ? (
@@ -155,13 +177,48 @@ export default function JournalArticlePage() {
         </header>
 
         {/* Hero Image */}
-        <div className="max-w-4xl mx-auto my-10 rounded-3xl overflow-hidden liquid-glass border border-white/10 shadow-2xl">
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full max-h-[480px] object-cover"
-          />
-        </div>
+        {(() => {
+          const heroConfig = article.heroImageConfig;
+          const imgSrc = heroConfig?.src || article.image;
+          const objPos = heroConfig?.objectPosition || 'center 25%';
+          const photoCredit = heroConfig?.credit || (heroConfig?.sourceName ? `Photo: ${heroConfig.sourceName}` : null);
+
+          return (
+            <div className="max-w-4xl mx-auto my-10 space-y-2">
+              <div className="rounded-3xl overflow-hidden liquid-glass border border-white/10 shadow-2xl relative">
+                <img
+                  src={imgSrc}
+                  alt={article.title}
+                  style={{ objectPosition: objPos }}
+                  className="w-full max-h-[480px] object-cover"
+                />
+              </div>
+              {photoCredit && (
+                <p className="text-[11px] text-muted-foreground text-right px-2 font-sans">
+                  {photoCredit}
+                </p>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* Key Takeaways Summary Box */}
+        {article.keyTakeaways && article.keyTakeaways.length > 0 && (
+          <div className="max-w-[760px] mx-auto my-8 p-6 rounded-3xl liquid-glass border border-cyan-500/30 space-y-3 font-sans shadow-xl">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-400 font-semibold">
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+              <span>Key Takeaways</span>
+            </div>
+            <ul className="space-y-2 text-sm text-slate-200">
+              {article.keyTakeaways.map((takeaway, idx) => (
+                <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                  <span className="text-cyan-400 shrink-0 font-bold">•</span>
+                  <span>{takeaway}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Article Body Content */}
         <div className="max-w-[760px] mx-auto prose prose-invert prose-cyan text-slate-200 leading-relaxed font-sans space-y-6 text-base sm:text-lg">
@@ -200,8 +257,7 @@ export default function JournalArticlePage() {
               return (
                 <blockquote
                   key={idx}
-                  className="italic text-xl sm:text-2xl text-foreground my-8 p-6 rounded-2xl liquid-glass border-l-4 border-cyan-400 leading-relaxed"
-                  style={{ fontFamily: "'Instrument Serif', serif" }}
+                  className="italic text-xl sm:text-2xl text-foreground my-8 p-6 rounded-2xl liquid-glass border-l-4 border-cyan-400 leading-relaxed font-serif"
                 >
                   {trimmed.replace('> ', '').replace(/"/g, '')}
                 </blockquote>
@@ -216,11 +272,36 @@ export default function JournalArticlePage() {
           })}
         </div>
 
-        {/* Share & Actions Strip */}
-        <div className="max-w-[760px] mx-auto mt-12 pt-8 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        {/* Interactive "Try This Today" Box */}
+        <div className="max-w-[760px] mx-auto">
+          <TryThisBox cta={article.cta} category={article.category} />
+        </div>
+
+        {/* Sources & Researched Badge */}
+        <div className="max-w-[760px] mx-auto">
+          <SourceBadge
+            sourceNames={article.sourceNames}
+            sourceUrls={article.sourceUrls}
+            sourceCheckedAt={article.sourceCheckedAt}
+            isResearched={isResearchedStory}
+          />
+        </div>
+
+        {/* Educator/Topper Story Non-Endorsement Disclaimer */}
+        {(article.category === 'Educator Stories' || article.category === 'Topper Stories') && (
+          <div className="max-w-[760px] mx-auto my-6 p-4 rounded-2xl liquid-glass border border-white/10 text-xs text-muted-foreground flex items-start gap-3 font-sans">
+            <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              <strong>Editorial Disclaimer:</strong> This story is written based on publicly available interviews, official gazette records, and published educational archives. It does not imply official endorsement by the named individuals or institutions.
+            </p>
+          </div>
+        )}
+
+        {/* Tags & Share Strip */}
+        <div className="max-w-[760px] mx-auto mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans">
+          <div className="flex flex-wrap gap-2">
             {article.tags.map((tag) => (
-              <span key={tag} className="liquid-glass rounded-full px-3 py-1 text-xs text-muted-foreground font-sans">
+              <span key={tag} className="liquid-glass rounded-full px-3 py-1 text-xs text-muted-foreground">
                 #{tag}
               </span>
             ))}
@@ -228,7 +309,7 @@ export default function JournalArticlePage() {
 
           <button
             onClick={handleShare}
-            className="liquid-glass rounded-full px-5 py-2 text-xs text-foreground font-medium flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
+            className="liquid-glass rounded-full px-5 py-2 text-xs text-foreground font-medium flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer shrink-0"
           >
             {copied ? (
               <>
@@ -242,21 +323,23 @@ export default function JournalArticlePage() {
           </button>
         </div>
 
-        {/* Related Articles ("You may also like") */}
-        <section className="max-w-5xl mx-auto mt-20 pt-12 border-t border-white/10">
-          <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">Keep Reading</p>
-            <h2 className="text-3xl sm:text-4xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              You May Also Like
-            </h2>
-          </div>
+        {/* Related Articles ("Continue Reading") */}
+        {relatedArticles.length > 0 && (
+          <section className="max-w-5xl mx-auto mt-20 pt-12 border-t border-white/10 font-sans">
+            <div className="text-center mb-10">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-2">Continue Reading</p>
+              <h2 className="text-3xl sm:text-4xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                Related Stories & Systems
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {relatedArticles.map((rel) => (
-              <ArticleCard key={rel.slug} article={rel} />
-            ))}
-          </div>
-        </section>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedArticles.map((rel) => (
+                <ArticleCard key={rel.slug} article={rel} />
+              ))}
+            </div>
+          </section>
+        )}
       </article>
     </>
   );

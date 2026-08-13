@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { ExamType, StudyMode } from '../../types/study-ai';
 import { StudyAIStudentIllustration } from './StudyAIStudentIllustration';
 import { StudyAIQuickActions } from './StudyAIQuickActions';
+import { AIOrb } from '../ui/motion/AIOrb';
 
 interface StudyAIWelcomeProps {
   onAction: (prompt: string, exam?: ExamType, mode?: StudyMode) => void;
@@ -13,10 +14,9 @@ export function StudyAIWelcome({ onAction, selectedExam }: StudyAIWelcomeProps) 
     <div className="flex-1 flex flex-col items-center justify-start overflow-y-auto no-scrollbar pb-8">
       {/* ── Hero Container ────────────────────────────────────────── */}
       <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
-
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Hero Text Content */}
-          <div className="text-center md:text-left flex flex-col items-center md:items-start">
+          <div className="md:col-span-7 text-center md:text-left flex flex-col items-center md:items-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -63,8 +63,8 @@ export function StudyAIWelcome({ onAction, selectedExam }: StudyAIWelcomeProps) 
               className="text-sm sm:text-base leading-relaxed max-w-md"
               style={{ color: 'rgba(159,179,200,0.9)' }}
             >
-              Ask a question, test yourself, build a plan,
-              or understand something you keep getting wrong.
+              Ask a question, test yourself, build a plan, or understand something you keep getting
+              wrong.
             </motion.p>
 
             {selectedExam !== 'General' && (
@@ -85,13 +85,14 @@ export function StudyAIWelcome({ onAction, selectedExam }: StudyAIWelcomeProps) 
             )}
           </div>
 
-          {/* Right Student + AI Illustration */}
+          {/* Right Student + Interactive AI Orb Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="w-full flex justify-center items-center mt-4 md:mt-0"
+            className="md:col-span-5 flex flex-col items-center justify-center gap-6 mt-4 md:mt-0"
           >
+            <AIOrb state="listening" size={130} />
             <StudyAIStudentIllustration />
           </motion.div>
         </div>
@@ -104,7 +105,10 @@ export function StudyAIWelcome({ onAction, selectedExam }: StudyAIWelcomeProps) 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
         >
-          <p className="text-xs font-medium uppercase tracking-widest mb-3" style={{ color: 'rgba(159,179,200,0.6)' }}>
+          <p
+            className="text-xs font-medium uppercase tracking-widest mb-3"
+            style={{ color: 'rgba(159,179,200,0.6)' }}
+          >
             Quick start
           </p>
           <StudyAIQuickActions onAction={onAction} />

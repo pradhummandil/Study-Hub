@@ -1,0 +1,46 @@
+{
+  "pin_847099011191527571_navigation": {
+    "title": "Pinterest Pin 847099011191527571 - Navigation Transition",
+    "purpose": "Page Navigation / Route Transition Animation",
+    "sourcePinUrl": "https://in.pinterest.com/pin/847099011191527571/",
+    "rawMediaUrl": "Pinterest CDN Video Endpoint",
+    "originalResolution": "400x300 (4:3)",
+    "finalResolution": "1440x1080",
+    "aspectRatio": "1440:1080 (4:3)",
+    "durationSeconds": 1.53,
+    "fps": 33.33,
+    "codec": "H.264 (MP4) / VP9 (WebM)",
+    "fileSizeBytes": 383420,
+    "fileSizeMB": "0.37 MB",
+    "motionVerified": true,
+    "motionDiff": "0 vs Mid: 8.239, Mid vs End: 8.073",
+    "licenseStatus": "Actual Pinterest visual rehosted for educational non-commercial study website",
+    "localFiles": {
+      "mp4": "/assets/animations/studyhub-navigation.mp4",
+      "webm": "/assets/animations/studyhub-navigation.webm",
+      "poster": "/assets/animations/studyhub-navigation-poster.webp"
+    }
+  },
+  "pin_371898881745229227_startup": {
+    "title": "Pinterest Pin 371898881745229227 - Startup Animation",
+    "purpose": "Initial Application Startup / Intro Sequence",
+    "sourcePinUrl": "https://in.pinterest.com/pin/371898881745229227/",
+    "rawMediaUrl": "Pinterest CDN Video Endpoint",
+    "originalResolution": "1280x720 (16:9)",
+    "finalResolution": "1920x1080",
+    "aspectRatio": "1920:1080 (16:9)",
+    "durationSeconds": 5.367,
+    "fps": 30.0,
+    "codec": "H.264 (MP4) / VP9 (WebM)",
+    "fileSizeBytes": 1453963,
+    "fileSizeMB": "1.39 MB",
+    "motionVerified": true,
+    "motionDiff": "0 vs Mid: 42.217, Mid vs End: 42.076",
+    "licenseStatus": "Actual Pinterest visual rehosted for educational non-commercial study website",
+    "localFiles": {
+      "mp4": "/assets/animations/studyhub-startup.mp4",
+      "webm": "/assets/animations/studyhub-startup.webm",
+      "poster": "/assets/animations/studyhub-startup-poster.webp"
+    }
+  }
+}

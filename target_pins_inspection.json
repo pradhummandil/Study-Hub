@@ -1,0 +1,48 @@
+{
+  "PIN_1_TRANSITION": {
+    "title": "",
+    "description": "",
+    "og_image": "",
+    "og_video": "",
+    "video_urls": [
+      "https://v1.pinimg.com/videos/iht/720p/b6/e8/ab/b6e8ab7cae92a2ef91b8ace28accfc00.mp4"
+    ],
+    "image_urls": [
+      "https://i.pinimg.com/600x315/43/8e/b3/438eb3c441a8b209855ca01dd357dfc2.jpg",
+      "https://i.pinimg.com/140x140_RS/33/e2/c4/33e2c4d88cea49ac527332eae251e7ac.jpg",
+      "https://i.pinimg.com/1200x/43/8e/b3/438eb3c441a8b209855ca01dd357dfc2.jpg",
+      "https://i.pinimg.com/75x75_RS/33/e2/c4/33e2c4d88cea49ac527332eae251e7ac.jpg",
+      "https://i.pinimg.com/474x/43/8e/b3/438eb3c441a8b209855ca01dd357dfc2.jpg",
+      "https://i.pinimg.com/30x30_RS/33/e2/c4/33e2c4d88cea49ac527332eae251e7ac.jpg",
+      "https://i.pinimg.com/originals/d5/3b/01/d53b014d86a6b6761bf649a0ed813c2b.png",
+      "https://i.pinimg.com/736x/43/8e/b3/438eb3c441a8b209855ca01dd357dfc2.jpg",
+      "https://i.pinimg.com/videos/thumbnails/originals/b6/e8/ab/b6e8ab7cae92a2ef91b8ace28accfc00.0000000.jpg",
+      "https://i.pinimg.com/236x/43/8e/b3/438eb3c441a8b209855ca01dd357dfc2.jpg"
+    ],
+    "external_link": "",
+    "domain": "Uploaded by user"
+  },
+  "PIN_2_STARTUP": {
+    "title": "",
+    "description": "",
+    "og_image": "",
+    "og_video": "",
+    "video_urls": [
+      "https://v1.pinimg.com/videos/mc/720p/18/4d/66/184d66ee184b264f2cc46575d31ae37f.mp4"
+    ],
+    "image_urls": [
+      "https://i.pinimg.com/60x60/94/93/a5/9493a5c8284a8f73fe7aa175ef3c6b18.jpg",
+      "https://i.pinimg.com/30x30_RS/6b/38/5c/6b385c3a383337a7e9efb6801dbefd0f.jpg",
+      "https://i.pinimg.com/400x300/ab/89/14/ab891437c6dcf2eec60ed1b953a09acc.jpg",
+      "https://i.pinimg.com/236x/94/93/a5/9493a5c8284a8f73fe7aa175ef3c6b18.jpg",
+      "https://i.pinimg.com/originals/d5/3b/01/d53b014d86a6b6761bf649a0ed813c2b.png",
+      "https://i.pinimg.com/upload/371898950418544550_board_thumbnail_2025-11-10-07-24-44_17296_60.jpg",
+      "https://i.pinimg.com/474x/94/93/a5/9493a5c8284a8f73fe7aa175ef3c6b18.jpg",
+      "https://i.pinimg.com/1200x/94/93/a5/9493a5c8284a8f73fe7aa175ef3c6b18.jpg",
+      "https://i.pinimg.com/564x/94/93/a5/9493a5c8284a8f73fe7aa175ef3c6b18.jpg",
+      "https://i.pinimg.com/videos/thumbnails/originals/18/4d/66/184d66ee184b264f2cc46575d31ae37f.0000000.jpg"
+    ],
+    "external_link": "",
+    "domain": "Uploaded by user"
+  }
+}

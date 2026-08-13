@@ -11,6 +11,8 @@ import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
 import { MobileNav } from './components/layout/MobileNav';
 import { Footer } from './components/layout/Footer';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { CustomCursor } from './components/ui/motion/CustomCursor';
+import { ScrollStorySection } from './components/homepage/ScrollStorySection';
 
 // Lazy-loaded pages
 const ReachUs   = lazy(() => import('./pages/ReachUs'));
@@ -47,6 +49,10 @@ const ResourcePage   = lazy(() => import('./pages/ResourcePage'));
 const ExamExplorer   = lazy(() => import('./pages/ExamExplorer'));
 const ExamDetailPage = lazy(() => import('./pages/ExamDetailPage'));
 const DevPinterestVerification = lazy(() => import('./pages/DevPinterestVerification'));
+const DevAnimationVerification = lazy(() => import('./pages/DevAnimationVerification'));
+const DevMotionCatalog = lazy(() => import('./pages/DevMotionCatalog'));
+import { StudyHubStartupAnimation } from './components/animations/StudyHubStartupAnimation';
+import { PageTransitionAnimation } from './components/animations/PageTransitionAnimation';
 
 // Phase 5 Pages
 const Pricing             = lazy(() => import('./pages/Pricing'));
@@ -137,12 +143,14 @@ function HomePage() {
       {user ? (
         <>
           <PersonalizedUserHero />
+          <ScrollStorySection />
           <VideoLearningPreviewSection />
           <ProductFeatureSections />
         </>
       ) : (
         <>
           <HeroSectionV2 />
+          <ScrollStorySection />
           <InteractiveProductDemo />
           <VideoLearningPreviewSection />
           <StudyMateShowcase />
@@ -202,6 +210,8 @@ function AppRoutes() {
       <Route path="/institution" element={<PageLayout><InstitutionPortal /></PageLayout>} />
       <Route path="/resource/:slug" element={<PageLayout><ResourcePage /></PageLayout>} />
       <Route path="/dev/pinterest-assets" element={<DevPinterestVerification />} />
+      <Route path="/dev/animations" element={<Suspense fallback={<PageLoader />}><DevAnimationVerification /></Suspense>} />
+      <Route path="/dev/motion" element={<Suspense fallback={<PageLoader />}><DevMotionCatalog /></Suspense>} />
 
       {/* Public Exam Catalog & Detail pages */}
       <Route path="/exams" element={<PageLayout><ExamExplorer /></PageLayout>} />
@@ -305,6 +315,9 @@ export default function App() {
       <AuthProvider>
         <StudentProvider>
           <BrowserRouter>
+            <CustomCursor />
+            <StudyHubStartupAnimation />
+            <PageTransitionAnimation />
             <AppRoutes />
             <FloatingAIButtonWrapper />
             <ExitIntentModal />

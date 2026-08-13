@@ -1,17 +1,19 @@
-// src/components/homepage/VideoLearningPreviewSection.tsx
 import { useState, useEffect } from 'react';
 import { Play, Sparkles, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import { fetchVideos, fetchChannels } from '../../lib/videoLearningApi';
 import type { YouTubeVideo, YouTubeChannel } from '../../types/video-learning';
 import { useStudentContext } from '../../context/StudentContext';
 import { useAuth } from '../../context/AuthContext';
 import { YouTubePlayerModal } from '../video-learning/YouTubePlayerModal';
+import { MOTION_TOKENS } from '../../lib/motion/tokens';
 
 export const VideoLearningPreviewSection: React.FC = () => {
   const { user } = useAuth();
   const studentContext = useStudentContext();
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   const [featuredVideos, setFeaturedVideos] = useState<YouTubeVideo[]>([]);
   const [channels, setChannels] = useState<YouTubeChannel[]>([]);
@@ -62,24 +64,40 @@ export const VideoLearningPreviewSection: React.FC = () => {
         <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
           <span className="text-xs font-semibold text-slate-400 shrink-0">Verified Sources:</span>
           {channels.map((chan) => (
-            <div
+            <motion.div
               key={chan.id}
               onClick={() => navigate(`/video-learning/channel/${chan.id}`)}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
+              transition={{ duration: 0.2 }}
               className="px-3 py-1.5 rounded-xl bg-slate-900 border border-white/10 hover:border-cyan-500/40 text-xs text-slate-200 hover:text-cyan-300 font-medium flex items-center gap-2 shrink-0 cursor-pointer transition-colors"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
               {chan.channel_name}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* FEATURED VIDEOS GRID */}
+        {/* FEATURED VIDEOS GRID WITH CARD LIFT & SCALE 1.01 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {featuredVideos.map((vid) => (
-            <div
+          {featuredVideos.map((vid, idx) => (
+            <motion.div
               key={vid.id}
+              data-cursor="VIEW"
               onClick={() => setActiveModalVideo(vid)}
-              className="group bg-slate-900 border border-white/10 hover:border-cyan-500/40 rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between shadow-xl"
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: MOTION_TOKENS.duration.smooth }}
+              whileHover={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      scale: 1.01,
+                      y: -3,
+                      boxShadow: '0 20px 30px -10px rgba(92,225,230,0.15)',
+                    }
+              }
+              className="group bg-slate-900 border border-white/10 hover:border-cyan-500/40 rounded-2xl overflow-hidden cursor-pointer transition-colors flex flex-col justify-between shadow-xl"
             >
               <div className="relative aspect-video bg-slate-950 overflow-hidden">
                 <img
@@ -110,7 +128,7 @@ export const VideoLearningPreviewSection: React.FC = () => {
                   <span className="text-cyan-400 font-semibold text-[11px]">Watch Now →</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
