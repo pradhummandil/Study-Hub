@@ -5,17 +5,27 @@ import { useStudentContext } from '../context/StudentContext';
 import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
 import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall } from 'lucide-react';
 import { NotificationBellDropdown } from './notifications/NotificationBellDropdown';
+import { Logo } from './ui/Logo';
 import { fetchProfileGamification } from '../lib/profile/profileApi';
 import type { StudentGamification } from '../types/ecosystem';
 
-const primaryNavItems = [
+const loggedInPrimaryNavItems = [
   { label: 'Dashboard', path: '/dashboard' },
   { label: 'Studio', path: '/studio' },
   { label: 'Study AI', path: '/study-ai' },
+  { label: 'Roadmap', path: '/roadmap' },
+  { label: 'Practice', path: '/practice' },
+  { label: 'Mock Tests', path: '/mock-tests' },
   { label: 'Community', path: '/community' },
+];
+
+const publicNavItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Studio', path: '/studio' },
+  { label: 'Study AI', path: '/study-ai' },
+  { label: 'Exams', path: '/exams' },
   { label: 'Journal', path: '/journal' },
-  { label: 'About', path: '/about' },
-  { label: 'Reach Us', path: '/reach-us' },
+  { label: 'Community', path: '/community' },
 ];
 
 const secondaryNavItems = [
@@ -104,21 +114,11 @@ export const Navbar = () => {
     <>
       <nav className="relative z-40 flex flex-row items-center justify-between px-6 md:px-8 h-[88px] max-w-7xl mx-auto w-full shrink-0">
         {/* Logo */}
-        <Link
-          to="/"
-          aria-label="Study Hub home"
-          className="transition-opacity hover:opacity-90 flex items-center shrink-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 rounded-lg py-1"
-        >
-          <img
-            src="/images/logo-transparent.png"
-            alt="Study Hub"
-            className="h-9 sm:h-10 md:h-11 w-auto object-contain"
-          />
-        </Link>
+        <Logo size="md" />
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6">
-          {primaryNavItems.map(({ label, path }) => (
+          {(user ? loggedInPrimaryNavItems : publicNavItems).map(({ label, path }) => (
             <Link
               key={label}
               to={path}
@@ -132,43 +132,45 @@ export const Navbar = () => {
             </Link>
           ))}
 
-          {/* More ▾ Dropdown */}
-          <div className="relative inline-block" ref={moreRef}>
-            <button
-              type="button"
-              onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-              className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 cursor-pointer ${
-                moreMenuOpen || isSecondaryActive
-                  ? 'text-foreground font-semibold'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-              aria-label="More features menu"
-              aria-expanded={moreMenuOpen}
-            >
-              <span>More</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-foreground' : ''}`} />
-            </button>
+          {/* More ▾ Dropdown — Only shown when logged in */}
+          {user && (
+            <div className="relative inline-block" ref={moreRef}>
+              <button
+                type="button"
+                onClick={() => setMoreMenuOpen(!moreMenuOpen)}
+                className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 cursor-pointer ${
+                  moreMenuOpen || isSecondaryActive
+                    ? 'text-foreground font-semibold'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+                aria-label="More features menu"
+                aria-expanded={moreMenuOpen}
+              >
+                <span>More</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-foreground' : ''}`} />
+              </button>
 
-            {moreMenuOpen && (
-              <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
-                {secondaryNavItems.map(({ label, path, icon: Icon }) => (
-                  <Link
-                    key={label}
-                    to={path}
-                    onClick={() => setMoreMenuOpen(false)}
-                    className={`flex items-center gap-2.5 px-3 py-2.5 text-xs rounded-xl transition-colors ${
-                      isActive(path)
-                        ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
-                        : 'text-foreground hover:bg-white/10'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>{label}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+              {moreMenuOpen && (
+                <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
+                  {secondaryNavItems.map(({ label, path, icon: Icon }) => (
+                    <Link
+                      key={label}
+                      to={path}
+                      onClick={() => setMoreMenuOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2.5 text-xs rounded-xl transition-colors ${
+                        isActive(path)
+                          ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
+                          : 'text-foreground hover:bg-white/10'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>{label}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Desktop Auth / Action Area */}
@@ -322,7 +324,7 @@ export const Navbar = () => {
                 to="/signup"
                 className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               >
-                Get Started
+                Start studying
               </Link>
             </div>
           )}
@@ -362,18 +364,9 @@ export const Navbar = () => {
           {/* Drawer */}
           <div className="absolute inset-x-4 top-4 bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <Link
-                to="/"
-                onClick={() => setMobileOpen(false)}
-                aria-label="Study Hub home"
-                className="flex items-center shrink-0"
-              >
-                <img
-                  src="/images/logo-transparent.png"
-                  alt="Study Hub"
-                  className="h-8 w-auto object-contain"
-                />
-              </Link>
+              <div onClick={() => setMobileOpen(false)}>
+                <Logo size="sm" />
+              </div>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="text-muted-foreground hover:text-foreground transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
@@ -385,7 +378,7 @@ export const Navbar = () => {
               </button>
             </div>
 
-            {[...primaryNavItems, ...secondaryNavItems].map(({ label, path }) => (
+            {(user ? [...loggedInPrimaryNavItems, ...secondaryNavItems] : publicNavItems).map(({ label, path }) => (
               <Link
                 key={label}
                 to={path}

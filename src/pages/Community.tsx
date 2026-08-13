@@ -247,7 +247,7 @@ export default function Community() {
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-bold text-foreground text-xs">{c.name}</span>
+                    <span className="text-sm font-normal text-foreground tracking-wide" style={{ fontFamily: "'Instrument Serif', serif" }}>{c.name}</span>
                     <span className="text-[10px] text-cyan-400 font-mono">{c.member_count} members</span>
                   </div>
                   <p className="text-[11px] text-muted-foreground line-clamp-2">{c.description}</p>
@@ -270,7 +270,7 @@ export default function Community() {
                   </span>
                   <span className="text-xs text-muted-foreground">• {selectedCircle.member_count} learners active</span>
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">{selectedCircle.name}</h2>
+                <h2 className="text-3xl sm:text-4xl font-normal text-foreground tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>{selectedCircle.name}</h2>
                 <p className="text-xs text-muted-foreground mt-1 max-w-xl">{selectedCircle.description}</p>
               </div>
 
@@ -368,8 +368,8 @@ export default function Community() {
           ) : posts.length === 0 ? (
             <div className="liquid-glass-card rounded-3xl p-12 text-center border border-white/10">
               <MessageSquare className="w-8 h-8 text-muted-foreground/60 mx-auto mb-3" />
-              <h3 className="text-base font-bold text-foreground mb-1">Your study circle is quiet right now</h3>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto mb-6">
+              <h3 className="text-xl font-normal text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>Your study circle is quiet right now</h3>
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto mb-6 font-sans">
                 Start the first academic discussion or ask a PYQ doubt.
               </p>
               <button
@@ -386,7 +386,7 @@ export default function Community() {
                   key={post.id}
                   className="liquid-glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-500/30 transition-all space-y-3"
                 >
-                  <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center justify-between text-xs font-sans">
                     <div className="flex items-center gap-2">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
                         post.type === 'question' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
@@ -407,11 +407,12 @@ export default function Community() {
                   <div>
                     <h3
                       onClick={() => handleOpenPostDetails(post)}
-                      className="text-base font-bold text-foreground hover:text-cyan-300 transition-colors cursor-pointer"
+                      className="text-lg sm:text-xl font-normal text-foreground hover:text-cyan-300 transition-colors cursor-pointer"
+                      style={{ fontFamily: "'Instrument Serif', serif" }}
                     >
                       {post.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-3 mt-1 leading-relaxed">
+                    <p className="text-xs text-muted-foreground line-clamp-3 mt-1 leading-relaxed font-sans">
                       {post.content}
                     </p>
                   </div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Logo } from '../ui/Logo';
 
 export function Footer() {
   return (
@@ -6,13 +7,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Column */}
         <div className="space-y-4 md:col-span-1">
-          <Link to="/" className="inline-block select-none">
-            <img
-              src="/images/logo-transparent.png"
-              alt="Study Hub"
-              className="h-9 w-auto object-contain"
-            />
-          </Link>
+          <Logo size="md" />
           <p className="text-xs text-muted-foreground leading-relaxed">
             Your personal student operating system for GATE, JEE, NEET & CUET aspirants.
           </p>

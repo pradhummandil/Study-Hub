@@ -1,7 +1,8 @@
 import type { ReactNode, RefObject } from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from '../hooks/useInView';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { Flame, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getFocusData } from '../lib/focusStorage';
 import { TESTIMONIALS } from '../data/testimonials';
@@ -44,8 +45,18 @@ const stats = [
 ];
 
 export const HomeExtensions = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [streak, setStreak] = useState(0);
   const scrollRowRef = useRef<HTMLDivElement>(null);
+
+  const handleBeginJourney = () => {
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
+  };
 
   useEffect(() => {
     setStreak(getFocusData().currentStreak);
@@ -391,12 +402,13 @@ export const HomeExtensions = () => {
           <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed">
             Book your 20-minute call. We'll map out your next steps together.
           </p>
-          <Link
-            to="/reach-us"
-            className="gradient-cta rounded-full px-10 py-4 text-base mt-10 inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          <button
+            type="button"
+            onClick={handleBeginJourney}
+            className="gradient-cta rounded-full px-10 py-4 text-base mt-10 inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer font-sans"
           >
             Begin Journey
-          </Link>
+          </button>
         </div>
       </ScrollSection>
     </div>

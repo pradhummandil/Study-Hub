@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Logo } from './ui/Logo';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -86,17 +87,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
       {/* Nav Strip — Spans full width across top */}
       <header className="absolute top-0 inset-x-0 z-30 px-6 py-6 w-full">
         <div className="liquid-glass rounded-full px-6 py-3 flex items-center justify-between max-w-5xl mx-auto w-full">
-          <Link
-            to="/"
-            aria-label="Study Hub home"
-            className="transition-opacity hover:opacity-90 flex items-center shrink-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-lg"
-          >
-            <img
-              src="/images/logo-transparent.png"
-              alt="Study Hub"
-              className="h-9 w-auto object-contain"
-            />
-          </Link>
+          <Logo size="md" />
           <Link
             to="/"
             className="text-white/80 hover:text-white text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"

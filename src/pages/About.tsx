@@ -201,10 +201,13 @@ export default function About() {
                   <Icon className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground group-hover:text-cyan-300 transition-colors font-sans">
+                  <h4
+                    className="text-lg sm:text-xl font-normal text-foreground group-hover:text-cyan-300 transition-colors"
+                    style={{ fontFamily: "'Instrument Serif', serif" }}
+                  >
                     {title}
                   </h4>
-                  <p className="text-[11px] text-muted-foreground font-sans">{desc}</p>
+                  <p className="text-xs text-muted-foreground font-sans">{desc}</p>
                 </div>
               </div>
               <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all shrink-0" />

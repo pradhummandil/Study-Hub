@@ -1,14 +1,11 @@
-import { lazy, Suspense, useRef, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
 import { StudentProvider } from './context/StudentContext';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { HomeExtensions } from './components/HomeExtensions';
 import { SocialProofBar } from './components/SocialProofBar';
-import { StartingPointQuiz } from './components/StartingPointQuiz';
 import { ExitIntentModal } from './components/ExitIntentModal';
 import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
 import { MobileNav } from './components/layout/MobileNav';
@@ -98,39 +95,46 @@ const AdminLoader = () => (
   </div>
 );
 
+import { Helmet } from 'react-helmet-async';
+import { useAuth } from './context/AuthContext';
+import { HeroSectionV2 } from './components/homepage/HeroSectionV2';
+import { PersonalizedUserHero } from './components/homepage/PersonalizedUserHero';
+import { InteractiveProductDemo } from './components/homepage/InteractiveProductDemo';
+import { StudyMateShowcase } from './components/homepage/StudyMateShowcase';
+import { ExamExplorerGrid } from './components/homepage/ExamExplorerGrid';
+import { ProductFeatureSections } from './components/homepage/ProductFeatureSections';
+
 // Home page
 function HomePage() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch((err) => {
-        console.error("Video play() was blocked or failed:", err);
-      });
-    }
-  }, []);
+  const { user } = useAuth();
 
   return (
     <>
-      <div className="relative h-screen w-full overflow-hidden bg-background">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover object-bottom z-0"
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+      <Helmet>
+        <title>Study Hub — Your Intelligent Study Space</title>
+        <meta
+          name="description"
+          content="Study Hub brings AI guidance, previous papers, practice, revision, mock tests and focused study into one personalized learning platform."
         />
-        <div className="relative z-10 flex flex-col h-full">
-          <Navbar />
-          <SocialProofBar />
-          <HeroSection />
-        </div>
-      </div>
-      <StartingPointQuiz />
-      <HomeExtensions />
+      </Helmet>
+
+      <Navbar />
+
+      {user ? (
+        <>
+          <PersonalizedUserHero />
+          <ProductFeatureSections />
+        </>
+      ) : (
+        <>
+          <HeroSectionV2 />
+          <InteractiveProductDemo />
+          <StudyMateShowcase />
+          <ExamExplorerGrid />
+          <ProductFeatureSections />
+        </>
+      )}
+
       <Footer />
     </>
   );
