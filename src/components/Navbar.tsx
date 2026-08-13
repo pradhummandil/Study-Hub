@@ -70,7 +70,7 @@ export const Navbar = () => {
   // Scroll listener for compact glass morphing
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 25) {
+      if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -135,31 +135,31 @@ export const Navbar = () => {
       <nav
         className={`relative z-40 flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
           isScrolled
-            ? 'h-[68px] bg-white/80 backdrop-blur-xl shadow-sm border-b border-slate-200/60 rounded-b-2xl'
+            ? 'h-[68px] bg-[#FCFBF8]/92 backdrop-blur-xl shadow-[0_8px_24px_rgba(16,35,63,0.06)] border-b border-[#10233F]/10 rounded-b-2xl'
             : 'h-[88px] bg-transparent'
         }`}
       >
         {/* Logo */}
         <Logo size="md" />
 
-        {/* Desktop Nav with Animated layoutId Active Pill */}
-        <div className="hidden md:flex items-center space-x-2 relative">
+        {/* Desktop Nav with Animated Active Pill */}
+        <div className="hidden md:flex items-center space-x-1.5 relative">
           {activeNavItems.map(({ label, path }) => {
             const active = isActive(path);
             return (
               <Link
                 key={label}
                 to={path}
-                className={`relative px-3 py-1.5 text-sm transition-colors rounded-full focus-visible:outline-none ${
+                className={`relative px-3.5 py-1.5 text-sm transition-colors rounded-full focus-visible:outline-none ${
                   active
-                    ? 'text-[#062B3D] font-bold'
-                    : 'text-slate-600 hover:text-[#062B3D] font-medium'
+                    ? 'text-[#1F5F8B] font-semibold'
+                    : 'text-[#3D4A5A] hover:text-[#10233F] font-medium'
                 }`}
               >
                 {active && (
                   <motion.div
                     layoutId="navbar-active-pill"
-                    className="absolute inset-0 bg-[#287BFF]/10 rounded-full border border-[#287BFF]/20 pointer-events-none"
+                    className="absolute inset-0 bg-[#1F5F8B]/10 rounded-full border border-[#1F5F8B]/20 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                   />
                 )}
@@ -168,7 +168,7 @@ export const Navbar = () => {
             );
           })}
 
-          {/* More ▾ Dropdown — Only shown when logged in */}
+          {/* More ▾ Dropdown */}
           {user && (
             <div className="relative inline-block" ref={moreRef}>
               <button
@@ -176,18 +176,18 @@ export const Navbar = () => {
                 onClick={() => setMoreMenuOpen(!moreMenuOpen)}
                 className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-1.5 px-3 rounded-full cursor-pointer ${
                   moreMenuOpen || isSecondaryActive
-                    ? 'text-[#062B3D] font-bold bg-[#287BFF]/10'
-                    : 'text-slate-600 hover:text-[#062B3D] font-medium'
+                    ? 'text-[#1F5F8B] font-semibold bg-[#1F5F8B]/10'
+                    : 'text-[#3D4A5A] hover:text-[#10233F] font-medium'
                 }`}
                 aria-label="More features menu"
                 aria-expanded={moreMenuOpen}
               >
                 <span>More</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-foreground' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-[#1F5F8B]' : ''}`} />
               </button>
 
               {moreMenuOpen && (
-                <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
+                <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
                   {secondaryNavItems.map(({ label, path, icon: Icon }) => (
                     <Link
                       key={label}
@@ -195,11 +195,11 @@ export const Navbar = () => {
                       onClick={() => setMoreMenuOpen(false)}
                       className={`flex items-center gap-2.5 px-3 py-2.5 text-xs rounded-xl transition-colors ${
                         isActive(path)
-                          ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
-                          : 'text-foreground hover:bg-white/10'
+                          ? 'bg-[#1F5F8B]/30 text-[#4E88B7] font-semibold border border-[#4E88B7]/30'
+                          : 'text-[#FCFBF8]/80 hover:bg-white/10 hover:text-white'
                       }`}
                     >
-                      <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <Icon className="w-4 h-4 text-[#4E88B7] shrink-0" />
                       <span>{label}</span>
                     </Link>
                   ))}
@@ -220,16 +220,16 @@ export const Navbar = () => {
                 <button
                   type="button"
                   onClick={() => setExamMenuOpen(!examMenuOpen)}
-                  className="liquid-glass rounded-full px-3 py-1 text-xs border border-cyan-500/30 text-cyan-300 font-bold flex items-center gap-1.5 hover:bg-cyan-500/10 transition-colors"
+                  className="bg-[#EAF2F7] rounded-full px-3 py-1 text-xs border border-[#1F5F8B]/20 text-[#1F5F8B] font-semibold flex items-center gap-1.5 hover:bg-[#1F5F8B]/10 transition-colors"
                 >
-                  <Shield className="w-3.5 h-3.5 text-cyan-400" />
+                  <Shield className="w-3.5 h-3.5 text-[#1F5F8B]" />
                   <span>{studentContext.targetExam} {studentContext.targetExamYear}</span>
-                  <ChevronDown className={`w-3 h-3 text-cyan-400 transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 text-[#1F5F8B] transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {examMenuOpen && (
-                  <div className="!absolute left-0 top-full mt-2 w-52 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-cyan-500/30 p-2 shadow-2xl z-50 animate-fade-rise">
-                    <div className="px-3 py-1.5 text-[10px] uppercase font-bold text-slate-400 border-b border-white/10 mb-1">
+                  <div className="!absolute left-0 top-full mt-2 w-52 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise">
+                    <div className="px-3 py-1.5 text-[10px] uppercase font-semibold text-[#627083] border-b border-white/10 mb-1">
                       Switch Exam Context
                     </div>
                     {(Object.keys(EXAM_CONFIGS) as ExamCategory[]).map((eKey) => {
@@ -243,12 +243,12 @@ export const Navbar = () => {
                           }}
                           className={`w-full text-left px-3 py-2 text-xs rounded-xl transition-colors flex items-center justify-between ${
                             isSel
-                              ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
-                              : 'text-slate-200 hover:bg-white/10'
+                              ? 'bg-[#1F5F8B]/30 text-[#4E88B7] font-semibold border border-[#4E88B7]/30'
+                              : 'text-[#FCFBF8]/80 hover:bg-white/10'
                           }`}
                         >
                           <span>{eKey}</span>
-                          <span className="text-[10px] text-slate-400 font-mono">
+                          <span className="text-[10px] text-[#627083] font-mono">
                             {EXAM_CONFIGS[eKey].currentCycle}
                           </span>
                         </button>
@@ -263,20 +263,20 @@ export const Navbar = () => {
 
               {/* Level & Streak Badge */}
               {gamification && (
-                <div className="liquid-glass rounded-full px-3 py-1 text-xs border border-white/10 flex items-center gap-2 font-mono">
-                  <span className="text-amber-400 font-bold flex items-center gap-1">
-                    <Flame className="w-3.5 h-3.5 fill-amber-400/20" /> {gamification.current_streak}d
+                <div className="bg-[#EAF2F7] rounded-full px-3 py-1 text-xs border border-[#10233F]/08 flex items-center gap-2 font-mono text-[#172033]">
+                  <span className="text-[#D99A3D] font-bold flex items-center gap-1">
+                    <Flame className="w-3.5 h-3.5 fill-[#D99A3D]/20 text-[#D99A3D]" /> {gamification.current_streak}d
                   </span>
-                  <span className="text-slate-500">|</span>
-                  <span className="text-cyan-300 font-semibold">Lvl {gamification.level}</span>
+                  <span className="text-[#627083]">|</span>
+                  <span className="text-[#1F5F8B] font-semibold">Lvl {gamification.level}</span>
                 </div>
               )}
 
-              {/* Logged In Short Name + Avatar Badge */}
+              {/* Logged In Avatar Badge */}
               <div className="relative flex items-center h-full">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="liquid-glass rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border border-white/10 hover:scale-[1.02] transition-transform cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 select-none"
+                  className="bg-[#FCFBF8] rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border border-[#10233F]/12 hover:shadow-sm transition-all cursor-pointer focus-visible:outline-none select-none"
                   aria-label="User menu"
                   aria-expanded={userMenuOpen}
                 >
@@ -284,52 +284,52 @@ export const Navbar = () => {
                     <img
                       src={avatarUrl}
                       alt={fullName}
-                      className="w-7 h-7 rounded-full object-cover border border-white/20"
+                      className="w-7 h-7 rounded-full object-cover border border-[#10233F]/10"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 text-white font-semibold text-xs flex items-center justify-center border border-white/20">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#1F5F8B] to-[#4E88B7] text-white font-semibold text-xs flex items-center justify-center">
                       {initialLetter}
                     </div>
                   )}
-                  <span className="text-xs font-medium text-foreground tracking-wide">{firstName}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
+                  <span className="text-xs font-medium text-[#172033] tracking-wide">{firstName}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-[#627083] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* User Dropdown */}
                 {userMenuOpen && (
                   <div
-                    className="!absolute right-0 top-full mt-2 w-56 rounded-2xl bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 p-2 shadow-2xl z-50 animate-fade-rise"
+                    className="!absolute right-0 top-full mt-2 w-56 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise"
                     role="menu"
                   >
                     <div className="px-3 py-2 border-b border-white/10 mb-1">
-                      <p className="text-xs font-semibold text-foreground truncate">{fullName}</p>
-                      <p className="text-[10px] text-muted-foreground truncate">{user.email}</p>
+                      <p className="text-xs font-semibold text-[#FCFBF8] truncate">{fullName}</p>
+                      <p className="text-[10px] text-white/60 truncate">{user.email}</p>
                     </div>
                     <Link
                       to="/dashboard"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <LayoutDashboard className="w-4 h-4 text-cyan-400" />
+                      <LayoutDashboard className="w-4 h-4 text-[#4E88B7]" />
                       Dashboard
                     </Link>
                     <Link
                       to="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <Settings className="w-4 h-4 text-indigo-400" />
+                      <Settings className="w-4 h-4 text-[#4E88B7]" />
                       Profile & Settings
                     </Link>
                     <Link
                       to="/community"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-foreground hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <Users className="w-4 h-4 text-purple-400" />
+                      <Users className="w-4 h-4 text-[#FCDAB7]" />
                       Study Circles
                     </Link>
                     <div className="my-1 border-t border-white/10" />
@@ -338,7 +338,7 @@ export const Navbar = () => {
                         setUserMenuOpen(false);
                         signOut();
                       }}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 rounded-xl transition-colors cursor-pointer"
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-[#C95C5C] hover:bg-[#C95C5C]/10 rounded-xl transition-colors cursor-pointer"
                       role="menuitem"
                     >
                       <LogOut className="w-4 h-4" />
@@ -352,13 +352,13 @@ export const Navbar = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/login"
-                className="text-xs font-medium text-slate-600 hover:text-[#062B3D] transition-colors px-3 py-2 focus-visible:outline-none rounded"
+                className="text-xs font-medium text-[#3D4A5A] hover:text-[#10233F] transition-colors px-3 py-2 focus-visible:outline-none rounded"
               >
                 Log in
               </Link>
               <Link
                 to="/signup"
-                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow"
+                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all"
               >
                 Start studying
               </Link>
@@ -369,7 +369,7 @@ export const Navbar = () => {
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded p-2"
+          className="md:hidden text-[#172033] focus-visible:outline-none rounded p-2"
           aria-label="Toggle navigation menu"
         >
           {mobileOpen ? (
@@ -394,18 +394,18 @@ export const Navbar = () => {
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#10233F]/70 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
           {/* Drawer */}
-          <div className="absolute inset-x-4 top-4 bg-[#062B3D]/95 backdrop-blur-xl border border-white/20 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="absolute inset-x-4 top-4 bg-[#10233F] backdrop-blur-xl border border-white/12 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <div onClick={() => setMobileOpen(false)}>
                 <Logo size="sm" />
               </div>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded"
+                className="text-white/60 hover:text-white transition-colors p-2 focus-visible:outline-none rounded"
                 aria-label="Close navigation menu"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -421,8 +421,8 @@ export const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className={`text-left text-base py-3 border-b border-white/5 last:border-none transition-colors block focus-visible:outline-none rounded ${
                   isActive(path)
-                    ? 'text-cyan-300 font-bold'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'text-[#4E88B7] font-semibold'
+                    : 'text-[#FCFBF8]/75 hover:text-white'
                 }`}
               >
                 {label}
@@ -439,19 +439,19 @@ export const Navbar = () => {
                     {avatarUrl ? (
                       <img src={avatarUrl} alt={fullName} className="w-9 h-9 rounded-full object-cover" />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-full bg-[#1F5F8B] text-white font-bold flex items-center justify-center">
                         {initialLetter}
                       </div>
                     )}
                     <div className="overflow-hidden">
-                      <p className="text-sm font-semibold text-foreground truncate">{fullName}</p>
-                      <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                      <p className="text-sm font-semibold text-[#FCFBF8] truncate">{fullName}</p>
+                      <p className="text-xs text-white/60 truncate">{user.email}</p>
                     </div>
                   </div>
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full bg-cyan-500/20 text-cyan-300 font-medium text-sm hover:bg-cyan-500/30 transition-colors"
+                    className="w-full text-center py-3 rounded-full bg-[#1F5F8B] text-white font-semibold text-sm hover:bg-[#1F5F8B]/80 transition-colors"
                   >
                     Dashboard
                   </Link>
@@ -460,7 +460,7 @@ export const Navbar = () => {
                       setMobileOpen(false);
                       signOut();
                     }}
-                    className="w-full text-center py-3 rounded-full bg-red-500/10 text-red-400 font-medium text-sm hover:bg-red-500/20 transition-colors"
+                    className="w-full text-center py-3 rounded-full bg-[#C95C5C]/20 text-[#C95C5C] font-semibold text-sm hover:bg-[#C95C5C]/30 transition-colors"
                   >
                     Sign out
                   </button>
@@ -470,7 +470,7 @@ export const Navbar = () => {
                   <Link
                     to="/login"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full border border-white/20 text-foreground font-medium text-sm hover:bg-white/10 transition-colors"
+                    className="w-full text-center py-3 rounded-full border border-white/20 text-[#FCFBF8] font-medium text-sm hover:bg-white/10 transition-colors"
                   >
                     Log in
                   </Link>
@@ -479,7 +479,7 @@ export const Navbar = () => {
                     onClick={() => setMobileOpen(false)}
                     className="w-full text-center py-3 rounded-full gradient-cta text-white font-semibold text-sm"
                   >
-                    Get Started
+                    Start studying
                   </Link>
                 </div>
               )}

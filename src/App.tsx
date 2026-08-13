@@ -51,6 +51,7 @@ const ExamDetailPage = lazy(() => import('./pages/ExamDetailPage'));
 const DevPinterestVerification = lazy(() => import('./pages/DevPinterestVerification'));
 const DevAnimationVerification = lazy(() => import('./pages/DevAnimationVerification'));
 const DevMotionCatalog = lazy(() => import('./pages/DevMotionCatalog'));
+const DevDesignSystem = lazy(() => import('./pages/DevDesignSystem'));
 import { StudyHubStartupAnimation } from './components/animations/StudyHubStartupAnimation';
 import { PageTransitionAnimation } from './components/animations/PageTransitionAnimation';
 
@@ -212,6 +213,7 @@ function AppRoutes() {
       <Route path="/dev/pinterest-assets" element={<DevPinterestVerification />} />
       <Route path="/dev/animations" element={<Suspense fallback={<PageLoader />}><DevAnimationVerification /></Suspense>} />
       <Route path="/dev/motion" element={<Suspense fallback={<PageLoader />}><DevMotionCatalog /></Suspense>} />
+      <Route path="/dev/design-system" element={<Suspense fallback={<PageLoader />}><DevDesignSystem /></Suspense>} />
 
       {/* Public Exam Catalog & Detail pages */}
       <Route path="/exams" element={<PageLayout><ExamExplorer /></PageLayout>} />

@@ -7,31 +7,70 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: 'var(--color-paper-white)',
+        foreground: 'var(--color-ink)',
+        brand: {
+          navy: 'var(--color-brand-navy)',
+          blue: 'var(--color-brand-blue)',
+          'soft-blue': 'var(--color-brand-soft-blue)',
+          mist: 'var(--color-surface-mist)',
+          paper: 'var(--color-paper-white)',
+          cream: 'var(--color-warm-cream)',
+          peach: 'var(--color-soft-peach)',
+        },
+        ink: {
+          DEFAULT: 'var(--color-ink)',
+          body: 'var(--color-ink-body)',
+        },
+        surface: {
+          DEFAULT: 'var(--color-paper-white)',
+          mist: 'var(--color-surface-mist)',
+          navy: 'var(--color-brand-navy)',
+          cream: 'var(--color-warm-cream)',
+        },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: 'var(--color-brand-blue)',
+          foreground: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
+          DEFAULT: 'var(--color-surface-mist)',
+          foreground: 'var(--color-ink)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--color-surface-mist)',
+          foreground: 'var(--color-muted)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: 'var(--color-warm-cream)',
+          foreground: 'var(--color-ink)',
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
+        status: {
+          success: 'var(--color-success)',
+          warning: 'var(--color-warning)',
+          error: 'var(--color-error)',
+        },
+        border: 'var(--border-default)',
+        input: 'var(--color-surface-mist)',
       },
       fontFamily: {
         display: ['var(--font-display)', 'Instrument Serif', 'serif'],
         sans: ['var(--font-sans)', 'Inter', 'sans-serif'],
         body: ['var(--font-body)', 'Inter', 'sans-serif'],
       },
+      boxShadow: {
+        'token-soft': 'var(--shadow-soft)',
+        'token-card': 'var(--shadow-card)',
+        'token-floating': 'var(--shadow-floating)',
+      },
+      borderRadius: {
+        'token-sm': 'var(--radius-sm)',
+        'token-control': 'var(--radius-control)',
+        'token-card': 'var(--radius-card)',
+        'token-feature': 'var(--radius-feature)',
+        'token-hero': 'var(--radius-hero)',
+      },
     },
   },
   plugins: [],
 }
+

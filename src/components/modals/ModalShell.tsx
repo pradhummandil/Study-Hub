@@ -91,17 +91,17 @@ export const ModalShell: React.FC<ModalShellProps> = ({
           aria-describedby={descriptionId}
           className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto select-none"
         >
-          {/* Backdrop with translucent navy & radial blue glow */}
+          {/* Backdrop with translucent navy & subtle blue glow */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#031926]/75 backdrop-blur-[16px]"
+            className="fixed inset-0 bg-[#10233F]/75 backdrop-blur-[16px]"
             style={{
               background:
-                'radial-gradient(circle at 50% 40%, rgba(40, 123, 255, 0.16), transparent 55%), rgba(3, 25, 38, 0.76)',
+                'radial-gradient(circle at 50% 40%, rgba(31, 95, 139, 0.16), transparent 55%), rgba(16, 35, 63, 0.76)',
             }}
           />
 
@@ -112,11 +112,11 @@ export const ModalShell: React.FC<ModalShellProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 8 }}
             transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className={`relative w-full ${maxWidthClassName} rounded-[28px] overflow-hidden shadow-[0_30px_100px_rgba(6,43,61,0.35)] border border-[#287BFF]/20 bg-gradient-to-br from-white/98 to-[#F4F9FF]/95 dark:from-slate-900/98 dark:to-slate-950/95 dark:border-slate-800 text-slate-900 dark:text-slate-100 z-10 ${className}`}
+            className={`relative w-full ${maxWidthClassName} rounded-[28px] overflow-hidden shadow-[0_24px_70px_rgba(16,35,63,0.14)] border border-[#1F5F8B]/18 bg-[#FCFBF8] text-[#172033] z-10 ${className}`}
           >
-            {/* Ambient Cyan / Electric Blue Subtle Radial Glow */}
-            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-cyan-400/15 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
+            {/* Ambient Warm Cream / Soft Blue Subtle Glow */}
+            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[#F7E7D0]/25 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#4E88B7]/15 blur-3xl pointer-events-none" />
 
             {/* Top Close Button */}
             {showCloseButton && (
@@ -124,7 +124,7 @@ export const ModalShell: React.FC<ModalShellProps> = ({
                 onClick={onClose}
                 title={closeTooltip}
                 aria-label={closeTooltip}
-                className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 w-9 h-9 rounded-full bg-slate-900/5 dark:bg-white/10 hover:bg-[#287BFF]/15 text-slate-600 dark:text-slate-300 hover:text-[#287BFF] transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#287BFF]/40"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 w-9 h-9 rounded-full bg-[#10233F]/05 hover:bg-[#1F5F8B]/15 text-[#627083] hover:text-[#1F5F8B] transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#1F5F8B]/40"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -151,4 +151,5 @@ export const ModalBody: React.FC<{ children: React.ReactNode; className?: string
 export const ModalFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => <div className={`p-6 sm:p-8 pt-4 border-t border-slate-200/60 dark:border-slate-800 ${className}`}>{children}</div>;
+}) => <div className={`p-6 sm:p-8 pt-4 border-t border-[#10233F]/08 ${className}`}>{children}</div>;
+

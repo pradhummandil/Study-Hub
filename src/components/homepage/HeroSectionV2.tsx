@@ -64,15 +64,15 @@ export const HeroSectionV2: React.FC = () => {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative z-10 overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28 bg-[#F7FBFF] transition-colors duration-300"
+      className="relative z-10 overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28 bg-[#FCFBF8] transition-colors duration-300"
     >
-      {/* Layer 1: Background Parallax Glow & Grain */}
+      {/* Layer 1: Background Restrained Warm & Soft Blue Radial Gradients */}
       <motion.div style={{ x: bgX, y: bgY }} className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute inset-0 opacity-[0.16]"
+          className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(circle at 15% 10%, rgba(40,123,255,0.25), transparent 35%), radial-gradient(circle at 85% 20%, rgba(92,225,230,0.22), transparent 38%)',
+              'radial-gradient(circle at 75% 35%, rgba(252,218,183,0.45), transparent 24%), radial-gradient(circle at 20% 15%, rgba(78,136,183,0.14), transparent 30%), #FCFBF8',
           }}
         />
         <div className="grain-overlay" />
@@ -82,7 +82,7 @@ export const HeroSectionV2: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column — Sequenced Page Load Text & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-2">
-            {/* 250ms: Eyebrow Badge */}
+            {/* Eyebrow Badge */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,16 +91,16 @@ export const HeroSectionV2: React.FC = () => {
                 delay: MOTION_TOKENS.heroSequence.eyebrow / 1000,
                 ease: MOTION_TOKENS.easing.easeOut,
               }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#287BFF]/20 shadow-sm text-xs font-semibold text-[#062B3D] mb-6 backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAF2F7] border border-[#10233F]/08 shadow-sm text-xs font-medium text-[#10233F] mb-6 backdrop-blur-md"
             >
-              <span className="w-2 h-2 rounded-full bg-[#5CE1E6] animate-pulse shrink-0" />
-              <Sparkles className="w-3.5 h-3.5 text-[#287BFF]" />
+              <span className="w-2 h-2 rounded-full bg-[#1F5F8B] animate-pulse shrink-0" />
+              <Sparkles className="w-3.5 h-3.5 text-[#1F5F8B]" />
               <span>AI-Native Learning Space Built For Students</span>
             </motion.div>
 
-            {/* 400ms - 500ms: Line Reveal Headline */}
+            {/* Line Reveal Headline */}
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-[#062B3D] mb-6 overflow-hidden"
+              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-[#10233F] mb-6 overflow-hidden"
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
               <span className="block overflow-hidden py-0.5">
@@ -127,14 +127,14 @@ export const HeroSectionV2: React.FC = () => {
                     delay: MOTION_TOKENS.heroSequence.headlineLine2 / 1000,
                     ease: MOTION_TOKENS.easing.editorialText,
                   }}
-                  className="block text-transparent bg-clip-text bg-gradient-to-r from-[#287BFF] via-[#5CE1E6] to-[#6F7CFF] animate-gradient-slow"
+                  className="inline-block text-[#1F5F8B] underline decoration-[#FCDAB7] decoration-wavy decoration-2"
                 >
                   in one place.
                 </motion.span>
               </span>
             </h1>
 
-            {/* 650ms: Paragraph Reveal */}
+            {/* Paragraph Reveal */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -143,13 +143,13 @@ export const HeroSectionV2: React.FC = () => {
                 delay: MOTION_TOKENS.heroSequence.paragraph / 1000,
                 ease: MOTION_TOKENS.easing.easeOut,
               }}
-              className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed mb-8 font-sans"
+              className="text-base sm:text-lg text-[#3D4A5A] max-w-xl leading-relaxed mb-8 font-sans"
             >
               Learn, practice, revise, prepare and get guidance from StudyMate — around the exam,
               subjects and goals that matter to you.
             </motion.p>
 
-            {/* 750ms: CTA Buttons */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,12 +160,12 @@ export const HeroSectionV2: React.FC = () => {
               }}
               className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-10"
             >
-              {/* Primary Magnetic CTA */}
+              {/* Primary CTA */}
               <MagneticButton
                 onClick={() => navigate('/signup')}
-                className="w-full sm:w-auto px-8 py-4 rounded-full text-white text-sm font-semibold shadow-lg shadow-[#287BFF]/25 hover:shadow-xl hover:shadow-[#287BFF]/40 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-full text-white text-sm font-semibold shadow-lg shadow-[#1F5F8B]/20 hover:shadow-xl hover:shadow-[#1F5F8B]/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group"
                 style={{
-                  background: 'linear-gradient(135deg, #287BFF 0%, #6F7CFF 100%)',
+                  background: 'linear-gradient(135deg, #1F5F8B 0%, #4E88B7 100%)',
                 }}
               >
                 <span>Start my study journey</span>
@@ -176,7 +176,7 @@ export const HeroSectionV2: React.FC = () => {
               <button
                 type="button"
                 onClick={scrollToExplore}
-                className="w-full sm:w-auto px-7 py-4 rounded-full bg-white/90 border border-slate-200 text-[#062B3D] text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-7 py-4 rounded-full bg-[#FCFBF8] border border-[#10233F]/12 text-[#10233F] text-sm font-medium hover:bg-[#EAF2F7] transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
               >
                 Explore Study Hub
               </button>
@@ -187,24 +187,24 @@ export const HeroSectionV2: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.85 }}
-              className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center gap-6 text-xs text-slate-600 font-medium"
+              className="pt-6 border-t border-[#10233F]/08 flex flex-wrap items-center gap-6 text-xs text-[#627083] font-medium"
             >
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#287BFF]" />
+                <CheckCircle2 className="w-4 h-4 text-[#1F5F8B]" />
                 <span>Official PYQs & Solutions</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#5CE1E6]" />
+                <CheckCircle2 className="w-4 h-4 text-[#2E8B72]" />
                 <span>Verified Exam Papers</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#6F7CFF]" />
+                <CheckCircle2 className="w-4 h-4 text-[#4E88B7]" />
                 <span>StudyMate AI Tutor</span>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Column — Multi-Layered Tilt & Depth Parallax Visual */}
+          {/* Right Column — Visual Frame & Artwork */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -216,20 +216,20 @@ export const HeroSectionV2: React.FC = () => {
             style={{ rotateX: tiltX, rotateY: tiltY }}
             className="lg:col-span-5 relative flex justify-center items-center perspective-1000"
           >
-            {/* Layer 2: White Background Glow Frame */}
+            {/* Warm Cream Subtle Glow Behind Frame */}
             <motion.div
               style={{ x: frameX, y: frameY }}
-              className="absolute w-[360px] h-[360px] rounded-full bg-gradient-to-tr from-[#287BFF]/20 via-[#5CE1E6]/25 to-[#6F7CFF]/20 filter blur-3xl pointer-events-none"
+              className="absolute w-[360px] h-[360px] rounded-full bg-gradient-to-tr from-[#F7E7D0]/50 via-[#FCDAB7]/40 to-[#4E88B7]/15 filter blur-3xl pointer-events-none"
             />
 
             {/* Main Hero Container Frame */}
             <div className="relative w-full max-w-[440px] aspect-[4/4.5] flex items-center justify-center">
-              {/* Layer 3: Central Artwork Visual */}
+              {/* Central Artwork Visual */}
               <motion.div
                 style={{ x: studentX, y: studentY }}
                 className="relative z-10 w-full h-full flex items-center justify-center p-2"
               >
-                <div className="relative rounded-3xl overflow-hidden border border-white/80 bg-white/60 backdrop-blur-xl shadow-2xl p-4 w-full h-full flex flex-col items-center justify-center group">
+                <div className="relative rounded-3xl overflow-hidden border border-[#10233F]/08 bg-[#FCFBF8] shadow-[0_14px_40px_rgba(16,35,63,0.08)] p-4 w-full h-full flex flex-col items-center justify-center group">
                   <video
                     src="/assets/pinterest/actual-pin-682858362229488216.mp4"
                     poster="/assets/pinterest/actual-pin-682858362229488216-poster.webp"
@@ -237,18 +237,18 @@ export const HeroSectionV2: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-contain max-h-[360px] rounded-2xl filter drop-shadow-xl transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="w-full h-full object-contain max-h-[360px] rounded-2xl filter drop-shadow-sm transition-transform duration-500 group-hover:scale-[1.02]"
                   />
 
                   <div className="absolute bottom-3 left-4 right-4 text-center">
-                    <span className="inline-block px-3 py-1 rounded-full bg-[#062B3D]/90 backdrop-blur-md text-[11px] font-medium text-slate-200 border border-white/10 shadow-sm">
-                      Selected Visual — Pin 682858362229488216
+                    <span className="inline-block px-3 py-1 rounded-full bg-[#10233F]/90 backdrop-blur-md text-[11px] font-medium text-[#FCFBF8] border border-white/10 shadow-sm">
+                      Interactive Flashcard Recall
                     </span>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Layer 4: Unsynchronized Floating Concept Card 1 — GATE 2027 (8s Float) */}
+              {/* Floating Card 1 — GATE 2027 */}
               <motion.div
                 style={{ x: card1X, y: card1Y }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -276,21 +276,21 @@ export const HeroSectionV2: React.FC = () => {
                 }
                 className="absolute -top-3 -left-4 sm:-left-8 z-20"
               >
-                <HoverCard dataCursor="DRAG" className="p-3.5 min-w-[190px] border-l-4 border-l-[#287BFF]">
+                <HoverCard dataCursor="DRAG" className="p-3.5 min-w-[190px] bg-[#FCFBF8] border border-[#10233F]/08 border-l-4 border-l-[#1F5F8B] shadow-[0_8px_24px_rgba(16,35,63,0.08)]">
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#287BFF] bg-[#287BFF]/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#1F5F8B] bg-[#EAF2F7] px-2 py-0.5 rounded">
                       GATE 2027
                     </span>
-                    <Target className="w-3.5 h-3.5 text-[#287BFF]" />
+                    <Target className="w-3.5 h-3.5 text-[#1F5F8B]" />
                   </div>
-                  <p className="text-xs font-semibold text-[#062B3D]">78% Practice Accuracy</p>
-                  <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
-                    <div className="bg-[#287BFF] h-full rounded-full w-[78%]" />
+                  <p className="text-xs font-semibold text-[#172033]">78% Practice Accuracy</p>
+                  <div className="w-full bg-[#EAF2F7] h-1.5 rounded-full mt-2 overflow-hidden">
+                    <div className="bg-[#1F5F8B] h-full rounded-full w-[78%]" />
                   </div>
                 </HoverCard>
               </motion.div>
 
-              {/* Layer 4: Floating Concept Card 2 — PYQ Practice (10s Float) */}
+              {/* Floating Card 2 — PYQ Practice */}
               <motion.div
                 style={{ x: card2X, y: card2Y }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -318,19 +318,19 @@ export const HeroSectionV2: React.FC = () => {
                 }
                 className="absolute -bottom-2 -right-4 sm:-right-6 z-20"
               >
-                <HoverCard dataCursor="DRAG" className="p-3.5 min-w-[180px] border-l-4 border-l-[#5CE1E6]">
+                <HoverCard dataCursor="DRAG" className="p-3.5 min-w-[180px] bg-[#FCFBF8] border border-[#10233F]/08 border-l-4 border-l-[#4E88B7] shadow-[0_8px_24px_rgba(16,35,63,0.08)]">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#062B3D] bg-[#5CE1E6]/30 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#10233F] bg-[#F7E7D0] px-2 py-0.5 rounded">
                       PYQ Practice
                     </span>
-                    <Zap className="w-3.5 h-3.5 text-[#062B3D]" />
+                    <Zap className="w-3.5 h-3.5 text-[#10233F]" />
                   </div>
-                  <p className="text-xs font-bold text-[#062B3D]">Computer Networks</p>
-                  <p className="text-[10px] text-slate-500 mt-0.5">14 solved today</p>
+                  <p className="text-xs font-semibold text-[#172033]">Computer Networks</p>
+                  <p className="text-[10px] text-[#627083] mt-0.5">14 solved today</p>
                 </HoverCard>
               </motion.div>
 
-              {/* Layer 4: Floating Concept Card 3 — Spaced Revision (12s Float) */}
+              {/* Floating Card 3 — Spaced Revision */}
               <motion.div
                 style={{ x: card3X, y: card3Y }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -358,18 +358,18 @@ export const HeroSectionV2: React.FC = () => {
                 }
                 className="absolute top-1/2 -translate-y-1/2 -left-6 sm:-left-12 z-20"
               >
-                <div className="bg-[#062B3D] text-white rounded-2xl p-3.5 shadow-2xl min-w-[195px] border border-white/10 hover:border-[#5CE1E6]/50 transition-all duration-300">
+                <div className="bg-[#FCFBF8] text-[#172033] rounded-2xl p-3.5 shadow-[0_14px_40px_rgba(16,35,63,0.08)] min-w-[195px] border border-[#10233F]/08 hover:border-[#1F5F8B]/30 transition-all duration-300">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#5CE1E6] to-[#6F7CFF] flex items-center justify-center text-[#062B3D]">
+                    <div className="w-6 h-6 rounded-full bg-[#EAF2F7] flex items-center justify-center text-[#1F5F8B]">
                       <BookOpen className="w-3.5 h-3.5" />
                     </div>
-                    <span className="text-xs font-bold text-[#5CE1E6]">Revision</span>
+                    <span className="text-xs font-semibold text-[#1F5F8B]">Spaced Revision</span>
                   </div>
-                  <p className="text-[11px] text-slate-200 leading-snug">12 cards due today</p>
+                  <p className="text-[11px] text-[#627083] leading-snug">12 cards due today</p>
                 </div>
               </motion.div>
 
-              {/* Layer 4: Floating Concept Card 4 — Focus Session (9s Float) */}
+              {/* Floating Card 4 — Focus Session */}
               <motion.div
                 style={{ x: card4X, y: card4Y }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -397,13 +397,13 @@ export const HeroSectionV2: React.FC = () => {
                 }
                 className="absolute -top-4 -right-4 sm:-right-8 z-20"
               >
-                <HoverCard dataCursor="VIEW" className="p-3 border-l-4 border-l-[#6F7CFF] flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-xl bg-[#6F7CFF]/15 text-[#6F7CFF] flex items-center justify-center">
+                <HoverCard dataCursor="VIEW" className="p-3 bg-[#FCFBF8] border border-[#10233F]/08 border-l-4 border-l-[#FCDAB7] shadow-[0_8px_24px_rgba(16,35,63,0.08)] flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-[#F7E7D0] text-[#10233F] flex items-center justify-center">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div className="text-left">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Focus</p>
-                    <p className="text-xs font-bold text-[#062B3D]">50:00 Session</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#627083]">Focus</p>
+                    <p className="text-xs font-semibold text-[#172033]">50:00 Session</p>
                   </div>
                 </HoverCard>
               </motion.div>
@@ -412,5 +412,6 @@ export const HeroSectionV2: React.FC = () => {
         </div>
       </div>
     </section>
+
   );
 };

@@ -65,9 +65,6 @@ export default function Dashboard() {
   const fullName = user?.user_metadata?.full_name || user?.email || 'Student';
   const firstName = fullName.split(' ')[0].split('@')[0];
 
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-
   // Days remaining calculation
   let daysRemaining: number | null = null;
   if (profile?.exam_date) {
@@ -97,280 +94,284 @@ export default function Dashboard() {
         <meta name="description" content="Your personal study command center." />
       </Helmet>
 
-      {/* Top Header Banner with Mode Switcher */}
-      <div className="px-6 pt-10 max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-3 mb-1">
-            <span className="text-xs uppercase tracking-wider text-cyan-400 font-semibold liquid-glass px-3 py-1 rounded-full border border-cyan-500/20">
-              {activeHeaderBadge}
-            </span>
+      {/* Top Header Banner — Deep Navy Command Header */}
+      <div className="bg-[#10233F] text-[#FCFBF8] py-10 px-6 border-b border-white/10 shadow-md">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#FCDAB7] bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                {activeHeaderBadge}
+              </span>
 
-            {/* Mode Switcher for Combined Users */}
-            {isCombinedUser && (
-              <div className="relative">
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="liquid-glass px-3 py-1 rounded-full text-xs text-amber-300 border border-amber-500/30 flex items-center gap-1.5 hover:bg-amber-500/10 transition-colors"
+              {/* Mode Switcher for Combined Users */}
+              {isCombinedUser && (
+                <div className="relative">
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="bg-white/10 px-3 py-1 rounded-full text-xs text-[#F7E7D0] border border-white/15 flex items-center gap-1.5 hover:bg-white/20 transition-colors"
+                  >
+                    <span>My Learning: {activeContext === 'college' ? 'College' : profile?.target_exam || 'GATE'}</span>
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+
+                  {isDropdownOpen && (
+                    <div className="absolute top-8 left-0 z-50 w-44 rounded-xl bg-[#10233F] border border-white/15 shadow-xl py-1 text-xs text-[#FCFBF8]">
+                      <button
+                        onClick={() => {
+                          switchContext('college');
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-2 hover:bg-white/10 transition-colors ${activeContext === 'college' ? 'text-[#4E88B7] font-bold' : 'text-white/80'}`}
+                      >
+                        🎓 College Academic
+                      </button>
+                      <button
+                        onClick={() => {
+                          switchContext('competitive');
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-2 hover:bg-white/10 transition-colors ${activeContext === 'competitive' ? 'text-[#4E88B7] font-bold' : 'text-white/80'}`}
+                      >
+                        🎯 {profile?.target_exam || 'GATE'} Preparation
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <h1
+              className="text-4xl sm:text-5xl font-normal text-white tracking-tight"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              Know what to study next, <span className="text-[#FCDAB7]">{firstName}</span>.
+            </h1>
+            <p className="text-xs sm:text-sm text-white/75 mt-1">
+              {isCollegeView
+                ? `Your preparation, in motion for ${profile?.branch_major || 'your coursework'}.`
+                : `Your preparation, in motion for ${profile?.target_exam || 'GATE'}.`}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {!isCollegeView && daysRemaining !== null && (
+              <div className="bg-white/10 border border-white/15 rounded-2xl px-4 py-2 text-center shrink-0">
+                <span className="text-2xl font-bold text-[#FCDAB7] font-sans block leading-none">{daysRemaining}</span>
+                <span className="text-[10px] text-white/60 uppercase tracking-widest">days until exam</span>
+              </div>
+            )}
+            <Link
+              to="/setup"
+              className="bg-white/10 rounded-full px-4 py-2 text-xs text-white/80 hover:text-white transition-colors flex items-center gap-1.5 shrink-0 border border-white/15"
+            >
+              <Settings className="w-3.5 h-3.5" />
+              Edit Setup
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Dashboard Body — Paper White / Mist Command Center */}
+      <div className="bg-[#EAF2F7] min-h-screen">
+        <div className="px-6 pt-8 max-w-6xl mx-auto pb-24 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left 2 Columns */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="bg-[#FCFBF8] rounded-2xl p-4 text-center border border-[#10233F]/08 shadow-sm">
+                <Clock className="w-5 h-5 text-[#1F5F8B] mx-auto mb-2" />
+                <div className="text-2xl font-bold text-[#172033] tracking-tight">{hoursDone}h</div>
+                <span className="text-[11px] text-[#627083] uppercase tracking-wider mt-1 block">Study Time Today</span>
+              </div>
+
+              <div className="bg-[#FCFBF8] rounded-2xl p-4 text-center border border-[#10233F]/08 shadow-sm">
+                <BookOpen className="w-5 h-5 text-[#4E88B7] mx-auto mb-2" />
+                <div className="text-2xl font-bold text-[#172033] tracking-tight">{actualQuestionsSolved}</div>
+                <span className="text-[11px] text-[#627083] uppercase tracking-wider mt-1 block">Questions Solved</span>
+              </div>
+
+              <div className="bg-[#FCFBF8] rounded-2xl p-4 text-center border border-[#10233F]/08 shadow-sm">
+                <Award className="w-5 h-5 text-[#2E8B72] mx-auto mb-2" />
+                <div className="text-2xl font-bold text-[#172033] tracking-tight">{hasRealAttempts ? `${actualAccuracyPct}%` : '—'}</div>
+                <span className="text-[11px] text-[#627083] uppercase tracking-wider mt-1 block">Accuracy</span>
+              </div>
+
+              <div className="bg-[#FCFBF8] rounded-2xl p-4 text-center border border-[#10233F]/08 shadow-sm">
+                <Flame className="w-5 h-5 text-[#D99A3D] mx-auto mb-2" />
+                <div className="text-2xl font-bold text-[#172033] tracking-tight">{actualStreakDays}</div>
+                <span className="text-[11px] text-[#627083] uppercase tracking-wider mt-1 block">Streak Days</span>
+              </div>
+            </div>
+
+            {/* Honest Empty State for New Users */}
+            {!hasRealAttempts && (
+              <div className="bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 text-center space-y-3 border border-[#10233F]/08 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-[#F7E7D0] text-[#10233F] flex items-center justify-center mx-auto">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-normal text-[#172033]" style={{ fontFamily: "'Instrument Serif', serif" }}>Your preparation, in motion.</h3>
+                <p className="text-xs text-[#627083] max-w-md mx-auto leading-relaxed">
+                  Complete your first 10-question practice or focus session to unlock your real performance insights, accuracy tracking, and streak progress.
+                </p>
+                <Link
+                  to="/practice"
+                  className="gradient-cta px-6 py-2.5 rounded-full text-xs text-white font-semibold inline-flex items-center gap-1.5 shadow-md"
                 >
-                  <span>My Learning: {activeContext === 'college' ? 'College' : profile?.target_exam || 'GATE'}</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
+                  <span>Practice what matters</span> <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )}
 
-                {isDropdownOpen && (
-                  <div className="absolute top-8 left-0 z-50 w-44 rounded-xl bg-slate-900 border border-slate-800 shadow-xl py-1 text-xs">
-                    <button
-                      onClick={() => {
-                        switchContext('college');
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-2 hover:bg-slate-800 transition-colors ${activeContext === 'college' ? 'text-cyan-400 font-bold' : 'text-slate-300'}`}
+            {/* Today's Study Plan Card */}
+            <div className="bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 border border-[#10233F]/08 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] uppercase tracking-wider text-[#627083] font-semibold">Today's Schedule</p>
+                  <h2 className="text-2xl font-normal text-[#172033]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                    Practice what matters today.
+                  </h2>
+                  <p className="text-xs text-[#627083] mt-0.5">
+                    {isCollegeView
+                      ? `Tailored for ${profile?.degree || 'Academic'} Semester Goals`
+                      : `Customized for your ${profile?.target_exam || 'GATE'} target`}
+                  </p>
+                </div>
+                <div className="bg-[#F7E7D0] px-3 py-1 rounded-full text-xs text-[#10233F] font-semibold">
+                  {planItems.length} Tasks
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {planItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-[#FCFBF8] rounded-2xl p-4 flex items-center justify-between gap-4 border border-[#10233F]/08 hover:border-[#1F5F8B]/30 transition-all"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="text-xs text-[#1F5F8B] font-semibold shrink-0 w-12">{item.time}</span>
+                      <div>
+                        <h3 className="text-sm font-semibold text-[#172033]">{item.title}</h3>
+                        <p className="text-xs text-[#627083]">{item.subTitle} • {item.durationMinutes} min</p>
+                      </div>
+                    </div>
+
+                    <Link
+                      to={item.actionPath}
+                      state={item.actionState}
+                      className="gradient-cta rounded-full px-4 py-1.5 text-xs text-white font-semibold inline-flex items-center gap-1 shrink-0 hover:scale-105 transition-transform"
                     >
-                      🎓 College Academic
-                    </button>
-                    <button
-                      onClick={() => {
-                        switchContext('competitive');
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-2 hover:bg-slate-800 transition-colors ${activeContext === 'competitive' ? 'text-cyan-400 font-bold' : 'text-slate-300'}`}
-                    >
-                      🎯 {profile?.target_exam || 'GATE'} Preparation
-                    </button>
+                      <Play className="w-3 h-3 fill-white" />
+                      <span>Start</span>
+                    </Link>
                   </div>
-                )}
+                ))}
+              </div>
+            </div>
+
+            {/* College / Competitive Specific Section */}
+            {isCollegeView ? (
+              <div className="bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 border border-[#10233F]/08 shadow-sm space-y-4">
+                <h2 className="text-xl font-normal text-[#172033] flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  <BookOpen className="w-5 h-5 text-[#1F5F8B]" />
+                  Current Semester Subjects
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {(profile?.college_subjects && profile.college_subjects.length > 0
+                    ? profile.college_subjects
+                    : ['Computer Networks', 'DBMS', 'Operating Systems', 'Software Engineering']
+                  ).map((subj, idx) => (
+                    <div key={idx} className="p-4 rounded-2xl bg-[#EAF2F7] border border-[#10233F]/06 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-semibold text-[#172033]">{subj}</h4>
+                        <p className="text-[11px] text-[#627083]">Semester Coursework</p>
+                      </div>
+                      <Link
+                        to="/practice"
+                        state={{ subject: subj }}
+                        className="px-3 py-1.5 rounded-full bg-[#FCFBF8] text-[#1F5F8B] font-semibold text-xs border border-[#10233F]/10 hover:bg-[#1F5F8B]/10 transition-colors"
+                      >
+                        Revise
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 border border-[#10233F]/08 shadow-sm space-y-4">
+                <h2 className="text-xl font-normal text-[#172033] flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  <Target className="w-5 h-5 text-[#1F5F8B]" />
+                  {profile?.target_exam || 'GATE'} Priority PYQ Practice
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {recommendations.slice(0, 2).map((rec) => (
+                    <div key={rec.id} className="p-4 rounded-2xl bg-[#EAF2F7] border border-[#10233F]/06 flex flex-col justify-between">
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-[#1F5F8B] tracking-wider">{rec.priority} Priority</span>
+                        <h4 className="text-sm font-semibold text-[#172033] mt-1">{rec.title}</h4>
+                        <p className="text-[11px] text-[#627083] mt-0.5 line-clamp-2">{rec.reason}</p>
+                      </div>
+                      <Link
+                        to={rec.action}
+                        className="mt-3 py-1.5 rounded-full bg-[#FCFBF8] text-[#1F5F8B] font-semibold text-xs text-center border border-[#10233F]/10 hover:bg-[#1F5F8B]/10 transition-colors"
+                      >
+                        Start Practice →
+                      </Link>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
 
-          <h1
-            className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-          >
-            {greeting}, <span className="text-gradient-accent">{firstName}</span>.
-          </h1>
-          <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-            {isCollegeView
-              ? `Ready for today's semester targets in ${profile?.branch_major || 'your coursework'}?`
-              : `Ready for today's ${profile?.target_exam || 'GATE'} preparation session?`}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {!isCollegeView && daysRemaining !== null && (
-            <div className="liquid-glass border border-cyan-500/30 rounded-2xl px-4 py-2 text-center shrink-0">
-              <span className="text-2xl font-semibold text-cyan-300 font-sans block leading-none">{daysRemaining}</span>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest">days until exam</span>
-            </div>
-          )}
-          <Link
-            to="/setup"
-            className="liquid-glass rounded-full px-4 py-2 text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 shrink-0"
-          >
-            <Settings className="w-3.5 h-3.5" />
-            Edit Setup
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Dashboard Body */}
-      <div className="px-6 mt-8 max-w-6xl mx-auto pb-24 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left 2 Columns */}
-        <div className="lg:col-span-2 space-y-8">
-          {/* Quick Metrics Bar (Real Data Only) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
-              <Clock className="w-5 h-5 text-cyan-400 mx-auto mb-2" />
-              <div className="text-2xl font-semibold text-foreground tracking-tight">{hoursDone}h</div>
-              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Study Time Today</span>
-            </div>
-
-            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
-              <BookOpen className="w-5 h-5 text-indigo-400 mx-auto mb-2" />
-              <div className="text-2xl font-semibold text-foreground tracking-tight">{actualQuestionsSolved}</div>
-              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Questions Solved</span>
-            </div>
-
-            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
-              <Award className="w-5 h-5 text-emerald-400 mx-auto mb-2" />
-              <div className="text-2xl font-semibold text-foreground tracking-tight">{hasRealAttempts ? `${actualAccuracyPct}%` : '—'}</div>
-              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Accuracy</span>
-            </div>
-
-            <div className="liquid-glass-card rounded-2xl p-4 text-center border border-white/10">
-              <Flame className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-              <div className="text-2xl font-semibold text-foreground tracking-tight">{actualStreakDays}</div>
-              <span className="text-[11px] text-muted-foreground uppercase tracking-wider mt-1 block">Streak Days</span>
-            </div>
-          </div>
-
-          {/* Honest Empty State for New Users */}
-          {!hasRealAttempts && (
-            <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 text-center space-y-3 border border-white/15">
-              <div className="w-12 h-12 rounded-2xl liquid-glass text-cyan-300 flex items-center justify-center mx-auto border border-cyan-500/30">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>Your study journey starts here.</h3>
-              <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed">
-                Complete your first 10-question practice or focus session to unlock your real performance insights, accuracy tracking, and streak progress.
-              </p>
-              <Link
-                to="/practice"
-                className="gradient-cta px-6 py-2.5 rounded-full text-xs text-slate-950 font-semibold inline-flex items-center gap-1.5 shadow-md"
-              >
-                <span>Start First Practice</span> <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          )}
-
-          {/* Today's Study Plan Card */}
-          <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Today's Schedule</p>
-                <h2 className="text-2xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                  Study Plan
-                </h2>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {isCollegeView
-                    ? `Tailored for ${profile?.degree || 'Academic'} Semester Goals`
-                    : `Customized for your ${profile?.target_exam || 'GATE'} target`}
-                </p>
-              </div>
-              <div className="liquid-glass px-3 py-1 rounded-full text-xs text-muted-foreground">
-                {planItems.length} Tasks Scheduled
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {planItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="liquid-glass rounded-2xl p-4 flex items-center justify-between gap-4 border border-white/5 hover:border-white/20 transition-all"
+          {/* Right Column Shortcuts & Actions */}
+          <div className="space-y-6">
+            <div className="bg-[#FCFBF8] rounded-3xl p-6 border border-[#10233F]/08 shadow-sm space-y-4">
+              <h3 className="text-xs uppercase tracking-wider text-[#627083] font-semibold">Quick Tools</h3>
+              <div className="space-y-2.5">
+                <Link
+                  to="/focus-room"
+                  className="bg-[#EAF2F7] rounded-xl p-3 text-xs text-[#172033] hover:bg-[#1F5F8B]/10 transition-colors flex items-center justify-between group"
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs text-cyan-400 font-medium shrink-0 w-12">{item.time}</span>
-                    <div>
-                      <h3 className="text-sm font-medium text-foreground">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground">{item.subTitle} • {item.durationMinutes} min</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-4 h-4 text-[#1F5F8B]" />
+                    <span className="font-semibold">Focus Room Session</span>
                   </div>
+                  <ChevronRight className="w-4 h-4 text-[#627083] group-hover:text-[#172033] transition-transform group-hover:translate-x-1" />
+                </Link>
 
-                  <Link
-                    to={item.actionPath}
-                    state={item.actionState}
-                    className="gradient-cta rounded-full px-4 py-1.5 text-xs text-slate-950 font-semibold inline-flex items-center gap-1 shrink-0 hover:scale-105 transition-transform"
-                  >
-                    <Play className="w-3 h-3 fill-slate-950" />
-                    <span>Start</span>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* College / Competitive Specific Section */}
-          {isCollegeView ? (
-            <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
-              <h2 className="text-xl font-normal text-foreground flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                <BookOpen className="w-5 h-5 text-cyan-400" />
-                Current Semester Subjects
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {(profile?.college_subjects && profile.college_subjects.length > 0
-                  ? profile.college_subjects
-                  : ['Computer Networks', 'DBMS', 'Operating Systems', 'Software Engineering']
-                ).map((subj, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl liquid-glass border border-white/10 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-sm font-medium text-foreground">{subj}</h4>
-                      <p className="text-[11px] text-muted-foreground">Semester Coursework</p>
-                    </div>
-                    <Link
-                      to="/practice"
-                      state={{ subject: subj }}
-                      className="px-3 py-1.5 rounded-full liquid-glass text-cyan-300 font-medium text-xs border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
-                    >
-                      Revise
-                    </Link>
+                <Link
+                  to="/study-ai"
+                  className="bg-[#EAF2F7] rounded-xl p-3 text-xs text-[#172033] hover:bg-[#1F5F8B]/10 transition-colors flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-[#4E88B7]" />
+                    <span className="font-semibold">StudyMate AI Tutor</span>
                   </div>
-                ))}
+                  <ChevronRight className="w-4 h-4 text-[#627083] group-hover:text-[#172033] transition-transform group-hover:translate-x-1" />
+                </Link>
+
+                <Link
+                  to="/flashcards"
+                  className="bg-[#EAF2F7] rounded-xl p-3 text-xs text-[#172033] hover:bg-[#1F5F8B]/10 transition-colors flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <Layers className="w-4 h-4 text-[#4E88B7]" />
+                    <span className="font-semibold">Personalized Flashcards</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-[#627083] group-hover:text-[#172033] transition-transform group-hover:translate-x-1" />
+                </Link>
+
+                <Link
+                  to="/revision"
+                  className="bg-[#EAF2F7] rounded-xl p-3 text-xs text-[#172033] hover:bg-[#1F5F8B]/10 transition-colors flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <RotateCcw className="w-4 h-4 text-[#2E8B72]" />
+                    <span className="font-semibold">Spaced Revision</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-[#627083] group-hover:text-[#172033] transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
-            </div>
-          ) : (
-            <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
-              <h2 className="text-xl font-normal text-foreground flex items-center gap-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                <Target className="w-5 h-5 text-indigo-400" />
-                {profile?.target_exam || 'GATE'} Priority PYQ Practice
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {recommendations.slice(0, 2).map((rec) => (
-                  <div key={rec.id} className="p-4 rounded-2xl liquid-glass border border-white/10 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] uppercase font-semibold text-indigo-400 tracking-wider">{rec.priority} Priority</span>
-                      <h4 className="text-sm font-medium text-foreground mt-1">{rec.title}</h4>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-2">{rec.reason}</p>
-                    </div>
-                    <Link
-                      to={rec.action}
-                      className="mt-3 py-1.5 rounded-full liquid-glass text-indigo-300 font-medium text-xs text-center border border-indigo-500/30 hover:bg-indigo-500/30 transition-colors"
-                    >
-                      Start Practice →
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Right Column Shortcuts & Actions */}
-        <div className="space-y-6">
-          <div className="liquid-glass-card rounded-3xl p-6 border border-white/10 space-y-4">
-            <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">Quick Tools</h3>
-            <div className="space-y-2.5">
-              <Link
-                to="/focus-room"
-                className="liquid-glass rounded-xl p-3 text-xs text-foreground hover:bg-white/10 transition-colors flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <Clock className="w-4 h-4 text-cyan-400" />
-                  <span>Focus Room Session</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                to="/study-ai"
-                className="liquid-glass rounded-xl p-3 text-xs text-foreground hover:bg-white/10 transition-colors flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
-                  <span>StudyMate AI Tutor</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                to="/flashcards"
-                className="liquid-glass rounded-xl p-3 text-xs text-foreground hover:bg-white/10 transition-colors flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <Layers className="w-4 h-4 text-indigo-400" />
-                  <span>Personalized Flashcards</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                to="/revision"
-                className="liquid-glass rounded-xl p-3 text-xs text-foreground hover:bg-white/10 transition-colors flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <RotateCcw className="w-4 h-4 text-emerald-400" />
-                  <span>Spaced Revision</span>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-1" />
-              </Link>
             </div>
           </div>
         </div>
@@ -378,3 +379,4 @@ export default function Dashboard() {
     </>
   );
 }
+

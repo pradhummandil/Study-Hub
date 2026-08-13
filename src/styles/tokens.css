@@ -1,0 +1,58 @@
+/* Study Hub — Design Tokens System 2.0 */
+
+:root {
+  /* Brand Palette 2.0 */
+  --color-brand-navy:      #10233F;
+  --color-brand-blue:      #1F5F8B;
+  --color-brand-soft-blue: #4E88B7;
+  --color-surface-mist:    #EAF2F7;
+  --color-paper-white:     #FCFBF8;
+  --color-warm-cream:      #F7E7D0;
+  --color-soft-peach:      #FCDAB7;
+
+  /* Typography Colors */
+  --color-ink:             #172033;
+  --color-ink-body:        #3D4A5A;
+  --color-muted:           #627083;
+
+  /* Semantic Feedback */
+  --color-success:         #2E8B72;
+  --color-warning:         #D99A3D;
+  --color-error:           #C95C5C;
+
+  /* Surface Aliases */
+  --color-surface:         var(--color-paper-white);
+  --color-surface-soft:    var(--color-surface-mist);
+  --color-surface-dark:    var(--color-brand-navy);
+  --color-surface-warm:    var(--color-warm-cream);
+
+  /* Dark Surface Tokens (Coordinated Dark Mode) */
+  --color-dark-navy:       #0B1B2F;
+  --color-dark-blue:       #245C86;
+  --color-dark-mist:       #DCE8EF;
+  --color-dark-cream:      #EED8BE;
+  --color-dark-text:       #F7F4EE;
+
+  /* Shadows */
+  --shadow-soft:           0 8px 24px rgba(16, 35, 63, 0.06);
+  --shadow-card:           0 14px 40px rgba(16, 35, 63, 0.08);
+  --shadow-floating:       0 24px 70px rgba(16, 35, 63, 0.14);
+
+  /* Borders */
+  --border-default:        rgba(16, 35, 63, 0.08);
+  --border-strong:         rgba(31, 95, 139, 0.18);
+  --border-dark:           rgba(255, 255, 255, 0.12);
+
+  /* Border Radii */
+  --radius-sm:             10px;
+  --radius-control:        12px;
+  --radius-card:           18px;
+  --radius-feature:        24px;
+  --radius-hero:           28px;
+  --radius-pill:           9999px;
+
+  /* Gradients */
+  --gradient-primary:      linear-gradient(135deg, #1F5F8B, #4E88B7);
+  --gradient-warm:         linear-gradient(135deg, #F7E7D0, #FCDAB7);
+  --gradient-ai:           linear-gradient(135deg, #1F5F8B, #4E88B7, #5C8DAE);
+}

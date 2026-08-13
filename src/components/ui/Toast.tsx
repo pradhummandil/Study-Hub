@@ -100,10 +100,10 @@ const ToastItemComponent = ({ toast, onDismiss }: { toast: ToastItem, onDismiss:
   }, [onDismiss]);
 
   const colors = {
-    success: 'bg-green-500/10 border-green-500/30 text-green-400',
-    error: 'bg-red-500/10 border-red-500/30 text-red-400',
-    info: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
-    warning: 'bg-orange-500/10 border-orange-500/30 text-orange-400'
+    success: 'bg-[#FCFBF8] border-[#2E8B72]/30 text-[#2E8B72] shadow-[0_14px_40px_rgba(16,35,63,0.12)]',
+    error: 'bg-[#FCFBF8] border-[#C95C5C]/30 text-[#C95C5C] shadow-[0_14px_40px_rgba(16,35,63,0.12)]',
+    info: 'bg-[#FCFBF8] border-[#1F5F8B]/30 text-[#1F5F8B] shadow-[0_14px_40px_rgba(16,35,63,0.12)]',
+    warning: 'bg-[#FCFBF8] border-[#D99A3D]/30 text-[#D99A3D] shadow-[0_14px_40px_rgba(16,35,63,0.12)]'
   };
 
   const icons = {
@@ -115,19 +115,19 @@ const ToastItemComponent = ({ toast, onDismiss }: { toast: ToastItem, onDismiss:
 
   return (
     <div 
-      className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border shadow-xl backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] ${
         isShowing ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       } ${colors[toast.type]}`}
-      style={{ backgroundColor: '#062B3D' }}
     >
       {icons[toast.type]}
-      <span className="text-white text-sm font-medium pr-4">{toast.message}</span>
+      <span className="text-[#172033] text-sm font-medium pr-4">{toast.message}</span>
       <button 
         onClick={() => { setIsShowing(false); setTimeout(onDismiss, 300); }}
-        className="ml-auto text-gray-400 hover:text-white transition-colors"
+        className="ml-auto text-[#627083] hover:text-[#172033] transition-colors"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
   );
 };
+
