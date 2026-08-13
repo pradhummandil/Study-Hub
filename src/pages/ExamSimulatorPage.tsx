@@ -54,8 +54,21 @@ export default function ExamSimulatorPage() {
             Adaptive Exam Simulator
           </h1>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Choose a real exam, subject, topic or weakness and build a focused simulation test with section timers and negative marking.
+            Turn exam pressure into confidence. Practice in authentic exam environments with section timers, official calculators, and real marking schemes.
           </p>
+
+          {/* Actual Pin 4 Video Frame */}
+          <div className="mt-4 mx-auto max-w-xs rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
+            <video
+              src="/assets/pinterest/actual-pin-998743654885257487.mp4"
+              poster="/assets/pinterest/actual-pin-998743654885257487-poster.webp"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           <div className="flex justify-center pt-2">
             <button

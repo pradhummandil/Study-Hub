@@ -25,7 +25,10 @@ export function StudyAIStudentIllustration() {
         className="relative z-[5] w-full flex justify-center"
       >
         <img
-          src="/images/study-ai-student.png"
+          src="/assets/pinterest/actual-pin-682858362229488216-poster.webp"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/images/study-ai-student.png";
+          }}
           alt="Student studying with AI assistant hologram"
           className="w-full max-w-[440px] h-auto object-contain rounded-2xl"
           style={{

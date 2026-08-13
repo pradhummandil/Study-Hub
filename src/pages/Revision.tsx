@@ -71,7 +71,16 @@ export default function RevisionPage() {
             <h1 className="text-4xl sm:text-5xl font-normal text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
               Revision Center
             </h1>
-            <p className="text-muted-foreground text-sm mt-1">Review the right concept at the right time.</p>
+            <p className="text-muted-foreground text-sm mt-1">Review the right concept at the right time with active recall controls.</p>
+
+            {/* Actual Pin 1 Image Frame */}
+            <div className="mt-4 max-w-[220px] rounded-2xl overflow-hidden border border-cyan-500/30 shadow-xl bg-slate-950 aspect-[4/5] flex items-center justify-center">
+              <img
+                src="/assets/pinterest/actual-pin-322359285828940269.webp"
+                alt="Active Recall Memory Controls Visual"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
           {!sessionActive && dueItems.length > 0 && (

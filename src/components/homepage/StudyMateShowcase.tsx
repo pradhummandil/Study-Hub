@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Cpu, Sparkles, Send, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const StudyMateShowcase: React.FC = () => {
   const navigate = useNavigate();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   // Simulated interactive chat state
   const [typingState, setTypingState] = useState<'typing' | 'done'>('typing');
   const [userQuery, setUserQuery] = useState('Explain TCP congestion control simply with real-world analogy.');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setTypingState('done');
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isInView) {
+      const timer = setTimeout(() => {
+        setTypingState('done');
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
 
   return (
-    <section className="py-20 md:py-28 bg-[#062B3D] text-white relative overflow-hidden border-b border-white/10">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[#062B3D] text-white relative overflow-hidden border-b border-white/10">
       
       {/* Background Decorative Glow Orbs */}
       <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-[400px] h-[400px] bg-radial from-[#5CE1E6]/15 via-[#287BFF]/10 to-transparent blur-3xl pointer-events-none" />
@@ -41,7 +45,7 @@ export const StudyMateShowcase: React.FC = () => {
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 mt-4 leading-relaxed">
-            Your personal 24/7 study partner for instant explanations, customized practice questions, revision summaries, and exam guidance.
+            Your personal 24/7 study partner for explanations, practice, revision and planning — around the exam, subjects and goals that matter to you.
           </p>
         </div>
 
@@ -84,7 +88,7 @@ export const StudyMateShowcase: React.FC = () => {
                   <span className="font-bold text-[#5CE1E6]">StudyMate:</span>
                 </div>
 
-                {typingState === 'typing' ? (
+                {!isInView || typingState === 'typing' ? (
                   <div className="flex items-center gap-1.5 py-2">
                     <span className="w-2 h-2 rounded-full bg-[#5CE1E6] animate-bounce" />
                     <span className="w-2 h-2 rounded-full bg-[#5CE1E6] animate-bounce [animation-delay:0.2s]" />
@@ -103,7 +107,7 @@ export const StudyMateShowcase: React.FC = () => {
                     <div className="bg-white/5 p-3 rounded-xl border border-white/10 space-y-1.5 text-xs text-slate-300">
                       <p><strong className="text-[#5CE1E6]">1. Slow Start:</strong> Probe network capacity by doubling window size each round trip.</p>
                       <p><strong className="text-[#5CE1E6]">2. Congestion Avoidance:</strong> Switch to linear growth (+1 MSS) once threshold is reached.</p>
-                      <p><strong className="text-[#5CE1E6]">3. Fast Retransmit:</strong> 3 duplicate ACKs trigger instant retransmission without waiting for timeout.</p>
+                      <p><strong className="text-[#5CE1E6]">3. Fast Recovery:</strong> 3 duplicate ACKs trigger instant retransmission without waiting for timeout.</p>
                     </div>
                   </motion.div>
                 )}

@@ -32,20 +32,47 @@ export default function Roadmap() {
         <meta name="description" content="A clear path from where you are to where you want to be." />
       </Helmet>
 
-      {/* Header */}
+      {/* Header & Milestone Pathway Flow */}
       <div className="px-6 pt-12 max-w-5xl mx-auto text-center">
         <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-cyan-500/20">
-          {targetExam} Personalized Path
+          {targetExam} Structured Pathway
         </span>
         <h1
           className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          My Roadmap
+          My Study Roadmap
         </h1>
         <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-          A clear path from where you are to where you want to be.
+          A clear, milestone-driven pathway from Foundation to Exam Mastery.
         </p>
+
+        {/* Milestone Progression Bar (Foundation -> Core -> Practice -> Revision -> Mock -> Mastery) */}
+        <div className="mt-8 flex items-center justify-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar py-2">
+          {['Foundation', 'Core', 'Practice', 'Revision', 'Mock', 'Mastery'].map((stage, idx) => (
+            <div key={stage} className="flex items-center gap-2 shrink-0">
+              <span className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
+                idx < 3 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-white/5 text-slate-400 border border-white/10'
+              }`}>
+                {stage}
+              </span>
+              {idx < 5 && <span className="text-slate-500 text-xs">→</span>}
+            </div>
+          ))}
+        </div>
+
+        {/* Actual Pin 5 Video Frame */}
+        <div className="mt-6 mx-auto max-w-xs rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
+          <video
+            src="/assets/pinterest/actual-pin-1127025875509575308.mp4"
+            poster="/assets/pinterest/actual-pin-1127025875509575308-poster.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Progress Overview Bar */}
         {roadmap && (

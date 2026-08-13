@@ -46,6 +46,7 @@ const Settings       = lazy(() => import('./pages/Settings'));
 const ResourcePage   = lazy(() => import('./pages/ResourcePage'));
 const ExamExplorer   = lazy(() => import('./pages/ExamExplorer'));
 const ExamDetailPage = lazy(() => import('./pages/ExamDetailPage'));
+const DevPinterestVerification = lazy(() => import('./pages/DevPinterestVerification'));
 
 // Phase 5 Pages
 const Pricing             = lazy(() => import('./pages/Pricing'));
@@ -76,6 +77,18 @@ const AdminAnalytics    = lazy(() => import('./pages/admin/AdminAnalytics'));
 const AdminSystemHealth = lazy(() => import('./pages/admin/AdminSystemHealth'));
 const AdminAuditLog     = lazy(() => import('./pages/admin/AdminAuditLog'));
 const AdminAiQuality    = lazy(() => import('./pages/admin/AdminAiQuality'));
+const AdminVideoLearning = lazy(() => import('./pages/admin/AdminVideoLearning'));
+
+// Video Learning Pages
+const VideoLearningPage = lazy(() => import('./pages/video-learning/VideoLearningPage'));
+const VideoPlaylistPage = lazy(() => import('./pages/video-learning/VideoPlaylistPage'));
+const VideoTopicPage    = lazy(() => import('./pages/video-learning/VideoTopicPage'));
+const VideoChannelPage  = lazy(() => import('./pages/video-learning/VideoChannelPage'));
+const VideoShortsPage   = lazy(() => import('./pages/video-learning/VideoShortsPage'));
+const VideoHistoryPage  = lazy(() => import('./pages/video-learning/VideoHistoryPage'));
+const VideoSavedPage    = lazy(() => import('./pages/video-learning/VideoSavedPage'));
+const VideoCollectionPage = lazy(() => import('./pages/video-learning/VideoCollectionPage'));
+const VideoWatchPage    = lazy(() => import('./pages/video-learning/VideoWatchPage'));
 
 // Pulsing dot fallback
 const PageLoader = () => (
@@ -103,6 +116,7 @@ import { InteractiveProductDemo } from './components/homepage/InteractiveProduct
 import { StudyMateShowcase } from './components/homepage/StudyMateShowcase';
 import { ExamExplorerGrid } from './components/homepage/ExamExplorerGrid';
 import { ProductFeatureSections } from './components/homepage/ProductFeatureSections';
+import { VideoLearningPreviewSection } from './components/homepage/VideoLearningPreviewSection';
 
 // Home page
 function HomePage() {
@@ -123,12 +137,14 @@ function HomePage() {
       {user ? (
         <>
           <PersonalizedUserHero />
+          <VideoLearningPreviewSection />
           <ProductFeatureSections />
         </>
       ) : (
         <>
           <HeroSectionV2 />
           <InteractiveProductDemo />
+          <VideoLearningPreviewSection />
           <StudyMateShowcase />
           <ExamExplorerGrid />
           <ProductFeatureSections />
@@ -185,10 +201,22 @@ function AppRoutes() {
       <Route path="/mentor" element={<PageLayout><MentorPortal /></PageLayout>} />
       <Route path="/institution" element={<PageLayout><InstitutionPortal /></PageLayout>} />
       <Route path="/resource/:slug" element={<PageLayout><ResourcePage /></PageLayout>} />
+      <Route path="/dev/pinterest-assets" element={<DevPinterestVerification />} />
 
       {/* Public Exam Catalog & Detail pages */}
       <Route path="/exams" element={<PageLayout><ExamExplorer /></PageLayout>} />
       <Route path="/exams/:slug" element={<PageLayout><ExamDetailPage /></PageLayout>} />
+
+      {/* Video Learning Hub Routes */}
+      <Route path="/video-learning" element={<PageLayout><VideoLearningPage /></PageLayout>} />
+      <Route path="/video-learning/playlist/:playlistId" element={<PageLayout><VideoPlaylistPage /></PageLayout>} />
+      <Route path="/video-learning/topic/:slug" element={<PageLayout><VideoTopicPage /></PageLayout>} />
+      <Route path="/video-learning/channel/:channelId" element={<PageLayout><VideoChannelPage /></PageLayout>} />
+      <Route path="/video-learning/shorts" element={<VideoShortsPage />} />
+      <Route path="/video-learning/history" element={<PageLayout><VideoHistoryPage /></PageLayout>} />
+      <Route path="/video-learning/saved" element={<PageLayout><VideoSavedPage /></PageLayout>} />
+      <Route path="/video-learning/collection/:slug" element={<PageLayout><VideoCollectionPage /></PageLayout>} />
+      <Route path="/video-learning/video/:videoId" element={<VideoWatchPage />} />
 
       {/* Auth Routes */}
       <Route path="/signup" element={<Suspense fallback={<PageLoader />}><SignUp /></Suspense>} />
@@ -241,6 +269,7 @@ function AppRoutes() {
       >
         <Route index element={<Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense>} />
         <Route path="users" element={<Suspense fallback={<PageLoader />}><AdminUsers /></Suspense>} />
+        <Route path="video-learning" element={<Suspense fallback={<PageLoader />}><AdminVideoLearning /></Suspense>} />
         <Route path="resources" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
         <Route path="resources/health" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
         <Route path="questions" element={<Suspense fallback={<PageLoader />}><AdminQuestions /></Suspense>} />

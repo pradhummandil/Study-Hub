@@ -3,23 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Cpu, Zap, Trophy, RotateCcw,
-  ArrowRight, Clock, Calculator, Eye, ChevronRight
+  ArrowRight, Clock, Calculator, Eye, ChevronRight, Play, Pause, Flame
 } from 'lucide-react';
 
-type DemoTab = 'dashboard' | 'studymate' | 'practice' | 'mock' | 'revision';
+type DemoTab = 'dashboard' | 'studymate' | 'practice' | 'mock' | 'revision' | 'focus';
 
 export const InteractiveProductDemo: React.FC = () => {
   const [activeTab, setActiveTab] = useState<DemoTab>('dashboard');
   const [practiceAnswered, setPracticeAnswered] = useState<number | null>(null);
   const [cardFlipped, setCardFlipped] = useState(false);
+  const [focusRunning, setFocusRunning] = useState(false);
   const navigate = useNavigate();
 
   const tabs: { id: DemoTab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'studymate', label: 'StudyMate AI', icon: Cpu },
-    { id: 'practice', label: 'PYQ Practice', icon: Zap },
-    { id: 'mock', label: 'Mock Test', icon: Trophy },
+    { id: 'practice', label: 'Practice', icon: Zap },
+    { id: 'mock', label: 'Mock Tests', icon: Trophy },
     { id: 'revision', label: 'Revision', icon: RotateCcw },
+    { id: 'focus', label: 'Focus Room', icon: Clock },
   ];
 
   return (
@@ -29,16 +31,16 @@ export const InteractiveProductDemo: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#287BFF]/10 text-[#287BFF] text-xs font-bold uppercase tracking-wider mb-3">
-            Interactive Product Demo
+            See How Study Hub Works
           </div>
           <h2
             className="text-4xl sm:text-5xl font-normal text-[#062B3D] tracking-tight"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Experience Study Hub before you create an account.
+            Experience Study Hub before signing up.
           </h2>
           <p className="text-base text-slate-600 mt-3">
-            Click through our main tools to see how Study Hub simplifies your daily preparation.
+            Click through our main tools to see how Study Hub brings clarity to your daily routine.
           </p>
         </div>
 
@@ -79,13 +81,26 @@ export const InteractiveProductDemo: React.FC = () => {
               <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              <span className="ml-2 font-mono text-[11px] text-slate-400">studyhub-demo.app / {activeTab}</span>
+              <span className="ml-2 font-mono text-[11px] text-slate-400">studyhub.app / demo / {activeTab}</span>
             </div>
             
-            {/* Prominent Label as required */}
-            <span className="px-3 py-1 rounded-full bg-[#287BFF]/20 text-[#5CE1E6] font-semibold text-[11px] border border-[#287BFF]/30">
-              Interactive preview
-            </span>
+            {/* Prominent Label & Pin 10 Micro-interaction Visual */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#5CE1E6]/40 shadow-sm shrink-0">
+                <video
+                  src="/assets/pinterest/actual-pin-909656824725158872.mp4"
+                  poster="/assets/pinterest/actual-pin-909656824725158872-poster.webp"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="px-3 py-1 rounded-full bg-[#287BFF]/20 text-[#5CE1E6] font-semibold text-[11px] border border-[#287BFF]/30">
+                Interactive preview
+              </span>
+            </div>
           </div>
 
           {/* Dynamic Tab Content */}
@@ -153,7 +168,7 @@ export const InteractiveProductDemo: React.FC = () => {
               >
                 <div className="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 text-xs text-slate-200 self-end max-w-xl ml-auto">
                   <p className="font-semibold text-slate-400 mb-1">Student:</p>
-                  <p className="text-sm">Explain TCP Congestion Control simply with an example.</p>
+                  <p className="text-sm">Explain TCP Congestion Control simply.</p>
                 </div>
 
                 <div className="bg-[#062B3D] rounded-2xl p-5 border border-[#5CE1E6]/30 text-xs text-slate-100 max-w-2xl">
@@ -162,15 +177,15 @@ export const InteractiveProductDemo: React.FC = () => {
                     <span className="font-bold text-[#5CE1E6]">StudyMate AI:</span>
                   </div>
                   <p className="text-sm leading-relaxed text-slate-200">
-                    Think of TCP congestion control like driving a car on a highway:
+                    Think of the network like a highway:
                   </p>
                   <ul className="list-disc list-inside mt-2 space-y-1.5 text-slate-300 text-xs">
                     <li><strong className="text-white">Slow Start:</strong> Start slow, then double speed as long as the road is clear.</li>
-                    <li><strong className="text-white">Congestion Avoidance:</strong> When traffic increases, increase speed linearly (+1 packet per round-trip).</li>
-                    <li><strong className="text-white">Fast Recovery:</strong> If a packet drops, immediately drop window size to relieve network congestion.</li>
+                    <li><strong className="text-white">Congestion Avoidance:</strong> Increase speed linearly (+1 packet per round trip).</li>
+                    <li><strong className="text-white">Fast Recovery:</strong> Drop window size on packet loss to clear traffic instantly.</li>
                   </ul>
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>💡 Ask a follow-up question or practice numerical problems</span>
+                    <span>💡 Ask a follow-up question or generate numerical practice</span>
                     <button
                       onClick={() => navigate('/signup')}
                       className="text-[#5CE1E6] font-semibold hover:underline flex items-center gap-1"
@@ -244,7 +259,7 @@ export const InteractiveProductDemo: React.FC = () => {
               </motion.div>
             )}
 
-            {/* TAB 4: MOCK TEST */}
+            {/* TAB 4: MOCK TESTS */}
             {activeTab === 'mock' && (
               <motion.div
                 key="mock-demo"
@@ -339,6 +354,50 @@ export const InteractiveProductDemo: React.FC = () => {
                     <Eye className="w-3.5 h-3.5" />
                     <span>{cardFlipped ? 'Click to view question' : 'Click to reveal answer'}</span>
                   </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* TAB 6: FOCUS ROOM */}
+            {activeTab === 'focus' && (
+              <motion.div
+                key="focus-demo"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col items-center justify-center py-6 text-center"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#287BFF]/20 text-[#5CE1E6] text-xs font-semibold mb-3 border border-[#287BFF]/30">
+                  <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <span>Pomodoro Focus Timer</span>
+                </div>
+
+                <h3 className="text-6xl sm:text-7xl font-mono font-normal text-white my-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  50:00
+                </h3>
+
+                <p className="text-sm font-semibold text-slate-300 mb-6">
+                  Computer Networks • Deep Study Session
+                </p>
+
+                <div className="flex items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setFocusRunning(!focusRunning)}
+                    className="px-8 py-3 rounded-full bg-[#287BFF] hover:bg-[#287BFF]/90 text-white font-bold text-xs flex items-center gap-2 cursor-pointer shadow-lg"
+                  >
+                    {focusRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
+                    <span>{focusRunning ? 'Pause Session' : 'Start Focus Timer'}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => navigate('/focus-room')}
+                    className="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold cursor-pointer border border-slate-700"
+                  >
+                    Enter Full Focus Room →
+                  </button>
                 </div>
               </motion.div>
             )}

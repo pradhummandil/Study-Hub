@@ -1,6 +1,6 @@
 // src/components/layout/MobileNav.tsx
 import { Link, useLocation } from 'react-router-dom';
-import { Home, LayoutDashboard, BookOpen, Bot, Users } from 'lucide-react';
+import { Home, LayoutDashboard, BookOpen, Bot, Video } from 'lucide-react';
 
 export function MobileNav() {
   const location = useLocation();
@@ -13,9 +13,9 @@ export function MobileNav() {
   const navs = [
     { label: 'Home', path: '/', icon: Home },
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-    { label: 'Study', path: '/practice', icon: BookOpen },
+    { label: 'Videos', path: '/video-learning', icon: Video },
     { label: 'AI', path: '/study-ai', icon: Bot },
-    { label: 'Community', path: '/community', icon: Users },
+    { label: 'Study', path: '/practice', icon: BookOpen },
   ];
 
   return (

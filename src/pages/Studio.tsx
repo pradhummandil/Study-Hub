@@ -269,6 +269,15 @@ export default function Studio() {
           Official question papers, roadmaps, and templates — free, direct PDF links.
         </p>
 
+        {/* Actual Pin 3 Image Frame */}
+        <div className="mt-6 mx-auto max-w-[240px] rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[2/3] max-h-[280px] flex items-center justify-center">
+          <img
+            src="/assets/pinterest/actual-pin-203858320627823184.webp"
+            alt="Knowledge Library Brain Bookshelf Visual"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         {/* Live Dataset Counts Bar */}
         {!dataLoading && resources.length > 0 && (
           <div className="animate-fade-rise-delay-2 flex items-center justify-center gap-4 mt-6 flex-wrap text-xs text-muted-foreground">

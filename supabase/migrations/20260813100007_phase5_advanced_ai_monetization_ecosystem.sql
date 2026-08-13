@@ -169,18 +169,27 @@ CREATE TABLE IF NOT EXISTS public.feature_flags (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Seed default feature flags
-INSERT INTO public.feature_flags (flag_key, enabled, description)
-VALUES
-  ('advanced_tutor', true, 'Enable Socratic mode & Tutor persona controls'),
-  ('rag', true, 'Enable StudyMate RAG knowledge retrieval'),
-  ('voice_mode', true, 'Enable AI Voice study mode'),
-  ('exam_simulator', true, 'Enable realistic exam simulator'),
-  ('billing', true, 'Enable subscriptions & entitlement checks'),
-  ('referrals', true, 'Enable student referral engine'),
-  ('mentor_portal', true, 'Enable Mentor portal dashboard'),
-  ('institution_mode', true, 'Enable Multi-tenant institution mode')
-ON CONFLICT (flag_key) DO UPDATE SET enabled = EXCLUDED.enabled;
+ALTER TABLE public.feature_flags ADD COLUMN IF NOT EXISTS flag_key TEXT;
+ALTER TABLE public.feature_flags ADD COLUMN IF NOT EXISTS enabled BOOLEAN DEFAULT TRUE;
+ALTER TABLE public.feature_flags ADD COLUMN IF NOT EXISTS target_roles TEXT[] DEFAULT '{all}';
+
+-- Seed default feature flags safely
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'feature_flags' AND column_name = 'flag_key') THEN
+    INSERT INTO public.feature_flags (key, flag_key, enabled, description)
+    VALUES
+      ('advanced_tutor', 'advanced_tutor', true, 'Enable Socratic mode & Tutor persona controls'),
+      ('rag', 'rag', true, 'Enable StudyMate RAG knowledge retrieval'),
+      ('voice_mode', 'voice_mode', true, 'Enable AI Voice study mode'),
+      ('exam_simulator', 'exam_simulator', true, 'Enable realistic exam simulator'),
+      ('billing', 'billing', true, 'Enable subscriptions & entitlement checks'),
+      ('referrals', 'referrals', true, 'Enable student referral engine'),
+      ('mentor_portal', 'mentor_portal', true, 'Enable Mentor portal dashboard'),
+      ('institution_mode', 'institution_mode', true, 'Enable Multi-tenant institution mode')
+    ON CONFLICT DO NOTHING;
+  END IF;
+END $$;
 
 -- 8. Enable Row Level Security (RLS)
 ALTER TABLE public.knowledge_documents ENABLE ROW LEVEL SECURITY;

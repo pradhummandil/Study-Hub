@@ -75,11 +75,37 @@ export default function Practice() {
           className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Practice Previous Questions
+          Practice what matters.
         </h1>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
-          Official PYQs with step-by-step verified explanations.
+          Official PYQs with step-by-step verified explanations and real exam paper filters.
         </p>
+
+        {/* Real Origin Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-[11px] font-semibold">
+          <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            ✓ Official PYQ Bank
+          </span>
+          <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+            ✓ Verified Solutions
+          </span>
+          <span className="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            ✓ Difficulty Filters
+          </span>
+        </div>
+
+        {/* Actual Pin 6 Video Frame */}
+        <div className="mt-4 mx-auto max-w-xs rounded-2xl overflow-hidden border border-emerald-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
+          <video
+            src="/assets/pinterest/actual-pin-574771971205186318.mp4"
+            poster="/assets/pinterest/actual-pin-574771971205186318-poster.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Action Bar */}
         <div className="flex justify-center gap-3 pt-2">

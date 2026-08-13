@@ -136,6 +136,19 @@ export default function About() {
                 Every feature in Study Hub is designed around one guiding core principle: <strong className="text-foreground">give students absolute clarity on what to study next.</strong>
               </p>
             </div>
+
+            {/* Supporting Visual — Pin 11 Shavrin Artwork */}
+            <div className="mt-6 pt-6 border-t border-white/10 flex items-center gap-4">
+              <img
+                src="/assets/pinterest/actual-pin-526991593908723703.webp"
+                alt="Selected Visual — Pin 526991593908723703 (What are you going to be when you grow up?)"
+                className="w-24 h-24 rounded-2xl object-cover border border-cyan-500/30 shadow-lg"
+              />
+              <div>
+                <p className="text-xs font-bold text-foreground">Shaping Student Trajectories</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Inspired by Pin 526991593908723703 — empowering learners from childhood dreams to career mastery.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import {
   LayoutDashboard, Users, BookOpen, HelpCircle, GraduationCap,
   Map, FileText, MessageSquare, Flag, Bot, Bell, BarChart3,
   Activity, Settings, ChevronLeft, ChevronRight, LogOut,
-  Shield, Menu, Zap
+  Shield, Menu, Zap, Video
 } from 'lucide-react';
 import { useAdminRole } from '../../hooks/useAdminRole';
 import { AdminGuard } from '../../components/admin/AdminGuard';
@@ -22,6 +22,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Dashboard', path: '/admin', icon: <LayoutDashboard className="w-4 h-4" />, requiredRole: 'moderator' },
   { label: 'Users', path: '/admin/users', icon: <Users className="w-4 h-4" />, requiredRole: 'admin' },
+  { label: 'Video Learning', path: '/admin/video-learning', icon: <Video className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Resources', path: '/admin/resources', icon: <BookOpen className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Question Bank', path: '/admin/questions', icon: <HelpCircle className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Exams', path: '/admin/exams', icon: <GraduationCap className="w-4 h-4" />, requiredRole: 'content_editor' },

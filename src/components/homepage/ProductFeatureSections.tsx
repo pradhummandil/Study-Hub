@@ -42,6 +42,19 @@ export const ProductFeatureSections: React.FC = () => {
             <p className="text-base text-slate-600 mt-3 leading-relaxed">
               No more switching between 10 different apps. Everything you need to learn, test, revise, and stay consistent is built right here.
             </p>
+
+            {/* Actual Pin 8 Video Feature Frame */}
+            <div className="mt-6 mx-auto max-w-sm rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-900 aspect-video flex items-center justify-center">
+              <video
+                src="/assets/pinterest/actual-pin-1041387113816400123.mp4"
+                poster="/assets/pinterest/actual-pin-1041387113816400123-poster.webp"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -353,7 +366,7 @@ export const ProductFeatureSections: React.FC = () => {
             className="text-4xl sm:text-5xl md:text-6xl font-normal text-white leading-tight mb-4 tracking-tight"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Your study journey doesn't need another tab.
+            Your study journey starts with one decision.
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed mb-10">
@@ -375,7 +388,7 @@ export const ProductFeatureSections: React.FC = () => {
               onClick={() => navigate('/exams')}
               className="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base transition-colors border border-white/20 cursor-pointer"
             >
-              Explore Study Hub
+              Explore exams →
             </button>
           </div>
         </div>

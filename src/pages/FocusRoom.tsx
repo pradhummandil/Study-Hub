@@ -154,6 +154,19 @@ export default function FocusRoom() {
         <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto mt-2 leading-relaxed">
           Join a silent study session with fellow aspirants or start your private focus block.
         </p>
+
+        {/* Actual Pin 2 Video Frame */}
+        <div className="mt-6 mx-auto max-w-xs rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[320px] flex items-center justify-center">
+          <video
+            src="/assets/pinterest/actual-pin-975521969305585422.mp4"
+            poster="/assets/pinterest/actual-pin-975521969305585422-poster.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
       {/* Live Study Rooms Section */}

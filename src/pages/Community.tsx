@@ -210,8 +210,9 @@ export default function Community() {
 
       {/* Hero Header */}
       <div className="relative z-10 px-6 pt-12 pb-8 max-w-6xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono mb-4">
           <Users className="w-3.5 h-3.5" /> Academic Community
+          <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold uppercase ml-1">Community preview</span>
         </div>
         <h1
           className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
@@ -222,6 +223,19 @@ export default function Community() {
         <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto mt-2 leading-relaxed">
           Focused academic discussions, PYQ doubt resolution, and study resources. Free of social noise.
         </p>
+
+        {/* Actual Pin 9 Video Frame */}
+        <div className="mt-4 mx-auto max-w-[200px] rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl bg-slate-950 aspect-square max-h-[180px] flex items-center justify-center">
+          <video
+            src="/assets/pinterest/actual-pin-53972895522938608.mp4"
+            poster="/assets/pinterest/actual-pin-53972895522938608-poster.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
       {/* Main Layout: Left Circles Sidebar + Right Feed */}

@@ -277,3 +277,45 @@
   background-clip: text;
   color: transparent;
 }
+
+/* Glass Card Variants */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(40, 123, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(6, 43, 61, 0.04);
+}
+
+.glass-card-dark {
+  background: rgba(6, 43, 61, 0.85);
+  border: 1px solid rgba(92, 225, 230, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Subtle Grain Overlay */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Desktop Pointer Cursor Glow */
+@media (pointer: fine) {
+  .cursor-glow {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(92, 225, 230, 0.1), transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+  }
+}
+

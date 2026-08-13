@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useStudentContext } from '../context/StudentContext';
 import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
-import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall } from 'lucide-react';
+import { LogOut, Settings, ChevronDown, LayoutDashboard, Award, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall, Video } from 'lucide-react';
 import { NotificationBellDropdown } from './notifications/NotificationBellDropdown';
 import { Logo } from './ui/Logo';
 import { fetchProfileGamification } from '../lib/profile/profileApi';
@@ -12,6 +12,7 @@ import type { StudentGamification } from '../types/ecosystem';
 const loggedInPrimaryNavItems = [
   { label: 'Dashboard', path: '/dashboard' },
   { label: 'Studio', path: '/studio' },
+  { label: 'Video Learning', path: '/video-learning' },
   { label: 'Study AI', path: '/study-ai' },
   { label: 'Roadmap', path: '/roadmap' },
   { label: 'Practice', path: '/practice' },
@@ -21,6 +22,7 @@ const loggedInPrimaryNavItems = [
 
 const publicNavItems = [
   { label: 'Home', path: '/' },
+  { label: 'Video Learning', path: '/video-learning' },
   { label: 'Studio', path: '/studio' },
   { label: 'Study AI', path: '/study-ai' },
   { label: 'Exams', path: '/exams' },
@@ -29,6 +31,7 @@ const publicNavItems = [
 ];
 
 const secondaryNavItems = [
+  { label: 'Video Learning Hub', path: '/video-learning', icon: Video },
   { label: 'Roadmap', path: '/roadmap', icon: BookOpen },
   { label: 'Practice & PYQs', path: '/practice', icon: Zap },
   { label: 'Mock Tests', path: '/mock-tests', icon: Trophy },
