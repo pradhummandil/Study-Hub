@@ -97,7 +97,7 @@ export async function fetchVideosPaginated(
     // Apply text search
     if (filters?.searchQuery && filters.searchQuery.trim()) {
       const q = filters.searchQuery.trim();
-      query = query.or(`title.ili.*${q}*,description.ili.*${q}*,channel_name.ili.*${q}*,subject.ili.*${q}*,topic.ili.*${q}*,exam.ili.*${q}*`);
+      query = query.or(`title.ilike.%${q}%,description.ilike.%${q}%,channel_name.ilike.%${q}%,subject.ilike.%${q}%,topic.ilike.%${q}%,exam.ilike.%${q}%`);
     }
 
     // Apply duration filter
@@ -233,7 +233,7 @@ export async function fetchShorts(exam?: string, category?: string): Promise<You
       query = query.ilike('exam', `%${exam}%`);
     }
     if (category && category !== 'All') {
-      query = query.or(`subject.ili.*${category}*,topic.ili.*${category}*,title.ili.*${category}*`);
+      query = query.or(`subject.ilike.%${category}%,topic.ilike.%${category}%,title.ilike.%${category}%`);
     }
     const { data, error } = await query;
     if (!error && data && data.length > 0) {
