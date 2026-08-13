@@ -140,7 +140,7 @@ export const Navbar = () => {
         }`}
       >
         {/* Logo */}
-        <Logo size="md" />
+        <Logo size="md" variant="dark" />
 
         {/* Desktop Nav with Animated Active Pill */}
         <div className="hidden md:flex items-center space-x-1.5 relative">
@@ -221,16 +221,16 @@ export const Navbar = () => {
                 <button
                   type="button"
                   onClick={() => setExamMenuOpen(!examMenuOpen)}
-                  className="bg-[#EAF2F7] rounded-full px-3 py-1 text-xs border border-[#1F5F8B]/20 text-[#1F5F8B] font-semibold flex items-center gap-1.5 hover:bg-[#1F5F8B]/10 transition-colors"
+                  className="bg-scholar/30 rounded-full px-3 py-1 text-xs border border-sage/30 text-gold font-semibold flex items-center gap-1.5 hover:bg-scholar/50 transition-colors"
                 >
-                  <Shield className="w-3.5 h-3.5 text-[#1F5F8B]" />
+                  <Shield className="w-3.5 h-3.5 text-gold" />
                   <span>{studentContext.targetExam} {studentContext.targetExamYear}</span>
-                  <ChevronDown className={`w-3 h-3 text-[#1F5F8B] transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 text-gold transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {examMenuOpen && (
-                  <div className="!absolute left-0 top-full mt-2 w-52 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise">
-                    <div className="px-3 py-1.5 text-[10px] uppercase font-semibold text-[#627083] border-b border-white/10 mb-1">
+                  <div className="!absolute left-0 top-full mt-2 w-52 rounded-2xl bg-forest backdrop-blur-xl border border-sage/20 p-2 shadow-deep z-50 animate-fade-rise">
+                    <div className="px-3 py-1.5 text-[10px] uppercase font-semibold text-sage/80 border-b border-sage/20 mb-1">
                       Switch Exam Context
                     </div>
                     {(Object.keys(EXAM_CONFIGS) as ExamCategory[]).map((eKey) => {
@@ -244,12 +244,12 @@ export const Navbar = () => {
                           }}
                           className={`w-full text-left px-3 py-2 text-xs rounded-xl transition-colors flex items-center justify-between ${
                             isSel
-                              ? 'bg-[#1F5F8B]/30 text-[#4E88B7] font-semibold border border-[#4E88B7]/30'
-                              : 'text-[#FCFBF8]/80 hover:bg-white/10'
+                              ? 'bg-scholar text-gold font-semibold border border-sage/30'
+                              : 'text-paper/80 hover:bg-scholar/30'
                           }`}
                         >
                           <span>{eKey}</span>
-                          <span className="text-[10px] text-[#627083] font-mono">
+                          <span className="text-[10px] text-sage font-mono">
                             {EXAM_CONFIGS[eKey].currentCycle}
                           </span>
                         </button>
@@ -264,12 +264,12 @@ export const Navbar = () => {
 
               {/* Level & Streak Badge */}
               {gamification && (
-                <div className="bg-[#EAF2F7] rounded-full px-3 py-1 text-xs border border-[#10233F]/08 flex items-center gap-2 font-mono text-[#172033]">
-                  <span className="text-[#D99A3D] font-bold flex items-center gap-1">
-                    <Flame className="w-3.5 h-3.5 fill-[#D99A3D]/20 text-[#D99A3D]" /> {gamification.current_streak}d
+                <div className="bg-scholar/30 rounded-full px-3 py-1 text-xs border border-sage/20 flex items-center gap-2 font-mono text-paper">
+                  <span className="text-gold font-bold flex items-center gap-1">
+                    <Flame className="w-3.5 h-3.5 fill-gold/20 text-gold" /> {gamification.current_streak}d
                   </span>
-                  <span className="text-[#627083]">|</span>
-                  <span className="text-[#1F5F8B] font-semibold">Lvl {gamification.level}</span>
+                  <span className="text-sage">|</span>
+                  <span className="text-sage font-semibold">Lvl {gamification.level}</span>
                 </div>
               )}
 
@@ -277,7 +277,7 @@ export const Navbar = () => {
               <div className="relative flex items-center h-full">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="bg-[#FCFBF8] rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border border-[#10233F]/12 hover:shadow-sm transition-all cursor-pointer focus-visible:outline-none select-none"
+                  className="bg-scholar/40 rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border border-sage/30 hover:bg-scholar/60 transition-all cursor-pointer focus-visible:outline-none select-none"
                   aria-label="User menu"
                   aria-expanded={userMenuOpen}
                 >
@@ -285,61 +285,61 @@ export const Navbar = () => {
                     <img
                       src={avatarUrl}
                       alt={fullName}
-                      className="w-7 h-7 rounded-full object-cover border border-[#10233F]/10"
+                      className="w-7 h-7 rounded-full object-cover border border-sage/40"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#1F5F8B] to-[#4E88B7] text-white font-semibold text-xs flex items-center justify-center">
+                    <div className="w-7 h-7 rounded-full bg-scholar text-gold font-semibold text-xs flex items-center justify-center border border-sage/40">
                       {initialLetter}
                     </div>
                   )}
-                  <span className="text-xs font-medium text-[#172033] tracking-wide">{firstName}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-[#627083] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
+                  <span className="text-xs font-medium text-paper tracking-wide">{firstName}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-sage transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* User Dropdown */}
                 {userMenuOpen && (
                   <div
-                    className="!absolute right-0 top-full mt-2 w-56 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise"
+                    className="!absolute right-0 top-full mt-2 w-56 rounded-2xl bg-forest backdrop-blur-xl border border-sage/20 p-2 shadow-deep z-50 animate-fade-rise"
                     role="menu"
                   >
-                    <div className="px-3 py-2 border-b border-white/10 mb-1">
-                      <p className="text-xs font-semibold text-[#FCFBF8] truncate">{fullName}</p>
-                      <p className="text-[10px] text-white/60 truncate">{user.email}</p>
+                    <div className="px-3 py-2 border-b border-sage/20 mb-1">
+                      <p className="text-xs font-semibold text-paper truncate">{fullName}</p>
+                      <p className="text-[10px] text-sage truncate">{user.email}</p>
                     </div>
                     <Link
                       to="/dashboard"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-paper hover:bg-scholar/30 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <LayoutDashboard className="w-4 h-4 text-[#4E88B7]" />
+                      <LayoutDashboard className="w-4 h-4 text-gold" />
                       Dashboard
                     </Link>
                     <Link
                       to="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-paper hover:bg-scholar/30 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <Settings className="w-4 h-4 text-[#4E88B7]" />
+                      <Settings className="w-4 h-4 text-gold" />
                       Profile & Settings
                     </Link>
                     <Link
                       to="/community"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-[#FCFBF8] hover:bg-white/10 rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs text-paper hover:bg-scholar/30 rounded-xl transition-colors"
                       role="menuitem"
                     >
-                      <Users className="w-4 h-4 text-[#FCDAB7]" />
+                      <Users className="w-4 h-4 text-terracotta" />
                       Study Circles
                     </Link>
-                    <div className="my-1 border-t border-white/10" />
+                    <div className="my-1 border-t border-sage/20" />
                     <button
                       onClick={() => {
                         setUserMenuOpen(false);
                         signOut();
                       }}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-[#C95C5C] hover:bg-[#C95C5C]/10 rounded-xl transition-colors cursor-pointer"
+                      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-terracotta hover:bg-terracotta/10 rounded-xl transition-colors cursor-pointer"
                       role="menuitem"
                     >
                       <LogOut className="w-4 h-4" />

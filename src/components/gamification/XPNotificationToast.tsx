@@ -11,11 +11,12 @@ export function XPNotificationToast({ xp, message }: XPNotificationToastProps) {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-bounce-short">
-      <div className="liquid-glass rounded-full px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-500/40 shadow-xl flex items-center gap-2">
-        <Sparkles className="w-4 h-4 text-cyan-400" />
+      <div className="bg-forest rounded-full px-4 py-2 text-xs font-bold text-gold border border-sage/40 shadow-card flex items-center gap-2">
+        <Sparkles className="w-4 h-4 text-gold" />
         <span>+{xp} XP</span>
-        {message && <span className="text-[10px] text-muted-foreground font-normal">({message})</span>}
+        {message && <span className="text-[10px] text-sage font-normal">({message})</span>}
       </div>
     </div>
   );
 }
+
