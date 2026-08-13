@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LottiePlayer } from '../ui/motion/LottiePlayer';
+import { LOTTIE_ASSET_REGISTRY } from '../../config/lottie-assets';
 
 interface StudyHubStartupAnimationProps {
   onComplete?: () => void;
@@ -22,6 +24,7 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
 
   const [isExiting, setIsExiting] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [showLogoReveal, setShowLogoReveal] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,10 +39,10 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
 
     if (!shouldShow) return;
 
-    // Safety fallback: if video doesn't end within 7 seconds, auto finish
+    // Safety fallback: if intro doesn't complete within 7.5s, force finish
     timeoutRef.current = setTimeout(() => {
       handleFinish();
-    }, 7000);
+    }, 7500);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -61,15 +64,23 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
     }, 400); // 400ms exit fade
   };
 
+  const triggerLogoThenFinish = () => {
+    setShowLogoReveal(true);
+    setTimeout(() => {
+      handleFinish();
+    }, 1200);
+  };
+
   const handleVideoEnded = () => {
-    handleFinish();
+    triggerLogoThenFinish();
   };
 
   const handleVideoError = () => {
     setVideoError(true);
+    // If video fails, try Lottie startup loader
     setTimeout(() => {
-      handleFinish();
-    }, 1500);
+      triggerLogoThenFinish();
+    }, 2000);
   };
 
   if (!shouldShow) return null;
@@ -83,11 +94,11 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[99999] bg-[#062B3D] text-white overflow-hidden select-none"
+          className="fixed inset-0 z-[99999] bg-[#10233F] text-white overflow-hidden select-none"
         >
-          {/* Full Screen Video Container - No Box, No Background Padding */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-[#062B3D]">
-            {!videoError ? (
+          {/* Full Screen Video Container - Primary Pinterest Animation */}
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-[#10233F]">
+            {!videoError && !showLogoReveal ? (
               <video
                 ref={videoRef}
                 autoPlay
@@ -103,11 +114,30 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
                 <source src="/assets/animations/studyhub-startup.mp4" type="video/mp4" />
                 <source src="/assets/animations/studyhub-startup.webm" type="video/webm" />
               </video>
-            ) : (
-              <div className="flex flex-col items-center justify-center p-8 gap-3">
-                <img src="/images/logo.png" alt="Study Hub Logo" className="h-14 w-auto object-contain animate-pulse" />
-                <p className="text-xs text-[#5CE1E6] font-medium tracking-wide">Initializing Intelligent Study Hub...</p>
+            ) : videoError && !showLogoReveal ? (
+              /* Fallback Lottie Startup Animation */
+              <div className="flex flex-col items-center justify-center p-8 gap-4 text-center">
+                <LottiePlayer
+                  src={LOTTIE_ASSET_REGISTRY.startup_loader.localPath}
+                  className="w-24 h-24"
+                />
+                <p className="text-xs text-[#4E88B7] font-semibold tracking-wider uppercase">Loading Study Hub</p>
               </div>
+            ) : (
+              /* Brand Logo Reveal Sequence */
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center justify-center p-8 gap-4 text-center"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-[#1F5F8B] flex items-center justify-center shadow-2xl border border-white/20">
+                  <span className="font-serif text-3xl font-bold text-[#F7E7D0]">S</span>
+                </div>
+                <h1 className="font-serif text-2xl md:text-3xl text-[#FCFBF8] tracking-tight">STUDY HUB</h1>
+                <p className="text-xs text-[#4E88B7] font-medium tracking-wide">Your whole study journey, in one place.</p>
+              </motion.div>
             )}
           </div>
 
@@ -115,7 +145,7 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
           <div className="absolute top-6 right-6 z-20">
             <button
               onClick={handleFinish}
-              className="px-4 py-2 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white/90 hover:text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-lg transition-all flex items-center gap-1.5"
+              className="px-4 py-2 rounded-full bg-[#10233F]/80 hover:bg-[#10233F] text-white/90 hover:text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-lg transition-all flex items-center gap-1.5"
             >
               Skip Intro →
             </button>
@@ -125,3 +155,4 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
     </AnimatePresence>
   );
 };
+

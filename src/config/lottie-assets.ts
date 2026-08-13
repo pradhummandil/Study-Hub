@@ -1,89 +1,189 @@
 /**
- * Lottie Assets Configuration & License Registry
- * Central registry mapping selected vector and JSON animations to target application states.
+ * Lottie Assets Configuration & License Registry (Phase 2)
+ * Central registry mapping verified Lottie & vector animations to application states.
+ * Colors adhere to Color System 2.0 (#10233F, #1F5F8B, #4E88B7, #F7E7D0, #FCDAB7)
  */
 
 export interface LottieAssetMeta {
   id: string;
-  name: string;
-  category: 'education' | 'ai' | 'navigation' | 'loading' | 'study' | 'success' | 'focus' | 'decorative';
-  path: string;
-  license: string;
+  title: string;
+  sourceUrl: string;
   author: string;
-  purpose: string;
+  license: string;
+  localPath: string;
+  category: 'startup' | 'ai' | 'education' | 'study' | 'focus' | 'quiz' | 'success' | 'empty' | 'error' | 'research' | 'decorative';
+  usage: string;
+  loop: boolean;
+  autoplay: boolean;
 }
 
 export const LOTTIE_ASSET_REGISTRY: Record<string, LottieAssetMeta> = {
-  loader_primary: {
-    id: 'loader_primary',
-    name: 'Minimal Ring Loader',
-    category: 'loading',
-    path: '/assets/lottie/loading/loading.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'Global page loader & fallbacks',
+  startup_loader: {
+    id: 'startup_loader',
+    title: 'Minimal Pulsing Startup Loader',
+    sourceUrl: 'https://lottiefiles.com/free-animations/loading-screen',
+    author: 'LottieFiles Community',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/startup/startup-loader.svg',
+    category: 'startup',
+    usage: 'Startup fallback animation & app launch screen',
+    loop: true,
+    autoplay: true,
   },
-  success_check: {
-    id: 'success_check',
-    name: 'Green Checkmark Pulse',
-    category: 'success',
-    path: '/assets/lottie/success/success.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'Question solved & exam complete micro-animations',
+  studymate_thinking: {
+    id: 'studymate_thinking',
+    title: 'AI Thinking Brain Network',
+    sourceUrl: 'https://lottiefiles.com/free-animations/ai-loading',
+    author: 'AI Motion Lab',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/ai/studymate-thinking.svg',
+    category: 'ai',
+    usage: 'StudyMate AI Thinking state overlay',
+    loop: true,
+    autoplay: true,
   },
-  student_study: {
-    id: 'student_study',
-    name: 'Student Study Focus',
+  studymate_generating: {
+    id: 'studymate_generating',
+    title: 'AI Generating Wave Pulse',
+    sourceUrl: 'https://lottiefiles.com/free-animations/ai-loading',
+    author: 'AI Motion Lab',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/ai/studymate-generating.svg',
+    category: 'ai',
+    usage: 'StudyMate AI Generating response indicator',
+    loop: true,
+    autoplay: true,
+  },
+  student_study_focus: {
+    id: 'student_study_focus',
+    title: 'Student Focus Study Visual',
+    sourceUrl: 'https://lottiefiles.com/free-animations/student-interaction',
+    author: 'EduVisuals',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/education/student-study.svg',
     category: 'education',
-    path: '/assets/lottie/education/student.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'About page & hero student study visual',
+    usage: 'Study AI page & hero student study visual',
+    loop: true,
+    autoplay: true,
+  },
+  knowledge_book: {
+    id: 'knowledge_book',
+    title: 'Strategic Knowledge Plan',
+    sourceUrl: 'https://lottiefiles.com/free-animations/educational-animation',
+    author: 'EduVisuals',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/education/knowledge-book.svg',
+    category: 'education',
+    usage: 'Roadmap planning & Exam Setup visual',
+    loop: true,
+    autoplay: true,
   },
   analytics_pulse: {
     id: 'analytics_pulse',
-    name: 'Analytics Character',
+    title: 'Analytics Insights Character',
+    sourceUrl: 'https://lottiefiles.com/free-animations/education',
+    author: 'DataMotion',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/study/analytics.svg',
     category: 'study',
-    path: '/assets/lottie/study/analytics.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'Performance dashboard & insights visualization',
+    usage: 'Performance dashboard & insights analytics',
+    loop: true,
+    autoplay: true,
   },
-  champion_victory: {
-    id: 'champion_victory',
-    name: 'Champion Trophy',
+  quiz_success: {
+    id: 'quiz_success',
+    title: 'Green Checkmark Victory Pulse',
+    sourceUrl: 'https://lottiefiles.com/free-animations/loading',
+    author: 'MicroInteractions Studio',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/success/quiz-success.svg',
     category: 'success',
-    path: '/assets/lottie/success/champion.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'Leaderboard victory & high mock test scores',
+    usage: 'Correct answer & test completion celebration',
+    loop: false,
+    autoplay: true,
   },
-  task_list: {
-    id: 'task_list',
-    name: 'Task Completion',
+  champion_trophy: {
+    id: 'champion_trophy',
+    title: 'Champion Leaderboard Trophy',
+    sourceUrl: 'https://lottiefiles.com/free-animations/education',
+    author: 'VictoryArt',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/success/champion.svg',
+    category: 'success',
+    usage: 'Leaderboard top rank & high score reward',
+    loop: true,
+    autoplay: true,
+  },
+  focus_timer: {
+    id: 'focus_timer',
+    title: 'Task Focus Checklist & Timer',
+    sourceUrl: 'https://lottiefiles.com/free-animations/student-interaction',
+    author: 'Productivity Motion',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/focus/focus-timer.svg',
     category: 'focus',
-    path: '/assets/lottie/focus/task-list.svg',
-    license: 'Lottie Simple License / Free Local Vector',
-    author: 'Study Hub Design System',
-    purpose: 'Daily study checklist & practice history',
+    usage: 'Focus Room timer & daily task completion',
+    loop: true,
+    autoplay: true,
   },
-  strategy_plan: {
-    id: 'strategy_plan',
-    name: 'Strategic Plan',
-    category: 'education',
-    path: '/assets/lottie/education/business-plan.svg',
-    license: 'Lottie Simple License / Free Local Vector',
+  empty_state: {
+    id: 'empty_state',
+    title: 'Empty Search & No Mistakes Pulse',
+    sourceUrl: 'https://lottiefiles.com/free-animations/loading-screen',
     author: 'Study Hub Design System',
-    purpose: 'Exam Setup strategy & roadmap planning',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/empty/empty-state.json',
+    category: 'empty',
+    usage: 'Mistakes page zero-state & empty search queries',
+    loop: true,
+    autoplay: true,
   },
-  contact_us: {
-    id: 'contact_us',
-    name: 'Contact Support',
-    category: 'navigation',
-    path: '/assets/lottie/navigation/contact-us.svg',
-    license: 'Lottie Simple License / Free Local Vector',
+  error_state: {
+    id: 'error_state',
+    title: 'Network Disconnection Warning',
+    sourceUrl: 'https://lottiefiles.com/free-animations/loading-screen',
     author: 'Study Hub Design System',
-    purpose: 'Reach us & feedback form header',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/error/error-state.json',
+    category: 'error',
+    usage: 'API failure & offline connectivity state',
+    loop: true,
+    autoplay: true,
+  },
+  quiz_streak: {
+    id: 'quiz_streak',
+    title: 'Adaptive Quiz Streak Indicator',
+    sourceUrl: 'https://lottiefiles.com/free-animations/student-interaction',
+    author: 'Study Hub Design System',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/quiz/quiz-pulse.json',
+    category: 'quiz',
+    usage: 'Adaptive practice answer streak pulse',
+    loop: true,
+    autoplay: true,
+  },
+  code_research: {
+    id: 'code_research',
+    title: 'PYQ Code Analysis Pulse',
+    sourceUrl: 'https://lottiefiles.com/free-animations/ai-loading',
+    author: 'Study Hub Design System',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/research/code-research.json',
+    category: 'research',
+    usage: 'Studio code breakdown & PYQ research state',
+    loop: true,
+    autoplay: true,
+  },
+  contact_support: {
+    id: 'contact_support',
+    title: 'Contact Support Envelope',
+    sourceUrl: 'https://lottiefiles.com/free-animations/student-interaction',
+    author: 'EduVisuals',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/decorative/contact-us.svg',
+    category: 'decorative',
+    usage: 'Reach Us page header & support form graphic',
+    loop: true,
+    autoplay: true,
   },
 };

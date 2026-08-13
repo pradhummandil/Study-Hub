@@ -1,10 +1,53 @@
-import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles, BookOpen, Target, CheckCircle2, Clock, Zap } from 'lucide-react';
 import { MOTION_TOKENS } from '../../lib/motion/tokens';
 import { MagneticButton } from '../ui/motion/MagneticButton';
 import { HoverCard } from '../ui/motion/HoverCard';
+
+const ROTATING_PHRASES = [
+  "Study smarter.",
+  "Practice with purpose.",
+  "Revise with confidence.",
+  "Know what to do next."
+];
+
+const RotatingStatement: React.FC<{ shouldReduceMotion?: boolean }> = ({ shouldReduceMotion }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % ROTATING_PHRASES.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [shouldReduceMotion]);
+
+  if (shouldReduceMotion) {
+    return (
+      <span className="text-lg font-medium text-[#1F5F8B]">
+        {ROTATING_PHRASES[0]}
+      </span>
+    );
+  }
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={ROTATING_PHRASES[index]}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="block text-lg sm:text-xl font-medium text-[#1F5F8B]"
+      >
+        {ROTATING_PHRASES[index]}
+      </motion.span>
+    </AnimatePresence>
+  );
+};
+
 
 export const HeroSectionV2: React.FC = () => {
   const navigate = useNavigate();
@@ -100,7 +143,7 @@ export const HeroSectionV2: React.FC = () => {
 
             {/* Line Reveal Headline */}
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-[#10233F] mb-6 overflow-hidden"
+              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-[#10233F] mb-4 overflow-hidden"
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
               <span className="block overflow-hidden py-0.5">
@@ -133,6 +176,12 @@ export const HeroSectionV2: React.FC = () => {
                 </motion.span>
               </span>
             </h1>
+
+            {/* Phase L — Secondary Rotating Statement */}
+            <div className="h-8 mb-6 overflow-hidden relative w-full">
+              <RotatingStatement shouldReduceMotion={Boolean(shouldReduceMotion)} />
+            </div>
+
 
             {/* Paragraph Reveal */}
             <motion.p
