@@ -135,8 +135,8 @@ export const Navbar = () => {
       <nav
         className={`relative z-40 flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
           isScrolled
-            ? 'h-[68px] bg-[#FCFBF8]/92 backdrop-blur-xl shadow-[0_8px_24px_rgba(16,35,63,0.06)] border-b border-[#10233F]/10 rounded-b-2xl'
-            : 'h-[88px] bg-transparent'
+            ? 'h-[68px] bg-forest/95 backdrop-blur-xl shadow-card border-b border-forest/20 text-paper rounded-b-2xl'
+            : 'h-[88px] bg-forest text-paper'
         }`}
       >
         {/* Logo */}
@@ -152,14 +152,14 @@ export const Navbar = () => {
                 to={path}
                 className={`relative px-3.5 py-1.5 text-sm transition-colors rounded-full focus-visible:outline-none ${
                   active
-                    ? 'text-[#1F5F8B] font-semibold'
-                    : 'text-[#3D4A5A] hover:text-[#10233F] font-medium'
+                    ? 'text-gold font-semibold'
+                    : 'text-sage hover:text-paper font-medium'
                 }`}
               >
                 {active && (
                   <motion.div
                     layoutId="navbar-active-pill"
-                    className="absolute inset-0 bg-[#1F5F8B]/10 rounded-full border border-[#1F5F8B]/20 pointer-events-none"
+                    className="absolute inset-0 bg-scholar/40 rounded-full border border-sage/30 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                   />
                 )}
@@ -176,18 +176,18 @@ export const Navbar = () => {
                 onClick={() => setMoreMenuOpen(!moreMenuOpen)}
                 className={`text-sm transition-colors flex items-center gap-1.5 focus-visible:outline-none py-1.5 px-3 rounded-full cursor-pointer ${
                   moreMenuOpen || isSecondaryActive
-                    ? 'text-[#1F5F8B] font-semibold bg-[#1F5F8B]/10'
-                    : 'text-[#3D4A5A] hover:text-[#10233F] font-medium'
+                    ? 'text-gold font-semibold bg-scholar/40'
+                    : 'text-sage hover:text-paper font-medium'
                 }`}
                 aria-label="More features menu"
                 aria-expanded={moreMenuOpen}
               >
                 <span>More</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-[#1F5F8B]' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-gold' : ''}`} />
               </button>
 
               {moreMenuOpen && (
-                <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#10233F] backdrop-blur-xl border border-white/12 p-2 shadow-2xl z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
+                <div className="!absolute left-0 top-full mt-2 w-64 rounded-2xl bg-forest backdrop-blur-xl border border-sage/20 p-2 shadow-deep z-50 animate-fade-rise max-h-[calc(100vh-110px)] overflow-y-auto custom-scrollbar">
                   {secondaryNavItems.map(({ label, path, icon: Icon }) => (
                     <Link
                       key={label}
@@ -195,11 +195,11 @@ export const Navbar = () => {
                       onClick={() => setMoreMenuOpen(false)}
                       className={`flex items-center gap-2.5 px-3 py-2.5 text-xs rounded-xl transition-colors ${
                         isActive(path)
-                          ? 'bg-[#1F5F8B]/30 text-[#4E88B7] font-semibold border border-[#4E88B7]/30'
-                          : 'text-[#FCFBF8]/80 hover:bg-white/10 hover:text-white'
+                          ? 'bg-scholar text-gold font-semibold border border-sage/30'
+                          : 'text-sage hover:bg-scholar/30 hover:text-paper'
                       }`}
                     >
-                      <Icon className="w-4 h-4 text-[#4E88B7] shrink-0" />
+                      <Icon className="w-4 h-4 text-gold shrink-0" />
                       <span>{label}</span>
                     </Link>
                   ))}
@@ -208,6 +208,7 @@ export const Navbar = () => {
             </div>
           )}
         </div>
+
 
         {/* Desktop Auth / Action Area */}
         <div className="hidden md:flex items-center space-x-3 relative h-10" ref={menuRef}>

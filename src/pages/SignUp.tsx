@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Eye, EyeOff, User as UserIcon, Mail, Lock, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, User as UserIcon, Mail, Lock, Loader2, ArrowRight, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { AuthLayout } from '../components/AuthLayout';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'framer-motion';
 
 const GoogleIcon = () => (
   <svg width="18" height="18" viewBox="0 0 48 48">
@@ -102,103 +103,173 @@ export default function SignUp() {
     <AuthLayout>
       <Helmet>
         <title>Sign Up — Study Hub</title>
-        <meta name="description" content="Create a free Study Hub account to save your study focus progress and custom roadmaps." />
+        <meta name="description" content="Create a free Study Hub account to access personalized study roadmaps and AI tutoring." />
       </Helmet>
 
-      <div className="text-center mb-8 max-w-lg mx-auto">
-        <h1
-          className="text-5xl md:text-6xl text-white mb-4 tracking-tight font-normal leading-tight"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* LEFT COLUMN: 48% (6 cols on lg) */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col justify-center space-y-6 max-w-lg mx-auto lg:mx-0 w-full"
         >
-          Built for the curious.
-        </h1>
-        <p className="text-white/70 text-sm">
-          Free forever. No credit card.
-        </p>
-      </div>
-
-      <div className="liquid-glass rounded-3xl p-8 max-w-md w-full shadow-2xl">
-        {error && (
-          <div className="liquid-glass rounded-xl px-4 py-3 text-red-300 text-sm mb-6 border border-red-500/20 text-center animate-fade-rise">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
-            <UserIcon className="w-5 h-5 text-white/40 shrink-0" />
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              placeholder="Full name"
-              className="bg-transparent text-white placeholder:text-white/40 text-base focus:outline-none w-full"
-            />
+          <div className="flex items-center gap-2">
+            <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-terracotta/10 text-terracotta border border-terracotta/20 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" /> Start Free Today
+            </span>
           </div>
 
-          <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
-            <Mail className="w-5 h-5 text-white/40 shrink-0" />
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email address"
-              className="bg-transparent text-white placeholder:text-white/40 text-base focus:outline-none w-full"
-            />
+          <div className="space-y-2">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-ink font-normal tracking-tight leading-tight">
+              Built for the ambitious.
+            </h1>
+            <p className="text-base text-muted">
+              Create your intelligent workspace in seconds. Free forever.
+            </p>
           </div>
 
-          <div className="liquid-glass rounded-full pl-6 pr-4 py-3 flex items-center gap-3 focus-within:ring-2 focus-within:ring-white/40 transition-all">
-            <Lock className="w-5 h-5 text-white/40 shrink-0" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="bg-transparent text-white placeholder:text-white/40 text-base focus:outline-none w-full"
-            />
+          {error && (
+            <div className="p-4 rounded-xl bg-error/10 border border-error/20 text-error text-xs font-semibold">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-muted block">
+                Full Name
+              </label>
+              <div className="relative flex items-center rounded-xl bg-parchment/60 border border-forest/10 focus-within:border-scholar focus-within:ring-2 focus-within:ring-scholar/15 transition-all">
+                <UserIcon className="w-4 h-4 text-muted absolute left-4 pointer-events-none" />
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Aarav Sharma"
+                  className="w-full bg-transparent pl-11 pr-4 py-3 text-sm text-forest placeholder:text-muted/60 focus:outline-none font-medium"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-muted block">
+                Email Address
+              </label>
+              <div className="relative flex items-center rounded-xl bg-parchment/60 border border-forest/10 focus-within:border-scholar focus-within:ring-2 focus-within:ring-scholar/15 transition-all">
+                <Mail className="w-4 h-4 text-muted absolute left-4 pointer-events-none" />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="student@studyhub.edu"
+                  className="w-full bg-transparent pl-11 pr-4 py-3 text-sm text-forest placeholder:text-muted/60 focus:outline-none font-medium"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-muted block">
+                Password
+              </label>
+              <div className="relative flex items-center rounded-xl bg-parchment/60 border border-forest/10 focus-within:border-scholar focus-within:ring-2 focus-within:ring-scholar/15 transition-all">
+                <Lock className="w-4 h-4 text-muted absolute left-4 pointer-events-none" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="At least 6 characters"
+                  className="w-full bg-transparent pl-11 pr-11 py-3 text-sm text-forest placeholder:text-muted/60 focus:outline-none font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 p-1.5 text-muted hover:text-ink transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
             <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="text-white/40 hover:text-white transition-colors focus:outline-none p-1 shrink-0"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 px-6 rounded-xl bg-forest hover:bg-scholar text-paper font-bold text-sm transition-all shadow-card hover:shadow-float flex items-center justify-center gap-2 group disabled:opacity-75"
             >
-              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {loading ? (
+                <Loader2 className="w-5 h-5 animate-spin text-paper" />
+              ) : (
+                <>
+                  <span>Create Account</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
             </button>
+          </form>
+
+          <div className="flex items-center my-4">
+            <div className="flex-1 border-t border-forest/10" />
+            <span className="px-4 text-[10px] font-bold text-muted uppercase tracking-widest">or</span>
+            <div className="flex-1 border-t border-forest/10" />
           </div>
 
           <button
-            type="submit"
-            disabled={loading}
-            className="bg-white text-black rounded-full py-3.5 font-medium w-full hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 disabled:opacity-75 flex items-center justify-center gap-2 mt-2"
+            type="button"
+            onClick={handleGoogleSignIn}
+            disabled={googleLoading}
+            className="w-full py-3 px-6 rounded-xl bg-paper hover:bg-parchment/80 border border-forest/15 text-ink font-semibold text-xs flex items-center justify-center gap-3 transition-colors disabled:opacity-75 shadow-sm"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create account'}
+            {googleLoading ? <Loader2 className="w-4 h-4 animate-spin text-ink" /> : <GoogleIcon />}
+            <span>Continue with Google</span>
           </button>
-        </form>
 
-        <div className="flex items-center my-6">
-          <div className="flex-1 border-t border-white/10" />
-          <span className="px-4 text-xs text-white/40 uppercase tracking-widest">or</span>
-          <div className="flex-1 border-t border-white/10" />
-        </div>
+          <p className="text-xs text-muted text-center pt-2">
+            Already have an account?{' '}
+            <Link to="/login" className="text-terracotta font-bold hover:underline">
+              Log in instead
+            </Link>
+          </p>
+        </motion.div>
 
-        <button
-          type="button"
-          onClick={handleGoogleSignIn}
-          disabled={googleLoading}
-          className="liquid-glass rounded-full py-3 w-full flex items-center justify-center gap-3 text-white text-sm font-medium hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 disabled:opacity-75"
+        {/* RIGHT COLUMN: 52% (6 cols on lg) IMMERSIVE ARTWORK */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 relative hidden lg:block rounded-3xl overflow-hidden bg-forest text-paper p-8 lg:p-12 border border-forest/20 shadow-deep min-h-[580px] flex flex-col justify-between"
         >
-          {googleLoading ? <Loader2 className="w-4 h-4 animate-spin text-white" /> : <GoogleIcon />}
-          <span>Continue with Google</span>
-        </button>
+          <div className="relative z-10 space-y-4">
+            <span className="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-gold/20 text-gold border border-gold/30 inline-flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5" /> 100% Free Student Platform
+            </span>
+            <h2 className="font-serif text-3xl xl:text-4xl text-paper font-normal leading-tight">
+              Join thousands of students mastering GATE, JEE & NEET.
+            </h2>
+          </div>
 
-        <p className="text-white/60 text-sm text-center mt-6">
-          Already have an account?{' '}
-          <Link to="/login" className="text-white underline hover:text-white/90 transition-colors font-medium">
-            Log in
-          </Link>
-        </p>
+          <div className="relative z-10 py-6 my-auto space-y-4">
+            <div className="p-4 rounded-2xl bg-scholar/30 border border-sage/20 space-y-2 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-gold font-bold text-xs">
+                <CheckCircle2 className="w-4 h-4" /> Comprehensive PYQ Database
+              </div>
+              <p className="text-xs text-sage">Over 10,000+ detailed past exam questions with instant step-by-step solutions.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-scholar/30 border border-sage/20 space-y-2 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-gold font-bold text-xs">
+                <CheckCircle2 className="w-4 h-4" /> AI Tutor & Custom Roadmaps
+              </div>
+              <p className="text-xs text-sage">Dynamic study guidance tailored to your target exam date and weak areas.</p>
+            </div>
+          </div>
+
+          <div className="relative z-10 pt-4 border-t border-sage/20 flex items-center justify-between text-xs text-sage">
+            <span>Scholar Green & Forest Identity</span>
+            <span className="text-gold font-semibold">Study Hub 3.0</span>
+          </div>
+        </motion.div>
       </div>
     </AuthLayout>
   );

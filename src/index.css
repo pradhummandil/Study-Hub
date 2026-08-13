@@ -1,3 +1,4 @@
+@import './styles/design-tokens.css';
 @import './styles/tokens.css';
 @import './styles/design-system.css';
 @import './styles/typography.css';
@@ -8,26 +9,26 @@
 
 @layer base {
   :root {
-    --background: var(--color-paper-white);
-    --foreground: var(--color-ink);
-    --muted-foreground: var(--color-muted);
-    --primary: var(--color-brand-blue);
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --muted-foreground: var(--muted);
+    --primary: var(--scholar);
     --primary-foreground: #ffffff;
-    --secondary: var(--color-surface-mist);
-    --muted: var(--color-surface-mist);
-    --accent: var(--color-warm-cream);
-    --border: var(--border-default);
-    --input: var(--color-surface-mist);
+    --secondary: var(--parchment);
+    --muted: var(--parchment);
+    --accent: var(--terracotta);
+    --border: rgba(24, 26, 25, 0.1);
+    --input: var(--parchment);
 
-    --font-display: 'Instrument Serif', serif;
+    --font-display: 'Instrument Serif', Georgia, serif;
     --font-sans: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
   }
 
   body {
     font-family: var(--font-body);
-    background-color: var(--color-paper-white);
-    color: var(--color-ink);
+    background-color: var(--paper);
+    color: var(--ink);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -38,10 +39,11 @@
   }
 
   ::selection {
-    background: rgba(31, 95, 139, 0.2);
-    color: var(--color-ink);
+    background: rgba(199, 107, 74, 0.2);
+    color: var(--ink);
   }
 }
+
 
 /* Liquid Glass Effect */
 .liquid-glass {
@@ -126,32 +128,33 @@
 
 /* ── Accent colour system ─────────────────────────────────────── */
 :root {
-  --accent-gradient-start: #1F5F8B;
-  --accent-gradient-end:   #4E88B7;
+  --accent-gradient-start: #1F473B;
+  --accent-gradient-end:   #5C7A6D;
 }
 
 /* Gradient text — key word emphasis */
 .text-gradient-accent {
-  background: linear-gradient(135deg, #1F5F8B 0%, #4E88B7 100%);
+  background: linear-gradient(135deg, #1F473B 0%, #C76B4A 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Primary CTA variant — Brand Deep Blue to Soft Blue */
+/* Primary CTA variant — Scholar Green to Sage */
 .gradient-cta {
   position: relative;
-  background: linear-gradient(135deg, #1F5F8B 0%, #4E88B7 100%);
+  background: linear-gradient(135deg, #1F473B 0%, #2A5A4B 100%);
   color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 12px 30px rgba(31, 95, 139, 0.20);
+  box-shadow: 0 12px 30px rgba(31, 71, 59, 0.20);
   transition: box-shadow 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 .gradient-cta:hover {
-  box-shadow: 0 16px 36px rgba(31, 95, 139, 0.32);
+  box-shadow: 0 16px 36px rgba(31, 71, 59, 0.32);
   transform: translateY(-2px);
   filter: brightness(1.06);
 }
+
 
 /* Ambient glow orb — warm restrained glow */
 .ambient-glow {

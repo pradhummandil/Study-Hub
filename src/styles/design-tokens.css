@@ -1,0 +1,76 @@
+/* Study Hub Phase 3 — Design Tokens (Source of Truth) */
+
+:root {
+  /* Primary Brand Palette */
+  --forest:          #10261F;
+  --scholar:         #1F473B;
+  --sage:            #5C7A6D;
+  --paper:           #F5F0E8;
+  --parchment:       #E8DDCC;
+  --terracotta:      #C76B4A;
+  --gold:            #D7A84A;
+  --ink:             #181A19;
+  --muted:           #6C706D;
+
+  /* Semantic Feedback */
+  --success:         #4D8A6A;
+  --warning:         #C4903B;
+  --error:           #B9564D;
+
+  /* Legacy Design System Aliases (Mapped to Phase 3 System) */
+  --color-brand-navy:      var(--forest);
+  --color-brand-blue:      var(--scholar);
+  --color-brand-soft-blue: var(--sage);
+  --color-surface-mist:    var(--parchment);
+  --color-paper-white:     var(--paper);
+  --color-warm-cream:      var(--parchment);
+  --color-soft-peach:      #E6C8B5;
+
+  --color-ink:             var(--ink);
+  --color-ink-body:        #2D302E;
+  --color-muted:           var(--muted);
+
+  --color-success:         var(--success);
+  --color-warning:         var(--warning);
+  --color-error:           var(--error);
+
+  /* Radii */
+  --radius-sm:             8px;
+  --radius-md:             14px;
+  --radius-lg:             20px;
+  --radius-xl:             28px;
+  --radius-pill:           9999px;
+
+  /* Shadows */
+  --shadow-card:           0 12px 32px -8px rgba(16, 38, 31, 0.08);
+  --shadow-float:          0 20px 48px -12px rgba(16, 38, 31, 0.14);
+  --shadow-deep:           0 32px 80px -20px rgba(16, 38, 31, 0.22);
+
+  /* Easing curves */
+  --ease-ui:               cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial:        cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-cinematic:        cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Fonts */
+  --font-display:          'Instrument Serif', Georgia, serif;
+  --font-body:             'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Texture Grain Utility */
+.bg-paper-grain {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(24, 26, 25, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.bg-parchment-grain {
+  background-color: var(--parchment);
+  background-image: radial-gradient(rgba(24, 26, 25, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.bg-forest-grain {
+  background-color: var(--forest);
+  background-image: radial-gradient(rgba(245, 240, 232, 0.04) 1px, transparent 0);
+  background-size: 28px 28px;
+}

@@ -143,7 +143,7 @@ export const HeroSectionV2: React.FC = () => {
 
             {/* Line Reveal Headline */}
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-[#10233F] mb-4 overflow-hidden"
+              className="text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.02] tracking-[-1.5px] text-ink mb-4 overflow-hidden"
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
               <span className="block overflow-hidden py-0.5">
@@ -170,7 +170,7 @@ export const HeroSectionV2: React.FC = () => {
                     delay: MOTION_TOKENS.heroSequence.headlineLine2 / 1000,
                     ease: MOTION_TOKENS.easing.editorialText,
                   }}
-                  className="inline-block text-[#1F5F8B] underline decoration-[#FCDAB7] decoration-wavy decoration-2"
+                  className="inline-block text-terracotta underline decoration-gold decoration-wavy decoration-2"
                 >
                   in one place.
                 </motion.span>
@@ -192,7 +192,7 @@ export const HeroSectionV2: React.FC = () => {
                 delay: MOTION_TOKENS.heroSequence.paragraph / 1000,
                 ease: MOTION_TOKENS.easing.easeOut,
               }}
-              className="text-base sm:text-lg text-[#3D4A5A] max-w-xl leading-relaxed mb-8 font-sans"
+              className="text-base sm:text-lg text-muted max-w-xl leading-relaxed mb-8 font-sans"
             >
               Learn, practice, revise, prepare and get guidance from StudyMate — around the exam,
               subjects and goals that matter to you.
@@ -212,10 +212,7 @@ export const HeroSectionV2: React.FC = () => {
               {/* Primary CTA */}
               <MagneticButton
                 onClick={() => navigate('/signup')}
-                className="w-full sm:w-auto px-8 py-4 rounded-full text-white text-sm font-semibold shadow-lg shadow-[#1F5F8B]/20 hover:shadow-xl hover:shadow-[#1F5F8B]/30 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group"
-                style={{
-                  background: 'linear-gradient(135deg, #1F5F8B 0%, #4E88B7 100%)',
-                }}
+                className="w-full sm:w-auto px-8 py-4 rounded-xl text-paper text-sm font-semibold shadow-card hover:shadow-float transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group bg-scholar hover:bg-forest"
               >
                 <span>Start my study journey</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -225,11 +222,12 @@ export const HeroSectionV2: React.FC = () => {
               <button
                 type="button"
                 onClick={scrollToExplore}
-                className="w-full sm:w-auto px-7 py-4 rounded-full bg-[#FCFBF8] border border-[#10233F]/12 text-[#10233F] text-sm font-medium hover:bg-[#EAF2F7] transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-paper border border-forest/15 text-ink text-sm font-medium hover:bg-parchment transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
               >
                 Explore Study Hub
               </button>
             </motion.div>
+
 
             {/* Verified Feature Badges */}
             <motion.div

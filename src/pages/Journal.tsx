@@ -139,17 +139,17 @@ export default function Journal() {
 
       {/* Hero Header */}
       <div className="relative z-10 px-6 pt-16 pb-8 max-w-4xl mx-auto text-center font-sans">
-        <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-4 border border-cyan-500/20">
+        <span className="text-xs uppercase tracking-widest text-terracotta font-semibold bg-terracotta/10 px-4 py-1.5 rounded-full inline-block mb-4 border border-terracotta/20">
           The Study Hub Journal
         </span>
         <h1
-          className="animate-fade-rise text-4xl sm:text-6xl lg:text-7xl font-normal leading-[0.98] tracking-[-1.5px] text-foreground"
+          className="animate-fade-rise text-4xl sm:text-6xl lg:text-7xl font-normal leading-[0.98] tracking-[-1.5px] text-ink"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
           Learn smarter. Think deeper.{' '}
-          <span className="text-gradient-accent">Keep going.</span>
+          <span className="italic text-terracotta">Keep going.</span>
         </h1>
-        <p className="animate-fade-rise-delay text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed font-sans">
+        <p className="animate-fade-rise-delay text-muted text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed font-sans">
           Ideas, stories and systems for students who want to learn with intention. Real stories, verified topper strategies, study science, and educator journeys.
         </p>
       </div>
@@ -169,17 +169,18 @@ export default function Journal() {
 
           {/* Search Input */}
           <div className="relative w-full md:w-72 shrink-0">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search stories, toppers, notes..."
-              className="w-full liquid-glass rounded-full pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 border border-white/10"
+              className="w-full bg-parchment/60 rounded-full pl-10 pr-4 py-2.5 text-xs text-ink placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-scholar/20 border border-forest/10"
             />
           </div>
         </div>
       </div>
+
 
       {/* FILTERED VIEW (When user selects a category or types search query) */}
       {isFiltered ? (

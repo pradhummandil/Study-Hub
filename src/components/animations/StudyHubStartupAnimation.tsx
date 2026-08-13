@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LottiePlayer } from '../ui/motion/LottiePlayer';
-import { LOTTIE_ASSET_REGISTRY } from '../../config/lottie-assets';
 
 interface StudyHubStartupAnimationProps {
   onComplete?: () => void;
   forceShow?: boolean;
 }
 
+const WORDS = ['Study.', 'Practice.', 'Remember.', 'Grow.'];
+
 export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> = ({
   onComplete,
-  forceShow = false
+  forceShow = false,
 }) => {
   const [shouldShow, setShouldShow] = useState<boolean>(() => {
     if (forceShow) return true;
@@ -22,137 +22,120 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
     }
   });
 
-  const [isExiting, setIsExiting] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [showLogoReveal, setShowLogoReveal] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [showFinalLogo, setShowFinalLogo] = useState(false);
 
   useEffect(() => {
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion && !forceShow) {
-      handleFinish();
-      return;
-    }
-
     if (!shouldShow) return;
 
-    // Safety fallback: if intro doesn't complete within 7.5s, force finish
-    timeoutRef.current = setTimeout(() => {
+    // Word rotation sequence
+    const wordInterval = setInterval(() => {
+      setWordIndex((prev) => {
+        if (prev < WORDS.length - 1) {
+          return prev + 1;
+        } else {
+          clearInterval(wordInterval);
+          setShowFinalLogo(true);
+          return prev;
+        }
+      });
+    }, 450);
+
+    // Auto finish after 2.2s total duration
+    const timer = setTimeout(() => {
       handleFinish();
-    }, 7500);
+    }, 2200);
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      clearInterval(wordInterval);
+      clearTimeout(timer);
     };
-  }, [shouldShow, forceShow]);
+  }, [shouldShow]);
 
   const handleFinish = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (!forceShow) {
-        try {
-          sessionStorage.setItem('studyhub_startup_seen', 'true');
-        } catch (e) {
-          console.warn('Could not save startup state', e);
-        }
-      }
-      setShouldShow(false);
-      onComplete?.();
-    }, 400); // 400ms exit fade
-  };
-
-  const triggerLogoThenFinish = () => {
-    setShowLogoReveal(true);
-    setTimeout(() => {
-      handleFinish();
-    }, 1200);
-  };
-
-  const handleVideoEnded = () => {
-    triggerLogoThenFinish();
-  };
-
-  const handleVideoError = () => {
-    setVideoError(true);
-    // If video fails, try Lottie startup loader
-    setTimeout(() => {
-      triggerLogoThenFinish();
-    }, 2000);
+    if (!forceShow) {
+      try {
+        sessionStorage.setItem('studyhub_startup_seen', 'true');
+      } catch {}
+    }
+    setShouldShow(false);
+    onComplete?.();
   };
 
   if (!shouldShow) return null;
 
   return (
     <AnimatePresence>
-      {!isExiting && (
-        <motion.div
-          key="studyhub-startup-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.02 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[99999] bg-[#10233F] text-white overflow-hidden select-none"
-        >
-          {/* Full Screen Video Container - Primary Pinterest Animation */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-[#10233F]">
-            {!videoError && !showLogoReveal ? (
-              <video
-                ref={videoRef}
-                autoPlay
-                muted
-                playsInline
-                poster="/assets/animations/studyhub-startup-poster.webp"
-                onEnded={handleVideoEnded}
-                onError={handleVideoError}
-                onLoadedData={() => setIsLoaded(true)}
-                className="w-full h-full object-cover transition-opacity duration-500"
-                style={{ opacity: isLoaded ? 1 : 0.8 }}
-              >
-                <source src="/assets/animations/studyhub-startup.mp4" type="video/mp4" />
-                <source src="/assets/animations/studyhub-startup.webm" type="video/webm" />
-              </video>
-            ) : videoError && !showLogoReveal ? (
-              /* Fallback Lottie Startup Animation */
-              <div className="flex flex-col items-center justify-center p-8 gap-4 text-center">
-                <LottiePlayer
-                  src={LOTTIE_ASSET_REGISTRY.startup_loader.localPath}
-                  className="w-24 h-24"
-                />
-                <p className="text-xs text-[#4E88B7] font-semibold tracking-wider uppercase">Loading Study Hub</p>
-              </div>
+      <motion.div
+        key="startup-overlay"
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0, scale: 1.02 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed inset-0 z-[99999] bg-forest text-paper flex flex-col items-center justify-center select-none overflow-hidden"
+      >
+        {/* Subtle radial ambient background glow */}
+        <div className="absolute w-[450px] h-[450px] rounded-full bg-terracotta/15 blur-[120px] pointer-events-none" />
+
+        {/* Central Content Box */}
+        <div className="relative z-10 flex flex-col items-center gap-6 text-center">
+          {/* Logo Mark */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="w-14 h-14 rounded-2xl bg-scholar text-paper border border-sage/30 flex items-center justify-center font-serif text-2xl font-bold shadow-deep"
+          >
+            SH
+          </motion.div>
+
+          {/* Thin Editorial Line Draw */}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: 140 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="h-[1px] bg-gold/50 my-1"
+          />
+
+          {/* Sequential Editorial Words vs Final Brand Logo */}
+          <div className="h-16 flex items-center justify-center">
+            {!showFinalLogo ? (
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={WORDS[wordIndex]}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-serif text-3xl sm:text-4xl text-paper italic font-normal tracking-wide"
+                >
+                  {WORDS[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
             ) : (
-              /* Brand Logo Reveal Sequence */
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center justify-center p-8 gap-4 text-center"
+                className="space-y-1"
               >
-                <div className="w-16 h-16 rounded-2xl bg-[#1F5F8B] flex items-center justify-center shadow-2xl border border-white/20">
-                  <span className="font-serif text-3xl font-bold text-[#F7E7D0]">S</span>
-                </div>
-                <h1 className="font-serif text-2xl md:text-3xl text-[#FCFBF8] tracking-tight">STUDY HUB</h1>
-                <p className="text-xs text-[#4E88B7] font-medium tracking-wide">Your whole study journey, in one place.</p>
+                <h1 className="font-serif text-3xl sm:text-4xl text-paper font-normal tracking-tight">
+                  STUDY HUB
+                </h1>
+                <p className="text-xs text-gold font-medium tracking-widest uppercase">
+                  Intelligent Study Space
+                </p>
               </motion.div>
             )}
           </div>
+        </div>
 
-          {/* Top Right Skip Button */}
-          <div className="absolute top-6 right-6 z-20">
-            <button
-              onClick={handleFinish}
-              className="px-4 py-2 rounded-full bg-[#10233F]/80 hover:bg-[#10233F] text-white/90 hover:text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-lg transition-all flex items-center gap-1.5"
-            >
-              Skip Intro →
-            </button>
-          </div>
-        </motion.div>
-      )}
+        {/* Skip button */}
+        <button
+          onClick={handleFinish}
+          className="absolute top-6 right-6 px-4 py-2 rounded-full bg-scholar/40 hover:bg-scholar text-sage hover:text-paper text-xs font-semibold border border-sage/20 transition-all"
+        >
+          Skip Intro →
+        </button>
+      </motion.div>
     </AnimatePresence>
   );
 };
-
