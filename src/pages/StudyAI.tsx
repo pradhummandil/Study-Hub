@@ -576,26 +576,27 @@ export default function StudyAI() {
 
       {/* Page Layout Container */}
       <div
-        className="flex flex-col w-full h-screen min-h-screen relative overflow-hidden"
+        className="flex flex-col w-full h-screen min-h-screen relative overflow-hidden bg-forest selection:bg-terracotta/20"
         style={{
-          background: 'linear-gradient(180deg, #062B3D 0%, #041e2b 100%)',
+          background: 'linear-gradient(180deg, #10261F 0%, #0A1B16 100%)',
         }}
       >
         {/* Ambient background glow elements (z-0) */}
         <div
           className="absolute top-0 left-1/4 w-96 h-96 pointer-events-none z-0"
           style={{
-            background: 'radial-gradient(circle, rgba(92,225,230,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(199,107,74,0.12) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
         <div
           className="absolute bottom-0 right-1/4 w-80 h-80 pointer-events-none z-0"
           style={{
-            background: 'radial-gradient(circle, rgba(124,131,253,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(215,168,74,0.1) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
+
 
         {/* ── Header Control Layer (z-100) ─────────────────────────── */}
         <StudyAIHeader

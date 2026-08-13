@@ -97,23 +97,18 @@ const VideoSavedPage    = lazy(() => import('./pages/video-learning/VideoSavedPa
 const VideoCollectionPage = lazy(() => import('./pages/video-learning/VideoCollectionPage'));
 const VideoWatchPage    = lazy(() => import('./pages/video-learning/VideoWatchPage'));
 
-// Pulsing dot fallback
-const PageLoader = () => (
-  <div className="flex flex-col items-center justify-center min-h-[60vh]">
-    <div className="w-8 h-8 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin mb-3" />
-    <p className="text-xs text-muted-foreground">Study Hub — Preparing your study space...</p>
-  </div>
-);
+import { FullPageLoader } from './components/ui/FullPageLoader';
+
+// Bounded PageLoader Fallback
+const PageLoader = () => <FullPageLoader label="Study Hub — Preparing your study space..." />;
 
 // Admin loader
 const AdminLoader = () => (
-  <div className="flex items-center justify-center min-h-screen bg-[#062B3D]">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-8 h-8 rounded-full border-2 border-[#5CE1E6] border-t-transparent animate-spin" />
-      <p className="text-[#5CE1E6] text-sm">Loading admin console...</p>
-    </div>
+  <div className="flex items-center justify-center min-h-screen bg-forest text-paper">
+    <FullPageLoader label="Loading admin console..." />
   </div>
 );
+
 
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from './context/AuthContext';

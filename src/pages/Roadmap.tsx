@@ -34,16 +34,16 @@ export default function Roadmap() {
 
       {/* Header & Milestone Pathway Flow */}
       <div className="px-6 pt-12 max-w-5xl mx-auto text-center">
-        <span className="text-xs uppercase tracking-widest text-cyan-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block mb-3 border border-cyan-500/20">
+        <span className="text-xs uppercase tracking-widest text-terracotta font-semibold bg-terracotta/10 px-4 py-1.5 rounded-full inline-block mb-3 border border-terracotta/20 font-mono">
           {targetExam} Structured Pathway
         </span>
         <h1
-          className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
+          className="text-4xl sm:text-5xl font-normal text-ink tracking-tight"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
           My Study Roadmap
         </h1>
-        <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+        <p className="text-sm text-muted mt-2 max-w-md mx-auto">
           A clear, milestone-driven pathway from Foundation to Exam Mastery.
         </p>
 
@@ -52,46 +52,34 @@ export default function Roadmap() {
           {['Foundation', 'Core', 'Practice', 'Revision', 'Mock', 'Mastery'].map((stage, idx) => (
             <div key={stage} className="flex items-center gap-2 shrink-0">
               <span className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
-                idx < 3 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'bg-white/5 text-slate-400 border border-white/10'
+                idx < 3 ? 'bg-scholar/20 text-scholar border border-scholar/40' : 'bg-parchment text-muted border border-forest/10'
               }`}>
                 {stage}
               </span>
-              {idx < 5 && <span className="text-slate-500 text-xs">→</span>}
+              {idx < 5 && <span className="text-muted text-xs">→</span>}
             </div>
           ))}
         </div>
 
-        {/* Actual Pin 5 Video Frame */}
-        <div className="mt-6 mx-auto max-w-xs rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
-          <video
-            src="/assets/pinterest/actual-pin-1127025875509575308.mp4"
-            poster="/assets/pinterest/actual-pin-1127025875509575308-poster.webp"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
-
         {/* Progress Overview Bar */}
         {roadmap && (
-          <div className="liquid-glass-card rounded-2xl p-6 mt-8 max-w-2xl mx-auto border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+          <div className="bg-parchment/60 rounded-2xl p-6 mt-8 max-w-2xl mx-auto border border-forest/10 shadow-card flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
             <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest">Overall Completion</p>
-              <p className="text-2xl font-semibold text-foreground font-sans mt-0.5">
-                {roadmap.overall_progress}% <span className="text-xs font-normal text-muted-foreground">({roadmap.completed_topics} of {roadmap.total_topics} topics completed)</span>
+              <p className="text-xs text-muted uppercase tracking-widest">Overall Completion</p>
+              <p className="text-2xl font-semibold text-ink font-sans mt-0.5">
+                {roadmap.overall_progress}% <span className="text-xs font-normal text-muted">({roadmap.completed_topics} of {roadmap.total_topics} topics completed)</span>
               </p>
             </div>
-            <div className="w-full sm:w-48 bg-white/5 rounded-full h-3 overflow-hidden p-0.5 border border-white/10">
+            <div className="w-full sm:w-48 bg-paper rounded-full h-3 overflow-hidden p-0.5 border border-forest/10">
               <div
-                className="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full rounded-full transition-all duration-500"
+                className="bg-scholar h-full rounded-full transition-all duration-500"
                 style={{ width: `${roadmap.overall_progress}%` }}
               />
             </div>
           </div>
         )}
       </div>
+
 
       {/* Sections List */}
       <div className="px-6 mt-10 max-w-5xl mx-auto pb-24 space-y-8">

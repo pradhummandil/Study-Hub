@@ -68,50 +68,37 @@ export default function Practice() {
       </Helmet>
 
       <div className="px-6 pt-12 max-w-5xl mx-auto text-center space-y-4">
-        <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold liquid-glass px-4 py-1.5 rounded-full inline-block border border-emerald-500/20 font-mono">
+        <span className="text-xs uppercase tracking-widest text-terracotta font-semibold bg-terracotta/10 px-4 py-1.5 rounded-full inline-block border border-terracotta/20 font-mono">
           {exam} Verified Question Bank
         </span>
         <h1
-          className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
+          className="text-4xl sm:text-5xl font-normal text-ink tracking-tight"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
           Practice what matters.
         </h1>
-        <p className="text-sm text-muted-foreground max-w-md mx-auto">
+        <p className="text-sm text-muted max-w-md mx-auto">
           Official PYQs with step-by-step verified explanations and real exam paper filters.
         </p>
 
         {/* Real Origin Badges */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-[11px] font-semibold">
-          <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <span className="px-3 py-1 rounded-full bg-scholar/10 text-scholar border border-scholar/20">
             ✓ Official PYQ Bank
           </span>
-          <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+          <span className="px-3 py-1 rounded-full bg-terracotta/10 text-terracotta border border-terracotta/20">
             ✓ Verified Solutions
           </span>
-          <span className="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          <span className="px-3 py-1 rounded-full bg-gold/10 text-gold border border-gold/20">
             ✓ Difficulty Filters
           </span>
-        </div>
-
-        {/* Actual Pin 6 Video Frame */}
-        <div className="mt-4 mx-auto max-w-xs rounded-2xl overflow-hidden border border-emerald-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
-          <video
-            src="/assets/pinterest/actual-pin-574771971205186318.mp4"
-            poster="/assets/pinterest/actual-pin-574771971205186318-poster.webp"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
         </div>
 
         {/* Action Bar */}
         <div className="flex justify-center gap-3 pt-2">
           <Link
             to="/practice/history"
-            className="liquid-glass rounded-xl px-4 py-2 text-xs font-semibold text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/10 flex items-center gap-1.5"
+            className="bg-parchment rounded-xl px-4 py-2 text-xs font-semibold text-scholar border border-forest/10 hover:bg-parchment/80 flex items-center gap-1.5"
           >
             <History className="w-4 h-4" /> Practice History
           </Link>
@@ -120,7 +107,7 @@ export default function Practice() {
 
       {/* Practice Category Tabs */}
       <div className="px-6 mt-8 max-w-4xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl liquid-glass border border-white/10 text-xs font-medium">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl bg-parchment/60 border border-forest/10 text-xs font-medium">
           {[
             { id: 'pyqs', label: 'Official PYQs' },
             { id: 'topic', label: 'Topic Drill' },
@@ -134,8 +121,8 @@ export default function Practice() {
               onClick={() => setActiveTab(t.id as any)}
               className={`py-2.5 rounded-xl transition-all cursor-pointer ${
                 activeTab === t.id
-                  ? 'gradient-cta text-slate-950 font-semibold shadow-md'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-scholar text-paper font-bold shadow-sm'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               {t.label}
@@ -143,6 +130,7 @@ export default function Practice() {
           ))}
         </div>
       </div>
+
 
       {/* Filter & Setup Card */}
       <div className="px-6 mt-6 max-w-4xl mx-auto pb-24">

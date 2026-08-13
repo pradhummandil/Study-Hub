@@ -12,23 +12,31 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
   onComplete,
   forceShow = false,
 }) => {
-  const [shouldShow, setShouldShow] = useState<boolean>(() => {
-    if (forceShow) return true;
+  const [isReturningUser] = useState<boolean>(() => {
+    if (forceShow) return false;
     try {
-      const seen = sessionStorage.getItem('studyhub_startup_seen');
-      return !seen;
+      return !!sessionStorage.getItem('studyhub_startup_seen');
     } catch {
-      return true;
+      return false;
     }
   });
 
+  const [shouldShow, setShouldShow] = useState<boolean>(true);
   const [wordIndex, setWordIndex] = useState(0);
-  const [showFinalLogo, setShowFinalLogo] = useState(false);
+  const [showFinalLogo, setShowFinalLogo] = useState(isReturningUser);
 
   useEffect(() => {
     if (!shouldShow) return;
 
-    // Word rotation sequence
+    if (isReturningUser) {
+      // Short 400ms logo reveal for returning sessions
+      const fastTimer = setTimeout(() => {
+        handleFinish();
+      }, 400);
+      return () => clearTimeout(fastTimer);
+    }
+
+    // Full 2-second animation for new sessions
     const wordInterval = setInterval(() => {
       setWordIndex((prev) => {
         if (prev < WORDS.length - 1) {
@@ -39,18 +47,18 @@ export const StudyHubStartupAnimation: React.FC<StudyHubStartupAnimationProps> =
           return prev;
         }
       });
-    }, 450);
+    }, 350);
 
-    // Auto finish after 2.2s total duration
     const timer = setTimeout(() => {
       handleFinish();
-    }, 2200);
+    }, 2000);
 
     return () => {
       clearInterval(wordInterval);
       clearTimeout(timer);
     };
-  }, [shouldShow]);
+  }, [shouldShow, isReturningUser]);
+
 
   const handleFinish = () => {
     if (!forceShow) {

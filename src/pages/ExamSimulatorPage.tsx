@@ -35,45 +35,32 @@ export default function ExamSimulatorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#062B3D] text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-paper text-ink py-12 px-4 sm:px-6 lg:px-8 selection:bg-terracotta/20">
       <Helmet>
         <title>Adaptive Exam Simulator | Study Hub</title>
         <meta
           name="description"
-          content="Experience authentic exam environments for GATE, JEE, NEET, UPSC with section timers, negative marking, scientific calculator, and question palettes."
+          content="Experience authentic exam environments for GATE, JEE, NEET, CUET with section timers, negative marking, scientific calculator, and question palettes."
         />
       </Helmet>
 
       <div className="max-w-5xl mx-auto space-y-10">
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
-            <Shield className="w-4 h-4 text-[#5CE1E6]" /> {targetExam} Authentic Exam Engine
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/20 border border-gold/30 text-forest text-xs font-bold uppercase tracking-wider">
+            <Shield className="w-4 h-4 text-scholar" /> {targetExam} Authentic Exam Engine
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white">
+          <h1 className="text-3xl md:text-5xl font-normal font-serif text-ink" style={{ fontFamily: "'Instrument Serif', serif" }}>
             Adaptive Exam Simulator
           </h1>
-          <p className="text-slate-300 text-sm leading-relaxed">
+          <p className="text-muted text-sm leading-relaxed">
             Turn exam pressure into confidence. Practice in authentic exam environments with section timers, official calculators, and real marking schemes.
           </p>
-
-          {/* Actual Pin 4 Video Frame */}
-          <div className="mt-4 mx-auto max-w-xs rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-slate-950 aspect-[9/16] max-h-[260px] flex items-center justify-center">
-            <video
-              src="/assets/pinterest/actual-pin-998743654885257487.mp4"
-              poster="/assets/pinterest/actual-pin-998743654885257487-poster.webp"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
 
           <div className="flex justify-center pt-2">
             <button
               onClick={() => navigate('/exam-simulator/history')}
-              className="px-4 py-2 rounded-xl bg-slate-900 border border-cyan-500/30 text-cyan-300 text-xs font-bold flex items-center gap-2 hover:bg-slate-800 transition-colors"
+              className="px-4 py-2 rounded-xl bg-parchment border border-forest/10 text-scholar text-xs font-bold flex items-center gap-2 hover:bg-parchment/80 transition-colors shadow-sm"
             >
               <History className="w-4 h-4" /> View My Attempt History
             </button>
@@ -81,7 +68,7 @@ export default function ExamSimulatorPage() {
         </div>
 
         {/* Mode Selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs font-bold">
+        <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-1.5 rounded-2xl bg-parchment/60 border border-forest/10 text-xs font-bold">
           {[
             { id: 'all', label: 'All Modes' },
             { id: 'full', label: 'Full Exam' },
@@ -95,14 +82,15 @@ export default function ExamSimulatorPage() {
               onClick={() => setTestMode(m.id as any)}
               className={`py-3 rounded-xl transition-all ${
                 testMode === m.id
-                  ? 'bg-cyan-500 text-slate-950 shadow-md font-extrabold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-scholar text-paper shadow-sm font-extrabold'
+                  : 'text-muted hover:text-ink'
               }`}
             >
               {m.label}
             </button>
           ))}
         </div>
+
 
         {/* Exam Test Cards Discovery Grid */}
         {loading ? (

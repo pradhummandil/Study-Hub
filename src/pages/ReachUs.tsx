@@ -77,40 +77,29 @@ export default function ReachUs() {
 
       {/* Hero */}
       <div className="relative z-10 px-6 pt-24 pb-12 text-center max-w-4xl mx-auto">
+        <span className="text-xs uppercase tracking-widest text-terracotta font-semibold bg-terracotta/10 px-4 py-1.5 rounded-full inline-block mb-4 border border-terracotta/20">
+          Book a Guidance Session
+        </span>
         <h1
-          className="animate-fade-rise text-5xl sm:text-6xl font-normal leading-[0.95] tracking-[-2px] text-foreground"
+          className="animate-fade-rise text-5xl sm:text-6xl font-normal leading-[0.95] tracking-[-2px] text-ink"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Talk to someone who's{' '}
-          <em className="not-italic"><span className="text-gradient-accent">actually done it.</span></em>
+          Let's build a <em className="not-italic text-terracotta">better way to study.</em>
         </h1>
 
-        <p className="animate-fade-rise-delay text-muted-foreground max-w-xl mx-auto mt-6 leading-relaxed">
+        <p className="animate-fade-rise-delay text-muted max-w-xl mx-auto mt-6 leading-relaxed">
           Book a free 20-minute call. No sales pitch — just a real conversation about where you're stuck and what to do next.
         </p>
-
-        {/* Trust strip */}
-        <div className="animate-fade-rise-delay-2 flex items-center justify-center gap-0 mt-8 flex-wrap">
-          {[
-            '500+ students guided',
-            '4.9/5 average rating',
-            'Replies within 24h',
-          ].map((stat, i) => (
-            <span key={stat} className="flex items-center">
-              {i > 0 && <span className="border-l border-border h-4 mx-4" />}
-              <span className="text-xs text-muted-foreground tracking-wide uppercase">{stat}</span>
-            </span>
-          ))}
-        </div>
 
         {/* Primary booking CTA */}
         <button
           onClick={() => document.getElementById('booking-embed')?.scrollIntoView({ behavior: 'smooth' })}
-          className="animate-fade-rise-delay-2 gradient-cta rounded-full px-10 py-4 text-base mt-8 inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer"
+          className="animate-fade-rise-delay-2 rounded-xl bg-scholar text-paper px-10 py-4 text-sm font-bold mt-8 inline-flex items-center justify-center shadow-card hover:bg-forest transition-colors cursor-pointer"
         >
           Book a free call ↓
         </button>
       </div>
+
 
       {/* Trust Badges Strip */}
       <div className="animate-fade-rise-delay-2 relative z-10 max-w-3xl mx-auto px-6 mb-6">
