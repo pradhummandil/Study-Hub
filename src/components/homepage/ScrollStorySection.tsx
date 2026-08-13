@@ -35,6 +35,9 @@ export const ScrollStorySection: React.FC = () => {
   // Horizontal Scroll Moment transformation
   const horizontalX = useTransform(smoothProgress, [0.42, 0.58], ['0%', '-55%']);
 
+  // Editorial step rail progress indicator (01 to 05)
+  const activeIndex = useTransform(smoothProgress, [0, 0.2, 0.4, 0.6, 0.8, 1], [1, 2, 3, 4, 5, 5]);
+
   return (
     <div id="signature-section" ref={targetRef} className="relative bg-forest text-paper min-h-[450vh] selection:bg-terracotta/20">
       {/* Sticky Full-Viewport Camera Container */}
@@ -50,6 +53,42 @@ export const ScrollStorySection: React.FC = () => {
             <span className="w-2 h-2 rounded-full bg-terracotta animate-pulse" />
             <span>Interactive Camera Scroll</span>
           </div>
+        </div>
+
+        {/* Right Side Editorial Progress Rail */}
+        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center gap-3 font-mono text-xs">
+          {['01', '02', '03', '04', '05'].map((num, idx) => {
+            const stepNum = idx + 1;
+            return (
+              <motion.div
+                key={num}
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => {
+                  if (targetRef.current) {
+                    const top = targetRef.current.offsetTop + (idx / 4) * (targetRef.current.offsetHeight - window.innerHeight);
+                    window.scrollTo({ top, behavior: 'smooth' });
+                  }
+                }}
+              >
+                <motion.span
+                  className="font-bold transition-colors duration-300"
+                  animate={{
+                    color: Math.round(activeIndex.get()) === stepNum ? '#D4AF37' : '#769382',
+                    scale: Math.round(activeIndex.get()) === stepNum ? 1.15 : 1,
+                  }}
+                >
+                  {num}
+                </motion.span>
+                <motion.div
+                  className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                  animate={{
+                    backgroundColor: Math.round(activeIndex.get()) === stepNum ? '#D4AF37' : '#769382',
+                    scale: Math.round(activeIndex.get()) === stepNum ? 1.4 : 0.8,
+                  }}
+                />
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* ============================================================

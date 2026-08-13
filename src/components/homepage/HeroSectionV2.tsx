@@ -111,15 +111,15 @@ export const HeroSectionV2: React.FC = () => {
           {/* Left Column — Editorial Headline & Primary CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-2">
             
-            {/* Pill Badge */}
+            {/* Subtle Editorial Eyebrow */}
             <motion.div
-              initial={{ opacity: 0, y: -16 }}
+              initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-scholar/10 border border-scholar/20 text-scholar text-xs font-semibold tracking-wide mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-parchment border border-forest/10 text-scholar text-xs font-semibold tracking-wider uppercase mb-6"
             >
               <Sparkles className="w-3.5 h-3.5 text-scholar" />
-              <span>AI-Native Study Space Built For High Performers</span>
+              <span>Intelligent Study Space</span>
             </motion.div>
 
             {/* Editorial Headline */}
@@ -136,7 +136,7 @@ export const HeroSectionV2: React.FC = () => {
                     delay: MOTION_TOKENS.heroSequence.headlineLine1 / 1000,
                     ease: MOTION_TOKENS.easing.editorialText,
                   }}
-                  className="block"
+                  className="block text-ink"
                 >
                   Your whole study journey,
                 </motion.span>
@@ -172,7 +172,7 @@ export const HeroSectionV2: React.FC = () => {
                 delay: MOTION_TOKENS.heroSequence.paragraph / 1000,
                 ease: MOTION_TOKENS.easing.easeOut,
               }}
-              className="text-base sm:text-lg text-ink/80 max-w-xl leading-relaxed mb-8 font-sans"
+              className="text-base sm:text-lg text-ink/80 max-w-[560px] leading-relaxed mb-8 font-sans"
             >
               Learn, practice, revise and prepare in one calm space — with guidance that adapts to what you're studying.
             </motion.p>
@@ -190,7 +190,7 @@ export const HeroSectionV2: React.FC = () => {
             >
               <MagneticButton
                 onClick={() => navigate('/signup')}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl text-paper text-sm font-semibold shadow-card hover:shadow-float transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group bg-scholar hover:bg-forest"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl text-paper text-sm font-semibold shadow-card hover:shadow-[0_12px_28px_rgba(45,90,63,0.25)] hover:-translate-y-0.5 active:scale-98 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group bg-forest hover:bg-scholar"
               >
                 <span>Start my study journey</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -199,7 +199,7 @@ export const HeroSectionV2: React.FC = () => {
               <button
                 type="button"
                 onClick={scrollToExplore}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-paper border border-forest/15 text-ink text-sm font-medium hover:bg-parchment transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-paper border border-[#1B3022]/14 text-ink text-sm font-medium hover:bg-parchment hover:border-forest/25 transition-all duration-200 flex items-center justify-center cursor-pointer shadow-sm"
               >
                 Explore Study Hub
               </button>

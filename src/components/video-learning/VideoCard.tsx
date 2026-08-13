@@ -77,13 +77,13 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
   };
 
   const badgeColorMap: Record<string, string> = {
-    LECTURE: 'bg-[#EAF2F7] text-[#1F5F8B] border-[#1F5F8B]/20',
-    ONE_SHOT: 'bg-[#2E8B72]/10 text-[#2E8B72] border-[#2E8B72]/20',
-    PYQ: 'bg-[#F7E7D0] text-[#10233F] border-[#10233F]/10',
-    REVISION: 'bg-[#FCDAB7]/30 text-[#10233F] border-[#10233F]/10',
-    CRASH_COURSE: 'bg-[#C95C5C]/10 text-[#C95C5C] border-[#C95C5C]/20',
-    SHORT: 'bg-[#EAF2F7] text-[#1F5F8B] border-[#1F5F8B]/20',
-    STRATEGY: 'bg-[#F7E7D0] text-[#10233F] border-[#10233F]/10',
+    LECTURE: 'bg-parchment text-scholar border-scholar/20',
+    ONE_SHOT: 'bg-scholar/10 text-scholar border-scholar/30',
+    PYQ: 'bg-terracotta/10 text-terracotta border-terracotta/20',
+    REVISION: 'bg-gold/15 text-forest border-gold/30',
+    CRASH_COURSE: 'bg-terracotta/15 text-terracotta border-terracotta/30',
+    SHORT: 'bg-parchment text-scholar border-scholar/20',
+    STRATEGY: 'bg-gold/20 text-forest border-gold/30',
   };
 
   const thumbnailUrl = video.thumbnail || video.thumbnail_url || `https://i.ytimg.com/vi/${video.youtube_video_id}/hqdefault.jpg`;
@@ -100,14 +100,14 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
       onClick={() => onSelect(video)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`group relative bg-[#FCFBF8] border rounded-[20px] overflow-hidden transition-all duration-300 cursor-pointer flex flex-col justify-between ${
+      className={`group relative bg-paper border rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer flex flex-col justify-between ${
         isHovered
-          ? 'border-[#1F5F8B]/40 shadow-[0_14px_40px_rgba(16,35,63,0.08)] -translate-y-1'
-          : 'border-[#10233F]/08 shadow-sm hover:shadow-md'
+          ? 'border-scholar/40 shadow-float -translate-y-1'
+          : 'border-forest/10 shadow-card hover:shadow-float'
       }`}
     >
       {/* Thumbnail & Preview Player Area */}
-      <div className="relative aspect-video w-full overflow-hidden bg-[#10233F] rounded-[18px]">
+      <div className="relative aspect-video w-full overflow-hidden bg-forest rounded-xl">
         {showPreview ? (
           <div className="relative w-full h-full">
             <iframe
@@ -117,8 +117,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
               allow="autoplay; encrypted-media"
             />
             {/* Preview indicator badge */}
-            <div className="absolute top-2 left-2 px-2.5 py-1 rounded-full bg-[#10233F]/90 text-[#4E88B7] text-[10px] font-semibold flex items-center gap-1 backdrop-blur-md border border-[#4E88B7]/30">
-              <VolumeX className="w-3 h-3 text-[#4E88B7] animate-pulse" />
+            <div className="absolute top-2 left-2 px-2.5 py-1 rounded-full bg-forest/90 text-gold text-[10px] font-semibold flex items-center gap-1 backdrop-blur-md border border-sage/30">
+              <VolumeX className="w-3 h-3 text-gold animate-pulse" />
               <span>Preview · Muted</span>
             </div>
           </div>
@@ -127,7 +127,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
             <img
               src={thumbnailUrl}
               alt={video.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
               loading="lazy"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${video.youtube_video_id}/hqdefault.jpg`;
@@ -135,8 +135,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
             />
 
             {/* Hover Overlay Play Button */}
-            <div className="absolute inset-0 bg-[#10233F]/30 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <div className="w-12 h-12 rounded-full bg-[#1F5F8B] text-white flex items-center justify-center shadow-lg shadow-[#1F5F8B]/40 transform scale-90 group-hover:scale-100 transition-transform">
+            <div className="absolute inset-0 bg-forest/30 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-scholar text-paper flex items-center justify-center shadow-lg shadow-scholar/40 transform scale-90 group-hover:scale-100 transition-transform">
                 <Play className="w-5 h-5 fill-current ml-0.5" />
               </div>
             </div>
@@ -144,12 +144,12 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
             {/* Top Badges */}
             <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#10233F]/90 text-[#FCFBF8] backdrop-blur-md border border-white/20">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-forest/90 text-paper backdrop-blur-md border border-sage/20">
                   {video.exam}
                 </span>
                 <span
                   className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase backdrop-blur-md border ${
-                    badgeColorMap[video.video_type] || 'bg-[#10233F]/80 text-[#FCFBF8] border-white/20'
+                    badgeColorMap[video.video_type] || 'bg-forest/80 text-paper border-sage/20'
                   }`}
                 >
                   {video.video_type.replace('_', ' ')}
@@ -162,8 +162,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
                 title={saved ? 'Remove from Saved' : 'Save Video'}
                 className={`pointer-events-auto p-2 rounded-full backdrop-blur-md transition-all ${
                   saved
-                    ? 'bg-[#172033] text-[#FCDAB7] shadow-md'
-                    : 'bg-[#10233F]/80 text-[#FCFBF8] hover:text-[#FCDAB7] hover:bg-[#10233F]'
+                    ? 'bg-forest text-gold shadow-md'
+                    : 'bg-forest/80 text-paper hover:text-gold hover:bg-forest'
                 }`}
               >
                 <Heart className={`w-3.5 h-3.5 ${saved ? 'fill-current' : ''}`} />
@@ -171,8 +171,8 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
             </div>
 
             {/* Duration Pill */}
-            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-[#10233F]/90 text-[#FCFBF8] text-[11px] font-mono font-medium flex items-center gap-1 backdrop-blur-sm">
-              <Clock className="w-3 h-3 text-[#4E88B7]" />
+            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-forest/90 text-paper text-[11px] font-mono font-medium flex items-center gap-1 backdrop-blur-sm">
+              <Clock className="w-3 h-3 text-gold" />
               {video.duration || 'Video'}
             </div>
           </>
@@ -180,9 +180,9 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
 
         {/* Watch Progress Bar */}
         {watchState && watchState.progress_percent > 0 && (
-          <div className="absolute bottom-0 inset-x-0 h-1.5 bg-[#10233F] z-10">
+          <div className="absolute bottom-0 inset-x-0 h-1.5 bg-forest z-10">
             <div
-              className={`h-full ${watchState.completed ? 'bg-[#2E8B72]' : 'bg-[#1F5F8B]'}`}
+              className={`h-full ${watchState.completed ? 'bg-scholar' : 'bg-gold'}`}
               style={{ width: `${watchState.progress_percent}%` }}
             />
           </div>
@@ -190,9 +190,9 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
       </div>
 
       {/* Content Info Area */}
-      <div className="p-4 flex-1 flex flex-col justify-between bg-[#FCFBF8]">
+      <div className="p-4 flex-1 flex flex-col justify-between bg-paper">
         <div>
-          <div className="flex items-center justify-between text-xs text-[#1F5F8B] font-semibold mb-1">
+          <div className="flex items-center justify-between text-xs text-scholar font-semibold mb-1">
             <span className="truncate max-w-[200px]">{video.subject} • {video.topic}</span>
             
             {/* Options Menu Trigger */}
@@ -202,7 +202,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
                   e.stopPropagation();
                   setShowMenu(!showMenu);
                 }}
-                className="p-1 rounded-full text-[#627083] hover:text-[#172033] hover:bg-[#EAF2F7] transition-colors"
+                className="p-1 rounded-full text-muted hover:text-ink hover:bg-parchment transition-colors"
                 title="More options"
               >
                 <MoreVertical className="w-4 h-4" />
@@ -212,41 +212,41 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
               {showMenu && (
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute right-0 top-6 w-48 bg-[#FCFBF8] rounded-xl shadow-xl border border-[#10233F]/12 py-1 z-30 text-xs text-[#172033]"
+                  className="absolute right-0 top-6 w-48 bg-paper rounded-xl shadow-xl border border-forest/10 py-1 z-30 text-xs text-ink"
                 >
                   <button
                     onClick={() => {
                       setShowMenu(false);
                       onSelect(video);
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-[#EAF2F7] flex items-center gap-2"
+                    className="w-full px-3 py-2 text-left hover:bg-parchment flex items-center gap-2"
                   >
-                    <Play className="w-3.5 h-3.5 text-[#1F5F8B]" /> Watch Lesson
+                    <Play className="w-3.5 h-3.5 text-scholar" /> Watch Lesson
                   </button>
                   <button
                     onClick={() => {
                       setShowMenu(false);
                       navigate(`/practice?topic=${encodeURIComponent(video.topic)}`);
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-[#EAF2F7] flex items-center gap-2"
+                    className="w-full px-3 py-2 text-left hover:bg-parchment flex items-center gap-2"
                   >
-                    <BrainCircuit className="w-3.5 h-3.5 text-[#4E88B7]" /> Practice Topic
+                    <BrainCircuit className="w-3.5 h-3.5 text-terracotta" /> Practice Topic
                   </button>
                   <button
                     onClick={() => {
                       setShowMenu(false);
                       navigate(`/study-ai?q=${encodeURIComponent(`Explain key concepts from: ${video.title}`)}`);
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-[#EAF2F7] flex items-center gap-2"
+                    className="w-full px-3 py-2 text-left hover:bg-parchment flex items-center gap-2"
                   >
-                    <HelpCircle className="w-3.5 h-3.5 text-[#4E88B7]" /> Ask StudyMate
+                    <HelpCircle className="w-3.5 h-3.5 text-gold" /> Ask StudyMate
                   </button>
                   <a
                     href={video.source_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setShowMenu(false)}
-                    className="w-full px-3 py-2 text-left hover:bg-[#EAF2F7] flex items-center gap-2 border-t border-[#10233F]/08 text-[#627083]"
+                    className="w-full px-3 py-2 text-left hover:bg-parchment flex items-center gap-2 border-t border-forest/10 text-muted"
                   >
                     <ExternalLink className="w-3.5 h-3.5" /> Watch on YouTube
                   </a>
@@ -255,37 +255,37 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
             </div>
           </div>
 
-          <h3 className="font-semibold text-sm text-[#172033] line-clamp-2 leading-snug group-hover:text-[#1F5F8B] transition-colors">
+          <h3 className="font-semibold text-sm text-ink line-clamp-2 leading-snug group-hover:text-scholar transition-colors">
             {video.title}
           </h3>
         </div>
 
         {/* Real Channel Branding & Metadata */}
-        <div className="mt-3 pt-3 border-t border-[#10233F]/08 flex items-center justify-between text-xs text-[#627083]">
-          <div className="flex items-center gap-2 font-medium text-[#172033] truncate">
+        <div className="mt-3 pt-3 border-t border-forest/10 flex items-center justify-between text-xs text-muted">
+          <div className="flex items-center gap-2 font-medium text-ink truncate">
             <img
               src={channelAvatarUrl}
               alt={video.channel_name || 'Channel Avatar'}
-              className="w-5 h-5 rounded-full object-cover shrink-0 border border-[#10233F]/10 bg-[#F7E7D0]"
+              className="w-5 h-5 rounded-full object-cover shrink-0 border border-forest/10 bg-parchment"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            <span className="truncate max-w-[140px] px-2 py-0.5 rounded bg-[#F7E7D0]/60 text-[#10233F] text-[11px] font-semibold">{video.channel_name || 'Physics Wallah'}</span>
+            <span className="truncate max-w-[140px] px-2 py-0.5 rounded bg-parchment text-ink text-[11px] font-semibold">{video.channel_name || 'Physics Wallah'}</span>
           </div>
 
           {watchState ? (
-            <span className="text-[11px] font-medium text-[#1F5F8B] flex items-center gap-1 shrink-0">
+            <span className="text-[11px] font-medium text-scholar flex items-center gap-1 shrink-0">
               {watchState.completed ? (
                 <>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#2E8B72]" /> Done
+                  <CheckCircle2 className="w-3.5 h-3.5 text-scholar" /> Done
                 </>
               ) : (
                 <>{formatTime(watchState.last_position)}</>
               )}
             </span>
           ) : (
-            <span className="text-[11px] text-[#627083] shrink-0">
+            <span className="text-[11px] text-muted shrink-0">
               {video.view_count || 'Verified'}
             </span>
           )}

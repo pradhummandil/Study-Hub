@@ -2,20 +2,20 @@
 
 :root {
   /* Primary Brand Palette */
-  --forest:          #10261F;
-  --scholar:         #1F473B;
-  --sage:            #5C7A6D;
-  --paper:           #F5F0E8;
-  --parchment:       #E8DDCC;
-  --terracotta:      #C76B4A;
-  --gold:            #D7A84A;
-  --ink:             #181A19;
+  --forest:          #1B3022;
+  --scholar:         #2D5A3F;
+  --sage:            #769382;
+  --paper:           #F8F6F0;
+  --parchment:       #EDE8DB;
+  --terracotta:      #C86D51;
+  --gold:            #D4AF37;
+  --ink:             #1C201D;
   --muted:           #6C706D;
 
   /* Semantic Feedback */
-  --success:         #4D8A6A;
-  --warning:         #C4903B;
-  --error:           #B9564D;
+  --success:         #2D5A3F;
+  --warning:         #D4AF37;
+  --error:           #C86D51;
 
   /* Legacy Design System Aliases (Mapped to Phase 3 System) */
   --color-brand-navy:      var(--forest);
@@ -24,7 +24,7 @@
   --color-surface-mist:    var(--parchment);
   --color-paper-white:     var(--paper);
   --color-warm-cream:      var(--parchment);
-  --color-soft-peach:      #E6C8B5;
+  --color-soft-peach:      #EDE8DB;
 
   --color-ink:             var(--ink);
   --color-ink-body:        #2D302E;

@@ -37,7 +37,7 @@ export default function ReachUs() {
         const cal = await getCalApi({ namespace: CAL_EVENT_SLUG });
         cal('ui', {
           theme: 'dark',
-          styles: { branding: { brandColor: '#5CE1E6' } },
+          styles: { branding: { brandColor: '#C86D51' } },
           hideEventTypeDetails: false,
           layout: 'month_view',
         });
@@ -103,21 +103,21 @@ export default function ReachUs() {
 
       {/* Trust Badges Strip */}
       <div className="animate-fade-rise-delay-2 relative z-10 max-w-3xl mx-auto px-6 mb-6">
-        <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-muted-foreground py-3 px-6 rounded-full liquid-glass border border-white/5 max-w-2xl mx-auto">
+        <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-muted py-3 px-6 rounded-full bg-parchment border border-forest/10 max-w-2xl mx-auto">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-green-400 shrink-0" />
+            <ShieldCheck className="w-4 h-4 text-scholar shrink-0" />
             <span>Verified by Cal.com</span>
           </div>
           <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+            <Lock className="w-4 h-4 text-gold shrink-0" />
             <span>Secure booking</span>
           </div>
           <div className="flex items-center gap-2">
-            <MailX className="w-4 h-4 text-muted-foreground shrink-0" />
+            <MailX className="w-4 h-4 text-muted shrink-0" />
             <span>No spam, ever</span>
           </div>
           <div className="flex items-center gap-2">
-            <RefreshCw className="w-4 h-4 text-muted-foreground shrink-0" />
+            <RefreshCw className="w-4 h-4 text-muted shrink-0" />
             <span>Cancel anytime</span>
           </div>
         </div>
@@ -125,17 +125,16 @@ export default function ReachUs() {
 
       {/* Booking embed section */}
       <div id="booking-embed" className="animate-fade-rise-delay-2 relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pb-8">
-        <div className="liquid-glass rounded-2xl p-2 md:p-4 max-w-3xl mx-auto min-h-[650px] relative overflow-hidden flex flex-col">
+        <div className="bg-paper rounded-2xl border border-forest/10 p-2 md:p-4 max-w-3xl mx-auto min-h-[650px] relative overflow-hidden flex flex-col shadow-card">
 
           {/* Direct link header bar */}
-          <div className="flex items-center justify-between px-3 py-2 border-b border-white/5 mb-2 text-xs text-muted-foreground">
-            <span className="font-medium text-white/80">📅 20-Min Guidance Call</span>
+          <div className="flex items-center justify-between px-3 py-2 border-b border-forest/10 mb-2 text-xs text-muted">
+            <span className="font-medium text-ink">📅 20-Min Guidance Call</span>
             <a
               href={CAL_COM_EVENT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-white transition-colors"
-              style={{ color: '#5CE1E6' }}
+              className="inline-flex items-center gap-1 hover:underline transition-colors text-terracotta"
             >
               Open in new tab <ExternalLink className="w-3 h-3" />
             </a>
@@ -144,9 +143,9 @@ export default function ReachUs() {
           {/* Loading Indicator */}
           {embedStatus === 'loading' && (
             <div className="flex-1 flex flex-col items-center justify-center min-h-[400px] text-center p-8">
-              <div className="w-10 h-10 rounded-full border-2 border-cyan-400/30 border-t-cyan-400 animate-spin mb-4" />
-              <p className="text-sm text-white/70 font-medium">Opening booking calendar...</p>
-              <p className="text-xs text-white/40 mt-1">Connecting to Cal.com</p>
+              <div className="w-10 h-10 rounded-full border-2 border-terracotta/30 border-t-terracotta animate-spin mb-4" />
+              <p className="text-sm text-ink font-medium">Opening booking calendar...</p>
+              <p className="text-xs text-muted mt-1">Connecting to Cal.com</p>
             </div>
           )}
 

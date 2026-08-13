@@ -812,7 +812,7 @@ export default function StudyAI() {
                       setReportMsgId(`msg_${Date.now()}`);
                       setReportModalOpen(true);
                     }}
-                    className="hover:text-cyan-400 underline transition-colors"
+                    className="hover:text-gold underline transition-colors"
                   >
                     Report Answer
                   </button>

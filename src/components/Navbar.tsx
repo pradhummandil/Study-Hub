@@ -158,7 +158,7 @@ export const Navbar = () => {
               >
                 {active && (
                   <motion.div
-                    layoutId="navbar-active-pill"
+                    layoutId="activeNav"
                     className="absolute inset-0 bg-scholar/40 rounded-full border border-sage/30 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                   />
@@ -353,13 +353,13 @@ export const Navbar = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/login"
-                className="text-xs font-medium text-[#3D4A5A] hover:text-[#10233F] transition-colors px-3 py-2 focus-visible:outline-none rounded"
+                className="text-xs font-medium text-sage hover:text-paper transition-colors px-3 py-2 focus-visible:outline-none rounded"
               >
                 Log in
               </Link>
               <Link
                 to="/signup"
-                className="gradient-cta text-xs font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all"
+                className="gradient-cta text-xs font-semibold px-4.5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all"
               >
                 Start studying
               </Link>
@@ -370,7 +370,7 @@ export const Navbar = () => {
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-[#172033] focus-visible:outline-none rounded p-2"
+          className="md:hidden text-paper focus-visible:outline-none rounded p-2"
           aria-label="Toggle navigation menu"
         >
           {mobileOpen ? (
@@ -395,18 +395,18 @@ export const Navbar = () => {
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-[#10233F]/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-forest/80 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
           {/* Drawer */}
-          <div className="absolute inset-x-4 top-4 bg-[#10233F] backdrop-blur-xl border border-white/12 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="absolute inset-x-4 top-4 bg-forest backdrop-blur-xl border border-sage/20 rounded-2xl p-6 flex flex-col space-y-2 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <div onClick={() => setMobileOpen(false)}>
-                <Logo size="sm" />
+                <Logo size="sm" variant="dark" />
               </div>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-white/60 hover:text-white transition-colors p-2 focus-visible:outline-none rounded"
+                className="text-sage hover:text-paper transition-colors p-2 focus-visible:outline-none rounded"
                 aria-label="Close navigation menu"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -420,10 +420,10 @@ export const Navbar = () => {
                 key={label}
                 to={path}
                 onClick={() => setMobileOpen(false)}
-                className={`text-left text-base py-3 border-b border-white/5 last:border-none transition-colors block focus-visible:outline-none rounded ${
+                className={`text-left text-base py-3 border-b border-sage/10 last:border-none transition-colors block focus-visible:outline-none rounded ${
                   isActive(path)
-                    ? 'text-[#4E88B7] font-semibold'
-                    : 'text-[#FCFBF8]/75 hover:text-white'
+                    ? 'text-gold font-semibold'
+                    : 'text-paper/80 hover:text-paper'
                 }`}
               >
                 {label}
@@ -431,28 +431,28 @@ export const Navbar = () => {
             ))}
 
             {/* Mobile Auth Area */}
-            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+            <div className="pt-4 border-t border-sage/20 flex flex-col gap-3">
               {loading ? (
                 <div className="w-full h-12 rounded-full skeleton-pulse liquid-glass" />
               ) : user ? (
                 <>
-                  <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-white/5">
+                  <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-scholar/30 border border-sage/20">
                     {avatarUrl ? (
                       <img src={avatarUrl} alt={fullName} className="w-9 h-9 rounded-full object-cover" />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-[#1F5F8B] text-white font-bold flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-full bg-scholar text-gold font-bold flex items-center justify-center">
                         {initialLetter}
                       </div>
                     )}
                     <div className="overflow-hidden">
-                      <p className="text-sm font-semibold text-[#FCFBF8] truncate">{fullName}</p>
-                      <p className="text-xs text-white/60 truncate">{user.email}</p>
+                      <p className="text-sm font-semibold text-paper truncate">{fullName}</p>
+                      <p className="text-xs text-sage truncate">{user.email}</p>
                     </div>
                   </div>
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full bg-[#1F5F8B] text-white font-semibold text-sm hover:bg-[#1F5F8B]/80 transition-colors"
+                    className="w-full text-center py-3 rounded-full bg-scholar text-paper font-semibold text-sm hover:bg-scholar/80 transition-colors"
                   >
                     Dashboard
                   </Link>
@@ -461,7 +461,7 @@ export const Navbar = () => {
                       setMobileOpen(false);
                       signOut();
                     }}
-                    className="w-full text-center py-3 rounded-full bg-[#C95C5C]/20 text-[#C95C5C] font-semibold text-sm hover:bg-[#C95C5C]/30 transition-colors"
+                    className="w-full text-center py-3 rounded-full bg-terracotta/20 text-terracotta font-semibold text-sm hover:bg-terracotta/30 transition-colors"
                   >
                     Sign out
                   </button>
@@ -471,14 +471,14 @@ export const Navbar = () => {
                   <Link
                     to="/login"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full border border-white/20 text-[#FCFBF8] font-medium text-sm hover:bg-white/10 transition-colors"
+                    className="w-full text-center py-3 rounded-full border border-sage/30 text-paper font-medium text-sm hover:bg-scholar/30 transition-colors"
                   >
                     Log in
                   </Link>
                   <Link
                     to="/signup"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full gradient-cta text-white font-semibold text-sm"
+                    className="w-full text-center py-3 rounded-full gradient-cta text-paper font-semibold text-sm"
                   >
                     Start studying
                   </Link>
