@@ -30,6 +30,18 @@ export const LOTTIE_ASSET_REGISTRY: Record<string, LottieAssetMeta> = {
     loop: true,
     autoplay: true,
   },
+  quiz_loader: {
+    id: 'quiz_loader',
+    title: 'Minimal Pulsing Startup Loader',
+    sourceUrl: 'https://lottiefiles.com/free-animations/loading-screen',
+    author: 'LottieFiles Community',
+    license: 'Lottie Simple License',
+    localPath: '/assets/lottie-v2/startup/startup-loader.svg',
+    category: 'quiz',
+    usage: 'Quiz & page fallback loader',
+    loop: true,
+    autoplay: true,
+  },
   studymate_thinking: {
     id: 'studymate_thinking',
     title: 'AI Thinking Brain Network',

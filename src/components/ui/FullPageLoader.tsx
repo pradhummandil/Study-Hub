@@ -45,10 +45,14 @@ export const FullPageLoader: React.FC<FullPageLoaderProps> = ({
       className="flex flex-col items-center justify-center min-h-[50vh] p-6 space-y-4 text-center"
     >
       <div className="w-20 h-20 flex items-center justify-center">
-        <LottiePlayer
-          src={LOTTIE_ASSET_REGISTRY.quiz_loader.localPath}
-          className="w-full h-full"
-        />
+        {LOTTIE_ASSET_REGISTRY.startup_loader?.localPath ? (
+          <LottiePlayer
+            src={LOTTIE_ASSET_REGISTRY.startup_loader.localPath}
+            className="w-full h-full"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full border-2 border-[#2D5A3F] border-t-transparent animate-spin" />
+        )}
       </div>
       <p className="text-xs font-semibold text-muted tracking-wide">{label}</p>
     </div>
