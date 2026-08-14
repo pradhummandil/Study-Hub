@@ -1,8 +1,7 @@
-// src/pages/Community.tsx
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
-  Users, MessageCircle, MessageSquare, Plus, Search,
+  Users, MessageSquare, Plus, Search,
   CheckCircle2, Heart, Sparkles, X, Send
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -26,7 +25,7 @@ export default function Community() {
 
   const [circles, setCircles] = useState<StudyCircle[]>([]);
   const [selectedCircle, setSelectedCircle] = useState<StudyCircle | null>(null);
-  
+
   // Feed state
   const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
@@ -202,30 +201,28 @@ export default function Community() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-[#F8F6F0] text-[#1C201D]">
       <Helmet>
-        <title>Study Circles & Community — Study Hub</title>
+        <title>Study Circles & Peer Doubts — Study Hub</title>
         <meta name="description" content="Academic study circles, peer doubts, verified answers, and quiet collaborative study groups." />
       </Helmet>
 
       {/* Hero Header */}
-      <div className="relative z-10 px-6 pt-12 pb-8 max-w-6xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono mb-4">
-          <Users className="w-3.5 h-3.5" /> Academic Community
-          <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold uppercase ml-1">Community preview</span>
+      <div className="relative z-10 px-6 pt-10 pb-6 max-w-6xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2D5A3F]/10 border border-[#2D5A3F]/20 text-[#2D5A3F] text-xs font-mono mb-3">
+          <Users className="w-3.5 h-3.5" /> Academic Peer Community
         </div>
         <h1
-          className="text-4xl sm:text-5xl font-normal text-foreground tracking-tight"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
+          className="text-4xl sm:text-5xl font-serif font-bold text-[#1C201D] tracking-tight"
         >
-          Study Circles & <span className="text-gradient-accent">Peer Doubts.</span>
+          Study Circles & <span className="text-[#C86D51]">Peer Doubts.</span>
         </h1>
-        <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto mt-2 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#6C706D] max-w-xl mx-auto mt-2 leading-relaxed font-sans">
           Focused academic discussions, PYQ doubt resolution, and study resources. Free of social noise.
         </p>
 
-        {/* Actual Pin 9 Video Frame */}
-        <div className="mt-4 mx-auto max-w-[200px] rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl bg-slate-950 aspect-square max-h-[180px] flex items-center justify-center">
+        {/* Video Frame */}
+        <div className="mt-4 mx-auto max-w-[200px] rounded-2xl overflow-hidden border border-[#1C201D]/10 shadow-lg bg-[#1C201D] aspect-square max-h-[160px] flex items-center justify-center">
           <video
             src="/assets/pinterest/actual-pin-53972895522938608.mp4"
             poster="/assets/pinterest/actual-pin-53972895522938608-poster.webp"
@@ -233,7 +230,7 @@ export default function Community() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-90"
           />
         </div>
       </div>
@@ -243,7 +240,7 @@ export default function Community() {
         
         {/* Left Sidebar: Study Circles List */}
         <div className="space-y-4">
-          <h2 className="text-xs uppercase tracking-widest text-muted-foreground font-semibold px-2">
+          <h2 className="text-xs uppercase tracking-widest text-[#6C706D] font-bold px-2">
             Study Circles
           </h2>
 
@@ -256,15 +253,21 @@ export default function Community() {
                   onClick={() => setSelectedCircle(c)}
                   className={`p-3.5 rounded-2xl border text-xs cursor-pointer transition-all ${
                     isSelected
-                      ? 'bg-slate-900 border-cyan-500/50 shadow-lg text-foreground'
-                      : 'liquid-glass border-white/5 text-muted-foreground hover:text-foreground hover:bg-white/5'
+                      ? 'bg-[#2D5A3F] border-[#2D5A3F] shadow-md text-[#FFFFFF]'
+                      : 'bg-[#FFFFFF] border-[#1C201D]/10 text-[#1C201D] hover:border-[#2D5A3F]/30 hover:bg-[#EDE8DB]/50'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-normal text-foreground tracking-wide" style={{ fontFamily: "'Instrument Serif', serif" }}>{c.name}</span>
-                    <span className="text-[10px] text-cyan-400 font-mono">{c.member_count} members</span>
+                    <span className={`text-sm font-serif font-bold ${isSelected ? 'text-[#FFFFFF]' : 'text-[#1C201D]'}`}>
+                      {c.name}
+                    </span>
+                    <span className={`text-[10px] font-mono font-bold ${isSelected ? 'text-[#D4AF37]' : 'text-[#2D5A3F]'}`}>
+                      {c.member_count} members
+                    </span>
                   </div>
-                  <p className="text-[11px] text-muted-foreground line-clamp-2">{c.description}</p>
+                  <p className={`text-[11px] line-clamp-2 ${isSelected ? 'text-[#EDE8DB]' : 'text-[#6C706D]'}`}>
+                    {c.description}
+                  </p>
                 </div>
               );
             })}
@@ -276,25 +279,25 @@ export default function Community() {
           
           {/* Selected Circle Banner */}
           {selectedCircle && (
-            <div className="liquid-glass-card rounded-3xl p-6 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="bg-[#FFFFFF] rounded-3xl p-6 border border-[#1C201D]/10 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#2D5A3F] px-2.5 py-0.5 rounded-full bg-[#2D5A3F]/10 border border-[#2D5A3F]/20">
                     {selectedCircle.exam}
                   </span>
-                  <span className="text-xs text-muted-foreground">• {selectedCircle.member_count} learners active</span>
+                  <span className="text-xs text-[#6C706D]">• {selectedCircle.member_count} learners active</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-normal text-foreground tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>{selectedCircle.name}</h2>
-                <p className="text-xs text-muted-foreground mt-1 max-w-xl">{selectedCircle.description}</p>
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1C201D] leading-tight">{selectedCircle.name}</h2>
+                <p className="text-xs text-[#6C706D] mt-1 max-w-xl">{selectedCircle.description}</p>
               </div>
 
               <div className="flex items-center gap-3 shrink-0">
                 <button
                   onClick={() => handleJoinToggle(selectedCircle)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                     selectedCircle.is_member
-                      ? 'bg-white/10 text-slate-300 border border-white/10 hover:bg-red-500/20 hover:text-red-300'
-                      : 'gradient-cta text-slate-950 font-bold'
+                      ? 'bg-[#EDE8DB] text-[#1C201D] border border-[#1C201D]/10 hover:bg-[#C86D51]/20 hover:text-[#C86D51]'
+                      : 'bg-[#2D5A3F] text-[#FFFFFF] shadow-sm hover:bg-[#2D5A3F]/90'
                   }`}
                 >
                   {selectedCircle.is_member ? 'Joined Circle ✓' : 'Join Circle'}
@@ -302,7 +305,7 @@ export default function Community() {
 
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="px-4 py-2 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg transition-transform hover:scale-105"
+                  className="px-4 py-2 rounded-xl bg-[#C86D51] hover:bg-[#C86D51]/90 text-[#FFFFFF] font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
                 >
                   <Plus className="w-4 h-4" /> Ask Question
                 </button>
@@ -326,8 +329,8 @@ export default function Community() {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`px-3.5 py-1.5 rounded-full border transition-all ${
                     activeTab === tab.id
-                      ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400 shadow-md'
-                      : 'liquid-glass text-muted-foreground border-white/10 hover:text-foreground'
+                      ? 'bg-[#2D5A3F] text-[#FFFFFF] font-bold border-[#2D5A3F] shadow-sm'
+                      : 'bg-[#EDE8DB] text-[#6C706D] hover:text-[#1C201D] border-[#1C201D]/10'
                   }`}
                 >
                   {tab.label}
@@ -348,10 +351,10 @@ export default function Community() {
                   <button
                     key={ft.id}
                     onClick={() => setPostTypeFilter(ft.id as any)}
-                    className={`px-3 py-1 rounded-lg border transition-all ${
+                    className={`px-3 py-1.5 rounded-xl border transition-all text-xs font-bold ${
                       postTypeFilter === ft.id
-                        ? 'bg-purple-500/20 text-purple-300 border-purple-500/40 font-semibold'
-                        : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white'
+                        ? 'bg-[#2D5A3F] text-[#FFFFFF] border-[#2D5A3F]'
+                        : 'bg-[#FFFFFF] text-[#6C706D] border-[#1C201D]/10 hover:text-[#1C201D]'
                     }`}
                   >
                     {ft.label}
@@ -360,35 +363,35 @@ export default function Community() {
               </div>
 
               {/* Search Input */}
-            <div className="relative w-full sm:w-56 shrink-0">
-              <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                placeholder="Search posts..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900 border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-cyan-500/40"
-              />
+              <div className="relative w-full sm:w-60 shrink-0">
+                <Search className="w-4 h-4 text-[#6C706D] absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Search posts..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-[#FFFFFF] border border-[#1C201D]/15 rounded-xl pl-9 pr-3 py-2 text-xs text-[#1C201D] placeholder:text-[#6C706D] focus:outline-none focus:border-[#2D5A3F]"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
           {/* Feed Posts List */}
           {loadingPosts ? (
-            <div className="py-16 text-center text-xs text-muted-foreground">
-              <div className="w-3 h-3 rounded-full bg-muted-foreground skeleton-pulse mx-auto mb-2" />
+            <div className="py-16 text-center text-xs text-[#6C706D]">
+              <div className="w-8 h-8 rounded-full border-2 border-[#2D5A3F] border-t-transparent animate-spin mx-auto mb-2" />
               Loading discussions...
             </div>
           ) : posts.length === 0 ? (
-            <div className="liquid-glass-card rounded-3xl p-12 text-center border border-white/10">
-              <MessageSquare className="w-8 h-8 text-muted-foreground/60 mx-auto mb-3" />
-              <h3 className="text-xl font-normal text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>Your study circle is quiet right now</h3>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto mb-6 font-sans">
+            <div className="bg-[#FFFFFF] rounded-3xl p-12 text-center border border-[#1C201D]/10 shadow-sm">
+              <MessageSquare className="w-8 h-8 text-[#6C706D] mx-auto mb-3" />
+              <h3 className="text-xl font-serif font-bold text-[#1C201D] mb-1">Your study circle is quiet right now</h3>
+              <p className="text-xs text-[#6C706D] max-w-sm mx-auto mb-6">
                 Start the first academic discussion or ask a PYQ doubt.
               </p>
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="gradient-cta rounded-full px-6 py-2.5 text-xs font-bold text-slate-950 inline-flex items-center gap-1.5"
+                className="bg-[#2D5A3F] text-[#FFFFFF] rounded-xl px-6 py-2.5 text-xs font-bold inline-flex items-center gap-1.5 shadow-sm hover:bg-[#2D5A3F]/90 transition-colors"
               >
                 <Plus className="w-4 h-4" /> Start Discussion
               </button>
@@ -398,22 +401,22 @@ export default function Community() {
               {posts.map((post) => (
                 <div
                   key={post.id}
-                  className="liquid-glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-500/30 transition-all space-y-3"
+                  className="bg-[#FFFFFF] rounded-2xl p-5 border border-[#1C201D]/10 hover:border-[#2D5A3F]/30 shadow-sm transition-all space-y-3"
                 >
                   <div className="flex items-center justify-between text-xs font-sans">
                     <div className="flex items-center gap-2">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                        post.type === 'question' ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                      <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold uppercase border ${
+                        post.type === 'question' ? 'bg-[#C86D51]/10 text-[#C86D51] border-[#C86D51]/20' : 'bg-[#2D5A3F]/10 text-[#2D5A3F] border-[#2D5A3F]/20'
                       }`}>
                         {post.type}
                       </span>
                       {post.is_answered && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                        <span className="px-2.5 py-0.5 rounded text-[10px] font-bold bg-[#2D5A3F] text-[#FFFFFF] flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3" /> Helpful Answer Marked
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] text-muted-foreground">
+                    <span className="text-[11px] text-[#6C706D]">
                       {new Date(post.created_at).toLocaleDateString()}
                     </span>
                   </div>
@@ -421,51 +424,39 @@ export default function Community() {
                   <div>
                     <h3
                       onClick={() => handleOpenPostDetails(post)}
-                      className="text-lg sm:text-xl font-normal text-foreground hover:text-cyan-300 transition-colors cursor-pointer"
-                      style={{ fontFamily: "'Instrument Serif', serif" }}
+                      className="text-lg font-serif font-bold text-[#1C201D] hover:text-[#2D5A3F] transition-colors cursor-pointer"
                     >
                       {post.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-3 mt-1 leading-relaxed font-sans">
+                    <p className="text-xs text-[#6C706D] line-clamp-3 mt-1 leading-relaxed font-sans">
                       {post.content}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-white/5 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between pt-3 border-t border-[#1C201D]/10 text-xs text-[#6C706D]">
                     <div className="flex items-center gap-4">
                       <button
                         onClick={() => handleReaction(post.id, 'helpful')}
-                        className="flex items-center gap-1 hover:text-cyan-300 transition-colors"
+                        className="flex items-center gap-1 text-[#2D5A3F] font-bold hover:text-[#2D5A3F]/80 transition-colors"
                       >
-                        <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                        <Sparkles className="w-3.5 h-3.5" />
                         <span>{post.helpful_count} Helpful</span>
                       </button>
 
                       <button
                         onClick={() => handleReaction(post.id, 'like')}
-                        className="flex items-center gap-1 hover:text-purple-300 transition-colors"
+                        className="flex items-center gap-1 text-[#C86D51] font-bold hover:text-[#C86D51]/80 transition-colors"
                       >
-                        <Heart className="w-3.5 h-3.5 text-purple-400" />
+                        <Heart className="w-3.5 h-3.5" />
                         <span>{post.like_count}</span>
-                      </button>
-
-                      <button
-                        onClick={() => handleOpenPostDetails(post)}
-                        className="flex items-center gap-1 hover:text-foreground transition-colors"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        <span>{post.comment_count} Answers</span>
                       </button>
                     </div>
 
                     <button
-                      onClick={() => {
-                        setReportTarget({ type: 'post', id: post.id });
-                        setShowReportModal(true);
-                      }}
-                      className="text-[10px] text-slate-500 hover:text-red-400 transition-colors"
+                      onClick={() => handleOpenPostDetails(post)}
+                      className="text-xs font-bold text-[#1C201D] hover:text-[#2D5A3F] transition-colors"
                     >
-                      Report
+                      View Details & Replies →
                     </button>
                   </div>
                 </div>
@@ -474,229 +465,6 @@ export default function Community() {
           )}
         </div>
       </div>
-
-      {/* Create Post Modal */}
-      {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="relative w-full max-w-lg rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
-            <button
-              onClick={() => setShowCreateModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="text-xl font-bold mb-1">Create Academic Post</h3>
-            <p className="text-xs text-muted-foreground mb-4">Posting to {selectedCircle?.name || 'Community'}</p>
-
-            {postError && <p className="text-xs text-red-400 mb-3">{postError}</p>}
-
-            <form onSubmit={handleCreatePost} className="space-y-4">
-              <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1">Category</label>
-                <select
-                  value={newPostType}
-                  onChange={(e) => setNewPostType(e.target.value as PostType)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200"
-                >
-                  <option value="question">Question (PYQ / Concept Doubt)</option>
-                  <option value="discussion">Academic Discussion</option>
-                  <option value="tip">Study Strategy / Tip</option>
-                  <option value="resource">Notes / Resource</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1">Title</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. How to solve Subnetting CIDR Masking questions?"
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder:text-slate-500"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1">Details & Question Text</label>
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="Provide context, question steps, or doubts clearly..."
-                  value={newContent}
-                  onChange={(e) => setNewContent(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none"
-                />
-              </div>
-
-              <div className="flex justify-end gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 text-xs text-slate-400 hover:text-slate-200"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isPosting}
-                  className="gradient-cta rounded-full px-6 py-2 text-xs text-slate-950 font-bold"
-                >
-                  {isPosting ? 'Publishing...' : 'Publish Post'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Active Post Details & Comments Modal */}
-      {activePost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
-            <button
-              onClick={() => setActivePost(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <div className="mb-4">
-              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">
-                {activePost.type}
-              </span>
-              <h2 className="text-xl font-bold text-foreground mt-2">{activePost.title}</h2>
-              <p className="text-xs text-slate-300 whitespace-pre-line mt-2 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-white/5">
-                {activePost.content}
-              </p>
-            </div>
-
-            {/* Answers & Comments Section */}
-            <div className="border-t border-white/10 pt-4 space-y-4">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                Student Answers & Discussion ({comments.length})
-              </h3>
-
-              {comments.length === 0 ? (
-                <p className="text-xs text-slate-500 py-4 text-center">No responses yet. Be the first to answer!</p>
-              ) : (
-                <div className="space-y-3">
-                  {comments.map((c) => (
-                    <div
-                      key={c.id}
-                      className={`p-3.5 rounded-2xl border text-xs space-y-2 ${
-                        c.is_helpful
-                          ? 'bg-cyan-500/10 border-cyan-500/40 text-slate-100'
-                          : 'bg-slate-950 border-slate-800 text-slate-300'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between text-[11px]">
-                        <span className="font-bold text-cyan-300">{c.author_name || 'Student'}</span>
-                        {c.is_helpful ? (
-                          <span className="text-cyan-400 font-bold flex items-center gap-1 text-[10px]">
-                            <CheckCircle2 className="w-3 h-3" /> Marked as Helpful Answer
-                          </span>
-                        ) : (
-                          user && activePost.user_id === user.id && (
-                            <button
-                              onClick={() => handleMarkHelpful(c)}
-                              className="text-emerald-400 hover:underline text-[10px] font-bold"
-                            >
-                              ✓ Mark as Helpful Answer
-                            </button>
-                          )
-                        )}
-                      </div>
-                      <p className="whitespace-pre-line leading-relaxed">{c.content}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Add Comment Input */}
-              <form onSubmit={handleAddComment} className="pt-2 flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Write a clear, academic answer..."
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-400"
-                />
-                <button
-                  type="submit"
-                  className="gradient-cta rounded-xl px-4 py-2.5 text-xs font-bold text-slate-950 flex items-center gap-1"
-                >
-                  <Send className="w-3.5 h-3.5" /> Answer
-                </button>
-              </form>
-              {commentError && <p className="text-xs text-red-400">{commentError}</p>}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Report Modal */}
-      {showReportModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="relative w-full max-w-md rounded-3xl p-6 bg-slate-900 border border-slate-800 text-slate-100 shadow-2xl">
-            <button
-              onClick={() => setShowReportModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-slate-200"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="text-lg font-bold mb-2">Report Content</h3>
-            <p className="text-xs text-slate-400 mb-4">Help keep Study Hub safe and academically serious.</p>
-
-            <form onSubmit={handleReportSubmit} className="space-y-3">
-              <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1">Reason</label>
-                <select
-                  value={reportReason}
-                  onChange={(e) => setReportReason(e.target.value as any)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200"
-                >
-                  <option value="Spam">Spam / Advertising</option>
-                  <option value="Harassment">Harassment / Abusive behavior</option>
-                  <option value="Inappropriate">Inappropriate username or content</option>
-                  <option value="Misleading academic information">Misleading academic information</option>
-                  <option value="Copyright concern">Copyright concern</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-slate-300 block mb-1">Details (Optional)</label>
-                <textarea
-                  rows={3}
-                  placeholder="Additional context for moderators..."
-                  value={reportDetails}
-                  onChange={(e) => setReportDetails(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 focus:outline-none"
-                />
-              </div>
-
-              <div className="flex justify-end gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowReportModal(false)}
-                  className="px-4 py-2 text-xs text-slate-400 hover:text-slate-200"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="py-2 px-5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs"
-                >
-                  Submit Report
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }
