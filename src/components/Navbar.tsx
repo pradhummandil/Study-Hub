@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useStudentContext } from '../context/StudentContext';
 import { EXAM_CONFIGS, type ExamCategory } from '../types/student-core';
-import { LogOut, Settings, ChevronDown, LayoutDashboard, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall, Video, Award } from 'lucide-react';
+import { LogOut, Settings, ChevronDown, LayoutDashboard, Users, BookOpen, Layers, Flame, RotateCcw, Zap, Trophy, Shield, TrendingUp, FileText, Info, PhoneCall, Video, Award, ArrowRight } from 'lucide-react';
 import { NotificationBellDropdown } from './notifications/NotificationBellDropdown';
 import { Logo } from './ui/Logo';
 import { fetchProfileGamification } from '../lib/profile/profileApi';
@@ -368,9 +368,10 @@ export const Navbar = () => {
               </Link>
               <Link
                 to="/signup"
-                className="bg-[#111827] hover:bg-[#1F2937] text-[#FFFFFF] text-xs font-semibold px-4.5 py-2.5 rounded-full shadow-sm transition-all whitespace-nowrap cursor-pointer inline-flex items-center justify-center"
+                className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#C86D51] via-[#D97757] to-[#C86D51] hover:from-[#B55C42] hover:to-[#B55C42] text-[#FFFFFF] text-xs font-bold tracking-wide shadow-md shadow-[#C86D51]/25 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap inline-flex items-center gap-1.5 shrink-0"
               >
-                Start studying
+                <span>Start studying</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           )}
