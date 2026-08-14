@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   ChevronUp, ChevronDown, Heart, ShieldCheck,
-  Bot, BrainCircuit, Play, ArrowRight, Share2, Sparkles, Check
+  Bot, BrainCircuit, Play, ArrowRight, Share2, Check
 } from 'lucide-react';
 import type { YouTubeVideo } from '../../types/video-learning';
 import { toggleSaveItem, isItemSaved } from '../../lib/videoLearningApi';
