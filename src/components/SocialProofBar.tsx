@@ -4,7 +4,7 @@ import { getNewsletterSignupCount } from '../lib/newsletterApi';
 const STORAGE_KEY = 'proof_bar_dismissed_v1';
 
 const BASE_MESSAGES = [
-  '🟢 3 students booked calls this week',
+  '✨ 3 students booked calls this week',
   'New resource added to Studio',
   'Avg response time: 18 hours',
   '4.9/5 from last 20 sessions',
@@ -29,8 +29,8 @@ export const SocialProofBar = () => {
   if (dismissed) return null;
 
   const dynamicMessage = signupCount > 0
-    ? `🟢 Join ${signupCount}+ students already subscribed`
-    : '🟢 500+ students guided so far';
+    ? `✨ Join ${signupCount}+ students already subscribed`
+    : '✨ 500+ students guided so far';
 
   const messages = [...BASE_MESSAGES, dynamicMessage];
   const tickerText = messages.join('   ·   ');
