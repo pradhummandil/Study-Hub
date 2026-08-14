@@ -237,7 +237,7 @@ export default function VideoWatchPage() {
             {/* Channel Info Bar */}
             <div className="flex items-center justify-between pt-4 border-t border-[#1C201D]/10 flex-wrap gap-4">
               <div className="flex items-center gap-3">
-                <ChannelAvatar channelName={video.channel_name || 'Physics Wallah'} avatarUrl={video.channel_avatar_url} size="md" />
+                <ChannelAvatar channelName={video.channel_name || 'Physics Wallah'} size="md" />
                 <div>
                   <div className="flex items-center gap-1.5 font-bold text-sm text-[#1C201D]">
                     <ShieldCheck className="w-4 h-4 text-[#2D5A3F]" />

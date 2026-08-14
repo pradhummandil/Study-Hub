@@ -28,13 +28,6 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onOpen }) 
     setSaved(nowSaved);
   };
 
-  const channelAvatarUrl =
-    playlist?.channel_name?.includes('JEE')
-      ? 'https://yt3.googleusercontent.com/9C0637F55s9zY8P8e-28D6uY75N4m_uP-b7h_zQ2F2eZ7s-f1A_7L2v1t-G-V9e_X-8v_b-1=s176-c-k-c0x00ffffff-no-rj'
-      : playlist?.channel_name?.includes('NEET')
-      ? 'https://yt3.googleusercontent.com/w2Yv2S5e8B9A0M9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B=s176-c-k-c0x00ffffff-no-rj'
-      : 'https://yt3.googleusercontent.com/ytc/AIdro_k9_N_v0-7-L8v8-8-8-8-8-8-8-8-8-8-8-8=s176-c-k-c0x00ffffff-no-rj';
-
   const thumbUrl = playlist?.thumbnail || playlist?.thumbnail_url;
   const title = playlist?.title || 'Course Playlist';
   const exam = playlist?.exam || 'General';
