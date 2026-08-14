@@ -4,6 +4,8 @@ import type { YouTubeVideo } from '../../types/video-learning';
 import { VideoCard } from './VideoCard';
 import { useNavigate } from 'react-router-dom';
 
+import { ChannelAvatar } from './ChannelAvatar';
+
 interface ChannelShelfProps {
   channelName: string;
   channelHandle?: string;
@@ -60,25 +62,12 @@ export const ChannelShelf: React.FC<ChannelShelfProps> = ({
 
   if (!videos || videos.length === 0) return null;
 
-  const defaultAvatar = channelName.includes('JEE')
-    ? 'https://yt3.googleusercontent.com/9C0637F55s9zY8P8e-28D6uY75N4m_uP-b7h_zQ2F2eZ7s-f1A_7L2v1t-G-V9e_X-8v_b-1=s176-c-k-c0x00ffffff-no-rj'
-    : channelName.includes('NEET')
-    ? 'https://yt3.googleusercontent.com/w2Yv2S5e8B9A0M9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B=s176-c-k-c0x00ffffff-no-rj'
-    : 'https://yt3.googleusercontent.com/ytc/AIdro_k9_N_v0-7-L8v8-8-8-8-8-8-8-8-8-8-8-8=s176-c-k-c0x00ffffff-no-rj';
-
   return (
     <div className="space-y-4 py-2 border-t border-[#1C201D]/10 pt-6">
       {/* Channel Header Bar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img
-            src={avatarUrl || defaultAvatar}
-            alt={channelName}
-            className="w-10 h-10 rounded-full object-cover border border-[#2D5A3F]/30 bg-[#EDE8DB]"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = defaultAvatar;
-            }}
-          />
+          <ChannelAvatar channelName={channelName} avatarUrl={avatarUrl} size="md" />
           <div>
             <h3 className="font-serif font-bold text-lg text-[#1C201D] flex items-center gap-1.5 leading-tight">
               {channelName} <ShieldCheck className="w-4 h-4 text-[#2D5A3F]" />

@@ -4,6 +4,7 @@ import type { YouTubePlaylist } from '../../types/video-learning';
 import { isItemSaved, toggleSaveItem } from '../../lib/videoLearningApi';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { ChannelAvatar } from './ChannelAvatar';
 
 interface PlaylistCardProps {
   playlist: YouTubePlaylist;
@@ -107,18 +108,7 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onOpen }) 
 
         <div className="mt-4 pt-3 border-t border-[#1C201D]/10 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2 font-medium text-[#1C201D] truncate">
-            {!avatarError && channelAvatarUrl ? (
-              <img
-                src={channelAvatarUrl}
-                alt={channelName}
-                className="w-4 h-4 rounded-full object-cover shrink-0"
-                onError={() => setAvatarError(true)}
-              />
-            ) : (
-              <div className="w-4 h-4 rounded-full bg-[#2D5A3F]/20 text-[#2D5A3F] flex items-center justify-center text-[9px] font-bold shrink-0">
-                {channelName.charAt(0)}
-              </div>
-            )}
+            <ChannelAvatar channelName={channelName} avatarUrl={playlist?.channel_avatar_url} size="sm" />
             <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F] shrink-0" />
             <span className="truncate max-w-[130px]">{channelName}</span>
           </div>

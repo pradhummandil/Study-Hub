@@ -4,6 +4,7 @@ import type { YouTubeVideo } from '../../types/video-learning';
 import { isItemSaved, toggleSaveItem, getVideoWatchState, formatTime } from '../../lib/videoLearningApi';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { ChannelAvatar } from './ChannelAvatar';
 
 interface VideoCardProps {
   video: YouTubeVideo;
@@ -313,18 +314,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
         {/* Real Channel Branding & Metadata */}
         <div className="mt-3 pt-3 border-t border-[#1C201D]/10 flex items-center justify-between text-xs text-[#6C706D]">
           <div className="flex items-center gap-2 font-medium text-[#1C201D] truncate">
-            {!avatarError && channelAvatarUrl ? (
-              <img
-                src={channelAvatarUrl}
-                alt={channelName}
-                className="w-5 h-5 rounded-full object-cover shrink-0 border border-[#1C201D]/10 bg-[#EDE8DB]"
-                onError={() => setAvatarError(true)}
-              />
-            ) : (
-              <div className="w-5 h-5 rounded-full bg-[#2D5A3F]/20 text-[#2D5A3F] flex items-center justify-center text-[10px] font-bold shrink-0">
-                {channelName.charAt(0)}
-              </div>
-            )}
+            <ChannelAvatar channelName={channelName} avatarUrl={video?.channel_avatar_url} size="sm" />
             <span className="truncate max-w-[130px] px-2 py-0.5 rounded bg-[#EDE8DB]/60 text-[#1C201D] text-[11px] font-semibold">
               {channelName}
             </span>

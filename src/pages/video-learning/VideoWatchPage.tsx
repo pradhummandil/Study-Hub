@@ -5,6 +5,7 @@ import {
   ArrowLeft, Heart, CheckCircle2, Bookmark, ShieldCheck,
   Bot, BrainCircuit, Plus, Trash2, Clock, BookOpen, Layers, RotateCcw
 } from 'lucide-react';
+import { ChannelAvatar } from '../../components/video-learning/ChannelAvatar';
 import {
   fetchVideoById,
   fetchVideos,
@@ -243,14 +244,7 @@ export default function VideoWatchPage() {
             {/* Channel Info Bar */}
             <div className="flex items-center justify-between pt-4 border-t border-[#1C201D]/10 flex-wrap gap-4">
               <div className="flex items-center gap-3">
-                <img
-                  src={channelAvatarUrl}
-                  alt={video.channel_name || 'Channel Avatar'}
-                  className="w-10 h-10 rounded-full object-cover border border-[#2D5A3F]/30 bg-[#EDE8DB]"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
+                <ChannelAvatar channelName={video.channel_name || 'Physics Wallah'} avatarUrl={video.channel_avatar_url} size="md" />
                 <div>
                   <div className="flex items-center gap-1.5 font-bold text-sm text-[#1C201D]">
                     <ShieldCheck className="w-4 h-4 text-[#2D5A3F]" />
