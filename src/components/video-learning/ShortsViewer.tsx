@@ -1,4 +1,3 @@
-// src/components/video-learning/ShortsViewer.tsx
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   ChevronUp, ChevronDown, Heart, Bot, ShieldCheck, Play, ArrowRight, BrainCircuit
@@ -91,7 +90,7 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
 
   if (!shorts || shorts.length === 0 || !activeShort) {
     return (
-      <div className="text-center py-20 text-slate-500 dark:text-slate-400">
+      <div className="text-center py-20 text-[#6C706D]">
         <p className="text-sm font-medium">No educational Shorts available for this selection.</p>
       </div>
     );
@@ -120,21 +119,21 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="relative w-full max-w-[360px] aspect-[9/16] bg-slate-950 rounded-[28px] overflow-hidden shadow-2xl border border-slate-800 flex flex-col justify-between group"
+        className="relative w-full max-w-[360px] aspect-[9/16] bg-[#1C201D] rounded-[28px] overflow-hidden shadow-2xl border border-[#1C201D]/20 flex flex-col justify-between group"
       >
         {/* Top Header Overlay */}
         <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
-          <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-slate-950/80 text-cyan-300 border border-cyan-500/30 backdrop-blur-md">
+          <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-[#1C201D]/85 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-md">
             {activeShort.exam} • {activeShort.subject}
           </span>
 
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-slate-950/80 text-slate-300 border border-white/10 backdrop-blur-md">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#1C201D]/85 text-[#FFFFFF] border border-[#FFFFFF]/10 backdrop-blur-md">
             {activeIndex + 1} / {shorts.length}
           </span>
         </div>
 
         {/* Player Viewport */}
-        <div className="relative w-full h-full bg-slate-950">
+        <div className="relative w-full h-full bg-[#1C201D]">
           {isPlaying ? (
             <iframe
               key={activeShort.youtube_video_id}
@@ -154,8 +153,8 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
                 alt={activeShort.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center shadow-2xl shadow-cyan-500/50 transform group-hover/thumb:scale-110 transition-transform">
+              <div className="absolute inset-0 bg-[#1C201D]/40 backdrop-blur-[2px] flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-[#2D5A3F] text-[#FFFFFF] flex items-center justify-center shadow-2xl shadow-[#2D5A3F]/50 transform group-hover/thumb:scale-110 transition-transform">
                   <Play className="w-8 h-8 fill-current ml-1" />
                 </div>
               </div>
@@ -164,13 +163,13 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
         </div>
 
         {/* Bottom Details Overlay */}
-        <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent space-y-3 z-10 pointer-events-auto">
+        <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-[#1C201D] via-[#1C201D]/90 to-transparent space-y-3 z-10 pointer-events-auto">
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-xs text-cyan-400 font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>{activeShort.channel_name || 'Physics Wallah'}</span>
+            <div className="flex items-center gap-1.5 text-xs text-[#2D5A3F] font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F]" />
+              <span className="text-[#EDE8DB]">{activeShort.channel_name || 'Physics Wallah'}</span>
             </div>
-            <h3 className="text-sm font-bold text-slate-100 leading-snug line-clamp-2">
+            <h3 className="text-sm font-bold text-[#FFFFFF] leading-snug line-clamp-2">
               {activeShort.title}
             </h3>
           </div>
@@ -180,25 +179,25 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
             {onOpenFullLecture && (
               <button
                 onClick={() => onOpenFullLecture(activeShort)}
-                className="w-full py-2 px-3 rounded-xl bg-blue-600/30 hover:bg-blue-600/40 text-blue-200 border border-blue-500/40 text-xs font-bold flex items-center justify-between backdrop-blur-md transition-all"
+                className="w-full py-2 px-3 rounded-xl bg-[#2D5A3F]/40 hover:bg-[#2D5A3F]/60 text-[#FFFFFF] border border-[#2D5A3F]/50 text-xs font-bold flex items-center justify-between backdrop-blur-md transition-all"
               >
-                <span>Watch related full lecture</span>
-                <ArrowRight className="w-4 h-4 text-blue-400" />
+                <span>Watch related full lesson</span>
+                <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
               </button>
             )}
 
             <div className="flex items-center gap-2">
               <button
                 onClick={handleAskStudyMate}
-                className="flex-1 py-2 px-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
+                className="flex-1 py-2 px-3 rounded-xl bg-[#EDE8DB]/20 hover:bg-[#EDE8DB]/30 text-[#FFFFFF] border border-[#EDE8DB]/30 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
               >
-                <Bot className="w-3.5 h-3.5" /> Ask AI
+                <Bot className="w-3.5 h-3.5 text-[#D4AF37]" /> Ask AI
               </button>
               <button
                 onClick={() => navigate(`/practice?topic=${encodeURIComponent(activeShort.topic)}`)}
-                className="flex-1 py-2 px-3 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
+                className="flex-1 py-2 px-3 rounded-xl bg-[#C86D51]/30 hover:bg-[#C86D51]/50 text-[#FFFFFF] border border-[#C86D51]/40 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
               >
-                <BrainCircuit className="w-3.5 h-3.5" /> Practice
+                <BrainCircuit className="w-3.5 h-3.5 text-[#C86D51]" /> Practice
               </button>
             </div>
           </div>
@@ -210,7 +209,7 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
             aria-label="Previous Short"
             disabled={activeIndex === 0}
             onClick={handlePrev}
-            className="p-3 rounded-full bg-slate-900/90 disabled:opacity-30 text-slate-200 hover:text-cyan-300 border border-slate-700/80 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
+            className="p-3 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
             title="Previous Short (ArrowUp)"
           >
             <ChevronUp className="w-5 h-5" />
@@ -221,8 +220,8 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
             onClick={handleSaveToggle}
             className={`p-3 rounded-full backdrop-blur-md border transition-all shadow-xl hover:scale-105 active:scale-95 ${
               saved
-                ? 'bg-rose-500 text-white border-rose-400 font-bold shadow-rose-500/30'
-                : 'bg-slate-900/90 text-slate-200 border-slate-700/80 hover:text-white'
+                ? 'bg-[#1C201D] text-[#D4AF37] border-[#D4AF37] font-bold shadow-md'
+                : 'bg-[#1C201D]/90 text-[#FFFFFF] border-[#FFFFFF]/20 hover:text-[#D4AF37]'
             }`}
             title={saved ? 'Remove from Saved' : 'Save Short'}
           >
@@ -233,7 +232,7 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
             aria-label="Next Short"
             disabled={activeIndex === shorts.length - 1}
             onClick={handleNext}
-            className="p-3 rounded-full bg-slate-900/90 disabled:opacity-30 text-slate-200 hover:text-cyan-300 border border-slate-700/80 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
+            className="p-3 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
             title="Next Short (ArrowDown)"
           >
             <ChevronDown className="w-5 h-5" />

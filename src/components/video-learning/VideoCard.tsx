@@ -95,10 +95,17 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
     }
   };
 
+  const [guestNotice, setGuestNotice] = useState(false);
+
   const handleSaveToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!user) {
+      setGuestNotice(true);
+      setTimeout(() => setGuestNotice(false), 2500);
+      return;
+    }
     if (!video?.id) return;
-    toggleSaveItem(user?.id || 'guest_user', video.id, 'video').then((nowSaved) => {
+    toggleSaveItem(user.id, video.id, 'video').then((nowSaved) => {
       setSaved(nowSaved);
     });
   };
@@ -166,6 +173,13 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
                   }
                 }}
               />
+            )}
+
+            {/* Guest Sign-in Toast Notice */}
+            {guestNotice && (
+              <div className="absolute inset-x-2 top-10 bg-[#1C201D]/95 text-[#FFFFFF] text-[11px] font-bold py-1.5 px-3 rounded-lg text-center shadow-lg border border-[#D4AF37]/40 backdrop-blur-md z-30 animate-fade-rise">
+                Sign in to save this lesson.
+              </div>
             )}
 
             {/* Hover Overlay Play Button */}

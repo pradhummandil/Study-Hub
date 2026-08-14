@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Search, Sparkles, BookOpen, Layers, Film, History, Bookmark,
-  ShieldCheck, Play, CheckCircle2, ChevronLeft, ChevronRight, X,
-  Filter, ArrowUpDown, RefreshCw, AlertTriangle, LayoutDashboard
+  CheckCircle2, ChevronLeft, ChevronRight, X,
+  Filter, ArrowUpDown, RefreshCw, AlertTriangle, LayoutDashboard,
+  Clock, Play
 } from 'lucide-react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useStudentContext } from '../../context/StudentContext';
@@ -14,9 +15,13 @@ import {
   fetchPlaylists,
   fetchChannels,
   fetchShorts,
+  fetchVideosByChannel,
+  getLocalWatchHistory,
+  formatTime,
 } from '../../lib/videoLearningApi';
 import { VideoCard } from '../../components/video-learning/VideoCard';
 import { PlaylistCard } from '../../components/video-learning/PlaylistCard';
+import { ChannelShelf } from '../../components/video-learning/ChannelShelf';
 import { SpatialHero3D } from '../../components/3d/SpatialHero3D';
 import { VideoLearningErrorBoundary } from '../../components/video-learning/VideoLearningErrorBoundary';
 
@@ -33,7 +38,7 @@ const TYPE_OPTIONS: { label: string; value: VideoContentType | 'ALL' }[] = [
 ];
 
 const SORT_OPTIONS = [
-  { label: 'Recommended', value: 'recommended' },
+  { label: 'Relevant', value: 'recommended' },
   { label: 'Newest First', value: 'newest' },
   { label: 'Oldest First', value: 'oldest' },
   { label: 'Longest Duration', value: 'longest' },
@@ -45,12 +50,14 @@ function VideoLearningPageContent() {
   const studentContext = useStudentContext();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Active student context default exam
-  const defaultExam = user && studentContext?.targetExam ? studentContext.targetExam : 'GATE';
+  // Active student context target exam & subject
+  const targetExam = user && studentContext?.targetExam ? studentContext.targetExam : null;
+  const targetSubject = user && studentContext?.targetSubject ? studentContext.targetSubject : null;
 
   // Read URL search params
-  const paramExam = searchParams.get('exam') || (user ? defaultExam : 'All Exams');
+  const paramExam = searchParams.get('exam') || (targetExam || 'All Exams');
   const paramSubject = searchParams.get('subject') || 'All Subjects';
   const paramTopic = searchParams.get('topic') || 'All Topics';
   const paramType = (searchParams.get('type') as VideoContentType | 'ALL') || 'ALL';
@@ -79,14 +86,35 @@ function VideoLearningPageContent() {
   const [playlists, setPlaylists] = useState<YouTubePlaylist[]>([]);
   const [channels, setChannels] = useState<YouTubeChannel[]>([]);
   const [shorts, setShorts] = useState<YouTubeVideo[]>([]);
-  
+  const [channelVideosMap, setChannelVideosMap] = useState<Record<string, YouTubeVideo[]>>({});
+  const [watchHistory, setWatchHistory] = useState<any[]>([]);
+
+  // Horizontal shelf scroll refs
+  const playlistShelfRef = useRef<HTMLDivElement>(null);
+  const continueShelfRef = useRef<HTMLDivElement>(null);
+  const [canScrollPlLeft, setCanScrollPlLeft] = useState(false);
+  const [canScrollPlRight, setCanScrollPlRight] = useState(true);
+
   // Loading & error safety states
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [errorState, setErrorState] = useState<boolean>(false);
 
-  // Playlist shelf scroll refs
-  const playlistShelfRef = useRef<HTMLDivElement>(null);
+  // Keyboard shortcut '/' to auto focus search input
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === '/' &&
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Debounce search query
   useEffect(() => {
@@ -96,7 +124,7 @@ function VideoLearningPageContent() {
     return () => clearTimeout(handler);
   }, [searchQuery]);
 
-  // Sync state to URL search parameters
+  // Sync state to URL search parameters (Section 10)
   useEffect(() => {
     const params: Record<string, string> = {};
     if (selectedExam !== 'All Exams') params.exam = selectedExam;
@@ -109,15 +137,39 @@ function VideoLearningPageContent() {
     setSearchParams(params, { replace: true });
   }, [selectedExam, selectedSubject, selectedTopic, selectedType, debouncedSearch, selectedSort, setSearchParams]);
 
-  // BOUNDED LOAD DATA ENGINE (4.5s max timeout producing error state)
+  // Playlist shelf scroll checker
+  const checkPlaylistScroll = () => {
+    if (playlistShelfRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = playlistShelfRef.current;
+      setCanScrollPlLeft(scrollLeft > 5);
+      setCanScrollPlRight(scrollLeft < scrollWidth - clientWidth - 5);
+    }
+  };
+
+  useEffect(() => {
+    checkPlaylistScroll();
+    const currentRef = playlistShelfRef.current;
+    if (currentRef) {
+      currentRef.addEventListener('scroll', checkPlaylistScroll, { passive: true });
+      window.addEventListener('resize', checkPlaylistScroll);
+    }
+    return () => {
+      if (currentRef) currentRef.removeEventListener('scroll', checkPlaylistScroll);
+      window.removeEventListener('resize', checkPlaylistScroll);
+    };
+  }, [playlists]);
+
+  // LOAD INITIAL DATA ENGINE (Bounded 4.5s max timeout)
   const loadInitialData = async () => {
     setLoading(true);
     setErrorState(false);
     setPage(1);
 
-    let isTimedOut = false;
+    // Load watch history
+    const historyList = getLocalWatchHistory();
+    setWatchHistory(historyList);
 
-    // Timeout safety fallback of 4500ms producing error state
+    let isTimedOut = false;
     const timeoutId = setTimeout(() => {
       isTimedOut = true;
       console.warn('Video learning initial load timed out after 4.5s');
@@ -147,6 +199,27 @@ function VideoLearningPageContent() {
         setPlaylists(pList || []);
         setChannels(cList || []);
         setShorts(sList || []);
+
+        // Load channel-specific shelves for each of the 6 verified channels
+        const channelsToFetch = [
+          'JEE Wallah',
+          'PW NEET',
+          'Physics Wallah - Alakh Pandey',
+          'GATE Wallah CSE & DA',
+          'GATE Wallah ECE, EE, IN',
+          'GATE Wallah - ME, CE, XE, CH, PI & ES',
+        ];
+
+        const mapResults: Record<string, YouTubeVideo[]> = {};
+        await Promise.all(
+          channelsToFetch.map(async (name) => {
+            const chanVids = await fetchVideosByChannel(name, 10);
+            if (chanVids.length > 0) {
+              mapResults[name] = chanVids;
+            }
+          })
+        );
+        setChannelVideosMap(mapResults);
         setErrorState(false);
       }
     } catch (err: any) {
@@ -192,8 +265,8 @@ function VideoLearningPageContent() {
     }
   };
 
-  // Scroll horizontal shelf
-  const scrollShelf = (direction: 'left' | 'right') => {
+  // Scroll horizontal shelf helper
+  const scrollPlaylistShelf = (direction: 'left' | 'right') => {
     if (playlistShelfRef.current) {
       const scrollAmount = playlistShelfRef.current.clientWidth * 0.8;
       playlistShelfRef.current.scrollBy({
@@ -223,49 +296,57 @@ function VideoLearningPageContent() {
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#1C201D] pb-20 selection:bg-[#C86D51]/20 selection:text-[#1C201D]">
       <Helmet>
-        <title>Video Learning 3.0 | Study Hub Real Lectures & PYQs</title>
+        <title>Video Learning 2.0 | Study Hub Real Lectures & PYQs</title>
         <meta
           name="description"
           content="Learn from synchronized YouTube lectures, one-shots, PYQs and revision sessions in your 3D spatial study space."
         />
       </Helmet>
 
-      {/* HERO SECTION WITH FORCED READABLE TYPOGRAPHY & CONTRAST */}
+      {/* SECTION 3: PERSONALIZED HERO SECTION */}
       <section className="relative bg-[#F8F6F0] text-[#1C201D] pt-10 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#1C201D]/10 overflow-hidden">
-        {/* Subtle warm paper glows */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C86D51]/10 blur-[130px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#2D5A3F]/10 blur-[130px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-          {/* Left Column: Headline & Controls (7 cols) */}
+          {/* Left Column: Headline & Contextual Badge (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2D5A3F]/10 text-[#2D5A3F] border border-[#2D5A3F]/20 flex items-center gap-1.5 backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5 text-[#C86D51]" /> Video Learning 3.0
+                <Sparkles className="w-3.5 h-3.5 text-[#C86D51]" /> Video Learning 2.0
               </span>
-              {user ? (
+              {user && targetExam ? (
                 <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-[#EDE8DB] text-[#1C201D] border border-[#1C201D]/10 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#2D5A3F]" /> Exam Focus: {selectedExam}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#2D5A3F]" /> Recommended for {targetExam}
                 </span>
               ) : (
                 <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-[#EDE8DB] text-[#6C706D] border border-[#1C201D]/10">
-                  Verified Academic Sources
+                  Explore lessons for your next exam
                 </span>
               )}
             </div>
 
-            {/* MANDATED HERO HEADLINE & ACCENT PHRASE */}
+            {/* MANDATED PERSONALIZED HERO HEADLINE */}
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C201D] tracking-tight leading-tight">
               Learn from the lessons <br className="hidden sm:inline" />
               <span className="italic text-[#C86D51]">that move you forward.</span>
             </h1>
 
-            {/* MANDATED HERO DESCRIPTION */}
+            {/* MANDATED CONTEXTUAL LINE */}
             <p className="text-base sm:text-lg text-[#6C706D] leading-relaxed max-w-xl">
-              Real lectures, one-shots, PYQs, and revision sessions — synchronized from verified channels and structured for your target exam.
+              {user && targetExam ? (
+                <>
+                  Recommended for <strong className="text-[#1C201D]">{targetExam}</strong>
+                  {targetSubject && (
+                    <> · Focused on <strong className="text-[#2D5A3F]">{targetSubject}</strong></>
+                  )}. Verified lectures, PYQs, and revision paths structured for your target score.
+                </>
+              ) : (
+                'Real lectures, one-shots, PYQs, and revision sessions — synchronized from verified academic channels.'
+              )}
             </p>
 
-            {/* Quick Action Navigation */}
+            {/* Quick Action Buttons */}
             <div className="flex items-center gap-3 flex-wrap pt-2">
               <Link
                 to="/video-learning/shorts"
@@ -295,33 +376,47 @@ function VideoLearningPageContent() {
         </div>
       </section>
 
-      {/* MAIN SEARCH & FILTERS SECTION */}
+      {/* SEARCH BAR & FILTERS SECTION */}
       <section className="bg-[#EDE8DB]/50 border-b border-[#1C201D]/10 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* MANDATED SEARCH BAR */}
+          {/* SEARCH INPUT BAR WITH KEYBOARD SHORTCUT '/' & RESULT COUNT */}
           <div className="relative max-w-3xl">
-            <div className="relative">
+            <div className="relative flex items-center">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6C706D]" />
               <input
+                ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search lectures, topics, PYQs, channels... (e.g. DBMS, GATE 2027)"
-                className="w-full bg-[#FFFFFF] border border-[#1C201D]/14 hover:border-[#2D5A3F]/50 focus:border-[#2D5A3F] rounded-xl pl-12 pr-10 py-3.5 text-sm text-[#1C201D] placeholder-[#6C706D] focus:outline-none focus:ring-4 focus:ring-[#2D5A3F]/15 transition-all shadow-sm"
+                placeholder="Search lectures, topics, PYQs... (Press '/' to search)"
+                className="w-full bg-[#FFFFFF] border border-[#1C201D]/14 hover:border-[#2D5A3F]/50 focus:border-[#2D5A3F] rounded-xl pl-12 pr-24 py-3.5 text-sm text-[#1C201D] placeholder-[#6C706D] focus:outline-none focus:ring-4 focus:ring-[#2D5A3F]/15 transition-all shadow-sm"
               />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#6C706D] hover:text-[#1C201D]"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
+
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                {searchQuery ? (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="p-1 text-[#6C706D] hover:text-[#1C201D]"
+                    title="Clear search"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                ) : (
+                  <kbd className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-mono text-[#6C706D] bg-[#EDE8DB] border border-[#1C201D]/10 rounded shadow-inner">
+                    /
+                  </kbd>
+                )}
+                {!loading && (
+                  <span className="text-xs font-bold text-[#2D5A3F] bg-[#2D5A3F]/10 px-2.5 py-1 rounded-md">
+                    {totalCount} results
+                  </span>
+                )}
+              </div>
             </div>
 
-            {/* Quick Suggestions Dropdown Box */}
+            {/* Suggestions Dropdown */}
             {searchFocused && !searchQuery && (
               <div className="absolute left-0 right-0 top-full mt-2 bg-[#FFFFFF] border border-[#1C201D]/10 rounded-xl p-4 shadow-xl z-40 space-y-3">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#C86D51] block">Popular Exam Topics</span>
@@ -343,9 +438,9 @@ function VideoLearningPageContent() {
             )}
           </div>
 
-          {/* MANDATED FILTER BUTTONS (EXAM & TYPE) */}
+          {/* COMPOSABLE FILTER BUTTONS */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-2">
-            {/* Exam Categories */}
+            {/* Exam Filter Options */}
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
               <span className="text-xs font-bold text-[#6C706D] shrink-0 uppercase tracking-wider">Exam:</span>
               {EXAM_OPTIONS.map((exam) => {
@@ -357,7 +452,7 @@ function VideoLearningPageContent() {
                     className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                       active
                         ? 'bg-[#2D5A3F] text-[#FFFFFF] shadow-sm'
-                        : 'bg-[#EDE8DB] text-[#6C706D] hover:text-[#1C201D] hover:bg-[#EDE8DB]/80 border border-[#1C201D]/10'
+                        : 'bg-[#EDE8DB] text-[#6C706D] hover:text-[#1C201D] border border-[#1C201D]/10'
                     }`}
                   >
                     {exam}
@@ -390,9 +485,9 @@ function VideoLearningPageContent() {
         </div>
       </section>
 
-      {/* MAIN FEED AREA */}
+      {/* MAIN FEED AREA (STRICT VISUAL HIERARCHY) */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        {/* MANDATED ERROR STATE CARD (If request fails or times out) */}
+        {/* BRANDED ERROR STATE CARD */}
         {errorState && (
           <div className="p-8 rounded-3xl bg-[#FFFFFF] border border-[#1C201D]/10 shadow-md text-center max-w-lg mx-auto space-y-5">
             <div className="w-14 h-14 rounded-full bg-[#C86D51]/10 text-[#C86D51] flex items-center justify-center mx-auto border border-[#C86D51]/20">
@@ -452,151 +547,106 @@ function VideoLearningPageContent() {
           </div>
         )}
 
-        {/* VERIFIED CHANNELS HORIZONTAL SHELF */}
-        {channels.length > 0 && (
-          <section className="space-y-3">
+        {/* SECTION 4: CONTINUE LEARNING (OR START WITH THESE LESSONS) */}
+        {!errorState && (
+          <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-serif font-bold text-[#1C201D] flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-[#2D5A3F]" /> Verified Channels
-                </h2>
-                <p className="text-xs text-[#6C706D]">Official lectures imported directly from verified academic channels</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-              {channels.map((chan) => (
-                <div
-                  key={chan.id}
-                  onClick={() => navigate(`/video-learning/channel/${chan.id}`)}
-                  className="bg-[#FFFFFF] border border-[#1C201D]/10 hover:border-[#2D5A3F]/40 rounded-2xl p-3 text-center cursor-pointer transition-all hover:-translate-y-0.5 shadow-sm group"
-                >
-                  <img
-                    src={chan.avatar_url || chan.thumbnail_url}
-                    alt={chan.channel_name || 'Channel'}
-                    className="w-11 h-11 rounded-full mx-auto mb-2 object-cover border border-[#2D5A3F]/30 group-hover:scale-105 transition-transform bg-[#EDE8DB]"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                  <h3 className="text-xs font-bold text-[#1C201D] truncate group-hover:text-[#2D5A3F]">
-                    {chan.channel_name || 'Unknown channel'}
-                  </h3>
-                  <span className="text-[10px] text-[#6C706D] block mt-0.5 font-medium">{chan.subscriber_count || 'Verified'}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* MAIN PAGINATED VIDEOS GRID */}
-        {!errorState && (
-          <section className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
                 <h2 className="text-xl font-serif font-bold text-[#1C201D] flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-[#2D5A3F]" /> Recommended Lectures & PYQs
+                  <History className="w-5 h-5 text-[#2D5A3F]" />
+                  {watchHistory.length > 0 ? 'Continue Learning' : 'Start With These Lessons'}
                 </h2>
                 <p className="text-xs text-[#6C706D]">
-                  {totalCount} total synchronized videos found
+                  {watchHistory.length > 0
+                    ? 'Resume your active study sessions'
+                    : 'Hand-picked top lectures for your exam target'}
                 </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <ArrowUpDown className="w-3.5 h-3.5 text-[#6C706D]" />
-                <span className="text-xs font-semibold text-[#6C706D]">Sort:</span>
-                <select
-                  value={selectedSort}
-                  onChange={(e) => setSelectedSort(e.target.value)}
-                  className="bg-[#FFFFFF] border border-[#1C201D]/14 rounded-xl px-3 py-1.5 text-xs text-[#1C201D] font-semibold focus:outline-none focus:border-[#2D5A3F]"
-                >
-                  {SORT_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
 
-            {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                  <div key={n} className="h-64 rounded-2xl bg-[#EDE8DB]/60 animate-pulse border border-[#1C201D]/5" />
+            {watchHistory.length > 0 ? (
+              <div
+                ref={continueShelfRef}
+                className="flex items-stretch gap-5 overflow-x-auto no-scrollbar pb-2"
+              >
+                {watchHistory.slice(0, 6).map((item) => (
+                  <div key={item.youtube_video_id} className="min-w-[280px] sm:min-w-[320px] max-w-[340px]">
+                    <div
+                      onClick={() => navigate(`/video-learning/video/${item.youtube_video_id}`)}
+                      className="bg-[#FFFFFF] border border-[#1C201D]/10 hover:border-[#2D5A3F]/40 rounded-2xl p-3.5 cursor-pointer transition-all shadow-sm hover:shadow-md space-y-3"
+                    >
+                      <div className="relative aspect-video rounded-xl overflow-hidden bg-[#EDE8DB]">
+                        <img
+                          src={`https://i.ytimg.com/vi/${item.youtube_video_id}/hqdefault.jpg`}
+                          alt="Watch progress"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-[#1C201D]/30 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full bg-[#2D5A3F] text-[#FFFFFF] flex items-center justify-center shadow-md">
+                            <Play className="w-4 h-4 fill-current ml-0.5" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-[#1C201D]/90 text-[#FFFFFF] text-[11px] font-mono font-medium">
+                          Resume {formatTime(item.last_position)}
+                        </div>
+                        <div className="absolute bottom-0 inset-x-0 h-1 bg-[#1C201D]">
+                          <div
+                            className="h-full bg-[#2D5A3F]"
+                            style={{ width: `${item.progress_percent}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold uppercase text-[#2D5A3F]">Continue from {formatTime(item.last_position)}</span>
+                        <h4 className="text-xs font-bold text-[#1C201D] line-clamp-1">Lesson Session</h4>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </div>
-            ) : videos.length === 0 ? (
-              <div className="text-center py-16 bg-[#FFFFFF] rounded-3xl border border-[#1C201D]/10 space-y-4 shadow-sm">
-                <BookOpen className="w-12 h-12 mx-auto text-[#6C706D]" />
-                <div className="space-y-1">
-                  <h3 className="text-base font-bold text-[#1C201D]">No lessons found.</h3>
-                  <p className="text-xs text-[#6C706D] max-w-md mx-auto">
-                    Try another search or filter.
-                  </p>
-                </div>
-                <button
-                  onClick={clearAllFilters}
-                  className="px-5 py-2.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] font-bold text-xs shadow-md transition-colors"
-                >
-                  Clear filters
-                </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {videos.map((vid) => (
-                  <VideoCard
-                    key={vid.id}
-                    video={vid}
-                    onSelect={(v) => navigate(`/video-learning/video/${v.youtube_video_id || v.id}`)}
-                  />
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                {videos.slice(0, 4).map((v) => (
+                  <VideoCard key={v.id} video={v} onSelect={(vid) => navigate(`/video-learning/video/${vid.youtube_video_id || vid.id}`)} />
                 ))}
-              </div>
-            )}
-
-            {/* LOAD MORE BUTTON */}
-            {hasMore && !loading && (
-              <div className="text-center pt-6">
-                <button
-                  disabled={loadingMore}
-                  onClick={handleLoadMore}
-                  className="px-8 py-3 rounded-xl bg-[#FFFFFF] border border-[#1C201D]/15 hover:border-[#2D5A3F]/40 text-[#1C201D] font-bold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-2 mx-auto"
-                >
-                  {loadingMore ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin text-[#2D5A3F]" /> Loading more...
-                    </>
-                  ) : (
-                    <>Load More Videos ({videos.length} of {totalCount})</>
-                  )}
-                </button>
               </div>
             )}
           </section>
         )}
 
-        {/* PLAYLISTS HORIZONTAL SHELF */}
+        {/* SECTION 6: COMPLETE PLAYLISTS ("Follow a complete path.") */}
         {playlists.length > 0 && !errorState && (
           <section className="space-y-4 pt-4 border-t border-[#1C201D]/10">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-serif font-bold text-[#1C201D] flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-[#2D5A3F]" /> Structured Course Playlists
+                  <Layers className="w-5 h-5 text-[#2D5A3F]" /> Follow a Complete Path
                 </h2>
-                <p className="text-xs text-[#6C706D]">Follow complete multi-lesson paths for {selectedExam}</p>
+                <p className="text-xs text-[#6C706D]">Structured course playlists organized lesson by lesson</p>
               </div>
 
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => scrollShelf('left')}
+                  disabled={!canScrollPlLeft}
+                  onClick={() => scrollPlaylistShelf('left')}
                   aria-label="Scroll left"
-                  className="p-2 rounded-full bg-[#FFFFFF] border border-[#1C201D]/10 text-[#1C201D] hover:bg-[#EDE8DB] transition-colors shadow-sm"
+                  className={`p-2 rounded-full border transition-all ${
+                    canScrollPlLeft
+                      ? 'bg-[#FFFFFF] text-[#1C201D] border-[#1C201D]/15 hover:bg-[#EDE8DB] shadow-sm'
+                      : 'bg-[#EDE8DB]/40 text-[#6C706D]/40 border-[#1C201D]/5 cursor-not-allowed'
+                  }`}
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
-                  onClick={() => scrollShelf('right')}
+                  disabled={!canScrollPlRight}
+                  onClick={() => scrollPlaylistShelf('right')}
                   aria-label="Scroll right"
-                  className="p-2 rounded-full bg-[#FFFFFF] border border-[#1C201D]/10 text-[#1C201D] hover:bg-[#EDE8DB] transition-colors shadow-sm"
+                  className={`p-2 rounded-full border transition-all ${
+                    canScrollPlRight
+                      ? 'bg-[#FFFFFF] text-[#1C201D] border-[#1C201D]/15 hover:bg-[#EDE8DB] shadow-sm'
+                      : 'bg-[#EDE8DB]/40 text-[#6C706D]/40 border-[#1C201D]/5 cursor-not-allowed'
+                  }`}
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -619,7 +669,22 @@ function VideoLearningPageContent() {
           </section>
         )}
 
-        {/* SHORTS HIGHLIGHT RAIL */}
+        {/* SECTION 7: SEPARATE DEDICATED CHANNEL SHELVES */}
+        {!errorState && (
+          <section className="space-y-6">
+            <h2 className="text-2xl font-serif font-bold text-[#1C201D]">Verified Channels Catalog</h2>
+            {Object.entries(channelVideosMap).map(([name, channelVideos]) => (
+              <ChannelShelf
+                key={name}
+                channelName={name}
+                videos={channelVideos}
+                onSelectVideo={(v) => navigate(`/video-learning/video/${v.youtube_video_id || v.id}`)}
+              />
+            ))}
+          </section>
+        )}
+
+        {/* HIGH-YIELD SHORTS HIGHLIGHT RAIL */}
         {shorts.length > 0 && !errorState && (
           <section className="bg-[#FFFFFF] text-[#1C201D] rounded-3xl p-6 lg:p-8 border border-[#1C201D]/10 space-y-4 shadow-sm">
             <div className="flex items-center justify-between">
@@ -658,6 +723,91 @@ function VideoLearningPageContent() {
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* MAIN PAGINATED VIDEOS GRID */}
+        {!errorState && (
+          <section className="space-y-6 pt-4 border-t border-[#1C201D]/10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-serif font-bold text-[#1C201D] flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-[#2D5A3F]" /> Recommended Lectures & PYQs
+                </h2>
+                <p className="text-xs text-[#6C706D]">
+                  {totalCount} total synchronized videos found
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <ArrowUpDown className="w-3.5 h-3.5 text-[#6C706D]" />
+                <span className="text-xs font-semibold text-[#6C706D]">Sort:</span>
+                <select
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                  className="bg-[#FFFFFF] border border-[#1C201D]/14 rounded-xl px-3 py-1.5 text-xs text-[#1C201D] font-semibold focus:outline-none focus:border-[#2D5A3F]"
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {loading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-4">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                  <div key={n} className="h-64 rounded-2xl bg-[#EDE8DB]/60 animate-pulse border border-[#1C201D]/5" />
+                ))}
+              </div>
+            ) : videos.length === 0 ? (
+              <div className="text-center py-16 bg-[#FFFFFF] rounded-3xl border border-[#1C201D]/10 space-y-4 shadow-sm">
+                <BookOpen className="w-12 h-12 mx-auto text-[#6C706D]" />
+                <div className="space-y-1">
+                  <h3 className="text-base font-bold text-[#1C201D]">Nothing matched this search.</h3>
+                  <p className="text-xs text-[#6C706D] max-w-md mx-auto">
+                    Try another search term or filter combination.
+                  </p>
+                </div>
+                <button
+                  onClick={clearAllFilters}
+                  className="px-5 py-2.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] font-bold text-xs shadow-md transition-colors"
+                >
+                  Explore all videos
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {videos.map((vid) => (
+                  <VideoCard
+                    key={vid.id}
+                    video={vid}
+                    onSelect={(v) => navigate(`/video-learning/video/${v.youtube_video_id || v.id}`)}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* LOAD MORE BUTTON */}
+            {hasMore && !loading && (
+              <div className="text-center pt-6">
+                <button
+                  disabled={loadingMore}
+                  onClick={handleLoadMore}
+                  className="px-8 py-3 rounded-xl bg-[#FFFFFF] border border-[#1C201D]/15 hover:border-[#2D5A3F]/40 text-[#1C201D] font-bold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-2 mx-auto"
+                >
+                  {loadingMore ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin text-[#2D5A3F]" /> Loading more...
+                    </>
+                  ) : (
+                    <>Load More Videos ({videos.length} of {totalCount})</>
+                  )}
+                </button>
+              </div>
+            )}
           </section>
         )}
       </main>

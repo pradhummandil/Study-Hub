@@ -185,6 +185,41 @@ export async function fetchVideos(filters?: VideoLearningFilters): Promise<YouTu
   return res.videos;
 }
 
+export async function fetchVideosByChannel(channelIdOrName: string, limit: number = 12): Promise<YouTubeVideo[]> {
+  try {
+    const { data, error } = await supabase
+      .from('youtube_videos')
+      .select('*')
+      .eq('is_short', false)
+      .or(`channel_id.eq.${channelIdOrName},channel_name.ilike.%${channelIdOrName}%`)
+      .order('published_at', { ascending: false })
+      .limit(limit);
+
+    if (!error && data && data.length > 0) {
+      return data as YouTubeVideo[];
+    }
+  } catch (err) {
+    console.warn('DB channel fetch fallback:', err);
+  }
+
+  // Fallback filtering
+  const allV = (realData.videos || []).filter((v) => !v.is_short) as unknown as YouTubeVideo[];
+  const lower = channelIdOrName.toLowerCase();
+  return allV
+    .filter((v) => v.channel_id === channelIdOrName || v.channel_name?.toLowerCase().includes(lower))
+    .slice(0, limit);
+}
+
+export async function fetchRecommendedVideos(exam?: string, subject?: string, limit: number = 12): Promise<YouTubeVideo[]> {
+  const res = await fetchVideosPaginated(1, limit, {
+    exam,
+    subject,
+    sort: 'recommended',
+  });
+  return res.videos;
+}
+
+
 // ----------------------------------------------------
 // FETCH PLAYLISTS
 // ----------------------------------------------------

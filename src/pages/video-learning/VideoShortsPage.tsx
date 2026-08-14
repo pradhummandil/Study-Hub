@@ -1,4 +1,3 @@
-// src/pages/video-learning/VideoShortsPage.tsx
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Film, ArrowLeft } from 'lucide-react';
@@ -26,28 +25,28 @@ export default function VideoShortsPage() {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between">
+    <div className="min-h-screen bg-[#F8F6F0] text-[#1C201D] flex flex-col justify-between">
       <Helmet>
         <title>Quick Educational Shorts & Revision | Study Hub</title>
         <meta name="description" content="High-yield 60-second formulas, concepts, PYQs and strategy shorts for exam preparation." />
       </Helmet>
 
       {/* HEADER NAVBAR */}
-      <div className="bg-slate-900/90 border-b border-slate-800 px-4 py-3 sticky top-0 z-30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="bg-[#FFFFFF] border-b border-[#1C201D]/10 px-4 py-3 sticky top-0 z-30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
         <div className="flex items-center gap-3">
-          <Link to="/video-learning" className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white transition-colors" title="Back to Catalog">
+          <Link to="/video-learning" className="p-2 rounded-xl bg-[#EDE8DB] text-[#1C201D] hover:bg-[#2D5A3F] hover:text-[#FFFFFF] transition-colors" title="Back to Catalog">
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <h1 className="text-sm font-bold text-white flex items-center gap-1.5">
-              <Film className="w-4 h-4 text-cyan-400" /> Educational Shorts Feed
+            <h1 className="text-sm font-bold text-[#1C201D] flex items-center gap-1.5 font-serif text-base">
+              <Film className="w-4 h-4 text-[#C86D51]" /> Educational Shorts Feed
             </h1>
-            <p className="text-[11px] text-slate-400">Scroll vertical 60-second formulas, concepts and shortcuts</p>
+            <p className="text-[11px] text-[#6C706D]">Scroll vertical 60-second formulas, concepts and shortcuts</p>
           </div>
         </div>
 
         {/* Category Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none w-full sm:w-auto">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
           {SHORT_CATEGORIES.map((cat) => {
             const active = selectedCategory === cat;
             return (
@@ -56,8 +55,8 @@ export default function VideoShortsPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3 py-1 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
                   active
-                    ? 'bg-cyan-400 text-slate-950 shadow-md'
-                    : 'bg-slate-800/80 text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#2D5A3F] text-[#FFFFFF] shadow-sm'
+                    : 'bg-[#EDE8DB] text-[#6C706D] hover:text-[#1C201D]'
                 }`}
               >
                 {cat}
@@ -70,11 +69,11 @@ export default function VideoShortsPage() {
       {/* SHORTS VIEWER CONTAINER */}
       <div className="flex-1 flex items-center justify-center p-4">
         {loading ? (
-          <div className="w-10 h-10 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
+          <div className="w-10 h-10 rounded-full border-2 border-[#2D5A3F] border-t-transparent animate-spin" />
         ) : (
           <ShortsViewer
             shorts={shorts}
-            onOpenFullLecture={(v) => navigate(`/video-learning/video/${v.youtube_video_id}`)}
+            onOpenFullLecture={(v) => navigate(`/video-learning/video/${v.youtube_video_id || v.id}`)}
           />
         )}
       </div>
