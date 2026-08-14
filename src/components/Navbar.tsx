@@ -67,10 +67,10 @@ export const Navbar = () => {
   const moreRef = useRef<HTMLDivElement>(null);
   const examRef = useRef<HTMLDivElement>(null);
 
-  // Scroll listener for dynamic green-to-white background transition
+  // Scroll listener for compact elevation shadow
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -128,25 +128,18 @@ export const Navbar = () => {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 w-full"
-      initial={false}
-      animate={{
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : '#1B3022',
-        boxShadow: isScrolled ? '0 4px 20px -2px rgba(28, 32, 29, 0.08)' : '0 0 0 rgba(0,0,0,0)',
+      className="sticky top-0 z-50 w-full bg-[#FFFFFF]/95 backdrop-blur-xl border-b border-[#1C201D]/10 transition-shadow duration-300"
+      style={{
+        boxShadow: isScrolled
+          ? '0 4px 20px -2px rgba(28, 32, 29, 0.06)'
+          : '0 0 0 rgba(0,0,0,0)',
       }}
-      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <div
-        className={`relative z-40 flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
-          isScrolled
-            ? 'h-[68px] border-b border-[#1C201D]/10 backdrop-blur-xl'
-            : 'h-[84px] bg-[#1B3022]'
-        }`}
-      >
-        {/* Logo with dynamic dark/light variant */}
-        <Logo size="md" variant={isScrolled ? 'light' : 'dark'} />
+      <div className="flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full h-[72px] transition-all">
+        {/* Clean Logo */}
+        <Logo size="md" variant="light" />
 
-        {/* Desktop Navigation Rail with Framer Motion Active Pill */}
+        {/* Professional Navigation Bar with Soft Parchment Pill */}
         <div className="hidden md:flex items-center space-x-1 relative">
           {activeNavItems.map(({ label, path }) => {
             const active = isActive(path);
@@ -154,28 +147,21 @@ export const Navbar = () => {
               <Link
                 key={label}
                 to={path}
-                className={`relative px-4 py-2 text-xs font-semibold tracking-wide transition-colors rounded-full focus-visible:outline-none ${
-                  isScrolled
-                    ? active
-                      ? 'text-[#FFFFFF]'
-                      : 'text-[#6C706D] hover:text-[#1C201D]'
-                    : active
-                    ? 'text-[#FFFFFF]'
-                    : 'text-[#EDE8DB] hover:text-[#FFFFFF]'
+                className={`relative px-4 py-2 text-xs font-bold tracking-wide transition-colors rounded-full focus-visible:outline-none flex items-center gap-1.5 ${
+                  active ? 'text-[#1C201D]' : 'text-[#6C706D] hover:text-[#1C201D]'
                 }`}
               >
                 {active && (
                   <motion.div
                     layoutId="activeNavPill"
-                    className={`absolute inset-0 rounded-full ${
-                      isScrolled
-                        ? 'bg-[#2D5A3F] shadow-sm'
-                        : 'bg-[#2D5A3F] border border-[#D4AF37]/30 shadow-sm'
-                    }`}
-                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                    className="absolute inset-0 bg-[#EDE8DB] rounded-full border border-[#1C201D]/10 shadow-sm"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
-                <span className="relative z-10">{label}</span>
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {active && <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] inline-block" />}
+                  {label}
+                </span>
               </Link>
             );
           })}
@@ -186,20 +172,16 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setMoreMenuOpen(!moreMenuOpen)}
-                className={`text-xs font-semibold transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 px-3.5 rounded-full cursor-pointer ${
-                  isScrolled
-                    ? moreMenuOpen || isSecondaryActive
-                      ? 'bg-[#2D5A3F] text-[#FFFFFF]'
-                      : 'text-[#6C706D] hover:text-[#1C201D]'
-                    : moreMenuOpen || isSecondaryActive
-                    ? 'bg-[#2D5A3F] text-[#FFFFFF] border border-[#D4AF37]/30'
-                    : 'text-[#EDE8DB] hover:text-[#FFFFFF]'
+                className={`text-xs font-bold transition-colors flex items-center gap-1.5 focus-visible:outline-none py-2 px-3.5 rounded-full cursor-pointer ${
+                  moreMenuOpen || isSecondaryActive
+                    ? 'bg-[#EDE8DB] text-[#1C201D] border border-[#1C201D]/10'
+                    : 'text-[#6C706D] hover:text-[#1C201D]'
                 }`}
                 aria-label="More features menu"
                 aria-expanded={moreMenuOpen}
               >
                 <span>More</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-[#D4AF37]' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${moreMenuOpen ? 'rotate-180 text-[#C86D51]' : ''}`} />
               </button>
 
               <AnimatePresence>
@@ -216,10 +198,10 @@ export const Navbar = () => {
                         key={label}
                         to={path}
                         onClick={() => setMoreMenuOpen(false)}
-                        className={`flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors ${
+                        className={`flex items-center gap-2.5 px-3 py-2.5 text-xs font-semibold rounded-xl transition-colors ${
                           isActive(path)
-                            ? 'bg-[#2D5A3F] text-[#FFFFFF] font-bold'
-                            : 'text-[#1C201D] hover:bg-[#EDE8DB]'
+                            ? 'bg-[#EDE8DB] text-[#1C201D] font-bold border border-[#1C201D]/10'
+                            : 'text-[#1C201D] hover:bg-[#F8F6F0]'
                         }`}
                       >
                         <Icon className="w-4 h-4 text-[#C86D51] shrink-0" />
@@ -233,8 +215,8 @@ export const Navbar = () => {
           )}
         </div>
 
-        {/* Desktop Auth & Action Controls */}
-        <div className="hidden md:flex items-center space-x-3 relative h-10" ref={menuRef}>
+        {/* Professional Desktop Actions */}
+        <div className="hidden md:flex items-center space-x-3 relative" ref={menuRef}>
           {loading ? (
             <div className="w-28 h-9 rounded-full bg-[#EDE8DB] animate-pulse" />
           ) : user ? (
@@ -244,15 +226,11 @@ export const Navbar = () => {
                 <button
                   type="button"
                   onClick={() => setExamMenuOpen(!examMenuOpen)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border transition-all ${
-                    isScrolled
-                      ? 'bg-[#EDE8DB] text-[#1C201D] border-[#1C201D]/10 hover:bg-[#EDE8DB]/80'
-                      : 'bg-[#2D5A3F]/50 text-[#EDE8DB] border-[#2D5A3F] hover:bg-[#2D5A3F]'
-                  }`}
+                  className="rounded-full px-3.5 py-1.5 text-xs font-bold flex items-center gap-1.5 border bg-[#EDE8DB] text-[#1C201D] border-[#1C201D]/10 hover:bg-[#EDE8DB]/80 transition-all cursor-pointer"
                 >
                   <Shield className="w-3.5 h-3.5 text-[#D4AF37]" />
                   <span>{studentContext.targetExam} {studentContext.targetExamYear}</span>
-                  <ChevronDown className={`w-3 h-3 transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 text-[#6C706D] transition-transform ${examMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 <AnimatePresence>
@@ -275,14 +253,14 @@ export const Navbar = () => {
                               studentContext.switchExam(eKey);
                               setExamMenuOpen(false);
                             }}
-                            className={`w-full text-left px-3 py-2 text-xs font-medium rounded-xl transition-colors flex items-center justify-between ${
+                            className={`w-full text-left px-3 py-2 text-xs font-semibold rounded-xl transition-colors flex items-center justify-between ${
                               isSel
-                                ? 'bg-[#2D5A3F] text-[#FFFFFF] font-bold'
-                                : 'text-[#1C201D] hover:bg-[#EDE8DB]'
+                                ? 'bg-[#EDE8DB] text-[#1C201D] font-bold border border-[#1C201D]/10'
+                                : 'text-[#1C201D] hover:bg-[#F8F6F0]'
                             }`}
                           >
                             <span>{eKey}</span>
-                            <span className="text-[10px] font-mono">
+                            <span className="text-[10px] font-mono text-[#6C706D]">
                               {EXAM_CONFIGS[eKey].currentCycle}
                             </span>
                           </button>
@@ -298,26 +276,20 @@ export const Navbar = () => {
 
               {/* Level & Streak Badge */}
               {gamification && (
-                <div className={`rounded-full px-3 py-1 text-xs border flex items-center gap-2 font-mono ${
-                  isScrolled ? 'bg-[#EDE8DB] text-[#1C201D] border-[#1C201D]/10' : 'bg-[#1C201D]/60 text-[#FFFFFF] border-[#FFFFFF]/10'
-                }`}>
+                <div className="rounded-full px-3.5 py-1.5 text-xs border border-[#1C201D]/10 bg-[#1C201D] text-[#FFFFFF] flex items-center gap-2 font-mono shadow-sm">
                   <span className="text-[#D4AF37] font-bold flex items-center gap-1">
                     <Flame className="w-3.5 h-3.5 fill-[#D4AF37]/20 text-[#D4AF37]" /> {gamification.current_streak}d
                   </span>
                   <span className="text-[#6C706D]">|</span>
-                  <span className="font-semibold">Lvl {gamification.level}</span>
+                  <span className="font-semibold text-[#EDE8DB]">Lvl {gamification.level}</span>
                 </div>
               )}
 
               {/* Logged In Avatar Badge */}
-              <div className="relative flex items-center h-full">
+              <div className="relative flex items-center">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className={`rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border transition-all cursor-pointer focus-visible:outline-none select-none ${
-                    isScrolled
-                      ? 'bg-[#EDE8DB] text-[#1C201D] border-[#1C201D]/10 hover:bg-[#EDE8DB]/80'
-                      : 'bg-[#2D5A3F]/50 text-[#FFFFFF] border-[#2D5A3F] hover:bg-[#2D5A3F]'
-                  }`}
+                  className="rounded-full pl-1.5 pr-3 py-1 flex items-center gap-2 border bg-[#EDE8DB] text-[#1C201D] border-[#1C201D]/10 hover:bg-[#EDE8DB]/80 transition-all cursor-pointer focus-visible:outline-none select-none"
                   aria-label="User menu"
                   aria-expanded={userMenuOpen}
                 >
@@ -325,15 +297,15 @@ export const Navbar = () => {
                     <img
                       src={avatarUrl}
                       alt={fullName}
-                      className="w-7 h-7 rounded-full object-cover border border-[#2D5A3F]"
+                      className="w-7 h-7 rounded-full object-cover border border-[#1C201D]/10"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-[#2D5A3F] text-[#D4AF37] font-bold text-xs flex items-center justify-center border border-[#D4AF37]/30">
+                    <div className="w-7 h-7 rounded-full bg-[#1C201D] text-[#D4AF37] font-bold text-xs flex items-center justify-center">
                       {initialLetter}
                     </div>
                   )}
                   <span className="text-xs font-bold tracking-wide">{firstName}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 text-[#6C706D] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* User Dropdown */}
@@ -349,7 +321,7 @@ export const Navbar = () => {
                     <Link
                       to="/dashboard"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-[#1C201D] hover:bg-[#EDE8DB] rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1C201D] hover:bg-[#F8F6F0] rounded-xl transition-colors"
                       role="menuitem"
                     >
                       <LayoutDashboard className="w-4 h-4 text-[#2D5A3F]" />
@@ -358,7 +330,7 @@ export const Navbar = () => {
                     <Link
                       to="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-[#1C201D] hover:bg-[#EDE8DB] rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1C201D] hover:bg-[#F8F6F0] rounded-xl transition-colors"
                       role="menuitem"
                     >
                       <Settings className="w-4 h-4 text-[#2D5A3F]" />
@@ -367,7 +339,7 @@ export const Navbar = () => {
                     <Link
                       to="/community"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-[#1C201D] hover:bg-[#EDE8DB] rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1C201D] hover:bg-[#F8F6F0] rounded-xl transition-colors"
                       role="menuitem"
                     >
                       <Users className="w-4 h-4 text-[#C86D51]" />
@@ -393,15 +365,13 @@ export const Navbar = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/login"
-                className={`text-xs font-bold transition-colors px-3 py-2 focus-visible:outline-none rounded ${
-                  isScrolled ? 'text-[#1C201D] hover:text-[#2D5A3F]' : 'text-[#EDE8DB] hover:text-[#FFFFFF]'
-                }`}
+                className="text-xs font-bold text-[#1C201D] hover:text-[#2D5A3F] transition-colors px-3.5 py-2 focus-visible:outline-none rounded"
               >
                 Log in
               </Link>
               <Link
                 to="/signup"
-                className="bg-[#2D5A3F] hover:bg-[#2D5A3F]/90 text-[#FFFFFF] text-xs font-bold px-4.5 py-2.5 rounded-full shadow-md transition-all cursor-pointer"
+                className="bg-[#1C201D] hover:bg-[#2D5A3F] text-[#FFFFFF] text-xs font-bold px-5 py-2.5 rounded-full shadow-sm transition-all whitespace-nowrap cursor-pointer inline-flex items-center justify-center"
               >
                 Start studying
               </Link>
@@ -412,9 +382,7 @@ export const Navbar = () => {
         {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`md:hidden focus-visible:outline-none rounded p-2 transition-colors ${
-            isScrolled ? 'text-[#1C201D]' : 'text-[#FFFFFF]'
-          }`}
+          className="md:hidden text-[#1C201D] focus-visible:outline-none rounded p-2 transition-colors"
           aria-label="Toggle navigation menu"
         >
           {mobileOpen ? (
@@ -464,8 +432,8 @@ export const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className={`text-left text-sm py-3 border-b border-[#1C201D]/10 last:border-none transition-colors block font-semibold ${
                   isActive(path)
-                    ? 'text-[#2D5A3F] font-bold'
-                    : 'text-[#1C201D] hover:text-[#2D5A3F]'
+                    ? 'text-[#1C201D] font-bold text-base'
+                    : 'text-[#6C706D] hover:text-[#1C201D]'
                 }`}
               >
                 {label}
@@ -482,7 +450,7 @@ export const Navbar = () => {
                     {avatarUrl ? (
                       <img src={avatarUrl} alt={fullName} className="w-9 h-9 rounded-full object-cover" />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-[#2D5A3F] text-[#D4AF37] font-bold flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-full bg-[#1C201D] text-[#D4AF37] font-bold flex items-center justify-center">
                         {initialLetter}
                       </div>
                     )}
@@ -494,7 +462,7 @@ export const Navbar = () => {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full bg-[#2D5A3F] text-[#FFFFFF] font-bold text-sm shadow-sm"
+                    className="w-full text-center py-3 rounded-full bg-[#1C201D] text-[#FFFFFF] font-bold text-sm shadow-sm"
                   >
                     Dashboard
                   </Link>
@@ -520,7 +488,7 @@ export const Navbar = () => {
                   <Link
                     to="/signup"
                     onClick={() => setMobileOpen(false)}
-                    className="w-full text-center py-3 rounded-full bg-[#2D5A3F] text-[#FFFFFF] font-bold text-sm shadow-sm"
+                    className="w-full text-center py-3 rounded-full bg-[#1C201D] text-[#FFFFFF] font-bold text-sm shadow-sm"
                   >
                     Start studying
                   </Link>
