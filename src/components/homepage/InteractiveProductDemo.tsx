@@ -25,28 +25,33 @@ export const InteractiveProductDemo: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-slate-100 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#F8F6F0] text-[#1C201D] border-b border-[#1C201D]/10 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#287BFF]/10 text-[#287BFF] text-xs font-bold uppercase tracking-wider mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2D5A3F]/10 text-[#2D5A3F] border border-[#2D5A3F]/20 text-xs font-bold uppercase tracking-wider mb-3">
             See How Study Hub Works
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-normal text-[#062B3D] tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="text-4xl sm:text-5xl font-serif font-bold text-[#1C201D] tracking-tight"
           >
             Experience Study Hub before signing up.
           </h2>
-          <p className="text-base text-slate-600 mt-3">
+          <p className="text-sm sm:text-base text-[#6C706D] mt-3 leading-relaxed">
             Click through our main tools to see how Study Hub brings clarity to your daily routine.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tab Navigation Controls */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1.5 bg-slate-100/80 rounded-2xl border border-slate-200/80 max-w-full overflow-x-auto no-scrollbar gap-1">
+          <div className="inline-flex p-1.5 bg-[#EDE8DB]/70 rounded-2xl border border-[#1C201D]/10 max-w-full overflow-x-auto no-scrollbar gap-1">
             {tabs.map((t) => {
               const Icon = t.icon;
               const isSel = activeTab === t.id;
@@ -58,13 +63,13 @@ export const InteractiveProductDemo: React.FC = () => {
                     setActiveTab(t.id);
                     setCardFlipped(false);
                   }}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap ${
+                  className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer ${
                     isSel
-                      ? 'bg-[#062B3D] text-white shadow-md'
-                      : 'text-slate-600 hover:text-[#062B3D] hover:bg-slate-200/50'
+                      ? 'bg-[#2D5A3F] text-[#FFFFFF] shadow-sm'
+                      : 'text-[#6C706D] hover:text-[#1C201D] hover:bg-[#FFFFFF]/60'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isSel ? 'text-[#5CE1E6]' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isSel ? 'text-[#D4AF37]' : 'text-[#6C706D]'}`} />
                   <span>{t.label}</span>
                 </button>
               );
@@ -72,351 +77,179 @@ export const InteractiveProductDemo: React.FC = () => {
           </div>
         </div>
 
-        {/* Interactive Canvas Frame */}
-        <div className="relative rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden p-6 md:p-10 text-white min-h-[460px]">
-          
-          {/* Header Bar inside demo */}
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6 text-xs text-slate-400">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-              <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              <span className="ml-2 font-mono text-[11px] text-slate-400">studyhub.app / demo / {activeTab}</span>
-            </div>
-            
-            {/* Prominent Label & Pin 10 Micro-interaction Visual */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#5CE1E6]/40 shadow-sm shrink-0">
-                <video
-                  src="/assets/pinterest/actual-pin-909656824725158872.mp4"
-                  poster="/assets/pinterest/actual-pin-909656824725158872-poster.webp"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span className="px-3 py-1 rounded-full bg-[#287BFF]/20 text-[#5CE1E6] font-semibold text-[11px] border border-[#287BFF]/30">
-                Interactive preview
-              </span>
-            </div>
-          </div>
-
-          {/* Dynamic Tab Content */}
+        {/* Interactive Demo Viewport Canvas */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1C201D] border border-[#1C201D]/20 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl min-h-[460px] text-[#FFFFFF] relative overflow-hidden"
+        >
           <AnimatePresence mode="wait">
-            
-            {/* TAB 1: DASHBOARD */}
             {activeTab === 'dashboard' && (
               <motion.div
-                key="dashboard-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="dashboard"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -12 }}
                 className="space-y-6"
               >
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#2D5A3F]/20 border border-[#2D5A3F]/30">
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider font-bold text-[#5CE1E6]">Academic Target</span>
-                    <h3 className="text-xl font-bold text-white">GATE 2027 • Computer Science</h3>
-                    <p className="text-xs text-slate-400 mt-0.5">Targeting Top Rank • 3 Hours Daily Prep</p>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#D4AF37]">Academic Target</span>
+                    <h3 className="text-lg font-bold text-[#FFFFFF]">GATE 2027 • Computer Science</h3>
+                    <p className="text-xs text-[#EDE8DB] mt-0.5">Targeting Top Rank • 3 Hours Daily Prep</p>
                   </div>
-                  <button
-                    onClick={() => navigate('/signup')}
-                    className="px-5 py-2.5 rounded-full bg-[#287BFF] hover:bg-[#287BFF]/90 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-lg"
-                  >
-                    <span>Customize Your Path</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                  <button onClick={() => navigate('/signup')} className="px-4 py-2 rounded-xl bg-[#2D5A3F] hover:bg-[#2D5A3F]/90 text-[#FFFFFF] text-xs font-bold shrink-0 shadow-sm">
+                    Customize Your Path →
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-slate-800/40 p-4 rounded-2xl border border-slate-700/40">
-                    <p className="text-xs text-slate-400 font-medium mb-1">Today's Focus Subject</p>
-                    <p className="text-base font-bold text-white">Computer Networks</p>
-                    <div className="w-full bg-slate-700 h-2 rounded-full mt-3 overflow-hidden">
-                      <div className="bg-[#5CE1E6] h-full rounded-full w-[65%]" />
+                  <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 space-y-2">
+                    <span className="text-xs text-[#EDE8DB]">Today's Focus Subject</span>
+                    <h4 className="text-base font-bold text-[#FFFFFF]">Computer Networks</h4>
+                    <div className="w-full h-1.5 bg-[#FFFFFF]/10 rounded-full overflow-hidden">
+                      <div className="w-3/4 h-full bg-[#2D5A3F]" />
                     </div>
-                    <span className="text-[10px] text-slate-400 mt-1 inline-block">65% topic coverage</span>
                   </div>
 
-                  <div className="bg-slate-800/40 p-4 rounded-2xl border border-slate-700/40">
-                    <p className="text-xs text-slate-400 font-medium mb-1">Spaced Revision</p>
-                    <p className="text-base font-bold text-emerald-400">12 Cards Due</p>
-                    <p className="text-[11px] text-slate-300 mt-2">Optimal interval calculated by AI</p>
+                  <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 space-y-2">
+                    <span className="text-xs text-[#EDE8DB]">Spaced Revision</span>
+                    <h4 className="text-base font-bold text-[#D4AF37]">12 Cards Due</h4>
+                    <p className="text-[11px] text-[#EDE8DB]">Optimal interval calculated by AI</p>
                   </div>
 
-                  <div className="bg-slate-800/40 p-4 rounded-2xl border border-slate-700/40">
-                    <p className="text-xs text-slate-400 font-medium mb-1">Mock Exam Status</p>
-                    <p className="text-base font-bold text-amber-400">Full Test 04 Ready</p>
-                    <p className="text-[11px] text-slate-300 mt-2">65 Questions • 180 Minutes</p>
+                  <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 space-y-2">
+                    <span className="text-xs text-[#EDE8DB]">Mock Exam Status</span>
+                    <h4 className="text-base font-bold text-[#C86D51]">Full Test 04 Ready</h4>
+                    <p className="text-[11px] text-[#EDE8DB]">65 Questions • 180 Minutes</p>
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {/* TAB 2: STUDYMATE AI */}
             {activeTab === 'studymate' && (
               <motion.div
-                key="studymate-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="studymate"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -12 }}
                 className="space-y-4"
               >
-                <div className="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 text-xs text-slate-200 self-end max-w-xl ml-auto">
-                  <p className="font-semibold text-slate-400 mb-1">Student:</p>
-                  <p className="text-sm">Explain TCP Congestion Control simply.</p>
-                </div>
-
-                <div className="bg-[#062B3D] rounded-2xl p-5 border border-[#5CE1E6]/30 text-xs text-slate-100 max-w-2xl">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Cpu className="w-4 h-4 text-[#5CE1E6]" />
-                    <span className="font-bold text-[#5CE1E6]">StudyMate AI:</span>
+                <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#D4AF37]">
+                    <Cpu className="w-4 h-4 text-[#C86D51]" />
+                    <span>StudyMate AI Assistant</span>
                   </div>
-                  <p className="text-sm leading-relaxed text-slate-200">
-                    Think of the network like a highway:
+                  <p className="text-xs text-[#EDE8DB] bg-[#1C201D] p-3 rounded-xl border border-[#FFFFFF]/10">
+                    "Explain TCP congestion control simply with a real-world analogy."
                   </p>
-                  <ul className="list-disc list-inside mt-2 space-y-1.5 text-slate-300 text-xs">
-                    <li><strong className="text-white">Slow Start:</strong> Start slow, then double speed as long as the road is clear.</li>
-                    <li><strong className="text-white">Congestion Avoidance:</strong> Increase speed linearly (+1 packet per round trip).</li>
-                    <li><strong className="text-white">Fast Recovery:</strong> Drop window size on packet loss to clear traffic instantly.</li>
-                  </ul>
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
-                    <span>💡 Ask a follow-up question or generate numerical practice</span>
-                    <button
-                      onClick={() => navigate('/signup')}
-                      className="text-[#5CE1E6] font-semibold hover:underline flex items-center gap-1"
-                    >
-                      Try StudyMate live →
-                    </button>
+                  <div className="p-3 rounded-xl bg-[#2D5A3F]/20 border border-[#2D5A3F]/30 text-xs text-[#FFFFFF] space-y-2 leading-relaxed">
+                    <p className="font-semibold text-[#D4AF37]">Analogous to highway traffic flow control:</p>
+                    <p className="text-[11px] text-[#EDE8DB]">1. Slow Start: Probe network capacity by doubling window size each round-trip time.</p>
+                    <p className="text-[11px] text-[#EDE8DB]">2. Congestion Avoidance: Switch to linear growth (+1 MSS) once threshold is reached.</p>
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {/* TAB 3: PRACTICE */}
             {activeTab === 'practice' && (
               <motion.div
-                key="practice-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="practice"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4 max-w-3xl mx-auto"
+                exit={{ opacity: 0, y: -12 }}
+                className="space-y-4"
               >
-                <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                  <span className="font-mono text-[#5CE1E6]">GATE 2024 • Computer Networks • Question 4 of 20</span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">2 Marks</span>
-                </div>
-
-                <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 text-sm">
-                  <p className="font-medium text-slate-100 leading-relaxed mb-4">
-                    In a TCP connection, the congestion window size is currently 16 KB. If a timeout occurs, what will be the new value of the threshold and congestion window size?
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    {[
-                      { id: 1, text: 'Threshold = 8 KB, Congestion Window = 1 MSS (2 KB)' },
-                      { id: 2, text: 'Threshold = 16 KB, Congestion Window = 8 KB' },
-                      { id: 3, text: 'Threshold = 4 KB, Congestion Window = 4 KB' },
-                      { id: 4, text: 'Threshold = 8 KB, Congestion Window = 8 KB' },
-                    ].map((opt) => (
+                <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 space-y-3">
+                  <div className="flex items-center justify-between text-xs text-[#EDE8DB]">
+                    <span className="font-bold text-[#D4AF37]">GATE CS 2024 • Computer Networks</span>
+                    <span>Q. 42 / 65</span>
+                  </div>
+                  <p className="text-sm font-serif text-[#FFFFFF]">What is the maximum window size for Selective Repeat ARQ with 4-bit sequence numbers?</p>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    {['A) 16', 'B) 8', 'C) 15', 'D) 7'].map((opt, idx) => (
                       <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => setPracticeAnswered(opt.id)}
-                        className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer ${
-                          practiceAnswered === opt.id
-                            ? opt.id === 1
-                              ? 'bg-emerald-500/20 border-emerald-400 text-emerald-200'
-                              : 'bg-red-500/20 border-red-400 text-red-200'
-                            : 'bg-slate-900/60 border-slate-700 text-slate-300 hover:border-slate-500'
+                        key={opt}
+                        onClick={() => setPracticeAnswered(idx)}
+                        className={`p-3 rounded-xl text-left border font-semibold transition-all ${
+                          practiceAnswered === idx
+                            ? idx === 1
+                              ? 'bg-[#2D5A3F] border-[#2D5A3F] text-[#FFFFFF]'
+                              : 'bg-[#C86D51] border-[#C86D51] text-[#FFFFFF]'
+                            : 'bg-[#FFFFFF]/5 border-[#FFFFFF]/10 text-[#EDE8DB] hover:bg-[#FFFFFF]/10'
                         }`}
                       >
-                        <span className="font-bold mr-2">{String.fromCharCode(64 + opt.id)}.</span> {opt.text}
+                        {opt}
                       </button>
                     ))}
                   </div>
-
-                  {practiceAnswered !== null && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      className="mt-4 p-3.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-300"
-                    >
-                      <p className="font-bold text-emerald-400 mb-1">
-                        {practiceAnswered === 1 ? 'Correct Answer!' : 'Incorrect — Option A is correct.'}
-                      </p>
-                      <p className="text-slate-300">
-                        Upon timeout, Threshold becomes half of current window size (16 / 2 = 8 KB) and Congestion Window resets to 1 MSS.
-                      </p>
-                    </motion.div>
-                  )}
                 </div>
               </motion.div>
             )}
 
-            {/* TAB 4: MOCK TESTS */}
             {activeTab === 'mock' && (
               <motion.div
-                key="mock-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="mock"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -12 }}
                 className="space-y-4"
               >
-                <div className="flex flex-wrap items-center justify-between bg-slate-800 p-3.5 rounded-xl border border-slate-700 text-xs">
-                  <div className="flex items-center gap-3 font-semibold text-white">
-                    <Trophy className="w-4 h-4 text-amber-400" />
-                    <span>GATE CS Official Mock Simulator</span>
+                <div className="p-4 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h4 className="text-base font-serif font-bold text-[#FFFFFF]">Official GATE CS Full Mock Test #03</h4>
+                    <p className="text-xs text-[#EDE8DB] mt-1">65 Questions • 180 Mins • Standard Gate Marking (+1, -0.33)</p>
                   </div>
-                  <div className="flex items-center gap-4 text-slate-300">
-                    <span className="flex items-center gap-1 font-mono text-emerald-400 font-bold">
-                      <Clock className="w-3.5 h-3.5" /> 02:41:32
-                    </span>
-                    <button className="px-2.5 py-1 rounded bg-slate-700 text-slate-200 flex items-center gap-1">
-                      <Calculator className="w-3.5 h-3.5" /> Calc
-                    </button>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="md:col-span-3 bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50">
-                    <span className="text-[10px] text-slate-400 font-mono">Question 12 of 65 (Multiple Choice Question)</span>
-                    <p className="text-sm font-medium text-slate-100 mt-2 mb-4 leading-relaxed">
-                      Which of the following routing algorithms suffers from the count-to-infinity problem?
-                    </p>
-                    <div className="space-y-2 text-xs">
-                      <div className="p-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-300">A. Link State Routing Algorithm</div>
-                      <div className="p-3 rounded-xl bg-[#287BFF]/20 border border-[#287BFF] text-white font-semibold">B. Distance Vector Routing Algorithm</div>
-                      <div className="p-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-300">C. Hierarchical Routing Algorithm</div>
-                      <div className="p-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-300">D. Path Vector Routing Algorithm</div>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-800/40 p-4 rounded-2xl border border-slate-700/40 text-xs">
-                    <p className="font-bold text-slate-300 mb-3">Question Palette</p>
-                    <div className="grid grid-cols-5 gap-1.5">
-                      {Array.from({ length: 15 }).map((_, idx) => (
-                        <div
-                          key={idx}
-                          className={`w-7 h-7 rounded text-[11px] font-bold flex items-center justify-center ${
-                            idx === 11
-                              ? 'bg-[#287BFF] text-white ring-2 ring-white'
-                              : idx < 8
-                              ? 'bg-emerald-500/30 text-emerald-300'
-                              : 'bg-slate-700 text-slate-400'
-                          }`}
-                        >
-                          {idx + 1}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <button onClick={() => navigate('/signup')} className="px-5 py-2.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] text-xs font-bold shadow-sm">
+                    Start Mock Test →
+                  </button>
                 </div>
               </motion.div>
             )}
 
-            {/* TAB 5: REVISION */}
             {activeTab === 'revision' && (
               <motion.div
-                key="revision-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="revision"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col items-center justify-center py-6"
+                exit={{ opacity: 0, y: -12 }}
+                className="space-y-4"
               >
-                <div className="text-center mb-4">
-                  <span className="text-xs text-[#5CE1E6] font-bold uppercase tracking-wider">Spaced Flashcard Deck</span>
-                  <h4 className="text-lg font-bold text-white mt-1">Computer Networks • 12 Cards Due</h4>
-                </div>
-
                 <div
                   onClick={() => setCardFlipped(!cardFlipped)}
-                  className="w-full max-w-md h-52 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-6 flex flex-col justify-between items-center text-center cursor-pointer shadow-2xl hover:border-[#5CE1E6]/50 transition-all group"
+                  className="p-6 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10 cursor-pointer min-h-[160px] flex flex-col items-center justify-center text-center space-y-2 hover:border-[#2D5A3F]/50 transition-all"
                 >
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400">
-                    {cardFlipped ? 'Answer (Click to flip)' : 'Question (Click to flip)'}
-                  </span>
-
-                  <p className="text-base font-semibold text-white">
-                    {cardFlipped
-                      ? 'SYN Flood attack overwhelms the server queue during the TCP 3-way handshake.'
-                      : 'What security vulnerability is mitigated by TCP SYN Cookies?'}
-                  </p>
-
-                  <div className="flex items-center gap-1 text-xs text-[#5CE1E6] font-semibold group-hover:underline">
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>{cardFlipped ? 'Click to view question' : 'Click to reveal answer'}</span>
-                  </div>
+                  <span className="text-[10px] font-bold uppercase text-[#D4AF37]">Flashcard • Click to Flip</span>
+                  <h4 className="text-lg font-serif font-bold text-[#FFFFFF]">
+                    {cardFlipped ? 'Answer: 2^n - 1' : 'Question: What is the maximum number of nodes in a binary tree of height n?'}
+                  </h4>
                 </div>
               </motion.div>
             )}
 
-            {/* TAB 6: FOCUS ROOM */}
             {activeTab === 'focus' && (
               <motion.div
-                key="focus-demo"
-                initial={{ opacity: 0, y: 10 }}
+                key="focus"
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col items-center justify-center py-6 text-center"
+                exit={{ opacity: 0, y: -12 }}
+                className="space-y-4 text-center py-6"
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#287BFF]/20 text-[#5CE1E6] text-xs font-semibold mb-3 border border-[#287BFF]/30">
-                  <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                  <span>Pomodoro Focus Timer</span>
-                </div>
-
-                <h3 className="text-6xl sm:text-7xl font-mono font-normal text-white my-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                  50:00
-                </h3>
-
-                <p className="text-sm font-semibold text-slate-300 mb-6">
-                  Computer Networks • Deep Study Session
-                </p>
-
-                <div className="flex items-center gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setFocusRunning(!focusRunning)}
-                    className="px-8 py-3 rounded-full bg-[#287BFF] hover:bg-[#287BFF]/90 text-white font-bold text-xs flex items-center gap-2 cursor-pointer shadow-lg"
-                  >
-                    {focusRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
-                    <span>{focusRunning ? 'Pause Session' : 'Start Focus Timer'}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => navigate('/focus-room')}
-                    className="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold cursor-pointer border border-slate-700"
-                  >
-                    Enter Full Focus Room →
-                  </button>
-                </div>
+                <span className="text-xs font-bold uppercase text-[#D4AF37]">Focus Timer</span>
+                <h3 className="text-5xl font-mono font-bold text-[#FFFFFF]">25:00</h3>
+                <button
+                  onClick={() => setFocusRunning(!focusRunning)}
+                  className="px-6 py-2.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] text-xs font-bold inline-flex items-center gap-2 shadow-sm"
+                >
+                  {focusRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  <span>{focusRunning ? 'Pause Timer' : 'Start Focus Session'}</span>
+                </button>
               </motion.div>
             )}
-
           </AnimatePresence>
-
-          {/* Footer Callout inside demo */}
-          <div className="mt-8 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <span>Like what you see? Personalize this exact interface for your exam.</span>
-            <button
-              onClick={() => navigate('/signup')}
-              className="px-6 py-2.5 rounded-full bg-[#287BFF] text-white font-semibold flex items-center gap-1.5 hover:bg-[#287BFF]/90 transition-all cursor-pointer shadow-md"
-            >
-              <span>Get full access now</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

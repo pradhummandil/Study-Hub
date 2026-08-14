@@ -59,218 +59,171 @@ export const StudyMateShowcase: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-[#10233F] text-[#FCFBF8] relative overflow-hidden border-b border-white/10">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-[#1B3022] text-[#FFFFFF] relative overflow-hidden border-b border-[#FFFFFF]/10">
       
-      {/* Background Restrained Glow Orbs */}
-      <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-[400px] h-[400px] bg-radial from-[#4E88B7]/15 via-[#1F5F8B]/10 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-radial from-[#FCDAB7]/10 via-transparent to-transparent blur-3xl pointer-events-none" />
-
       <div className="max-w-6xl mx-auto px-6 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4E88B7]/20 border border-[#4E88B7]/30 text-[#4E88B7] text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-[#FCDAB7]" />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2D5A3F]/50 border border-[#2D5A3F] text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span>AI-Powered Learning Companion</span>
           </div>
 
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight"
-            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-[#FFFFFF] tracking-tight"
           >
             Meet StudyMate AI.
           </h2>
 
-          <p className="text-base sm:text-lg text-white/75 mt-4 leading-relaxed">
+          <p className="text-base sm:text-lg text-[#EDE8DB] mt-4 leading-relaxed font-sans">
             Your personal 24/7 study partner for explanations, practice, revision and planning — around the exam, subjects and goals that matter to you.
           </p>
-        </div>
+        </motion.div>
 
         {/* Showcase Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          {/* Left Column — Interactive Simulated Chat UI */}
-          <div className="lg:col-span-7 bg-white/06 rounded-3xl p-6 sm:p-8 border border-white/12 shadow-2xl backdrop-blur-xl relative">
-            
-            {/* Top Bar */}
-            <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6 text-xs text-white/70">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+        >
+          {/* Interactive AI Query Box */}
+          <div className="lg:col-span-7 bg-[#1C201D] border border-[#FFFFFF]/10 rounded-3xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-[#FFFFFF]/10 pb-3">
               <div className="flex items-center gap-3">
-                <AIOrb state={aiState} size={36} />
+                <AIOrb state={aiState} size="sm" />
                 <div>
-                  <p className="font-semibold text-white">StudyMate Assistant</p>
-                  <p className="text-[10px] text-[#4E88B7] uppercase tracking-wider">
-                    {aiState === 'thinking' ? 'Thinking...' : aiState === 'generating' ? 'Generating answer...' : aiState === 'complete' ? 'Response complete' : 'Idle'}
-                  </p>
+                  <h4 className="text-xs font-bold text-[#FFFFFF]">StudyMate Assistant</h4>
+                  <span className="text-[10px] text-[#EDE8DB] uppercase tracking-wider font-mono">{aiState}</span>
                 </div>
               </div>
 
-              <span className="px-3 py-1 rounded-full bg-[#4E88B7]/20 text-[#4E88B7] font-semibold text-[11px] border border-[#4E88B7]/30">
+              <span className="px-3 py-1 rounded-full bg-[#2D5A3F]/30 text-[#D4AF37] text-[10px] font-bold border border-[#2D5A3F]">
                 Interactive preview
               </span>
             </div>
 
-            {/* Chat Conversation */}
-            <div className="space-y-4 min-h-[300px] flex flex-col justify-end">
-              
-              {/* User Message */}
-              <div className="bg-white/10 p-4 rounded-2xl border border-white/10 max-w-lg ml-auto text-xs sm:text-sm text-white">
-                <p className="font-semibold text-white/60 text-[11px] mb-1">Student Question:</p>
-                <p>{userQuery}</p>
+            <div className="space-y-3 font-sans text-xs">
+              <div className="p-3.5 rounded-2xl bg-[#FFFFFF]/5 border border-[#FFFFFF]/10">
+                <span className="text-[10px] text-[#D4AF37] font-bold uppercase block mb-1">Student Question:</span>
+                <p className="text-[#FFFFFF]">{userQuery}</p>
               </div>
 
-              {/* AI Response Container */}
-              <div className="bg-[#10233F] p-5 rounded-2xl border border-[#4E88B7]/30 max-w-xl text-xs sm:text-sm text-white space-y-4 shadow-xl">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-[#4E88B7]" />
-                    <span className="font-semibold text-[#4E88B7]">StudyMate:</span>
-                  </div>
-                  {actionFeedback && (
-                    <span className="text-[11px] text-[#FCDAB7] bg-[#FCDAB7]/10 px-2 py-0.5 rounded border border-[#FCDAB7]/30">
-                      {actionFeedback}
-                    </span>
-                  )}
+              <div className="p-4 rounded-2xl bg-[#2D5A3F]/20 border border-[#2D5A3F]/40 space-y-3">
+                <div className="flex items-center gap-2 text-[#D4AF37] font-bold">
+                  <Cpu className="w-4 h-4 text-[#C86D51]" />
+                  <span>StudyMate:</span>
                 </div>
 
-                {aiState === 'thinking' ? (
-                  <div className="flex items-center gap-3 py-4 text-white/70">
-                    <span className="text-xs">Analyzing TCP window mechanics & network congestion...</span>
-                  </div>
-                ) : aiState === 'generating' ? (
-                  <div className="flex items-center gap-3 py-2 text-[#4E88B7]">
-                    <span className="text-xs font-medium animate-pulse">Streaming response content...</span>
-                  </div>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="space-y-3 leading-relaxed text-white/85"
+                <p className="text-[#EDE8DB] leading-relaxed">
+                  Think of TCP congestion control like regulating traffic flow on a busy highway:
+                </p>
+
+                <div className="space-y-1.5 text-[11px] text-[#EDE8DB]">
+                  <p><strong className="text-[#FFFFFF]">1. Slow Start:</strong> Probe network capacity by doubling window size each round trip.</p>
+                  <p><strong className="text-[#FFFFFF]">2. Congestion Avoidance:</strong> Switch to linear growth (+1 MSS) once threshold is reached.</p>
+                  <p><strong className="text-[#FFFFFF]">3. Fast Recovery:</strong> 3 duplicate ACKs trigger instant retransmission without waiting for timeout.</p>
+                </div>
+
+                {/* Instant Actions Bar */}
+                <div className="flex items-center gap-2 pt-2 border-t border-[#FFFFFF]/10 flex-wrap">
+                  <button
+                    onClick={() => handleAction('Practice Questions', '/practice')}
+                    className="px-3 py-1.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] text-[11px] font-bold flex items-center gap-1 shadow-sm"
                   >
-                    <p>
-                      Think of TCP congestion control like regulating traffic flow on a busy highway:
-                    </p>
-                    <div className="bg-white/5 p-3 rounded-xl border border-white/10 space-y-1.5 text-xs text-white/80">
-                      <p><strong className="text-[#4E88B7]">1. Slow Start:</strong> Probe network capacity by doubling window size each round trip.</p>
-                      <p><strong className="text-[#4E88B7]">2. Congestion Avoidance:</strong> Switch to linear growth (+1 MSS) once threshold is reached.</p>
-                      <p><strong className="text-[#4E88B7]">3. Fast Recovery:</strong> 3 duplicate ACKs trigger instant retransmission without waiting for timeout.</p>
-                    </div>
-
-                    {/* Phase J — Actionable Related Buttons */}
-                    <div className="pt-3 border-t border-white/10 flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handlePromptSubmit('Explain TCP congestion control again with simpler visual diagram.')}
-                        className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white/90 text-[11px] font-medium transition-colors flex items-center gap-1.5"
-                      >
-                        <RefreshCw className="w-3 h-3 text-[#4E88B7]" />
-                        <span>Explain again</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleAction('Quiz me', '/practice')}
-                        className="px-3 py-1.5 rounded-lg bg-[#1F5F8B]/40 hover:bg-[#1F5F8B]/60 text-white text-[11px] font-medium transition-colors flex items-center gap-1.5 border border-[#4E88B7]/30"
-                      >
-                        <HelpCircle className="w-3 h-3 text-[#FCDAB7]" />
-                        <span>Quiz me</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleAction('Make flashcards', '/flashcards')}
-                        className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white/90 text-[11px] font-medium transition-colors flex items-center gap-1.5"
-                      >
-                        <Layers className="w-3 h-3 text-[#4E88B7]" />
-                        <span>Make flashcards</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleAction('Save for revision', '/revision')}
-                        className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white/90 text-[11px] font-medium transition-colors flex items-center gap-1.5"
-                      >
-                        <Bookmark className="w-3 h-3 text-[#FCDAB7]" />
-                        <span>Save for revision</span>
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
+                    <HelpCircle className="w-3.5 h-3.5" /> Practice Questions
+                  </button>
+                  <button
+                    onClick={() => handleAction('Generate Flashcards', '/flashcards')}
+                    className="px-3 py-1.5 rounded-xl bg-[#EDE8DB] text-[#1C201D] text-[11px] font-bold flex items-center gap-1"
+                  >
+                    <Layers className="w-3.5 h-3.5 text-[#2D5A3F]" /> Save Flashcard
+                  </button>
+                </div>
               </div>
-
             </div>
 
-            {/* Input Bar Preview */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3">
-              <input
-                type="text"
-                value={userQuery}
-                onChange={(e) => setUserQuery(e.target.value)}
-                placeholder="Ask StudyMate anything about your syllabus..."
-                className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-[#4E88B7]"
-              />
-              <button
-                type="button"
-                onClick={() => handlePromptSubmit()}
-                className="p-2.5 rounded-xl bg-[#1F5F8B] text-white hover:bg-[#1F5F8B]/80 transition-colors cursor-pointer"
-              >
-                <Send className="w-4 h-4" />
-              </button>
+            {/* Prompt Selector Pills */}
+            <div className="pt-2">
+              <span className="text-[10px] text-[#EDE8DB] font-semibold block mb-2">Try another sample question:</span>
+              <div className="flex flex-wrap gap-2 text-[11px]">
+                {[
+                  'Explain Selection Sort vs QuickSort with time complexity.',
+                  'Solve GATE 2023 question on virtual memory paging.',
+                  'Give 3 key memory tricks for Organic Chemistry mechanisms.',
+                ].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => handlePromptSubmit(q)}
+                    className="px-3 py-1.5 rounded-xl bg-[#FFFFFF]/5 hover:bg-[#2D5A3F]/30 text-[#EDE8DB] border border-[#FFFFFF]/10 text-left transition-colors"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
 
+            {actionFeedback && (
+              <div className="p-2 rounded-lg bg-[#2D5A3F] text-[#FFFFFF] text-xs font-bold text-center animate-fade-rise">
+                {actionFeedback}
+              </div>
+            )}
           </div>
 
-          {/* Right Column — AI Capabilities Highlights */}
+          {/* Right Column: Why StudyMate is different */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white/06 p-6 rounded-3xl border border-white/12 backdrop-blur-md">
-              <h3 className="text-xl font-bold text-white mb-4">Why StudyMate is different:</h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-[#4E88B7]/20 text-[#4E88B7] shrink-0">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white">Syllabus-Aligned Answers</h4>
-                    <p className="text-xs text-white/70 mt-0.5">Doesn't give generic internet explanations. Answers specifically for GATE, JEE, NEET, or your university branch.</p>
-                  </div>
-                </div>
+            <h3 className="text-2xl font-serif font-bold text-[#FFFFFF]">Why StudyMate is different:</h3>
 
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-[#1F5F8B]/30 text-[#4E88B7] shrink-0">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white">Step-by-Step PYQ Solution Breakdown</h4>
-                    <p className="text-xs text-white/70 mt-0.5">Stuck on a numerical? StudyMate breaks down mathematical steps line-by-line.</p>
-                  </div>
+            <div className="space-y-4 text-xs font-sans">
+              <div className="p-4 rounded-2xl bg-[#1C201D] border border-[#FFFFFF]/10 space-y-1">
+                <div className="flex items-center gap-2 font-bold text-[#FFFFFF] text-sm">
+                  <CheckCircle2 className="w-4 h-4 text-[#2D5A3F]" />
+                  <span>Syllabus-Aligned Answers</span>
                 </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-[#F7E7D0]/20 text-[#FCDAB7] shrink-0">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white">Instant Flashcard Generation</h4>
-                    <p className="text-xs text-white/70 mt-0.5">Turn any explanation into spaced repetition flashcards with a single click.</p>
-                  </div>
-                </div>
+                <p className="text-[#EDE8DB] leading-relaxed">
+                  Doesn't give generic internet explanations. Answers specifically for GATE, JEE, NEET, or your university branch.
+                </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <button
-                  type="button"
-                  onClick={() => navigate('/study-ai')}
-                  className="w-full py-3.5 rounded-full gradient-cta text-white font-semibold text-sm shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>Start studying with StudyMate AI</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+              <div className="p-4 rounded-2xl bg-[#1C201D] border border-[#FFFFFF]/10 space-y-1">
+                <div className="flex items-center gap-2 font-bold text-[#FFFFFF] text-sm">
+                  <CheckCircle2 className="w-4 h-4 text-[#2D5A3F]" />
+                  <span>Step-by-Step PYQ Solution Breakdown</span>
+                </div>
+                <p className="text-[#EDE8DB] leading-relaxed">
+                  Stuck on a numerical? StudyMate breaks down mathematical steps line-by-line.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-[#1C201D] border border-[#FFFFFF]/10 space-y-1">
+                <div className="flex items-center gap-2 font-bold text-[#FFFFFF] text-sm">
+                  <CheckCircle2 className="w-4 h-4 text-[#2D5A3F]" />
+                  <span>Instant Flashcard Generation</span>
+                </div>
+                <p className="text-[#EDE8DB] leading-relaxed">
+                  Turn any explanation into spaced repetition flashcards with a single click.
+                </p>
               </div>
             </div>
-          </div>
 
-        </div>
+            <button
+              onClick={() => navigate('/study-ai')}
+              className="w-full py-3 rounded-xl bg-[#C86D51] hover:bg-[#C86D51]/90 text-[#FFFFFF] font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+            >
+              <span>Open StudyMate AI Workspace</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
-
-

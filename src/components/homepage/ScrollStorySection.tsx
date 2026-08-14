@@ -37,6 +37,7 @@ export const ScrollStorySection: React.FC = () => {
 
   // Editorial step rail progress indicator (01 to 05)
   const activeIndex = useTransform(smoothProgress, [0, 0.2, 0.4, 0.6, 0.8, 1], [1, 2, 3, 4, 5, 5]);
+  const railOpacity = useTransform(smoothProgress, [0.01, 0.04, 0.95, 0.99], [0, 1, 1, 0]);
 
   return (
     <div id="signature-section" ref={targetRef} className="relative bg-forest text-paper min-h-[450vh] selection:bg-terracotta/20">
@@ -55,8 +56,11 @@ export const ScrollStorySection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side Editorial Progress Rail */}
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center gap-3 font-mono text-xs">
+        {/* Right Side Editorial Progress Rail (Fades out when leaving signature section) */}
+        <motion.div
+          style={{ opacity: railOpacity }}
+          className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center gap-3 font-mono text-xs pointer-events-auto"
+        >
           {['01', '02', '03', '04', '05'].map((num, idx) => {
             const stepNum = idx + 1;
             return (
@@ -89,7 +93,7 @@ export const ScrollStorySection: React.FC = () => {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* ============================================================
             SCENE 1: THE SCATTER ("Too many things to study.")
