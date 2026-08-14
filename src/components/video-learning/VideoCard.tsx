@@ -28,7 +28,6 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
   const [showPreview, setShowPreview] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [thumbError, setThumbError] = useState(false);
-  const [avatarError, setAvatarError] = useState(false);
 
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const watchState = video?.youtube_video_id ? getVideoWatchState(video.youtube_video_id) : null;
@@ -50,13 +49,6 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
   const formattedDate = video?.published_at
     ? new Date(video.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     : null;
-
-  // Channel avatar fallback logic
-  const channelAvatarUrl = video?.channel_handle === '@PW-JEEWallah'
-    ? 'https://yt3.googleusercontent.com/9C0637F55s9zY8P8e-28D6uY75N4m_uP-b7h_zQ2F2eZ7s-f1A_7L2v1t-G-V9e_X-8v_b-1=s176-c-k-c0x00ffffff-no-rj'
-    : video?.channel_handle === '@PWNEET-Official'
-    ? 'https://yt3.googleusercontent.com/w2Yv2S5e8B9A0M9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B=s176-c-k-c0x00ffffff-no-rj'
-    : 'https://yt3.googleusercontent.com/ytc/AIdro_k9_N_v0-7-L8v8-8-8-8-8-8-8-8-8-8-8-8=s176-c-k-c0x00ffffff-no-rj';
 
   // Subscribe to global active preview changes
   useEffect(() => {
@@ -314,7 +306,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onSelect }) => {
         {/* Real Channel Branding & Metadata */}
         <div className="mt-3 pt-3 border-t border-[#1C201D]/10 flex items-center justify-between text-xs text-[#6C706D]">
           <div className="flex items-center gap-2 font-medium text-[#1C201D] truncate">
-            <ChannelAvatar channelName={channelName} avatarUrl={video?.channel_avatar_url} size="sm" />
+            <ChannelAvatar channelName={channelName} size="sm" />
             <span className="truncate max-w-[130px] px-2 py-0.5 rounded bg-[#EDE8DB]/60 text-[#1C201D] text-[11px] font-semibold">
               {channelName}
             </span>

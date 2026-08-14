@@ -16,7 +16,6 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onOpen }) 
   const navigate = useNavigate();
   const [saved, setSaved] = useState(() => isItemSaved(playlist?.id || '', 'playlist'));
   const [thumbError, setThumbError] = useState(false);
-  const [avatarError, setAvatarError] = useState(false);
 
   const handleSaveToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -108,7 +107,7 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onOpen }) 
 
         <div className="mt-4 pt-3 border-t border-[#1C201D]/10 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2 font-medium text-[#1C201D] truncate">
-            <ChannelAvatar channelName={channelName} avatarUrl={playlist?.channel_avatar_url} size="sm" />
+            <ChannelAvatar channelName={channelName} size="sm" />
             <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F] shrink-0" />
             <span className="truncate max-w-[130px]">{channelName}</span>
           </div>

@@ -149,13 +149,6 @@ export default function VideoWatchPage() {
     });
   };
 
-  const channelAvatarUrl =
-    video.channel_handle === '@PW-JEEWallah'
-      ? 'https://yt3.googleusercontent.com/9C0637F55s9zY8P8e-28D6uY75N4m_uP-b7h_zQ2F2eZ7s-f1A_7L2v1t-G-V9e_X-8v_b-1=s176-c-k-c0x00ffffff-no-rj'
-      : video.channel_handle === '@PWNEET-Official'
-      ? 'https://yt3.googleusercontent.com/w2Yv2S5e8B9A0M9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B=s176-c-k-c0x00ffffff-no-rj'
-      : 'https://yt3.googleusercontent.com/ytc/AIdro_k9_N_v0-7-L8v8-8-8-8-8-8-8-8-8-8-8-8=s176-c-k-c0x00ffffff-no-rj';
-
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#1C201D] pb-16">
       <Helmet>
