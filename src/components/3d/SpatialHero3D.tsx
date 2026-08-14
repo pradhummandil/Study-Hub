@@ -15,21 +15,24 @@ export const SpatialHero3D: React.FC<SpatialHero3DProps> = ({ className = '' }) 
     const width = container.clientWidth || 540;
     const height = container.clientHeight || 480;
 
-    // Scene setup
+    // Scene & Camera setup
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0xf8f6f0, 0.04);
-
-    // Camera setup
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
     camera.position.set(0, 0.2, 6.5);
 
-    // WebGL Renderer setup
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    container.appendChild(renderer.domElement);
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      container.appendChild(renderer.domElement);
+    } catch (err) {
+      console.warn('[SpatialHero3D] WebGL not supported or failed to initialize:', err);
+      return;
+    }
 
     // Lighting Setup: Soft warm paper ambient + direction key light + terracotta accent light
     const ambientLight = new THREE.AmbientLight(0xf5f0e8, 1.4);

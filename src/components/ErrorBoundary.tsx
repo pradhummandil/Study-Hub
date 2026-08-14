@@ -1,6 +1,5 @@
-import { Component } from 'react';
-import type { ReactNode } from 'react';
-import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { Component, type ReactNode } from 'react';
+import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 
 interface Props {
   children: ReactNode;
@@ -24,7 +23,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: { componentStack: string }) {
-    // Log to console in dev, could send to monitoring in prod
     console.error(`[ErrorBoundary:${this.props.name || 'Unknown'}]`, error, errorInfo);
   }
 
@@ -37,31 +35,54 @@ export class ErrorBoundary extends Component<Props, State> {
       if (this.props.fallback) return this.props.fallback;
 
       return (
-        <div className="flex flex-col items-center justify-center min-h-[300px] p-8 text-center">
-          <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4">
-            <AlertTriangle className="w-6 h-6 text-orange-400" />
+        <div className="flex flex-col items-center justify-center min-h-[380px] p-8 text-center bg-[#F8F6F0] text-[#1C201D]">
+          <div className="w-14 h-14 rounded-2xl bg-[#C86D51]/10 border border-[#C86D51]/30 flex items-center justify-center mb-4">
+            <AlertTriangle className="w-7 h-7 text-[#C86D51]" />
           </div>
-          <h3 className="text-white font-semibold mb-2">Something went wrong in this section</h3>
-          <p className="text-white/40 text-sm mb-6 max-w-sm">
+
+          <h3 className="font-serif text-2xl font-bold text-[#1C201D] mb-2">
+            Something went wrong in this section
+          </h3>
+
+          <p className="text-[#6C706D] text-sm mb-6 max-w-md leading-relaxed">
             {this.props.name
-              ? `The ${this.props.name} section encountered an error.`
-              : 'An unexpected error occurred.'}
-            {' '}The rest of the application is still working.
+              ? `The ${this.props.name} section encountered a runtime error.`
+              : 'An unexpected application error occurred.'}
+            {' '}The rest of Study Hub is still fully operational.
           </p>
-          <button
-            onClick={this.handleReset}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/15 transition-all"
-          >
-            <RefreshCw className="w-4 h-4" />
-            Retry
-          </button>
-          {import.meta.env.DEV && this.state.error && (
-            <details className="mt-4 text-left max-w-lg">
-              <summary className="text-white/30 text-xs cursor-pointer hover:text-white/50">Error details</summary>
-              <pre className="mt-2 text-xs text-red-400/70 bg-red-500/5 border border-red-500/10 rounded-lg p-3 overflow-auto">
-                {this.state.error.message}
+
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <button
+              onClick={this.handleReset}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2D5A3F] text-[#FFFFFF] text-xs font-bold shadow-md hover:bg-[#2D5A3F]/90 transition-all cursor-pointer"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Retry Component
+            </button>
+            <a
+              href="/"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#EDE8DB] text-[#1C201D] text-xs font-bold border border-[#1C201D]/10 hover:bg-[#EDE8DB]/80 transition-all"
+            >
+              <Home className="w-4 h-4 text-[#2D5A3F]" />
+              Return Home
+            </a>
+          </div>
+
+          {/* Error Trace Details Box */}
+          {this.state.error && (
+            <div className="mt-6 text-left max-w-xl w-full bg-[#EDE8DB] border border-[#1C201D]/10 rounded-xl p-4 shadow-sm">
+              <summary className="text-[#C86D51] text-xs font-bold cursor-pointer uppercase tracking-wider mb-2">
+                Technical Error Diagnostic
+              </summary>
+              <pre className="text-xs font-mono text-[#1C201D] bg-[#FFFFFF] p-3 rounded-lg border border-[#1C201D]/10 overflow-x-auto whitespace-pre-wrap">
+                {this.state.error.message || String(this.state.error)}
+                {this.state.error.stack && (
+                  <span className="block mt-2 text-[11px] text-[#6C706D]">
+                    {this.state.error.stack.slice(0, 400)}
+                  </span>
+                )}
               </pre>
-            </details>
+            </div>
           )}
         </div>
       );
