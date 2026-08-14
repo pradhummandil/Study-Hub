@@ -61,7 +61,11 @@ export default function VideoPlaylistPage() {
   }
 
   const handleSaveToggle = async () => {
-    const s = await toggleSaveItem(user?.id || 'guest_user', playlist.id, 'playlist');
+    if (!user) {
+      navigate('/login', { state: { redirect: location.pathname } });
+      return;
+    }
+    const s = await toggleSaveItem(user.id, playlist.id, 'playlist');
     setSaved(s);
   };
 

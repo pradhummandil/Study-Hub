@@ -84,15 +84,23 @@ export default function VideoWatchPage() {
   }
 
   const handleSaveToggle = async () => {
-    const nowSaved = await toggleSaveItem(user?.id || 'guest_user', video.id, 'video');
+    if (!user) {
+      navigate('/login', { state: { redirect: location.pathname } });
+      return;
+    }
+    const nowSaved = await toggleSaveItem(user.id, video.id, 'video');
     setSaved(nowSaved);
   };
 
   const handleCompleteToggle = async () => {
+    if (!user) {
+      navigate('/login', { state: { redirect: location.pathname } });
+      return;
+    }
     const nextComp = !completed;
     setCompleted(nextComp);
     await saveWatchProgress(
-      user?.id || 'guest_user',
+      user.id,
       video.id,
       video.youtube_video_id,
       nextComp ? video.duration_seconds || 1800 : 0,
@@ -102,10 +110,14 @@ export default function VideoWatchPage() {
 
   const handleAddNote = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      navigate('/login', { state: { redirect: location.pathname } });
+      return;
+    }
     if (!newNoteText.trim()) return;
 
     const created = await addVideoNote(
-      user?.id || 'guest_user',
+      user.id,
       video.id,
       video.youtube_video_id,
       noteTimestamp,
@@ -117,15 +129,22 @@ export default function VideoWatchPage() {
   };
 
   const handleDeleteNote = (id: string) => {
+    if (!user) return;
     deleteVideoNote(id);
     setNotes((prev) => prev.filter((n) => n.id !== id));
   };
 
+  const requireAuthAndNavigate = (targetPath: string, navState?: any) => {
+    if (!user) {
+      navigate('/login', { state: { redirect: location.pathname } });
+      return;
+    }
+    navigate(targetPath, navState ? { state: navState } : undefined);
+  };
+
   const handleAskStudyMate = () => {
-    navigate('/study-ai', {
-      state: {
-        initialPrompt: `I am watching the lecture "${video.title}" (${video.exam} — ${video.subject}). Explain the key concepts and key takeaways in simple terms.`,
-      },
+    requireAuthAndNavigate('/study-ai', {
+      initialPrompt: `I am watching the lecture "${video.title}" (${video.exam} — ${video.subject}). Explain the key concepts and key takeaways in simple terms.`,
     });
   };
 
@@ -250,20 +269,20 @@ export default function VideoWatchPage() {
                   <Bot className="w-4 h-4 text-[#C86D51]" /> Ask AI
                 </button>
                 <button
-                  onClick={() => navigate(`/practice?topic=${encodeURIComponent(video.topic)}`)}
-                  className="px-3.5 py-2 rounded-xl bg-[#C86D51]/10 hover:bg-[#C86D51]/20 text-[#C86D51] border border-[#C86D51]/30 text-xs font-bold flex items-center gap-1.5 transition-all"
+                  onClick={() => requireAuthAndNavigate(`/practice?topic=${encodeURIComponent(video.topic)}`)}
+                  className="px-3.5 py-2 rounded-xl bg-[#C86D51]/10 hover:bg-[#C86D51]/20 text-[#C86D51] border border-[#C86D51]/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
                 >
                   <BrainCircuit className="w-4 h-4" /> Practice Topic
                 </button>
                 <button
-                  onClick={() => navigate('/flashcards')}
-                  className="px-3.5 py-2 rounded-xl bg-[#EDE8DB] hover:bg-[#EDE8DB]/80 text-[#1C201D] border border-[#1C201D]/10 text-xs font-bold flex items-center gap-1.5 transition-all"
+                  onClick={() => requireAuthAndNavigate('/flashcards')}
+                  className="px-3.5 py-2 rounded-xl bg-[#EDE8DB] hover:bg-[#EDE8DB]/80 text-[#1C201D] border border-[#1C201D]/10 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
                 >
                   <Layers className="w-4 h-4 text-[#2D5A3F]" /> Flashcards
                 </button>
                 <button
-                  onClick={() => navigate('/revision')}
-                  className="px-3.5 py-2 rounded-xl bg-[#EDE8DB] hover:bg-[#EDE8DB]/80 text-[#1C201D] border border-[#1C201D]/10 text-xs font-bold flex items-center gap-1.5 transition-all"
+                  onClick={() => requireAuthAndNavigate('/revision')}
+                  className="px-3.5 py-2 rounded-xl bg-[#EDE8DB] hover:bg-[#EDE8DB]/80 text-[#1C201D] border border-[#1C201D]/10 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
                 >
                   <RotateCcw className="w-4 h-4 text-[#C86D51]" /> Revision
                 </button>

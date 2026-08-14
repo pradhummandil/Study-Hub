@@ -3,6 +3,7 @@ import { Layers, Play, ShieldCheck, Heart } from 'lucide-react';
 import type { YouTubePlaylist } from '../../types/video-learning';
 import { isItemSaved, toggleSaveItem } from '../../lib/videoLearningApi';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface PlaylistCardProps {
   playlist: YouTubePlaylist;
@@ -11,14 +12,19 @@ interface PlaylistCardProps {
 
 export const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlist, onOpen }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [saved, setSaved] = useState(() => isItemSaved(playlist?.id || '', 'playlist'));
   const [thumbError, setThumbError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
 
   const handleSaveToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     if (!playlist?.id) return;
-    const nowSaved = await toggleSaveItem(user?.id || 'guest_user', playlist.id, 'playlist');
+    const nowSaved = await toggleSaveItem(user.id, playlist.id, 'playlist');
     setSaved(nowSaved);
   };
 

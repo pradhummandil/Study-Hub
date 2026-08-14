@@ -97,11 +97,19 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
   }
 
   const handleSaveToggle = async () => {
-    const nowSaved = await toggleSaveItem(user?.id || 'guest_user', activeShort.id, 'video');
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    const nowSaved = await toggleSaveItem(user.id, activeShort.id, 'video');
     setSaved(nowSaved);
   };
 
   const handleAskStudyMate = () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     navigate('/study-ai', {
       state: {
         initialPrompt: `Explain the core formula / idea behind "${activeShort.title}" (${activeShort.exam} — ${activeShort.subject}) in simple terms with a real exam example.`,
