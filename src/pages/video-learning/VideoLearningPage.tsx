@@ -13,7 +13,6 @@ import type { YouTubeVideo, YouTubePlaylist, VideoContentType } from '../../type
 import {
   fetchVideosPaginated,
   fetchPlaylists,
-  fetchChannels,
   fetchShorts,
   fetchVideosByChannel,
   getLocalWatchHistory,
@@ -177,7 +176,7 @@ function VideoLearningPageContent() {
     }, 4500);
 
     try {
-      const [res, pList, cList, sList] = await Promise.all([
+      const [res, pList, sList] = await Promise.all([
         fetchVideosPaginated(1, 24, {
           exam: selectedExam,
           subject: selectedSubject,
@@ -187,7 +186,6 @@ function VideoLearningPageContent() {
           sort: selectedSort as any,
         }),
         fetchPlaylists(selectedExam).catch(() => []),
-        fetchChannels().catch(() => []),
         fetchShorts(selectedExam).catch(() => []),
       ]);
 
@@ -196,7 +194,6 @@ function VideoLearningPageContent() {
         setTotalCount(res.totalCount || (res.videos ? res.videos.length : 0));
         setHasMore(res.hasMore || false);
         setPlaylists(pList || []);
-        setChannels(cList || []);
         setShorts(sList || []);
 
         // Load channel-specific shelves for each of the 6 verified channels
