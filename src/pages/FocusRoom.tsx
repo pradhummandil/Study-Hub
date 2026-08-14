@@ -189,24 +189,24 @@ export default function FocusRoom() {
           {studyRooms.map((room) => (
             <div
               key={room.id}
-              className="liquid-glass-card rounded-2xl p-5 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between"
+              className="bg-paper rounded-2xl p-5 border border-forest/10 hover:border-scholar/40 transition-all flex flex-col justify-between shadow-card"
             >
               <div>
                 <div className="flex items-center justify-between text-[10px] mb-2">
-                  <span className="px-2 py-0.5 rounded font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">
+                  <span className="px-2.5 py-0.5 rounded-full font-bold bg-scholar/10 text-scholar border border-scholar/20 uppercase font-mono">
                     {room.exam}
                   </span>
-                  <span className="text-slate-400">{room.duration_minutes} min session</span>
+                  <span className="text-muted font-medium">{room.duration_minutes} min session</span>
                 </div>
-                <h3 className="text-sm font-bold text-slate-100 mb-1">{room.title}</h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mb-3">Goal: {room.goal}</p>
+                <h3 className="text-sm font-bold text-ink mb-1">{room.title}</h3>
+                <p className="text-xs text-muted line-clamp-2 mb-3">Goal: {room.goal}</p>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-white/5 text-xs">
-                <span className="text-[11px] text-slate-400">● {room.participant_count || 4} learners</span>
+              <div className="flex items-center justify-between pt-3 border-t border-forest/10 text-xs">
+                <span className="text-[11px] text-muted font-medium">● {room.participant_count || 4} learners</span>
                 <button
                   onClick={() => handleJoinRoom(room)}
-                  className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 font-bold text-xs transition-all"
+                  className="px-3.5 py-1.5 rounded-xl bg-forest hover:bg-scholar text-paper font-bold text-xs transition-all shadow-sm"
                 >
                   Join Room
                 </button>

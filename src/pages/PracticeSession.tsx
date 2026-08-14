@@ -323,7 +323,7 @@ export default function PracticeSession() {
   return (
     <>
       <Helmet>
-        <title>Question {currentIndex + 1} of {questions.length} — Practice | Study Hub</title>
+        <title>{`Question ${currentIndex + 1} of ${questions.length} — Practice | Study Hub`}</title>
       </Helmet>
 
       <div className="px-6 pt-8 max-w-4xl mx-auto pb-24 space-y-6">

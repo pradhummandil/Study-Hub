@@ -487,23 +487,82 @@ export interface RoadmapData {
 }
 
 // ── Practice & PYQs ────────────────────────────────────────────────────────
-export type QuestionType = 'MCQ' | 'MSQ' | 'Numerical' | 'True/False';
+export type QuestionType =
+  | 'MCQ_SINGLE'
+  | 'MCQ_MULTIPLE'
+  | 'NUMERICAL'
+  | 'ASSERTION_REASON'
+  | 'MATCHING'
+  | 'TRUE_FALSE'
+  | 'INTEGER'
+  | 'SUBJECTIVE'
+  | 'PASSAGE'
+  | 'COMPREHENSION'
+  | 'STATEMENT_BASED'
+  | 'MCQ'
+  | 'MSQ'
+  | 'Numerical'
+  | 'True/False';
+
 export type QuestionDifficulty = 'Easy' | 'Medium' | 'Hard';
+
+export type ContentSourceClass =
+  | 'OFFICIAL_PYQ'
+  | 'LICENSED_PYQ'
+  | 'STUDY_HUB_PRACTICE'
+  | 'EXTERNAL_REFERENCE'
+  | 'official'
+  | 'ai_generated'
+  | 'community';
+
+export interface StructuredOption {
+  id: string;
+  text: string;
+  image?: string;
+}
 
 export interface PracticeQuestion {
   id: string;
+  exam_id?: string;
+  exam_name?: string;
+  exam_family?: string;
+  exam_code?: string;
   exam: string;
   year?: number | null;
+  session?: string | null;
+  paper?: string | null;
   subject: string;
+  chapter?: string;
   topic: string;
+  subtopic?: string;
   difficulty: QuestionDifficulty;
   question_type: QuestionType;
+  language?: string;
   question_text: string;
   options?: string[];
+  options_structured?: StructuredOption[];
   correct_answer: any;
+  solution_text?: string;
+  solution_steps?: string[];
   explanation?: string;
-  is_official_pyq: boolean;
-  source_type?: 'official' | 'ai_generated' | 'community';
+  hint?: string;
+  concept?: string;
+  formula?: string;
+  common_mistake?: string;
+  marks?: number;
+  negative_marks?: number;
+  question_number?: number;
+  is_official_pyq?: boolean;
+  source_type?: ContentSourceClass;
+  source_url?: string;
+  source_name?: string;
+  official_source_url?: string;
+  license_status?: string;
+  attribution?: string;
+  verified?: boolean;
+  published?: boolean;
+  classifier_confidence?: number;
+  classifier_source?: string;
 }
 
 export interface UserQuestionAttempt {

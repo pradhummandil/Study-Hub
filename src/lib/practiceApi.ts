@@ -107,6 +107,8 @@ const SAMPLE_QUESTION_BANK: PracticeQuestion[] = [
   },
 ];
 
+import { fetchCanonicalQuestions } from './questionEngineApi';
+
 export async function fetchPracticeQuestions(params: {
   exam?: string;
   year?: number | null;
@@ -117,19 +119,17 @@ export async function fetchPracticeQuestions(params: {
   limit?: number;
 }): Promise<PracticeQuestion[]> {
   try {
-    let query = supabase.from('practice_questions').select('*');
-
-    if (params.exam) query = query.eq('exam', params.exam);
-    if (params.year) query = query.eq('year', params.year);
-    if (params.subject) query = query.eq('subject', params.subject);
-    if (params.topic) query = query.eq('topic', params.topic);
-    if (params.difficulty) query = query.eq('difficulty', params.difficulty);
-    if (params.questionType) query = query.eq('question_type', params.questionType);
-
-    const { data, error } = await query.limit(params.limit || 20);
-
-    if (!error && data && data.length > 0) {
-      return data as PracticeQuestion[];
+    const res = await fetchCanonicalQuestions({
+      examCode: params.exam,
+      year: params.year,
+      subject: params.subject,
+      topic: params.topic,
+      difficulty: params.difficulty,
+      questionType: params.questionType,
+      limit: params.limit || 20,
+    });
+    if (res.questions.length > 0) {
+      return res.questions;
     }
   } catch {
     // fallback

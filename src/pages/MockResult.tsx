@@ -30,7 +30,7 @@ export default function MockResult() {
   return (
     <>
       <Helmet>
-        <title>{mockTest?.title || 'Mock Test'} Result — Study Hub</title>
+        <title>{`${mockTest?.title || 'Mock Test'} Result — Study Hub`}</title>
       </Helmet>
 
       <div className="px-6 pt-12 max-w-4xl mx-auto pb-24 text-center space-y-8">

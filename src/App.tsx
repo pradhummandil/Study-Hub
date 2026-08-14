@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar';
 import { SocialProofBar } from './components/SocialProofBar';
 import { ExitIntentModal } from './components/ExitIntentModal';
 import { FloatingAIButton } from './components/study-ai/FloatingAIButton';
+import { GoogleOneTapPrompt } from './components/auth/GoogleOneTapPrompt';
 import { MobileNav } from './components/layout/MobileNav';
 import { Footer } from './components/layout/Footer';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -313,6 +314,7 @@ export default function App() {
         <StudentProvider>
           <BrowserRouter>
             <CustomCursor />
+            <GoogleOneTapPrompt />
             <StudyHubStartupAnimation />
             <PageTransitionAnimation />
             <AppRoutes />

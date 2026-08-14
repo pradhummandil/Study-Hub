@@ -269,4 +269,18 @@
   }
 }
 
+/* Universal Select Dropdown Option High Contrast */
+select option {
+  background-color: #FFFFFF !important;
+  color: #181A19 !important;
+  font-weight: 500;
+  padding: 8px 12px;
+}
+
+select option:checked {
+  background-color: #1B3022 !important;
+  color: #FFFFFF !important;
+}
+
+
 

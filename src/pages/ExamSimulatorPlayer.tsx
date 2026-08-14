@@ -143,7 +143,7 @@ export default function ExamSimulatorPlayer() {
   return (
     <div className="min-h-screen bg-[#041D29] text-white flex flex-col font-sans relative overflow-hidden">
       <Helmet>
-        <title>{test.title} | Realistic Simulation</title>
+        <title>{`${test.title} | Realistic Simulation`}</title>
       </Helmet>
 
       {/* Network Disconnection Banner */}

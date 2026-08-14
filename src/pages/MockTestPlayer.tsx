@@ -145,7 +145,7 @@ export default function MockTestPlayer() {
   return (
     <>
       <Helmet>
-        <title>{mockTest.title} — Mock Test Player | Study Hub</title>
+        <title>{`${mockTest.title} — Mock Test Player | Study Hub`}</title>
       </Helmet>
 
       <div className="min-h-screen bg-background px-6 pt-6 pb-24 max-w-6xl mx-auto flex flex-col justify-between">

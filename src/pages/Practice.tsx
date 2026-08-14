@@ -148,7 +148,7 @@ export default function Practice() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Exam Filter */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Target Exam</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider">Target Exam</label>
               <select
                 value={exam}
                 onChange={(e) => {
@@ -156,86 +156,86 @@ export default function Practice() {
                   setExam(newExam);
                   setSubject(EXAM_CONFIGS[newExam]?.subjects[0] || '');
                 }}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
                 {(Object.keys(EXAM_CONFIGS) as ExamCategory[]).map((eKey) => (
-                  <option key={eKey} value={eKey} className="bg-slate-900 text-foreground">{eKey}</option>
+                  <option key={eKey} value={eKey} className="bg-paper text-ink font-medium">{eKey}</option>
                 ))}
               </select>
             </div>
 
             {/* Subject Filter */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Subject</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider">Subject</label>
               <select
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
                 {selectedExamConfig.subjects.map((subj) => (
-                  <option key={subj} value={subj} className="bg-slate-900 text-foreground">{subj}</option>
+                  <option key={subj} value={subj} className="bg-paper text-ink font-medium">{subj}</option>
                 ))}
               </select>
             </div>
 
             {/* Year Filter */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider font-mono">Exam Year</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider font-mono">Exam Year</label>
               <select
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
-                <option value="All" className="bg-slate-900 text-foreground">All Years (2007–2026)</option>
-                <option value="2026" className="bg-slate-900 text-foreground">2026</option>
-                <option value="2025" className="bg-slate-900 text-foreground">2025</option>
-                <option value="2024" className="bg-slate-900 text-foreground">2024</option>
-                <option value="2023" className="bg-slate-900 text-foreground">2023</option>
-                <option value="2022" className="bg-slate-900 text-foreground">2022</option>
+                <option value="All" className="bg-paper text-ink font-medium">All Years (2007–2026)</option>
+                <option value="2026" className="bg-paper text-ink font-medium">2026</option>
+                <option value="2025" className="bg-paper text-ink font-medium">2025</option>
+                <option value="2024" className="bg-paper text-ink font-medium">2024</option>
+                <option value="2023" className="bg-paper text-ink font-medium">2023</option>
+                <option value="2022" className="bg-paper text-ink font-medium">2022</option>
               </select>
             </div>
 
             {/* Difficulty Filter */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Difficulty</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider">Difficulty</label>
               <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
-                <option value="All" className="bg-slate-900 text-foreground">All Difficulties</option>
-                <option value="Easy" className="bg-slate-900 text-foreground">Easy</option>
-                <option value="Medium" className="bg-slate-900 text-foreground">Medium</option>
-                <option value="Hard" className="bg-slate-900 text-foreground">Hard</option>
+                <option value="All" className="bg-paper text-ink font-medium">All Difficulties</option>
+                <option value="Easy" className="bg-paper text-ink font-medium">Easy</option>
+                <option value="Medium" className="bg-paper text-ink font-medium">Medium</option>
+                <option value="Hard" className="bg-paper text-ink font-medium">Hard</option>
               </select>
             </div>
 
             {/* Question Type */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Question Type</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider">Question Type</label>
               <select
                 value={questionType}
                 onChange={(e) => setQuestionType(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
-                <option value="All" className="bg-slate-900 text-foreground">All Types (MCQ, MSQ, NAT)</option>
-                <option value="MCQ" className="bg-slate-900 text-foreground">MCQ (Single Choice)</option>
-                <option value="MSQ" className="bg-slate-900 text-foreground">MSQ (Multiple Select)</option>
-                <option value="Numerical" className="bg-slate-900 text-foreground">Numerical (NAT Input)</option>
+                <option value="All" className="bg-paper text-ink font-medium">All Types (MCQ, MSQ, NAT)</option>
+                <option value="MCQ" className="bg-paper text-ink font-medium">MCQ (Single Choice)</option>
+                <option value="MSQ" className="bg-paper text-ink font-medium">MSQ (Multiple Select)</option>
+                <option value="Numerical" className="bg-paper text-ink font-medium">Numerical (NAT Input)</option>
               </select>
             </div>
 
             {/* Question Count */}
             <div>
-              <label className="text-xs text-muted-foreground font-semibold mb-2 block uppercase tracking-wider">Questions per Session</label>
+              <label className="text-xs text-muted font-bold mb-2 block uppercase tracking-wider">Questions per Session</label>
               <select
                 value={questionCount}
                 onChange={(e) => setQuestionCount(Number(e.target.value))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:border-emerald-400"
+                className="w-full bg-parchment/80 border border-forest/15 rounded-xl px-4 py-3 text-sm text-ink font-semibold focus:outline-none focus:border-scholar focus:ring-2 focus:ring-scholar/15 transition-all shadow-sm"
               >
-                <option value={5} className="bg-slate-900 text-foreground">5 Questions (Express)</option>
-                <option value={10} className="bg-slate-900 text-foreground">10 Questions (Standard)</option>
-                <option value={20} className="bg-slate-900 text-foreground">20 Questions (Marathon)</option>
+                <option value={5} className="bg-paper text-ink font-medium">5 Questions (Express)</option>
+                <option value={10} className="bg-paper text-ink font-medium">10 Questions (Standard)</option>
+                <option value={20} className="bg-paper text-ink font-medium">20 Questions (Marathon)</option>
               </select>
             </div>
           </div>

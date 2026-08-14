@@ -52,7 +52,7 @@ export default function ExamSimulatorReview() {
   return (
     <div className="min-h-screen bg-[#062B3D] text-white py-10 px-4 sm:px-6 lg:px-8">
       <Helmet>
-        <title>Solution Review — {attempt.test_title} | Study Hub</title>
+        <title>{`Solution Review — ${attempt.test_title} | Study Hub`}</title>
       </Helmet>
 
       <div className="max-w-4xl mx-auto space-y-6">

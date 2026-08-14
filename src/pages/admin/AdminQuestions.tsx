@@ -28,9 +28,12 @@ interface Question {
   normalized_hash?: string;
 }
 
+import { fetchContentHealthReport, fetchCanonicalQuestions, type ContentHealthReport } from '../../lib/questionEngineApi';
+
 export default function AdminQuestions() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
+  const [healthReport, setHealthReport] = useState<ContentHealthReport | null>(null);
   
   const [page, setPage] = useState(1);
   const itemsPerPage = 15;
@@ -42,21 +45,25 @@ export default function AdminQuestions() {
 
   useEffect(() => {
     fetchQuestions();
+    fetchHealth();
   }, [page]);
+
+  const fetchHealth = async () => {
+    const report = await fetchContentHealthReport();
+    setHealthReport(report);
+  };
 
   const fetchQuestions = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('practice_questions')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .range((page - 1) * itemsPerPage, page * itemsPerPage - 1);
-        
-      if (error) throw error;
-      setQuestions(data || []);
+      const res = await fetchCanonicalQuestions({
+        limit: itemsPerPage,
+        offset: (page - 1) * itemsPerPage,
+        publishedOnly: false,
+      });
+      setQuestions(res.questions as any[]);
     } catch (error) {
-      console.error('Error fetching questions:', error);
+      console.error('Error fetching canonical questions:', error);
     } finally {
       setLoading(false);
     }
@@ -115,8 +122,16 @@ export default function AdminQuestions() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">Question Bank CMS</h1>
-            <p className="text-white/60 mt-2">Manage and review practice questions</p>
+            <h1 className="text-3xl font-bold">Question Engine 2.0 CMS</h1>
+            <p className="text-white/60 mt-1">Manage, verify, and review canonical multi-exam question bank</p>
+            {healthReport && (
+              <div className="flex gap-4 mt-3 text-xs">
+                <span className="bg-white/10 px-3 py-1 rounded-full text-cyan-300">Total: {healthReport.totalQuestions}</span>
+                <span className="bg-white/10 px-3 py-1 rounded-full text-green-300">Official PYQs: {healthReport.officialPyqs}</span>
+                <span className="bg-white/10 px-3 py-1 rounded-full text-yellow-300">External Refs: {healthReport.externalReferences}</span>
+                <span className="bg-white/10 px-3 py-1 rounded-full text-purple-300">Verified: {healthReport.verifiedCount}</span>
+              </div>
+            )}
           </div>
           <button 
             onClick={() => {

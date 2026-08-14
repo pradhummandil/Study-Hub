@@ -51,7 +51,7 @@ export default function ExamDetailPage() {
   return (
     <>
       <Helmet>
-        <title>{exam.name} Official Specification & PYQs — Study Hub</title>
+        <title>{`${exam.name} Official Specification & PYQs — Study Hub`}</title>
         <meta name="description" content={`Official information, syllabus, pattern, and PYQs for ${exam.name}. Verified by ${exam.organizer}.`} />
       </Helmet>
 

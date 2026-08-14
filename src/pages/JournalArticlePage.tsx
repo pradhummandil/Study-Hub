@@ -91,7 +91,7 @@ export default function JournalArticlePage() {
   return (
     <>
       <Helmet>
-        <title>{article.title} | Study Hub Journal</title>
+        <title>{`${article.title} | Study Hub Journal`}</title>
         <meta name="description" content={article.excerpt} />
         <meta property="og:title" content={article.title} />
         <meta property="og:description" content={article.excerpt} />

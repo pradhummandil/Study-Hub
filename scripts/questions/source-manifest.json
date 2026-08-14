@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2026-08-14",
+  "content_policy": {
+    "republish_copyrighted_explanations": false,
+    "store_official_public_questions": true,
+    "create_study_hub_original_solutions": true,
+    "require_external_reference_attribution": true
+  },
+  "sources": [
+    {
+      "id": "official_gate_iitm",
+      "name": "Official GATE IIT Madras / GATE Committee",
+      "type": "OFFICIAL_PYQ",
+      "exam_family": "GATE",
+      "url": "https://gate2026.iitm.ac.in",
+      "allowed_republish_text": true,
+      "license_status": "PUBLIC_OFFICIAL"
+    },
+    {
+      "id": "official_nta_jee",
+      "name": "Official NTA JEE Main Archives",
+      "type": "OFFICIAL_PYQ",
+      "exam_family": "JEE",
+      "url": "https://jeemain.nta.nic.in",
+      "allowed_republish_text": true,
+      "license_status": "PUBLIC_OFFICIAL"
+    },
+    {
+      "id": "official_jee_adv",
+      "name": "Official JEE Advanced Organising Institute",
+      "type": "OFFICIAL_PYQ",
+      "exam_family": "JEE",
+      "url": "https://jeeadv.ac.in",
+      "allowed_republish_text": true,
+      "license_status": "PUBLIC_OFFICIAL"
+    },
+    {
+      "id": "official_nta_neet",
+      "name": "Official NTA NEET Archives",
+      "type": "OFFICIAL_PYQ",
+      "exam_family": "NEET",
+      "url": "https://neet.nta.nic.in",
+      "allowed_republish_text": true,
+      "license_status": "PUBLIC_OFFICIAL"
+    },
+    {
+      "id": "examside_ref",
+      "name": "ExamSIDE Questions Reference",
+      "type": "EXTERNAL_REFERENCE",
+      "exam_family": "MULTI",
+      "url": "https://questions.examside.com/",
+      "allowed_republish_text": false,
+      "license_status": "REFERENCE_ONLY",
+      "attribution_required": true
+    },
+    {
+      "id": "mathongo_ref",
+      "name": "MathonGo Chapter-wise JEE Index Reference",
+      "type": "EXTERNAL_REFERENCE",
+      "exam_family": "JEE",
+      "url": "https://www.mathongo.com/iit-jee/jee-main-chapter-wise-questions-with-solutions",
+      "allowed_republish_text": false,
+      "license_status": "REFERENCE_ONLY",
+      "attribution_required": true
+    },
+    {
+      "id": "study_hub_original",
+      "name": "Study Hub Original Practice Engine",
+      "type": "STUDY_HUB_PRACTICE",
+      "exam_family": "MULTI",
+      "url": "https://studyhub.ai",
+      "allowed_republish_text": true,
+      "license_status": "STUDY_HUB_PROPRIETARY"
+    }
+  ]
+}

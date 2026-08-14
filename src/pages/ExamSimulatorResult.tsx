@@ -94,7 +94,7 @@ export default function ExamSimulatorResult() {
   return (
     <div className="min-h-screen bg-[#062B3D] text-white py-12 px-4 sm:px-6 lg:px-8">
       <Helmet>
-        <title>{attempt.test_title} Result & Analytics | Study Hub</title>
+        <title>{`${attempt.test_title} Result & Analytics | Study Hub`}</title>
       </Helmet>
 
       <div className="max-w-5xl mx-auto space-y-10">
