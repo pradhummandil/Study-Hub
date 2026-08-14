@@ -1,50 +1,54 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  ChevronUp, ChevronDown, Heart, Bot, ShieldCheck, Play, ArrowRight, BrainCircuit
+  ChevronUp, ChevronDown, Heart, ShieldCheck,
+  Bot, BrainCircuit, Play, ArrowRight, Share2, Sparkles, Check
 } from 'lucide-react';
 import type { YouTubeVideo } from '../../types/video-learning';
-import { isItemSaved, toggleSaveItem } from '../../lib/videoLearningApi';
+import { toggleSaveItem, isItemSaved } from '../../lib/videoLearningApi';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { ChannelAvatar } from './ChannelAvatar';
 
 interface ShortsViewerProps {
   shorts: YouTubeVideo[];
-  onOpenFullLecture?: (video: YouTubeVideo) => void;
+  onOpenFullLecture?: (short: YouTubeVideo) => void;
 }
 
 export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLecture }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const touchStartY = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartY = useRef<number | null>(null);
+  const wheelLockRef = useRef<boolean>(false);
 
-  const activeShort = shorts && shorts.length > 0 ? shorts[activeIndex] : null;
+  const activeShort = shorts[activeIndex];
 
   useEffect(() => {
     if (activeShort) {
       setSaved(isItemSaved(activeShort.id, 'video'));
-    }
-  }, [activeShort]);
-
-  const handleNext = useCallback(() => {
-    if (shorts && activeIndex < shorts.length - 1) {
-      setActiveIndex((prev) => prev + 1);
       setIsPlaying(true);
     }
-  }, [activeIndex, shorts]);
+  }, [activeIndex, activeShort]);
 
-  const handlePrev = useCallback(() => {
+  const handleNext = () => {
+    if (activeIndex < shorts.length - 1) {
+      setActiveIndex((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
     if (activeIndex > 0) {
       setActiveIndex((prev) => prev - 1);
-      setIsPlaying(true);
     }
-  }, [activeIndex]);
+  };
 
-  // Keyboard ArrowUp / ArrowDown navigation
+  // Keyboard Up/Down navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowDown') {
@@ -57,16 +61,18 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleNext, handlePrev]);
+  }, [activeIndex, shorts.length]);
 
-  // Mouse wheel navigation with debounce
-  const wheelLockRef = useRef(false);
+  // Wheel scroll navigation
   const handleWheel = (e: React.WheelEvent) => {
     if (wheelLockRef.current) return;
-    if (Math.abs(e.deltaY) > 30) {
+    if (Math.abs(e.deltaY) > 40) {
       wheelLockRef.current = true;
-      if (e.deltaY > 0) handleNext();
-      else handlePrev();
+      if (e.deltaY > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
       setTimeout(() => {
         wheelLockRef.current = false;
       }, 500);
@@ -117,130 +123,175 @@ export const ShortsViewer: React.FC<ShortsViewerProps> = ({ shorts, onOpenFullLe
     });
   };
 
+  const handleShare = () => {
+    const url = window.location.origin + `/video-learning/video/${activeShort.youtube_video_id}`;
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const embedUrl = `https://www.youtube-nocookie.com/embed/${activeShort.youtube_video_id}?autoplay=1&loop=1&playlist=${activeShort.youtube_video_id}&controls=1&modestbranding=1&rel=0`;
   const thumbnailUrl = activeShort.thumbnail || activeShort.thumbnail_url || `https://i.ytimg.com/vi/${activeShort.youtube_video_id}/hqdefault.jpg`;
 
   return (
-    <div className="flex flex-col items-center justify-center py-4 px-2 select-none">
-      <div
-        ref={containerRef}
-        onWheel={handleWheel}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        className="relative w-full max-w-[360px] aspect-[9/16] bg-[#1C201D] rounded-[28px] overflow-hidden shadow-2xl border border-[#1C201D]/20 flex flex-col justify-between group"
-      >
-        {/* Top Header Overlay */}
-        <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
-          <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-[#1C201D]/85 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-md">
-            {activeShort.exam} • {activeShort.subject}
-          </span>
-
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#1C201D]/85 text-[#FFFFFF] border border-[#FFFFFF]/10 backdrop-blur-md">
-            {activeIndex + 1} / {shorts.length}
-          </span>
-        </div>
-
-        {/* Player Viewport */}
-        <div className="relative w-full h-full bg-[#1C201D]">
-          {isPlaying ? (
-            <iframe
-              key={activeShort.youtube_video_id}
-              src={embedUrl}
-              title={activeShort.title}
-              className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <div
-              onClick={() => setIsPlaying(true)}
-              className="relative w-full h-full cursor-pointer group/thumb"
-            >
-              <img
-                src={thumbnailUrl}
-                alt={activeShort.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-[#1C201D]/40 backdrop-blur-[2px] flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#2D5A3F] text-[#FFFFFF] flex items-center justify-center shadow-2xl shadow-[#2D5A3F]/50 transform group-hover/thumb:scale-110 transition-transform">
-                  <Play className="w-8 h-8 fill-current ml-1" />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Bottom Details Overlay */}
-        <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-[#1C201D] via-[#1C201D]/90 to-transparent space-y-3 z-10 pointer-events-auto">
-          <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-xs text-[#2D5A3F] font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F]" />
-              <span className="text-[#EDE8DB]">{activeShort.channel_name || 'Physics Wallah'}</span>
-            </div>
-            <h3 className="text-sm font-bold text-[#FFFFFF] leading-snug line-clamp-2">
-              {activeShort.title}
-            </h3>
+    <div className="flex flex-col items-center justify-center py-6 px-2 select-none">
+      <div className="relative flex items-center justify-center gap-4 w-full max-w-[480px]">
+        {/* Main 9:16 Vertical Shorts Card */}
+        <div
+          ref={containerRef}
+          onWheel={handleWheel}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full max-w-[360px] aspect-[9/16] bg-[#1C201D] rounded-[28px] overflow-hidden shadow-2xl border border-[#1C201D]/20 flex flex-col justify-between group"
+        >
+          {/* Top Tag Overlay (No 1/1000 counter badge!) */}
+          <div className="absolute top-3 left-3 z-20 pointer-events-none">
+            <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-[#1C201D]/85 text-[#D4AF37] border border-[#D4AF37]/30 backdrop-blur-md shadow-sm">
+              {activeShort.exam} • {activeShort.subject}
+            </span>
           </div>
 
-          {/* Action Row */}
-          <div className="flex flex-col gap-2 pt-1">
+          {/* Player Viewport */}
+          <div className="relative w-full h-full bg-[#1C201D]">
+            {isPlaying ? (
+              <iframe
+                key={activeShort.youtube_video_id}
+                src={embedUrl}
+                title={activeShort.title}
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div
+                onClick={() => setIsPlaying(true)}
+                className="relative w-full h-full cursor-pointer group/thumb"
+              >
+                <img
+                  src={thumbnailUrl}
+                  alt={activeShort.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[#1C201D]/40 backdrop-blur-[2px] flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-[#2D5A3F] text-[#FFFFFF] flex items-center justify-center shadow-2xl shadow-[#2D5A3F]/50 transform group-hover/thumb:scale-110 transition-transform">
+                    <Play className="w-8 h-8 fill-current ml-1" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Bottom YouTube-Style Details Overlay */}
+          <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-[#1C201D] via-[#1C201D]/90 to-transparent space-y-2 z-10 pointer-events-auto">
+            {/* Channel Info & Verified Badge */}
+            <div className="flex items-center gap-2">
+              <ChannelAvatar channelName={activeShort.channel_name} size="sm" />
+              <div className="flex items-center gap-1 font-bold text-xs text-[#FFFFFF]">
+                <span>{activeShort.channel_name || 'Physics Wallah'}</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F]" />
+              </div>
+            </div>
+
+            {/* Short Title */}
+            <h3 className="text-xs sm:text-sm font-bold text-[#FFFFFF] leading-snug line-clamp-2">
+              {activeShort.title}
+            </h3>
+
+            {/* Related Full Lesson Pill (YouTube Shorts Remix/Related style) */}
             {onOpenFullLecture && (
               <button
                 onClick={() => onOpenFullLecture(activeShort)}
-                className="w-full py-2 px-3 rounded-xl bg-[#2D5A3F]/40 hover:bg-[#2D5A3F]/60 text-[#FFFFFF] border border-[#2D5A3F]/50 text-xs font-bold flex items-center justify-between backdrop-blur-md transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1C201D]/85 hover:bg-[#2D5A3F] text-[#FFFFFF] border border-[#FFFFFF]/20 text-[11px] font-bold backdrop-blur-md transition-all mt-1 shadow-md cursor-pointer"
               >
-                <span>Watch related full lesson</span>
-                <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+                <Play className="w-3 h-3 text-[#D4AF37] fill-current" />
+                <span className="truncate max-w-[200px]">Watch Related Full Lesson</span>
+                <ArrowRight className="w-3 h-3 text-[#D4AF37]" />
               </button>
             )}
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleAskStudyMate}
-                className="flex-1 py-2 px-3 rounded-xl bg-[#EDE8DB]/20 hover:bg-[#EDE8DB]/30 text-[#FFFFFF] border border-[#EDE8DB]/30 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
-              >
-                <Bot className="w-3.5 h-3.5 text-[#D4AF37]" /> Ask AI
-              </button>
-              <button
-                onClick={() => navigate(`/practice?topic=${encodeURIComponent(activeShort.topic)}`)}
-                className="flex-1 py-2 px-3 rounded-xl bg-[#C86D51]/30 hover:bg-[#C86D51]/50 text-[#FFFFFF] border border-[#C86D51]/40 text-xs font-semibold flex items-center justify-center gap-1.5 backdrop-blur-md transition-all"
-              >
-                <BrainCircuit className="w-3.5 h-3.5 text-[#C86D51]" /> Practice
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* Right Floating Nav Controls */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+        {/* YouTube-Style Vertical Action Rail (Placed on the right side of the Short) */}
+        <div className="flex flex-col items-center gap-4 text-[#FFFFFF] shrink-0 z-20">
+          {/* Previous Short Button */}
           <button
             aria-label="Previous Short"
             disabled={activeIndex === 0}
             onClick={handlePrev}
-            className="p-3 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
+            className="w-11 h-11 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
             title="Previous Short (ArrowUp)"
           >
             <ChevronUp className="w-5 h-5" />
           </button>
 
-          <button
-            aria-label="Save Short"
-            onClick={handleSaveToggle}
-            className={`p-3 rounded-full backdrop-blur-md border transition-all shadow-xl hover:scale-105 active:scale-95 ${
-              saved
-                ? 'bg-[#1C201D] text-[#D4AF37] border-[#D4AF37] font-bold shadow-md'
-                : 'bg-[#1C201D]/90 text-[#FFFFFF] border-[#FFFFFF]/20 hover:text-[#D4AF37]'
-            }`}
-            title={saved ? 'Remove from Saved' : 'Save Short'}
-          >
-            <Heart className={`w-5 h-5 ${saved ? 'fill-current' : ''}`} />
-          </button>
+          {/* Like / Save Button */}
+          <div className="flex flex-col items-center gap-1">
+            <button
+              aria-label="Save Short"
+              onClick={handleSaveToggle}
+              className={`w-11 h-11 rounded-full backdrop-blur-md border flex items-center justify-center transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer ${
+                saved
+                  ? 'bg-[#2D5A3F] text-[#D4AF37] border-[#D4AF37]'
+                  : 'bg-[#1C201D]/90 text-[#FFFFFF] border-[#FFFFFF]/20 hover:text-[#D4AF37]'
+              }`}
+              title={saved ? 'Remove from Saved' : 'Save Short'}
+            >
+              <Heart className={`w-5 h-5 ${saved ? 'fill-current' : ''}`} />
+            </button>
+            <span className="text-[10px] font-bold font-mono text-[#1C201D]">{saved ? 'Saved' : 'Save'}</span>
+          </div>
 
+          {/* Ask AI Button */}
+          <div className="flex flex-col items-center gap-1">
+            <button
+              aria-label="Ask AI"
+              onClick={handleAskStudyMate}
+              className="w-11 h-11 rounded-full bg-[#1C201D]/90 hover:bg-[#2D5A3F] text-[#D4AF37] border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+              title="Ask AI about this Short"
+            >
+              <Bot className="w-5 h-5" />
+            </button>
+            <span className="text-[10px] font-bold font-mono text-[#1C201D]">Ask AI</span>
+          </div>
+
+          {/* Practice Topic Button */}
+          <div className="flex flex-col items-center gap-1">
+            <button
+              aria-label="Practice Topic"
+              onClick={() => {
+                if (!user) {
+                  navigate('/login');
+                  return;
+                }
+                navigate(`/practice?topic=${encodeURIComponent(activeShort.topic)}`);
+              }}
+              className="w-11 h-11 rounded-full bg-[#1C201D]/90 hover:bg-[#C86D51] text-[#C86D51] hover:text-[#FFFFFF] border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+              title="Practice Topic"
+            >
+              <BrainCircuit className="w-5 h-5" />
+            </button>
+            <span className="text-[10px] font-bold font-mono text-[#1C201D]">Practice</span>
+          </div>
+
+          {/* Share Button */}
+          <div className="flex flex-col items-center gap-1">
+            <button
+              aria-label="Share Short"
+              onClick={handleShare}
+              className="w-11 h-11 rounded-full bg-[#1C201D]/90 hover:bg-[#2D5A3F] text-[#FFFFFF] border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+              title="Copy Link"
+            >
+              {copied ? <Check className="w-5 h-5 text-[#2D5A3F]" /> : <Share2 className="w-5 h-5" />}
+            </button>
+            <span className="text-[10px] font-bold font-mono text-[#1C201D]">{copied ? 'Copied!' : 'Share'}</span>
+          </div>
+
+          {/* Next Short Button */}
           <button
             aria-label="Next Short"
             disabled={activeIndex === shorts.length - 1}
             onClick={handleNext}
-            className="p-3 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95"
+            className="w-11 h-11 rounded-full bg-[#1C201D]/90 disabled:opacity-30 text-[#FFFFFF] hover:text-[#D4AF37] border border-[#FFFFFF]/20 flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
             title="Next Short (ArrowDown)"
           >
             <ChevronDown className="w-5 h-5" />
