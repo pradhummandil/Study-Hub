@@ -32,8 +32,8 @@ export const ScrollStorySection: React.FC = () => {
   const scene4Opacity = useTransform(smoothProgress, [0.6, 0.64, 0.78, 0.82], [0, 1, 1, 0]);
   const scene5Opacity = useTransform(smoothProgress, [0.8, 0.84, 1], [0, 1, 1]);
 
-  // Horizontal Scroll Moment transformation
-  const horizontalX = useTransform(smoothProgress, [0.42, 0.58], ['0%', '-55%']);
+  // Horizontal Scroll Moment transformation (synced to Scene 04 visibility [0.6, 0.82])
+  const horizontalX = useTransform(smoothProgress, [0.62, 0.78], ['0%', '-55%']);
 
   // Editorial step rail progress indicator (01 to 05)
   const activeIndex = useTransform(smoothProgress, [0, 0.2, 0.4, 0.6, 0.8, 1], [1, 2, 3, 4, 5, 5]);
