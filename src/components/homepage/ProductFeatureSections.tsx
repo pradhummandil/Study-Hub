@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   Cpu, MapPin, Zap, Trophy, RotateCcw, Layers, Clock, Users,
-  ArrowRight, ShieldCheck
+  ArrowRight
 } from 'lucide-react';
 import { ARTICLES } from '../../content/journal/articles';
 

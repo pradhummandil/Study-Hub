@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Play, Sparkles, ArrowRight, ShieldCheck, Clock } from 'lucide-react';
+import { Play, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fetchVideos, fetchChannels } from '../../lib/videoLearningApi';

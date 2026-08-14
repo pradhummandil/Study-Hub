@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Cpu, Sparkles, Send, CheckCircle2, ArrowRight, RefreshCw, HelpCircle, Layers, Bookmark } from 'lucide-react';
+import { Cpu, Sparkles, CheckCircle2, ArrowRight, HelpCircle, Layers } from 'lucide-react';
 import { AIOrb, type AIOrbState } from '../ui/motion/AIOrb';
 
 export const StudyMateShowcase: React.FC = () => {
@@ -99,7 +99,7 @@ export const StudyMateShowcase: React.FC = () => {
           <div className="lg:col-span-7 bg-[#1C201D] border border-[#FFFFFF]/10 rounded-3xl p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-[#FFFFFF]/10 pb-3">
               <div className="flex items-center gap-3">
-                <AIOrb state={aiState} size="sm" />
+                <AIOrb state={aiState} size={40} />
                 <div>
                   <h4 className="text-xs font-bold text-[#FFFFFF]">StudyMate Assistant</h4>
                   <span className="text-[10px] text-[#EDE8DB] uppercase tracking-wider font-mono">{aiState}</span>

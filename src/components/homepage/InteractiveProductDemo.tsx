@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Cpu, Zap, Trophy, RotateCcw,
-  ArrowRight, Clock, Calculator, Eye, ChevronRight, Play, Pause, Flame
+  Clock, Play, Pause
 } from 'lucide-react';
 
 type DemoTab = 'dashboard' | 'studymate' | 'practice' | 'mock' | 'revision' | 'focus';
