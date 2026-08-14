@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Users, MessageSquare, Plus, Search,
-  CheckCircle2, Heart, Sparkles, X, Send
+  CheckCircle2, Heart, Sparkles, X, Send, Flag
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useStudentContext } from '../context/StudentContext';
@@ -52,6 +52,11 @@ export default function Community() {
   const [reportTarget, setReportTarget] = useState<{ type: 'post' | 'comment'; id: string } | null>(null);
   const [reportReason, setReportReason] = useState<'Spam' | 'Harassment' | 'Inappropriate' | 'Misleading academic information' | 'Copyright concern' | 'Other'>('Spam');
   const [reportDetails, setReportDetails] = useState('');
+
+  const handleOpenReportModal = (type: 'post' | 'comment', id: string) => {
+    setReportTarget({ type, id });
+    setShowReportModal(true);
+  };
 
   // Load circles on mount or targetExam change
   useEffect(() => {
@@ -449,6 +454,14 @@ export default function Community() {
                       >
                         <Heart className="w-3.5 h-3.5" />
                         <span>{post.like_count}</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleOpenReportModal('post', post.id)}
+                        className="flex items-center gap-1 text-[#6C706D] hover:text-[#C86D51] transition-colors"
+                        title="Report content"
+                      >
+                        <Flag className="w-3.5 h-3.5" />
                       </button>
                     </div>
 
