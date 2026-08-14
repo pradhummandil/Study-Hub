@@ -4,12 +4,12 @@ import {
   Search, Sparkles, BookOpen, Layers, Film, History, Bookmark,
   CheckCircle2, ChevronLeft, ChevronRight, X,
   Filter, ArrowUpDown, RefreshCw, AlertTriangle, LayoutDashboard,
-  Clock, Play
+  Play
 } from 'lucide-react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useStudentContext } from '../../context/StudentContext';
 import { useAuth } from '../../context/AuthContext';
-import type { YouTubeVideo, YouTubePlaylist, YouTubeChannel, VideoContentType } from '../../types/video-learning';
+import type { YouTubeVideo, YouTubePlaylist, VideoContentType } from '../../types/video-learning';
 import {
   fetchVideosPaginated,
   fetchPlaylists,
@@ -54,7 +54,7 @@ function VideoLearningPageContent() {
 
   // Active student context target exam & subject
   const targetExam = user && studentContext?.targetExam ? studentContext.targetExam : null;
-  const targetSubject = user && studentContext?.targetSubject ? studentContext.targetSubject : null;
+  const targetSubject = user && studentContext?.subjects && studentContext.subjects.length > 0 ? studentContext.subjects[0] : null;
 
   // Read URL search params
   const paramExam = searchParams.get('exam') || (targetExam || 'All Exams');
@@ -84,7 +84,6 @@ function VideoLearningPageContent() {
 
   // Catalog data
   const [playlists, setPlaylists] = useState<YouTubePlaylist[]>([]);
-  const [channels, setChannels] = useState<YouTubeChannel[]>([]);
   const [shorts, setShorts] = useState<YouTubeVideo[]>([]);
   const [channelVideosMap, setChannelVideosMap] = useState<Record<string, YouTubeVideo[]>>({});
   const [watchHistory, setWatchHistory] = useState<any[]>([]);
