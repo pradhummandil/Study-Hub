@@ -1,0 +1,6939 @@
+{
+  "generated_at": "2026-08-14T16:40:56.160Z",
+  "total_canonical_questions": 1466,
+  "official_pyqs": 1463,
+  "licensed_pyqs": 0,
+  "study_hub_original": 2,
+  "external_references": 1,
+  "total_verified": 1466,
+  "total_with_solutions": 1466,
+  "by_exam": {
+    "GATE_CSE": 743,
+    "GATE_ECE": 4,
+    "JEE_MAIN": 516,
+    "GATE_EE": 4,
+    "GATE_ME": 4,
+    "GATE_CE": 4,
+    "NEET_UG": 62,
+    "CUET_UG": 4,
+    "SSC_CGL": 4,
+    "UPSC_CSE": 4,
+    "BITSAT": 4,
+    "CAT": 4,
+    "GATE_DA": 20,
+    "GATE_PI": 4,
+    "GATE_XE": 4,
+    "GATE_CH": 4,
+    "GATE_ES": 4,
+    "NDA_NA": 4,
+    "JEE_ADVANCED": 66,
+    "GATE_IN": 3
+  },
+  "health_summary": {
+    "CRITICAL_zero_coverage_topics": 0,
+    "LOW_coverage_topics": 48,
+    "MEDIUM_coverage_topics": 118,
+    "GOOD_coverage_topics": 0,
+    "STRONG_coverage_topics": 0
+  },
+  "imbalance_summary": {
+    "difficulty_imbalance_topics": 69,
+    "year_imbalance_topics": 0,
+    "missing_year_content_topics": 13
+  },
+  "topic_coverage": [
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Layer",
+      "topic": "Subnetting & CIDR",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Transport Layer",
+      "topic": "TCP Congestion Control",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Process Synchronization",
+      "question_count": 16,
+      "pyq_count": 16,
+      "study_hub_count": 0,
+      "verified_count": 16,
+      "solution_count": 16,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 2,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & BCNF",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2023": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2024,
+        2025,
+        2026
+      ],
+      "present_years": [
+        2023
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Regular Languages",
+      "topic": "Finite Automata & Pumping Lemma",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2022": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "present_years": [
+        2022
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Parsing",
+      "topic": "LR Parsing & Shift-Reduce Conflicts",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2021": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "present_years": [
+        2021
+      ]
+    },
+    {
+      "exam_code": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Analysis",
+      "topic": "Continuous-Time Fourier Transform",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives",
+      "question_count": 1,
+      "pyq_count": 0,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "GATE_EE",
+      "subject": "Electrical Machines",
+      "chapter": "Transformers",
+      "topic": "Transformer Efficiency & Losses",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "First Law of Thermodynamics",
+      "topic": "Carnot Engine Efficiency",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Pipe Flow",
+      "topic": "Darcy-Weisbach Head Loss",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Projectile Motion",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Kinetics",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 10,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 2,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Excretory System & Nephron",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Optics",
+      "topic": "Ray Optics & Refraction",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Quantitative Reasoning",
+      "topic": "Percentages & Profit Loss",
+      "question_count": 1,
+      "pyq_count": 0,
+      "study_hub_count": 1,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Algebra",
+      "topic": "Algebraic Identities",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "UPSC_CSE",
+      "subject": "Indian Polity & Governance",
+      "chapter": "Constitutional Framework",
+      "topic": "Fundamental Rights & Writs",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "BITSAT",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Dot Product & Angle Between Vectors",
+      "question_count": 1,
+      "pyq_count": 0,
+      "study_hub_count": 1,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "CAT",
+      "subject": "Data Interpretation & Logical Reasoning",
+      "chapter": "Logical Reasoning",
+      "topic": "Arrangements & Matrix Grids",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Dynamic Programming",
+      "topic": "0/1 Knapsack & Subset Sum",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2024": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2025,
+        2026
+      ],
+      "present_years": [
+        2024
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Normal Distribution & Z-Score",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2024,
+        2025
+      ],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_PI",
+      "subject": "Manufacturing Engineering",
+      "chapter": "Metal Cutting",
+      "topic": "Merchant Circle & Cutting Force",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_XE",
+      "subject": "Solid Mechanics",
+      "chapter": "Stress & Strain",
+      "topic": "Mohr Circle & Principal Stresses",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CH",
+      "subject": "Heat Transfer",
+      "chapter": "Conduction",
+      "topic": "Fourier Law of Heat Conduction",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_ES",
+      "subject": "Water & Wastewater Engineering",
+      "chapter": "Water Quality Parameters",
+      "topic": "Biochemical Oxygen Demand (BOD)",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Discrete Mathematics",
+      "chapter": "Mathematical Logic",
+      "topic": "Propositional Equivalence",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 1,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2026
+      ],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Dimensionality Reduction",
+      "topic": "Principal Component Analysis (PCA)",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 1
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [
+        "MISSING_YEAR_CONTENT"
+      ],
+      "missing_years": [
+        2024,
+        2026
+      ],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Trigonometric Ratios & Identities",
+      "question_count": 1,
+      "pyq_count": 1,
+      "study_hub_count": 0,
+      "verified_count": 1,
+      "solution_count": 1,
+      "difficulties": {
+        "Easy": 1,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2025": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2025
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Area Under Curves",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Binomial Theorem",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Parabola",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Sequence & Series",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Dynamic Programming",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Greedy Algorithms",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Permutations & Combinations",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Pointers & Memory",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Recursion",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Functions & Scope",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Arrays & Strings",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Arrays & Linked Lists",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Stacks & Queues",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Trees & BSTs",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Heaps & Priority Queues",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Asymptotic Notation",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Divide & Conquer",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Graph Algorithms",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "CPU Scheduling",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Deadlocks",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Virtual Memory & Paging",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "SQL & Joins",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Relational Algebra",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & Functional Dependencies",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Transactions & Concurrency",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Subnetting & CIDR",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "IP Routing",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "TCP Congestion Control",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Data Link Protocols (CSMA/CD)",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "DFA & NFA Minimization",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Regular Expressions",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Context Free Grammars",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Turing Machines & Decidability",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Lexical Analyzer",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Parsing (LL, LR, LALR)",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Intermediate Code Generation",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Code Optimization",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Addressing Modes",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Pipelining & Hazards",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Cache Memory Mapping",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Interrupts & I/O",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Boolean Algebra & K-Maps",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Multiplexers & Decoders",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Flip-Flops & Counters",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Number Representations",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Propositional Logic",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Graph Theory",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Linear Algebra & Matrices",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Probability & Combinatorics",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Numerical Reasoning",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Data Interpretation",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Spatial Aptitude",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Grammatical Analysis",
+      "question_count": 15,
+      "pyq_count": 15,
+      "study_hub_count": 0,
+      "verified_count": 15,
+      "solution_count": 15,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 8,
+        "Hard": 7
+      },
+      "years": {
+        "2012": 1,
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Indefinite & Definite Integrals",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Straight Lines",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Probability & Statistics",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Kinematics & Projectile Motion",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Laws of Motion & Friction",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Work Energy & Power",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Rotational Dynamics",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Gravitation",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Calorimetry",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Laws of Thermodynamics",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Kinetic Theory of Gases",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Heat Transfer",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electrostatics & Coulomb Law",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Capacitors",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Current Electricity & Kirchhoff Laws",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Magnetic Effects of Current",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electromagnetic Induction",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Ray Optics & Lenses",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Wave Optics & Interference",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Simple Harmonic Motion",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Sound Waves & Doppler Effect",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Photoelectric Effect",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Bohr Model of Atom",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Nuclear Physics & Radioactivity",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Semiconductors & Logic Gates",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Mole Concept & Stoichiometry",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Atomic Structure",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Thermodynamics",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical & Ionic Equilibrium",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Periodic Table & Periodicity",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Chemical Bonding & Molecular Structure",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "p-Block Elements",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "d & f-Block Elements",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Coordination Compounds",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "General Organic Chemistry (GOC)",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Hydrocarbons",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Haloalkanes & Haloarenes",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Alcohols Phenols Ethers",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Limits Continuity & Differentiability",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Aldehydes Ketones & Carboxylic Acids",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Biomolecules & Polymers",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Quadratic Equations",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Complex Numbers",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Matrices & Determinants",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives (AOD)",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Differential Equations",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Circles",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Ellipse & Hyperbola",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Vector Algebra & Dot/Cross Product",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "3D Lines & Planes",
+      "question_count": 9,
+      "pyq_count": 9,
+      "study_hub_count": 0,
+      "verified_count": 9,
+      "solution_count": 9,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 9,
+        "Hard": 0
+      },
+      "years": {
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Advanced Mechanics",
+      "topic": "Rigid Body Rotation & Angular Impulse",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Electrodynamics",
+      "topic": "Electromagnetic Induction & Mutual Inductance",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Organic Synthesis",
+      "topic": "Reaction Mechanisms & Stereochemistry",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry & Nernst Equation",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Advanced Calculus",
+      "topic": "Differential Equations & Orthogonal Trajectories",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D",
+      "topic": "Shortest Distance Between Skew Lines",
+      "question_count": 11,
+      "pyq_count": 11,
+      "study_hub_count": 0,
+      "verified_count": 11,
+      "solution_count": 11,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 0,
+        "Hard": 11
+      },
+      "years": {
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Genetics & Evolution",
+      "topic": "Mendelian Genetics & Dihybrid Cross",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Neural Control & Signal Transmission",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Plant Physiology",
+      "topic": "Photosynthesis & Calvin Cycle",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Cell Biology",
+      "topic": "Mitosis & Meiosis Cell Division",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Ray Optics",
+      "topic": "Total Internal Reflection & Prism Dispersion",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Chemistry",
+      "chapter": "Biomolecules",
+      "topic": "Amino Acids & Protein Structures",
+      "question_count": 10,
+      "pyq_count": 10,
+      "study_hub_count": 0,
+      "verified_count": 10,
+      "solution_count": 10,
+      "difficulties": {
+        "Easy": 10,
+        "Medium": 0,
+        "Hard": 0
+      },
+      "years": {
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [
+        "DIFFICULTY_IMBALANCE"
+      ],
+      "missing_years": [],
+      "present_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Joint Distributions & Marginal PDF",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Linear Algebra",
+      "chapter": "Matrix Computations",
+      "topic": "SVD Decomposition & Eigenvalues",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Supervised Learning",
+      "topic": "Decision Trees & Information Gain",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Unsupervised Learning",
+      "topic": "K-Means Clustering & Inertia",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "AI & Search",
+      "chapter": "Heuristic Search",
+      "topic": "A* Algorithm & Admissible Heuristics",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Python & Data Structures",
+      "chapter": "Data Science Stack",
+      "topic": "Numpy Vectorization & Pandas Indexing",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Transform",
+      "topic": "Sampling Theorem",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_EE",
+      "subject": "Power Systems",
+      "chapter": "Fault Analysis",
+      "topic": "Symmetrical Components",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "Gas Turbines",
+      "topic": "Brayton Cycle",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CE",
+      "subject": "Structural Analysis",
+      "chapter": "Trusses",
+      "topic": "Method of Joints",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_IN",
+      "subject": "Sensors & Transducers",
+      "chapter": "Strain Gauges",
+      "topic": "Wheatstone Bridge",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_PI",
+      "subject": "Manufacturing",
+      "chapter": "Machining",
+      "topic": "Merchant Circle Diagram",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_XE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Viscous Flow",
+      "topic": "Navier-Stokes Equations",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_CH",
+      "subject": "Mass Transfer",
+      "chapter": "Distillation",
+      "topic": "McCabe-Thiele Method",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "GATE_ES",
+      "subject": "Water Treatment",
+      "chapter": "Filtration",
+      "topic": "Rapid Sand Filter",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Logical Reasoning",
+      "topic": "Series Completion",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Profit & Loss",
+      "topic": "Discount Calculations",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "UPSC_CSE",
+      "subject": "Indian Polity",
+      "chapter": "Constitution",
+      "topic": "Fundamental Rights Article 21",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "BITSAT",
+      "subject": "English & Logic",
+      "chapter": "Verbal Ability",
+      "topic": "Synonyms & Antonyms",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "CAT",
+      "subject": "Data Interpretation",
+      "chapter": "Bar Graphs",
+      "topic": "Percentage Change Analysis",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    },
+    {
+      "exam_code": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Height & Distance",
+      "question_count": 3,
+      "pyq_count": 3,
+      "study_hub_count": 0,
+      "verified_count": 3,
+      "solution_count": 3,
+      "difficulties": {
+        "Easy": 0,
+        "Medium": 3,
+        "Hard": 0
+      },
+      "years": {
+        "2024": 1,
+        "2025": 1,
+        "2026": 1
+      },
+      "flags": [],
+      "missing_years": [],
+      "present_years": [
+        2024,
+        2025,
+        2026
+      ]
+    }
+  ]
+}

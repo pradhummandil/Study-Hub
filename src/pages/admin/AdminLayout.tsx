@@ -5,7 +5,7 @@ import {
   LayoutDashboard, Users, BookOpen, HelpCircle, GraduationCap,
   Map, FileText, MessageSquare, Flag, Bot, Bell, BarChart3,
   Activity, Settings, ChevronLeft, ChevronRight, LogOut,
-  Shield, Menu, Zap, Video
+  Shield, Menu, Zap, Video, Download, Layers
 } from 'lucide-react';
 import { useAdminRole } from '../../hooks/useAdminRole';
 import { AdminGuard } from '../../components/admin/AdminGuard';
@@ -25,6 +25,9 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Video Learning', path: '/admin/video-learning', icon: <Video className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Resources', path: '/admin/resources', icon: <BookOpen className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Question Bank', path: '/admin/questions', icon: <HelpCircle className="w-4 h-4" />, requiredRole: 'content_editor' },
+  { label: 'Import Engine', path: '/admin/questions/import', icon: <Download className="w-4 h-4" />, requiredRole: 'content_editor' },
+  { label: 'Expansion Queue', path: '/admin/questions/expansion', icon: <Layers className="w-4 h-4" />, requiredRole: 'content_editor' },
+  { label: 'Paper Inspector', path: '/admin/questions/papers', icon: <FileText className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Exams', path: '/admin/exams', icon: <GraduationCap className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Roadmaps', path: '/admin/roadmaps', icon: <Map className="w-4 h-4" />, requiredRole: 'content_editor' },
   { label: 'Mock Tests', path: '/admin/mock-tests', icon: <FileText className="w-4 h-4" />, requiredRole: 'content_editor' },

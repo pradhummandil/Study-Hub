@@ -498,7 +498,7 @@ export default function ExamSetup() {
               >
                 <div className="text-center">
                   <Sparkles className="w-8 h-8 text-[#5CE1E6] mx-auto mb-2" />
-                  <h2 className="text-3xl font-bold text-white">Your Study Hub is ready.</h2>
+                  <h2 className="text-3xl font-bold text-white">Your study library is ready.</h2>
                   <p className="text-xs text-slate-300 mt-1">We've customized your personal study space for {targetExam} {targetYear}.</p>
                 </div>
 
@@ -508,10 +508,10 @@ export default function ExamSetup() {
                     <span className="text-xs text-slate-300 font-semibold">{dailyHoursText} daily target</span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs text-slate-200">
-                    {primaryNeeds.slice(0, 6).map((item) => (
-                      <div key={item} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#5CE1E6] shrink-0" />
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-200">
+                    {['Question Bank', 'Revision Notes', 'Video Lectures', 'Flashcards', 'Mock Tests', 'Spaced Revision'].map((item) => (
+                      <div key={item} className="flex items-center gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10 font-semibold text-[11px]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#5CE1E6] shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}

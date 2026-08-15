@@ -229,6 +229,51 @@ export default function QuestionDetail() {
                   </a>
                 )}
               </div>
+
+              {/* Requirement 13 Multi-Modal Action Toolbar */}
+              <div className="mt-6 pt-4 border-t border-forest/10 bg-parchment/60 rounded-2xl p-4 space-y-3">
+                <div>
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-scholar bg-scholar/10 px-2.5 py-0.5 rounded">
+                    MULTI-MODAL STUDY CONNECTION
+                  </span>
+                  <h4 className="text-sm font-bold text-ink mt-1">
+                    Topic Actions for {question.topic}
+                  </h4>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <Link
+                    to={`/practice?subject=${encodeURIComponent(question.subject)}&topic=${encodeURIComponent(question.topic)}`}
+                    className="px-3.5 py-2 rounded-xl bg-scholar text-paper font-bold text-xs hover:bg-forest transition-colors shadow-xs"
+                  >
+                    Practice similar →
+                  </Link>
+                  <Link
+                    to={`/video-learning?subject=${encodeURIComponent(question.subject)}&topic=${encodeURIComponent(question.topic)}`}
+                    className="px-3.5 py-2 rounded-xl bg-parchment border border-forest/15 text-ink font-bold text-xs hover:bg-paper transition-colors"
+                  >
+                    Watch lesson 🎥
+                  </Link>
+                  <Link
+                    to={`/notes?subject=${encodeURIComponent(question.subject)}&topic=${encodeURIComponent(question.topic)}`}
+                    className="px-3.5 py-2 rounded-xl bg-parchment border border-forest/15 text-ink font-bold text-xs hover:bg-paper transition-colors"
+                  >
+                    Open notes 📖
+                  </Link>
+                  <Link
+                    to={`/revision?subject=${encodeURIComponent(question.subject)}&topic=${encodeURIComponent(question.topic)}`}
+                    className="px-3.5 py-2 rounded-xl bg-parchment border border-forest/15 text-ink font-bold text-xs hover:bg-paper transition-colors"
+                  >
+                    Revise 🔄
+                  </Link>
+                  <Link
+                    to={`/flashcards?subject=${encodeURIComponent(question.subject)}&topic=${encodeURIComponent(question.topic)}`}
+                    className="px-3.5 py-2 rounded-xl bg-parchment border border-forest/15 text-ink font-bold text-xs hover:bg-paper transition-colors"
+                  >
+                    Make flashcard 🎴
+                  </Link>
+                </div>
+              </div>
             </div>
           )}
         </div>

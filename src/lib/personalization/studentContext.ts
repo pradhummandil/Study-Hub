@@ -1,5 +1,6 @@
 // src/lib/personalization/studentContext.ts
 import type { StudentProfile, EducationPath, ExamCategory } from '../../types/student-core';
+import type { StudentLearningState } from '../intelligence/studentStateEngine';
 
 export interface StudentContextType {
   userId: string;
@@ -15,6 +16,7 @@ export interface StudentContextType {
   dailyStudyMinutes: number;
   activeContext: 'college' | 'competitive';
   isCombinedUser: boolean;
+  learningState: StudentLearningState | null;
   switchContext: (mode: 'college' | 'competitive') => Promise<void>;
   switchExam: (exam: ExamCategory, year?: string) => Promise<void>;
   updateProfile: (updates: Partial<StudentProfile>) => Promise<StudentProfile | null>;

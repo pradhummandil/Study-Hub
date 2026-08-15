@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-08-14T16:50:17.763Z",
+  "total_canonical_questions": 1466,
+  "total_verified": 1466,
+  "quality_summary": {
+    "missing_solutions": 0,
+    "too_short_solutions": 0,
+    "placeholder_solutions": 0,
+    "total_low_quality_flagged": 0,
+    "quality_pass_pct": 100
+  },
+  "flagged_details": []
+}

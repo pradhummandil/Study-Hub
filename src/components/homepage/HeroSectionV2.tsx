@@ -5,7 +5,7 @@ import { ArrowRight, Sparkles, Target, CheckCircle2, Clock, Zap } from 'lucide-r
 import { MOTION_TOKENS } from '../../lib/motion/tokens';
 import { MagneticButton } from '../ui/motion/MagneticButton';
 import { HoverCard } from '../ui/motion/HoverCard';
-import { SpatialHero3D } from '../3d/SpatialHero3D';
+import { LottiePlayer } from '../ui/motion/LottiePlayer';
 
 const ROTATING_PHRASES = [
   "Study smarter.",
@@ -48,7 +48,6 @@ const RotatingStatement: React.FC<{ shouldReduceMotion?: boolean }> = ({ shouldR
     </AnimatePresence>
   );
 };
-
 
 export const HeroSectionV2: React.FC = () => {
   const navigate = useNavigate();
@@ -107,10 +106,8 @@ export const HeroSectionV2: React.FC = () => {
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
           {/* Left Column — Editorial Headline & Primary CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-2">
-            
             {/* Subtle Editorial Eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: -12 }}
@@ -227,7 +224,7 @@ export const HeroSectionV2: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Column — 3D Spatial Scene */}
+          {/* Right Column — Premium Vector Lottie Animation & Attached Contextual Overlays */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -240,11 +237,17 @@ export const HeroSectionV2: React.FC = () => {
             className="lg:col-span-5 relative flex justify-center items-center perspective-1000"
           >
             {/* Soft Ambient Atmosphere Glow */}
-            <div className="absolute w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-scholar/15 via-gold/10 to-terracotta/15 filter blur-3xl pointer-events-none" />
+            <div className="absolute w-[440px] h-[440px] rounded-full bg-gradient-to-tr from-scholar/15 via-gold/10 to-terracotta/15 filter blur-3xl pointer-events-none" />
 
-            {/* 3D Spatial Canvas & Attached Product Overlays */}
-            <div className="relative w-full max-w-[480px] flex items-center justify-center">
-              <SpatialHero3D className="w-full" />
+            {/* Lottie Vector Canvas & Contextual Overlays */}
+            <div className="relative w-full max-w-[480px] h-[400px] sm:h-[460px] flex items-center justify-center">
+              {/* Premium Vector Lottie Knowledge Book Animation */}
+              <LottiePlayer
+                src="/assets/lottie-v2/education/knowledge-book.svg"
+                className="w-full h-full object-contain relative z-10 drop-shadow-[0_12px_28px_rgba(45,90,63,0.15)]"
+                loop={true}
+                autoplay={true}
+              />
 
               {/* Attached Contextual Overlay 1 — GATE 2027 */}
               <motion.div
@@ -252,11 +255,11 @@ export const HeroSectionV2: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.95 }}
-                className="absolute top-4 -left-2 sm:-left-6 z-20"
+                className="absolute top-2 -left-2 sm:-left-6 z-20"
               >
-                <HoverCard className="p-3 min-w-[170px] bg-paper/90 backdrop-blur-md border border-forest/10 border-l-4 border-l-scholar shadow-card">
+                <HoverCard className="p-3 min-w-[170px] bg-paper/95 backdrop-blur-md border border-forest/10 border-l-4 border-l-scholar shadow-card">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-scholar bg-scholar/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-scholar bg-scholar/10 px-2 py-0.5 rounded">
                       GATE 2027
                     </span>
                     <Target className="w-3.5 h-3.5 text-scholar" />
@@ -274,11 +277,11 @@ export const HeroSectionV2: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.05 }}
-                className="absolute bottom-6 -right-2 sm:-right-4 z-20"
+                className="absolute bottom-4 -right-2 sm:-right-4 z-20"
               >
-                <HoverCard className="p-3 min-w-[160px] bg-paper/90 backdrop-blur-md border border-forest/10 border-l-4 border-l-terracotta shadow-card">
+                <HoverCard className="p-3 min-w-[160px] bg-paper/95 backdrop-blur-md border border-forest/10 border-l-4 border-l-terracotta shadow-card">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold font-mono uppercase tracking-wider text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">
                       Active Recall
                     </span>
                     <Zap className="w-3.5 h-3.5 text-terracotta" />
@@ -295,7 +298,7 @@ export const HeroSectionV2: React.FC = () => {
                 transition={{ delay: 1.15 }}
                 className="absolute -bottom-2 left-4 z-20"
               >
-                <div className="px-3 py-2 bg-paper/90 backdrop-blur-md border border-forest/10 rounded-xl shadow-card flex items-center gap-2 text-xs font-medium text-ink">
+                <div className="px-3.5 py-2 bg-paper/95 backdrop-blur-md border border-forest/10 rounded-xl shadow-card flex items-center gap-2 text-xs font-medium text-ink">
                   <Clock className="w-4 h-4 text-gold" />
                   <span>25m Focus Timer Active</span>
                 </div>

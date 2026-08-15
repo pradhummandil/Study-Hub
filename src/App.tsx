@@ -68,6 +68,7 @@ const PracticeHistory     = lazy(() => import('./pages/PracticeHistory'));
 const QuestionDetail      = lazy(() => import('./pages/QuestionDetail'));
 const MentorPortal        = lazy(() => import('./pages/MentorPortal'));
 const InstitutionPortal   = lazy(() => import('./pages/InstitutionPortal'));
+const QuestionCoveragePage = lazy(() => import('./pages/QuestionCoveragePage'));
 
 // Admin pages
 const AdminLayout       = lazy(() => import('./pages/admin/AdminLayout'));
@@ -75,6 +76,9 @@ const AdminDashboard    = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminUsers        = lazy(() => import('./pages/admin/AdminUsers'));
 const AdminResources    = lazy(() => import('./pages/admin/AdminResources'));
 const AdminQuestions    = lazy(() => import('./pages/admin/AdminQuestions'));
+const AdminQuestionImport = lazy(() => import('./pages/admin/AdminQuestionImport'));
+const AdminExpansionQueue = lazy(() => import('./pages/admin/AdminExpansionQueue'));
+const AdminIncompletePapers = lazy(() => import('./pages/admin/AdminIncompletePapers'));
 const AdminExams        = lazy(() => import('./pages/admin/AdminExams'));
 const AdminRoadmaps     = lazy(() => import('./pages/admin/AdminRoadmaps'));
 const AdminMockTests    = lazy(() => import('./pages/admin/AdminMockTests'));
@@ -86,6 +90,9 @@ const AdminSystemHealth = lazy(() => import('./pages/admin/AdminSystemHealth'));
 const AdminAuditLog     = lazy(() => import('./pages/admin/AdminAuditLog'));
 const AdminAiQuality    = lazy(() => import('./pages/admin/AdminAiQuality'));
 const AdminVideoLearning = lazy(() => import('./pages/admin/AdminVideoLearning'));
+
+const StudyMaterials = lazy(() => import('./pages/StudyMaterials'));
+const AdminStudyMaterials = lazy(() => import('./pages/admin/AdminStudyMaterials'));
 
 // Video Learning Pages
 const VideoLearningPage = lazy(() => import('./pages/video-learning/VideoLearningPage'));
@@ -237,6 +244,7 @@ function AppRoutes() {
       <Route path="/roadmap"   element={<RequireAuth><PageLayout><Roadmap /></PageLayout></RequireAuth>} />
       <Route path="/roadmap/:topicId" element={<RequireAuth><PageLayout><TopicRoadmap /></PageLayout></RequireAuth>} />
       <Route path="/practice"  element={<RequireAuth><PageLayout><Practice /></PageLayout></RequireAuth>} />
+      <Route path="/practice/coverage" element={<PageLayout><QuestionCoveragePage /></PageLayout>} />
       <Route path="/practice/history" element={<RequireAuth><PageLayout><PracticeHistory /></PageLayout></RequireAuth>} />
       <Route path="/practice/session/:id" element={<RequireAuth><PageLayout><PracticeSession /></PageLayout></RequireAuth>} />
       <Route path="/question/:questionId" element={<RequireAuth><PageLayout><QuestionDetail /></PageLayout></RequireAuth>} />
@@ -264,6 +272,9 @@ function AppRoutes() {
       {/* StudyMate AI */}
       <Route path="/study-ai" element={<RequireAuth><Suspense fallback={<PageLoader />}><ErrorBoundary name="StudyMate AI"><StudyAI /></ErrorBoundary></Suspense></RequireAuth>} />
       
+      <Route path="/study-materials" element={<PageLayout><StudyMaterials /></PageLayout>} />
+      <Route path="/notes" element={<PageLayout><StudyMaterials /></PageLayout>} />
+
       {/* Admin Routes */}
       <Route
         path="/admin"
@@ -278,9 +289,13 @@ function AppRoutes() {
         <Route index element={<Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense>} />
         <Route path="users" element={<Suspense fallback={<PageLoader />}><AdminUsers /></Suspense>} />
         <Route path="video-learning" element={<Suspense fallback={<PageLoader />}><AdminVideoLearning /></Suspense>} />
+        <Route path="study-materials" element={<Suspense fallback={<PageLoader />}><AdminStudyMaterials /></Suspense>} />
         <Route path="resources" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
         <Route path="resources/health" element={<Suspense fallback={<PageLoader />}><AdminResources /></Suspense>} />
         <Route path="questions" element={<Suspense fallback={<PageLoader />}><AdminQuestions /></Suspense>} />
+        <Route path="questions/import" element={<Suspense fallback={<PageLoader />}><AdminQuestionImport /></Suspense>} />
+        <Route path="questions/expansion" element={<Suspense fallback={<PageLoader />}><AdminExpansionQueue /></Suspense>} />
+        <Route path="questions/papers" element={<Suspense fallback={<PageLoader />}><AdminIncompletePapers /></Suspense>} />
         <Route path="exams" element={<Suspense fallback={<PageLoader />}><AdminExams /></Suspense>} />
         <Route path="roadmaps" element={<Suspense fallback={<PageLoader />}><AdminRoadmaps /></Suspense>} />
         <Route path="mock-tests" element={<Suspense fallback={<PageLoader />}><AdminMockTests /></Suspense>} />

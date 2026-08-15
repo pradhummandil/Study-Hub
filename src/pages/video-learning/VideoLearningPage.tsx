@@ -18,10 +18,11 @@ import {
   getLocalWatchHistory,
   formatTime,
 } from '../../lib/videoLearningApi';
+import { motion } from 'framer-motion';
 import { VideoCard } from '../../components/video-learning/VideoCard';
 import { PlaylistCard } from '../../components/video-learning/PlaylistCard';
 import { ChannelShelf } from '../../components/video-learning/ChannelShelf';
-import { SpatialHero3D } from '../../components/3d/SpatialHero3D';
+import { LottiePlayer } from '../../components/ui/motion/LottiePlayer';
 import { VideoLearningErrorBoundary } from '../../components/video-learning/VideoLearningErrorBoundary';
 
 const EXAM_OPTIONS = ['All Exams', 'GATE', 'JEE Main', 'JEE Advanced', 'NEET', 'CUET', 'UPSC', 'Other'];
@@ -365,9 +366,38 @@ function VideoLearningPageContent() {
             </div>
           </div>
 
-          {/* Right Column: 3D Spatial Canvas (5 cols) */}
-          <div className="lg:col-span-5 hidden lg:block">
-            <SpatialHero3D />
+          {/* Right Column: Premium Lottie Vector Animation (5 cols) */}
+          <div className="lg:col-span-5 hidden lg:flex items-center justify-center relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#2D5A3F]/15 via-[#D4AF37]/10 to-[#C86D51]/15 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative w-full max-w-[440px] h-[360px] sm:h-[400px] flex items-center justify-center">
+              <LottiePlayer
+                src="/assets/lottie-v2/study/analytics.svg"
+                className="w-full h-full object-contain relative z-10 drop-shadow-[0_12px_28px_rgba(200,109,81,0.15)]"
+                loop={true}
+                autoplay={true}
+              />
+
+              {/* Contextual Floating Badge 1 */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-2 right-2 z-20 px-3.5 py-1.5 rounded-full bg-[#FFFFFF]/90 backdrop-blur-md border border-[#1C201D]/10 text-xs font-mono font-bold text-[#2D5A3F] shadow-sm flex items-center gap-1.5"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#2D5A3F] animate-pulse" />
+                <span>500+ Verified Lessons</span>
+              </motion.div>
+
+              {/* Contextual Floating Badge 2 */}
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute bottom-2 left-2 z-20 px-3.5 py-1.5 rounded-full bg-[#FFFFFF]/90 backdrop-blur-md border border-[#1C201D]/10 text-xs font-mono font-bold text-[#C86D51] shadow-sm flex items-center gap-1.5"
+              >
+                <Film className="w-3.5 h-3.5 text-[#C86D51]" />
+                <span>Live PYQ Drills & One-Shots</span>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

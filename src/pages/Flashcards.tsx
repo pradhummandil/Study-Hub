@@ -73,6 +73,25 @@ export default function FlashcardsPage() {
     }
   }
 
+  // Keyboard Shortcuts (1 = Again, 2 = Hard, 3 = Good, 4 = Easy, Space = Flip)
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (!activeDeck || activeCards.length === 0) return;
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        setIsFlipped((prev) => !prev);
+      } else if (isFlipped) {
+        if (e.key === '1') handleCardRating('Again');
+        if (e.key === '2') handleCardRating('Hard');
+        if (e.key === '3') handleCardRating('Good');
+        if (e.key === '4') handleCardRating('Easy');
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeDeck, activeCards, currentIndex, isFlipped]);
+
   async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
     if (!newDeckTitle.trim()) return;
@@ -215,27 +234,31 @@ export default function FlashcardsPage() {
                 >
                   <button
                     onClick={() => handleCardRating('Again')}
-                    className="py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 text-xs font-bold"
+                    className="py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 text-xs font-bold flex flex-col items-center gap-0.5"
                   >
-                    Again
+                    <span>Again</span>
+                    <span className="text-[10px] opacity-70 font-mono">[1]</span>
                   </button>
                   <button
                     onClick={() => handleCardRating('Hard')}
-                    className="py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold"
+                    className="py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold flex flex-col items-center gap-0.5"
                   >
-                    Hard
+                    <span>Hard</span>
+                    <span className="text-[10px] opacity-70 font-mono">[2]</span>
                   </button>
                   <button
                     onClick={() => handleCardRating('Good')}
-                    className="py-2.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 text-xs font-bold"
+                    className="py-2.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 text-xs font-bold flex flex-col items-center gap-0.5"
                   >
-                    Good
+                    <span>Good</span>
+                    <span className="text-[10px] opacity-70 font-mono">[3]</span>
                   </button>
                   <button
                     onClick={() => handleCardRating('Easy')}
-                    className="py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold"
+                    className="py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex flex-col items-center gap-0.5"
                   >
-                    Easy
+                    <span>Easy</span>
+                    <span className="text-[10px] opacity-70 font-mono">[4]</span>
                   </button>
                 </motion.div>
               )}

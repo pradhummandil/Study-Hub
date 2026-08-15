@@ -97,6 +97,31 @@ export default function RevisionPage() {
           )}
         </div>
 
+        {/* Today's Revision Multi-Format Tab Navigation Bar */}
+        <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-4 overflow-x-auto">
+          <button className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-md">
+            <Clock className="w-3.5 h-3.5" /> Due Questions ({stats.dueToday})
+          </button>
+          <button
+            onClick={() => navigate('/study-materials')}
+            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs flex items-center gap-1.5 border border-slate-800 transition-colors"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-cyan-400" /> Revision Notes
+          </button>
+          <button
+            onClick={() => navigate('/flashcards')}
+            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs flex items-center gap-1.5 border border-slate-800 transition-colors"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-indigo-400" /> Flashcards
+          </button>
+          <button
+            onClick={() => navigate('/mistakes')}
+            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-xs flex items-center gap-1.5 border border-slate-800 transition-colors"
+          >
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-400" /> Mistakes Notebook
+          </button>
+        </div>
+
         {/* Revision Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="liquid-glass-card p-6 rounded-2xl border border-white/10">

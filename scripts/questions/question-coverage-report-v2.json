@@ -1,0 +1,1203 @@
+{
+  "generated_at": "2026-08-14T16:38:47.903Z",
+  "total_canonical_questions": 1466,
+  "official_pyqs": 1463,
+  "licensed_pyqs": 0,
+  "study_hub_original": 2,
+  "external_references": 1,
+  "questions_with_solutions": 1466,
+  "questions_verified": 1466,
+  "by_exam": {
+    "GATE_CSE": 743,
+    "GATE_ECE": 4,
+    "JEE_MAIN": 516,
+    "GATE_EE": 4,
+    "GATE_ME": 4,
+    "GATE_CE": 4,
+    "NEET_UG": 62,
+    "CUET_UG": 4,
+    "SSC_CGL": 4,
+    "UPSC_CSE": 4,
+    "BITSAT": 4,
+    "CAT": 4,
+    "GATE_DA": 20,
+    "GATE_PI": 4,
+    "GATE_XE": 4,
+    "GATE_CH": 4,
+    "GATE_ES": 4,
+    "NDA_NA": 4,
+    "JEE_ADVANCED": 66,
+    "GATE_IN": 3
+  },
+  "gap_summary": {
+    "CRITICAL_zero_coverage_topics": 0,
+    "LOW_coverage_topics": 48,
+    "MEDIUM_coverage_topics": 118,
+    "GOOD_coverage_topics": 0,
+    "STRONG_coverage_topics": 0
+  },
+  "topic_coverage": [
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Layer",
+      "topic": "Subnetting & CIDR",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Transport Layer",
+      "topic": "TCP Congestion Control",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Process Synchronization",
+      "count": 16
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & BCNF",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Regular Languages",
+      "topic": "Finite Automata & Pumping Lemma",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Parsing",
+      "topic": "LR Parsing & Shift-Reduce Conflicts",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Analysis",
+      "topic": "Continuous-Time Fourier Transform",
+      "count": 1
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_EE",
+      "subject": "Electrical Machines",
+      "chapter": "Transformers",
+      "topic": "Transformer Efficiency & Losses",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "First Law of Thermodynamics",
+      "topic": "Carnot Engine Efficiency",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Pipe Flow",
+      "topic": "Darcy-Weisbach Head Loss",
+      "count": 1
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Projectile Motion",
+      "count": 1
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Kinetics",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Excretory System & Nephron",
+      "count": 1
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Optics",
+      "topic": "Ray Optics & Refraction",
+      "count": 1
+    },
+    {
+      "exam_code": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Quantitative Reasoning",
+      "topic": "Percentages & Profit Loss",
+      "count": 1
+    },
+    {
+      "exam_code": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Algebra",
+      "topic": "Algebraic Identities",
+      "count": 1
+    },
+    {
+      "exam_code": "UPSC_CSE",
+      "subject": "Indian Polity & Governance",
+      "chapter": "Constitutional Framework",
+      "topic": "Fundamental Rights & Writs",
+      "count": 1
+    },
+    {
+      "exam_code": "BITSAT",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Dot Product & Angle Between Vectors",
+      "count": 1
+    },
+    {
+      "exam_code": "CAT",
+      "subject": "Data Interpretation & Logical Reasoning",
+      "chapter": "Logical Reasoning",
+      "topic": "Arrangements & Matrix Grids",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Dynamic Programming",
+      "topic": "0/1 Knapsack & Subset Sum",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Normal Distribution & Z-Score",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_PI",
+      "subject": "Manufacturing Engineering",
+      "chapter": "Metal Cutting",
+      "topic": "Merchant Circle & Cutting Force",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_XE",
+      "subject": "Solid Mechanics",
+      "chapter": "Stress & Strain",
+      "topic": "Mohr Circle & Principal Stresses",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CH",
+      "subject": "Heat Transfer",
+      "chapter": "Conduction",
+      "topic": "Fourier Law of Heat Conduction",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_ES",
+      "subject": "Water & Wastewater Engineering",
+      "chapter": "Water Quality Parameters",
+      "topic": "Biochemical Oxygen Demand (BOD)",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Discrete Mathematics",
+      "chapter": "Mathematical Logic",
+      "topic": "Propositional Equivalence",
+      "count": 1
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Dimensionality Reduction",
+      "topic": "Principal Component Analysis (PCA)",
+      "count": 1
+    },
+    {
+      "exam_code": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Trigonometric Ratios & Identities",
+      "count": 1
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Area Under Curves",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Binomial Theorem",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Parabola",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Sequence & Series",
+      "count": 9
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Dynamic Programming",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Greedy Algorithms",
+      "count": 15
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Permutations & Combinations",
+      "count": 9
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Pointers & Memory",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Recursion",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Functions & Scope",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Arrays & Strings",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Arrays & Linked Lists",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Stacks & Queues",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Trees & BSTs",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Heaps & Priority Queues",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Asymptotic Notation",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Divide & Conquer",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Graph Algorithms",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "CPU Scheduling",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Deadlocks",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Virtual Memory & Paging",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "SQL & Joins",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Relational Algebra",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & Functional Dependencies",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Transactions & Concurrency",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Subnetting & CIDR",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "IP Routing",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "TCP Congestion Control",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Data Link Protocols (CSMA/CD)",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "DFA & NFA Minimization",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Regular Expressions",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Context Free Grammars",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Turing Machines & Decidability",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Lexical Analyzer",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Parsing (LL, LR, LALR)",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Intermediate Code Generation",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Code Optimization",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Addressing Modes",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Pipelining & Hazards",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Cache Memory Mapping",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Interrupts & I/O",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Boolean Algebra & K-Maps",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Multiplexers & Decoders",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Flip-Flops & Counters",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Number Representations",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Propositional Logic",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Graph Theory",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Linear Algebra & Matrices",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Probability & Combinatorics",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Numerical Reasoning",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Data Interpretation",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Spatial Aptitude",
+      "count": 15
+    },
+    {
+      "exam_code": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Grammatical Analysis",
+      "count": 15
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Indefinite & Definite Integrals",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Straight Lines",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Probability & Statistics",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Kinematics & Projectile Motion",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Laws of Motion & Friction",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Work Energy & Power",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Rotational Dynamics",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Gravitation",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Calorimetry",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Laws of Thermodynamics",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Kinetic Theory of Gases",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Heat Transfer",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electrostatics & Coulomb Law",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Capacitors",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Current Electricity & Kirchhoff Laws",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Magnetic Effects of Current",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electromagnetic Induction",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Ray Optics & Lenses",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Wave Optics & Interference",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Simple Harmonic Motion",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Sound Waves & Doppler Effect",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Photoelectric Effect",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Bohr Model of Atom",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Nuclear Physics & Radioactivity",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Semiconductors & Logic Gates",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Mole Concept & Stoichiometry",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Atomic Structure",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Thermodynamics",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical & Ionic Equilibrium",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Periodic Table & Periodicity",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Chemical Bonding & Molecular Structure",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "p-Block Elements",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "d & f-Block Elements",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Coordination Compounds",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "General Organic Chemistry (GOC)",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Hydrocarbons",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Haloalkanes & Haloarenes",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Alcohols Phenols Ethers",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Limits Continuity & Differentiability",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Aldehydes Ketones & Carboxylic Acids",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Biomolecules & Polymers",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Quadratic Equations",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Complex Numbers",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Matrices & Determinants",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives (AOD)",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Differential Equations",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Circles",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Ellipse & Hyperbola",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Vector Algebra & Dot/Cross Product",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "3D Lines & Planes",
+      "count": 9
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Advanced Mechanics",
+      "topic": "Rigid Body Rotation & Angular Impulse",
+      "count": 11
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Electrodynamics",
+      "topic": "Electromagnetic Induction & Mutual Inductance",
+      "count": 11
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Organic Synthesis",
+      "topic": "Reaction Mechanisms & Stereochemistry",
+      "count": 11
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry & Nernst Equation",
+      "count": 11
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Advanced Calculus",
+      "topic": "Differential Equations & Orthogonal Trajectories",
+      "count": 11
+    },
+    {
+      "exam_code": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D",
+      "topic": "Shortest Distance Between Skew Lines",
+      "count": 11
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Genetics & Evolution",
+      "topic": "Mendelian Genetics & Dihybrid Cross",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Neural Control & Signal Transmission",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Plant Physiology",
+      "topic": "Photosynthesis & Calvin Cycle",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Cell Biology",
+      "topic": "Mitosis & Meiosis Cell Division",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Ray Optics",
+      "topic": "Total Internal Reflection & Prism Dispersion",
+      "count": 10
+    },
+    {
+      "exam_code": "NEET_UG",
+      "subject": "Chemistry",
+      "chapter": "Biomolecules",
+      "topic": "Amino Acids & Protein Structures",
+      "count": 10
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Joint Distributions & Marginal PDF",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Linear Algebra",
+      "chapter": "Matrix Computations",
+      "topic": "SVD Decomposition & Eigenvalues",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Supervised Learning",
+      "topic": "Decision Trees & Information Gain",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Unsupervised Learning",
+      "topic": "K-Means Clustering & Inertia",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "AI & Search",
+      "chapter": "Heuristic Search",
+      "topic": "A* Algorithm & Admissible Heuristics",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_DA",
+      "subject": "Python & Data Structures",
+      "chapter": "Data Science Stack",
+      "topic": "Numpy Vectorization & Pandas Indexing",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Transform",
+      "topic": "Sampling Theorem",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_EE",
+      "subject": "Power Systems",
+      "chapter": "Fault Analysis",
+      "topic": "Symmetrical Components",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "Gas Turbines",
+      "topic": "Brayton Cycle",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_CE",
+      "subject": "Structural Analysis",
+      "chapter": "Trusses",
+      "topic": "Method of Joints",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_IN",
+      "subject": "Sensors & Transducers",
+      "chapter": "Strain Gauges",
+      "topic": "Wheatstone Bridge",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_PI",
+      "subject": "Manufacturing",
+      "chapter": "Machining",
+      "topic": "Merchant Circle Diagram",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_XE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Viscous Flow",
+      "topic": "Navier-Stokes Equations",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_CH",
+      "subject": "Mass Transfer",
+      "chapter": "Distillation",
+      "topic": "McCabe-Thiele Method",
+      "count": 3
+    },
+    {
+      "exam_code": "GATE_ES",
+      "subject": "Water Treatment",
+      "chapter": "Filtration",
+      "topic": "Rapid Sand Filter",
+      "count": 3
+    },
+    {
+      "exam_code": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Logical Reasoning",
+      "topic": "Series Completion",
+      "count": 3
+    },
+    {
+      "exam_code": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Profit & Loss",
+      "topic": "Discount Calculations",
+      "count": 3
+    },
+    {
+      "exam_code": "UPSC_CSE",
+      "subject": "Indian Polity",
+      "chapter": "Constitution",
+      "topic": "Fundamental Rights Article 21",
+      "count": 3
+    },
+    {
+      "exam_code": "BITSAT",
+      "subject": "English & Logic",
+      "chapter": "Verbal Ability",
+      "topic": "Synonyms & Antonyms",
+      "count": 3
+    },
+    {
+      "exam_code": "CAT",
+      "subject": "Data Interpretation",
+      "chapter": "Bar Graphs",
+      "topic": "Percentage Change Analysis",
+      "count": 3
+    },
+    {
+      "exam_code": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Height & Distance",
+      "count": 3
+    }
+  ]
+}

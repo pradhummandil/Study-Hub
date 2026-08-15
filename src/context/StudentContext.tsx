@@ -6,14 +6,15 @@ import type { StudentProfile, EducationPath, ExamCategory } from '../types/stude
 import { EXAM_CONFIGS } from '../types/student-core';
 import type { StudentContextType } from '../lib/personalization/studentContext';
 import { getActiveSubjects } from '../lib/personalization/studentContext';
-import { getLocalAttempts } from '../lib/practiceApi';
-import { getFocusData } from '../lib/focusStorage';
+import { fetchNormalizedStudentState } from '../lib/intelligence/studentStateEngine';
+import type { StudentLearningState } from '../lib/intelligence/studentStateEngine';
 
 const StudentContext = createContext<StudentContextType | undefined>(undefined);
 
 export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading: authLoading } = useAuth();
   const [profile, setProfile] = useState<StudentProfile | null>(null);
+  const [learningState, setLearningState] = useState<StudentLearningState | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeContextMode, setActiveContextMode] = useState<'college' | 'competitive'>('competitive');
 
@@ -23,17 +24,6 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [actualStreakDays, setActualStreakDays] = useState(0);
 
   const loadContext = useCallback(async () => {
-    if (!user) {
-      // Local fallback for guest user
-      const p = await getStudentProfile();
-      setProfile(p);
-      setLoading(false);
-      setActualQuestionsSolved(0);
-      setActualAccuracyPct(0);
-      setActualStreakDays(0);
-      return;
-    }
-
     setLoading(true);
     const p = await getStudentProfile();
     setProfile(p);
@@ -44,18 +34,12 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setActiveContextMode(p.education_path === 'both' ? 'college' : p.education_path === 'college' || p.education_path === 'school' ? 'college' : 'competitive');
     }
 
-    // Calculate REAL user statistics from stored user attempts & focus logs
-    const attempts = getLocalAttempts();
-    const solved = attempts.length;
-    const correct = attempts.filter((a) => a.is_correct).length;
-    const acc = solved > 0 ? Math.round((correct / solved) * 100) : 0;
-    
-    const focus = getFocusData();
-    const streak = focus.currentStreak || 0;
+    const normState = await fetchNormalizedStudentState(user?.id || null, p);
+    setLearningState(normState);
 
-    setActualQuestionsSolved(solved);
-    setActualAccuracyPct(acc);
-    setActualStreakDays(streak);
+    setActualQuestionsSolved(normState.questionsSolved);
+    setActualAccuracyPct(normState.accuracy);
+    setActualStreakDays(normState.streak);
     setLoading(false);
   }, [user]);
 
@@ -71,6 +55,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       const updated = { ...profile, active_context: mode };
       setProfile(updated);
       await saveStudentProfile({ active_context: mode });
+      await loadContext();
     }
   };
 
@@ -80,6 +65,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       const updated = { ...profile, target_exam: exam, target_exam_year: defaultYear };
       setProfile(updated);
       await saveStudentProfile({ target_exam: exam, target_exam_year: defaultYear });
+      await loadContext();
     } else {
       await saveStudentProfile({ target_exam: exam, target_exam_year: defaultYear });
       await loadContext();
@@ -93,6 +79,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       if (updates.active_context) {
         setActiveContextMode(updates.active_context);
       }
+      await loadContext();
     }
     return saved;
   };
@@ -124,6 +111,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         dailyStudyMinutes,
         activeContext: activeContextMode,
         isCombinedUser: !!isCombinedUser,
+        learningState,
         switchContext,
         switchExam,
         updateProfile,
@@ -146,3 +134,13 @@ export const useStudentContext = () => {
   }
   return ctx;
 };
+
+export const useStudentLearningState = () => {
+  const ctx = useStudentContext();
+  return {
+    state: ctx.learningState,
+    loading: ctx.loading,
+    refetch: ctx.refetchContext,
+  };
+};
+

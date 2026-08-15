@@ -1,0 +1,880 @@
+{
+  "generated_at": "2026-08-14T17:14:41.397Z",
+  "total_resources_indexed": 77,
+  "exams_covered": [
+    "JEE_MAIN",
+    "JEE_ADVANCED",
+    "GATE_CSE"
+  ],
+  "coverage_map": {
+    "JEE_MAIN": {
+      "Physics": {
+        "Units & Measurements": {
+          "Units, Dimensions & Errors": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Kinematics": {
+          "1D & 2D Motion": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Laws of Motion": {
+          "Newton Laws & Friction": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Work, Energy & Power": {
+          "Work-Energy Theorem & Collisions": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Rotational Motion": {
+          "Moment of Inertia & Angular Momentum": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Gravitation": {
+          "Kepler Laws & Gravitational Potential": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Properties of Solids & Liquids": {
+          "Elasticity, Viscosity & Surface Tension": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Thermodynamics & KTG": {
+          "Laws of Thermodynamics & Ideal Gas": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Oscillations & Waves": {
+          "SHM, Wave Motion & Doppler Effect": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Electrostatics": {
+          "Coulomb Law, Field & Potential": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Current Electricity": {
+          "Ohm Law, Kirchhoff Laws & Potentiometer": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Magnetic Effects of Current & Magnetism": {
+          "Biot-Savart & Ampere Law": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Electromagnetic Induction & AC": {
+          "Faraday Law & RLC Circuits": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Electromagnetic Waves": {
+          "EM Spectrum & Displacement Current": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Optics": {
+          "Ray Optics & Wave Optics": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Dual Nature of Matter & Radiation": {
+          "Photoelectric Effect & de Broglie": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Atoms & Nuclei": {
+          "Bohr Model & Radioactivity": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Electronic Devices": {
+          "Semiconductors, Diodes & Logic Gates": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Physics Formula Sheet": {
+          "Complete Physics Formula Handbook": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 1,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Physics Short Notes": {
+          "Rapid Revision & Mind Maps": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 1,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        }
+      },
+      "Chemistry": {
+        "Some Basic Concepts of Chemistry": {
+          "Mole Concept & Stoichiometry": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Atomic Structure": {
+          "Bohr Model & Quantum Numbers": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Chemical Bonding & Molecular Structure": {
+          "VSEPR & MO Theory": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Chemical Thermodynamics": {
+          "Enthalpy, Entropy & Gibbs Free Energy": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Solutions": {
+          "Raoult Law & Colligative Properties": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Equilibrium": {
+          "Ionic & Chemical Equilibrium": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Redox Reactions & Electrochemistry": {
+          "Nernst Equation & Conductance": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Chemical Kinetics": {
+          "Rate Law, Order & Arrhenius Equation": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Periodic Classification": {
+          "Periodic Trends & Properties": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "p-Block & d-Block Elements": {
+          "Transition Elements & Coordination Compounds": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "General Organic Chemistry": {
+          "IUPAC, Isomerism & Reaction Intermediates": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Hydrocarbons": {
+          "Alkanes, Alkenes, Alkynes & Aromatic Compounds": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Organic Compounds Containing Halogens & Oxygen": {
+          "Haloalkanes, Alcohols, Phenols & Ethers": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Aldehydes, Ketones & Carboxylic Acids": {
+          "Nucleophilic Addition & Name Reactions": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Biomolecules": {
+          "Carbohydrates, Proteins & Nucleic Acids": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Chemistry Formula Sheet": {
+          "Complete Organic, Inorganic & Physical Formulas": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 1,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Chemistry Short Notes": {
+          "Quick Concept Cards & Reaction Summary": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 1,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        }
+      },
+      "Mathematics": {
+        "Sets, Relations & Functions": {
+          "Domain, Range & Types of Functions": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Complex Numbers & Quadratic Equations": {
+          "De Moivre Theorem & Roots of Equation": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Matrices & Determinants": {
+          "Cramer Rule & Inverse Matrix": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Permutations & Combinations": {
+          "Combinatorial Identities & Grouping": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Binomial Theorem": {
+          "General Term & Middle Term": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Sequence & Series": {
+          "AP, GP, AGP & Special Series": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Limits, Continuity & Differentiability": {
+          "L Hospital Rule & Differentiability": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Application of Derivatives": {
+          "Tangents, Normals & Maxima Minima": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Indefinite & Definite Integration": {
+          "Properties of Definite Integrals": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Differential Equations": {
+          "Variable Separable & Linear DE": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Vector Algebra & 3D Geometry": {
+          "Dot Product, Cross Product & Line/Plane": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Probability": {
+          "Bayes Theorem & Probability Distribution": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Trigonometry": {
+          "Trigonometric Equations & Inverse Functions": {
+            "REVISION_NOTES": 1,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Mathematics Formula Sheet": {
+          "Complete Calculus, Algebra & Geometry Formulas": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 1,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Mathematics Short Notes": {
+          "Short Tricks & Quick Formulae": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 1,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        }
+      }
+    },
+    "JEE_ADVANCED": {
+      "Physics": {
+        "Advanced Mechanics": {
+          "Rigid Body Dynamics & Rolling Motion": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Fluids & Surface Tension": {
+          "Bernoulli Principle & Viscosity": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Heat & Thermodynamics": {
+          "Carnot Engine & Entropy Analysis": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Wave Optics & Interference": {
+          "Young Double Slit & Thin Film Interference": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Advanced Electrostatics": {
+          "Conductors, Capacitors & Dielectrics": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Electromagnetism & Induction": {
+          "Motional EMF & Mutual Inductance": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Modern Physics": {
+          "X-Rays, Nuclear Physics & Quantum Phenomena": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 1,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        }
+      }
+    },
+    "GATE_CSE": {
+      "Computer Science & Engineering": {
+        "Programming & Data Structures": {
+          "Arrays, Stacks, Queues, Trees & Graphs": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Algorithms": {
+          "Asymptotic Notation, Divide & Conquer, Dynamic Programming, Greedy": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Database Management Systems": {
+          "ER Model, Relational Algebra, SQL, Normalization, Transactions & Concurrency": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Operating Systems": {
+          "Processes, Threads, CPU Scheduling, Deadlocks, Memory Management & File Systems": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Computer Networks": {
+          "OSI/TCP-IP Layers, IPv4/IPv6, Routing Algorithms, TCP/UDP & Congestion Control": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Theory of Computation": {
+          "Regular Expressions, DFA/NFA, Context Free Grammars, Turing Machines & Decidability": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Compiler Design": {
+          "Lexical Analysis, Parsing, Syntax Directed Translation, Code Generation": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Computer Organization & Architecture": {
+          "Instruction Pipelining, Cache Memory, Addressing Modes, ALU & IO Interfaces": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Digital Logic": {
+          "Boolean Algebra, Combinational & Sequential Circuits, Logic Gates": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "Engineering Mathematics": {
+          "Linear Algebra, Calculus, Probability, Discrete Mathematics & Graph Theory": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "General Aptitude": {
+          "Verbal Ability & Quantitative Aptitude": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1,
+            "STRATEGY": 1
+          }
+        },
+        "GATE 2027 Community Notes Repository": {
+          "Curated Open Source GATE Preparation Notes, PYQs & Resources": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 1,
+            "TOTAL": 1
+          }
+        },
+        "Discrete Mathematics & Graph Theory": {
+          "Set Theory, Combinatorics & Graph Algorithms": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 1,
+            "TOTAL": 1
+          }
+        },
+        "Operating System Memory & Scheduling": {
+          "Paging, Demand Paging, Virtual Memory & Page Replacement": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 1,
+            "TOTAL": 1
+          }
+        },
+        "Computer Networks Protocols Cheat Sheet": {
+          "BGP, OSPF, TCP Three-Way Handshake & Subnet Calculations": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1,
+            "CHEAT_SHEET": 1
+          }
+        }
+      },
+      "Computer Science": {
+        "GATE CS Complete Study Material": {
+          "Full Subject-wise Handcrafted Notes": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 1,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1
+          }
+        },
+        "GATE Computer Networks Deep Dive": {
+          "TCP/IP, Subnetting & Flow Control": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1,
+            "CONCEPT_NOTES": 1
+          }
+        },
+        "GATE DBMS Transaction Management": {
+          "ACID Properties, 2PL & Serializability": {
+            "REVISION_NOTES": 0,
+            "SHORT_NOTES": 0,
+            "FORMULA_SHEET": 0,
+            "CHAPTER_NOTES": 0,
+            "GATE_NOTES": 0,
+            "COMMUNITY_NOTES": 0,
+            "TOTAL": 1,
+            "CONCEPT_NOTES": 1
+          }
+        }
+      }
+    }
+  }
+}

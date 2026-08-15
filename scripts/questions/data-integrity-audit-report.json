@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-14T16:50:09.434Z",
+  "total_canonical_questions": 1466,
+  "attempts_audit": {
+    "total_records": 0,
+    "orphan_attempts": 0,
+    "missing_user_id": 0,
+    "invalid_time_spent": 0,
+    "status": "PASS"
+  },
+  "mistakes_audit": {
+    "total_records": 0,
+    "orphan_mistakes": 0,
+    "status": "PASS"
+  },
+  "revisions_audit": {
+    "total_records": 0,
+    "orphan_revisions": 0,
+    "invalid_dates": 0,
+    "status": "PASS"
+  },
+  "flashcards_audit": {
+    "total_records": 0,
+    "orphan_flashcards": 0,
+    "status": "PASS"
+  }
+}

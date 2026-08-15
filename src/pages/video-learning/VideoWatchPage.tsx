@@ -268,6 +268,12 @@ export default function VideoWatchPage() {
                   <Layers className="w-4 h-4 text-[#2D5A3F]" /> Flashcards
                 </button>
                 <button
+                  onClick={() => requireAuthAndNavigate(`/study-materials?search=${encodeURIComponent(video.topic || video.subject)}`)}
+                  className="px-3.5 py-2 rounded-xl bg-[#0066CC]/10 hover:bg-[#0066CC]/20 text-[#0066CC] border border-[#0066CC]/30 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
+                >
+                  <BookOpen className="w-4 h-4 text-[#0066CC]" /> Quick Notes
+                </button>
+                <button
                   onClick={() => requireAuthAndNavigate('/revision')}
                   className="px-3.5 py-2 rounded-xl bg-[#EDE8DB] hover:bg-[#EDE8DB]/80 text-[#1C201D] border border-[#1C201D]/10 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
                 >

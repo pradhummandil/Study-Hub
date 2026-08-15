@@ -72,7 +72,7 @@ CREATE INDEX IF NOT EXISTS idx_questions_text_trgm ON public.questions USING gin
 
 -- 2. Question Versions Table
 CREATE TABLE IF NOT EXISTS public.question_versions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   question_id TEXT NOT NULL REFERENCES public.questions(id) ON DELETE CASCADE,
   version INTEGER NOT NULL DEFAULT 1,
   question_text TEXT NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS public.question_versions (
 
 -- 3. Question Sources Table (Canonical & External References)
 CREATE TABLE IF NOT EXISTS public.question_sources (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   question_id TEXT NOT NULL REFERENCES public.questions(id) ON DELETE CASCADE,
   source_name TEXT NOT NULL, -- 'Official GATE', 'ExamSIDE', 'MathonGo', etc.
   source_url TEXT,
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS public.exams (
 );
 
 CREATE TABLE IF NOT EXISTS public.exam_subjects (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   exam_code TEXT NOT NULL REFERENCES public.exams(code) ON DELETE CASCADE,
   name TEXT NOT NULL,
   code TEXT NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS public.exam_subjects (
 );
 
 CREATE TABLE IF NOT EXISTS public.exam_topics (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   exam_code TEXT NOT NULL,
   subject_name TEXT NOT NULL,
   chapter_name TEXT NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS public.exam_topics (
 
 -- 5. Saved Questions Table
 CREATE TABLE IF NOT EXISTS public.saved_questions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL,
   question_id TEXT NOT NULL REFERENCES public.questions(id) ON DELETE CASCADE,
   notes TEXT,
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS public.saved_questions (
 
 -- 6. Question Sync Jobs Table (Admin Ingestion Auditing)
 CREATE TABLE IF NOT EXISTS public.question_sync_jobs (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   source TEXT NOT NULL,
   started_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   ended_at TIMESTAMPTZ,

@@ -72,7 +72,7 @@ export default function AdminQuestions() {
   const handleSave = async () => {
     if (!editingData) return;
     try {
-      const { error } = await supabase.from('practice_questions').upsert([editingData as any]);
+      const { error } = await supabase.from('questions').upsert([editingData as any]);
       if (error) throw error;
       setModalOpen(false);
       setEditMode(false);
@@ -84,7 +84,7 @@ export default function AdminQuestions() {
 
   const updateStatus = async (id: string, status: string) => {
     try {
-      const { error } = await supabase.from('practice_questions').update({ review_status: status }).eq('id', id);
+      const { error } = await supabase.from('questions').update({ published: status === 'approved', verified: status === 'approved' }).eq('id', id);
       if (error) throw error;
       fetchQuestions();
       if (selectedQuestion?.id === id) {
@@ -152,12 +152,26 @@ export default function AdminQuestions() {
           </button>
         </div>
 
-        {/* Filter Bar */}
-        <div className="flex gap-4 overflow-x-auto bg-white/5 p-4 rounded-2xl border border-white/10">
-          {['Exam', 'Subject', 'Difficulty', 'Question Type', 'Review Status'].map(f => (
-            <select key={f} className="bg-white/5 border border-white/10 text-white rounded-xl px-4 py-2 outline-none">
-              <option value="">{f}</option>
-            </select>
+        {/* Review Queue Filter Tabs */}
+        <div className="flex gap-2 overflow-x-auto bg-white/5 p-2 rounded-2xl border border-white/10 text-xs font-semibold">
+          {[
+            { id: 'all', label: 'All Questions' },
+            { id: 'needs_review', label: 'Needs Review' },
+            { id: 'missing_answer', label: 'Missing Answer' },
+            { id: 'missing_solution', label: 'Missing Solution' },
+            { id: 'missing_taxonomy', label: 'Missing Taxonomy' },
+            { id: 'duplicate_candidate', label: 'Duplicate Candidate' },
+            { id: 'source_problem', label: 'Source Problem' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setPage(1);
+              }}
+              className="px-4 py-2 rounded-xl transition-all border border-white/10 hover:bg-white/10 text-white/80"
+            >
+              {tab.label}
+            </button>
           ))}
         </div>
 

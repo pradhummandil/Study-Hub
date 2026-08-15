@@ -173,65 +173,17 @@ export interface TodayPlanItem {
 export function generateTodayStudyPlan(profile: StudentProfile | null): TodayPlanItem[] {
   const exam = profile?.target_exam || 'GATE';
   const subjects = EXAM_CONFIGS[exam]?.subjects || EXAM_CONFIGS['GATE'].subjects;
-  const minutes = profile?.daily_study_minutes || 180;
 
   const subj1 = subjects[0] || 'Core Subject 1';
   const subj2 = subjects[1] || 'Core Subject 2';
-  const subj3 = subjects[2] || 'Core Subject 3';
-
-  if (minutes <= 120) {
-    return [
-      {
-        id: '1',
-        time: '08:00',
-        title: `${subj1} Concept Focus`,
-        subTitle: 'Key Theory & Notes',
-        durationMinutes: 45,
-        activityType: 'focus',
-        actionPath: '/focus-room',
-        completed: false,
-      },
-      {
-        id: '2',
-        time: '18:00',
-        title: `${subj1} PYQs`,
-        subTitle: '10 Selected PYQs',
-        durationMinutes: 45,
-        activityType: 'practice',
-        actionPath: '/practice',
-        actionState: { exam, subject: subj1 },
-        completed: false,
-      },
-      {
-        id: '3',
-        time: '20:00',
-        title: 'StudyMate Quick Quiz',
-        subTitle: '15 Min Revision',
-        durationMinutes: 15,
-        activityType: 'quiz',
-        actionPath: '/study-ai',
-        actionState: { mode: 'Quiz', prompt: `Generate a 5-question quiz on ${subj1}` },
-        completed: false,
-      },
-    ];
-  }
+  const subj3 = subjects[2] || 'Digital Logic';
 
   return [
     {
       id: '1',
-      time: '08:00',
-      title: `${subj1} Deep Work`,
-      subTitle: 'Core Concepts & Architecture',
-      durationMinutes: 60,
-      activityType: 'focus',
-      actionPath: '/focus-room',
-      completed: false,
-    },
-    {
-      id: '2',
-      time: '10:00',
-      title: `${subj1} PYQ Practice`,
-      subTitle: '15 High-Yield Questions',
+      time: 'PYQ Practice · 15 questions',
+      title: subj1,
+      subTitle: 'PYQ Practice · 15 questions',
       durationMinutes: 45,
       activityType: 'practice',
       actionPath: '/practice',
@@ -239,24 +191,36 @@ export function generateTodayStudyPlan(profile: StudentProfile | null): TodayPla
       completed: false,
     },
     {
-      id: '3',
-      time: '17:00',
-      title: `${subj2} Revision`,
-      subTitle: 'Formulae & Quick Review',
+      id: '2',
+      time: 'Revision · 45 min',
+      title: subj2,
+      subTitle: 'Revision · 45 min',
       durationMinutes: 45,
-      activityType: 'focus',
-      actionPath: '/focus-room',
+      activityType: 'revision',
+      actionPath: '/revision',
+      actionState: { exam, subject: subj2 },
+      completed: false,
+    },
+    {
+      id: '3',
+      time: 'Deep Practice · 20 questions',
+      title: subj3,
+      subTitle: 'Deep Practice · 20 questions',
+      durationMinutes: 50,
+      activityType: 'practice',
+      actionPath: '/practice',
+      actionState: { exam, subject: subj3 },
       completed: false,
     },
     {
       id: '4',
-      time: '20:00',
-      title: `${subj3} StudyMate AI Check`,
-      subTitle: 'Adaptive Topic Quiz',
+      time: 'Concept Check · 30 min',
+      title: 'StudyMate AI',
+      subTitle: 'Concept Check · 30 min',
       durationMinutes: 30,
       activityType: 'quiz',
       actionPath: '/study-ai',
-      actionState: { mode: 'Quiz', prompt: `Create a 5 question test on ${subj3}` },
+      actionState: { mode: 'Quiz', prompt: `Generate a 5 question check on ${subj1}` },
       completed: false,
     },
   ];

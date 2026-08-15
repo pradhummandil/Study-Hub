@@ -1,0 +1,2241 @@
+{
+  "generated_at": "2026-08-14T16:44:43.683Z",
+  "total_low_topics": 48,
+  "total_medium_topics": 118,
+  "total_difficulty_imbalance_topics": 69,
+  "total_missing_year_topics": 13,
+  "prioritized_queue": [
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Layer",
+      "topic": "Subnetting & CIDR",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Transport Layer",
+      "topic": "TCP Congestion Control",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & BCNF",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Regular Languages",
+      "topic": "Finite Automata & Pumping Lemma",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Parsing",
+      "topic": "LR Parsing & Shift-Reduce Conflicts",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Analysis",
+      "topic": "Continuous-Time Fourier Transform",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_EE",
+      "subject": "Electrical Machines",
+      "chapter": "Transformers",
+      "topic": "Transformer Efficiency & Losses",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "First Law of Thermodynamics",
+      "topic": "Carnot Engine Efficiency",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Pipe Flow",
+      "topic": "Darcy-Weisbach Head Loss",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Projectile Motion",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Excretory System & Nephron",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Optics",
+      "topic": "Ray Optics & Refraction",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Quantitative Reasoning",
+      "topic": "Percentages & Profit Loss",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Algebra",
+      "topic": "Algebraic Identities",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "UPSC_CSE",
+      "subject": "Indian Polity & Governance",
+      "chapter": "Constitutional Framework",
+      "topic": "Fundamental Rights & Writs",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "BITSAT",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Dot Product & Angle Between Vectors",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "CAT",
+      "subject": "Data Interpretation & Logical Reasoning",
+      "chapter": "Logical Reasoning",
+      "topic": "Arrangements & Matrix Grids",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Dynamic Programming",
+      "topic": "0/1 Knapsack & Subset Sum",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Normal Distribution & Z-Score",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_PI",
+      "subject": "Manufacturing Engineering",
+      "chapter": "Metal Cutting",
+      "topic": "Merchant Circle & Cutting Force",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_XE",
+      "subject": "Solid Mechanics",
+      "chapter": "Stress & Strain",
+      "topic": "Mohr Circle & Principal Stresses",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CH",
+      "subject": "Heat Transfer",
+      "chapter": "Conduction",
+      "topic": "Fourier Law of Heat Conduction",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ES",
+      "subject": "Water & Wastewater Engineering",
+      "chapter": "Water Quality Parameters",
+      "topic": "Biochemical Oxygen Demand (BOD)",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Discrete Mathematics",
+      "chapter": "Mathematical Logic",
+      "topic": "Propositional Equivalence",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Dimensionality Reduction",
+      "topic": "Principal Component Analysis (PCA)",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Trigonometric Ratios & Identities",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 1,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Joint Distributions & Marginal PDF",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Linear Algebra",
+      "chapter": "Matrix Computations",
+      "topic": "SVD Decomposition & Eigenvalues",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Supervised Learning",
+      "topic": "Decision Trees & Information Gain",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Unsupervised Learning",
+      "topic": "K-Means Clustering & Inertia",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "AI & Search",
+      "chapter": "Heuristic Search",
+      "topic": "A* Algorithm & Admissible Heuristics",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Python & Data Structures",
+      "chapter": "Data Science Stack",
+      "topic": "Numpy Vectorization & Pandas Indexing",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ECE",
+      "subject": "Signals & Systems",
+      "chapter": "Fourier Transform",
+      "topic": "Sampling Theorem",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_EE",
+      "subject": "Power Systems",
+      "chapter": "Fault Analysis",
+      "topic": "Symmetrical Components",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ME",
+      "subject": "Thermodynamics",
+      "chapter": "Gas Turbines",
+      "topic": "Brayton Cycle",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CE",
+      "subject": "Structural Analysis",
+      "chapter": "Trusses",
+      "topic": "Method of Joints",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_IN",
+      "subject": "Sensors & Transducers",
+      "chapter": "Strain Gauges",
+      "topic": "Wheatstone Bridge",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_PI",
+      "subject": "Manufacturing",
+      "chapter": "Machining",
+      "topic": "Merchant Circle Diagram",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_XE",
+      "subject": "Fluid Mechanics",
+      "chapter": "Viscous Flow",
+      "topic": "Navier-Stokes Equations",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CH",
+      "subject": "Mass Transfer",
+      "chapter": "Distillation",
+      "topic": "McCabe-Thiele Method",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_ES",
+      "subject": "Water Treatment",
+      "chapter": "Filtration",
+      "topic": "Rapid Sand Filter",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "CUET_UG",
+      "subject": "General Test",
+      "chapter": "Logical Reasoning",
+      "topic": "Series Completion",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "SSC_CGL",
+      "subject": "Quantitative Aptitude",
+      "chapter": "Profit & Loss",
+      "topic": "Discount Calculations",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "UPSC_CSE",
+      "subject": "Indian Polity",
+      "chapter": "Constitution",
+      "topic": "Fundamental Rights Article 21",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "BITSAT",
+      "subject": "English & Logic",
+      "chapter": "Verbal Ability",
+      "topic": "Synonyms & Antonyms",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "CAT",
+      "subject": "Data Interpretation",
+      "chapter": "Bar Graphs",
+      "topic": "Percentage Change Analysis",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "NDA_NA",
+      "subject": "Mathematics",
+      "chapter": "Trigonometry",
+      "topic": "Height & Distance",
+      "reason": "LOW_COVERAGE (1-4 questions)",
+      "current_count": 3,
+      "target_direction": "Add 15+ verified PYQs and canonical practice items"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Process Synchronization",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 16,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Kinetics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Area Under Curves",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Binomial Theorem",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Parabola",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Sequence & Series",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Dynamic Programming",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Greedy Algorithms",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Permutations & Combinations",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Pointers & Memory",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Recursion",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Functions & Scope",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Programming",
+      "chapter": "C Programming",
+      "topic": "Arrays & Strings",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Arrays & Linked Lists",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Stacks & Queues",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Trees & BSTs",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Data Structures",
+      "chapter": "Linear Data Structures",
+      "topic": "Heaps & Priority Queues",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Asymptotic Notation",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Divide & Conquer",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Algorithm Analysis",
+      "topic": "Graph Algorithms",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "CPU Scheduling",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Deadlocks",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Operating Systems",
+      "chapter": "Process Management",
+      "topic": "Virtual Memory & Paging",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "SQL & Joins",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Relational Algebra",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & Functional Dependencies",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Transactions & Concurrency",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Subnetting & CIDR",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "IP Routing",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "TCP Congestion Control",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Architecture",
+      "topic": "Data Link Protocols (CSMA/CD)",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "DFA & NFA Minimization",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Regular Expressions",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Context Free Grammars",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Automata Theory",
+      "topic": "Turing Machines & Decidability",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Lexical Analyzer",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Parsing (LL, LR, LALR)",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Intermediate Code Generation",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Lexical & Syntax Analysis",
+      "topic": "Code Optimization",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Addressing Modes",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Pipelining & Hazards",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Cache Memory Mapping",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Organization & Architecture",
+      "chapter": "Processor Architecture",
+      "topic": "Interrupts & I/O",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Boolean Algebra & K-Maps",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Multiplexers & Decoders",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Flip-Flops & Counters",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Digital Logic",
+      "chapter": "Combinational & Sequential Circuits",
+      "topic": "Number Representations",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Propositional Logic",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Graph Theory",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Linear Algebra & Matrices",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Engineering Mathematics",
+      "chapter": "Discrete & Linear Algebra",
+      "topic": "Probability & Combinatorics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Numerical Reasoning",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Data Interpretation",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Spatial Aptitude",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "General Aptitude",
+      "chapter": "Quantitative & Verbal Aptitude",
+      "topic": "Grammatical Analysis",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 15,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Indefinite & Definite Integrals",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Straight Lines",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Probability & Statistics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Kinematics & Projectile Motion",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Laws of Motion & Friction",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Work Energy & Power",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Rotational Dynamics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Gravitation",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Calorimetry",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Laws of Thermodynamics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Kinetic Theory of Gases",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Heat Transfer",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electrostatics & Coulomb Law",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Capacitors",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Current Electricity & Kirchhoff Laws",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Magnetic Effects of Current",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electromagnetic Induction",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Ray Optics & Lenses",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Wave Optics & Interference",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Simple Harmonic Motion",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Sound Waves & Doppler Effect",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Photoelectric Effect",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Bohr Model of Atom",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Nuclear Physics & Radioactivity",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Semiconductors & Logic Gates",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Mole Concept & Stoichiometry",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Atomic Structure",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Thermodynamics",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical & Ionic Equilibrium",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Periodic Table & Periodicity",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Chemical Bonding & Molecular Structure",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "p-Block Elements",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "d & f-Block Elements",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Coordination Compounds",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "General Organic Chemistry (GOC)",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Hydrocarbons",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Haloalkanes & Haloarenes",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Alcohols Phenols Ethers",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Limits Continuity & Differentiability",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Aldehydes Ketones & Carboxylic Acids",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Biomolecules & Polymers",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Quadratic Equations",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Complex Numbers",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Matrices & Determinants",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives (AOD)",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Differential Equations",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Circles",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Ellipse & Hyperbola",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Vector Algebra & Dot/Cross Product",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "3D Lines & Planes",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 9,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Advanced Mechanics",
+      "topic": "Rigid Body Rotation & Angular Impulse",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Electrodynamics",
+      "topic": "Electromagnetic Induction & Mutual Inductance",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Organic Synthesis",
+      "topic": "Reaction Mechanisms & Stereochemistry",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry & Nernst Equation",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Advanced Calculus",
+      "topic": "Differential Equations & Orthogonal Trajectories",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D",
+      "topic": "Shortest Distance Between Skew Lines",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 11,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Genetics & Evolution",
+      "topic": "Mendelian Genetics & Dihybrid Cross",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Neural Control & Signal Transmission",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Plant Physiology",
+      "topic": "Photosynthesis & Calvin Cycle",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Cell Biology",
+      "topic": "Mitosis & Meiosis Cell Division",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Ray Optics",
+      "topic": "Total Internal Reflection & Prism Dispersion",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Chemistry",
+      "chapter": "Biomolecules",
+      "topic": "Amino Acids & Protein Structures",
+      "reason": "MEDIUM_COVERAGE (5-24 questions)",
+      "current_count": 10,
+      "target_direction": "Expand to 25+ questions"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Kinetics",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Area Under Curves",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Binomial Theorem",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Parabola",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Sequence & Series",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Permutations & Combinations",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Indefinite & Definite Integrals",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Straight Lines",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Probability & Statistics",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Kinematics & Projectile Motion",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Laws of Motion & Friction",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Work Energy & Power",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Rotational Dynamics",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Mechanics",
+      "topic": "Gravitation",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Calorimetry",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Laws of Thermodynamics",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Kinetic Theory of Gases",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Thermodynamics & Heat",
+      "topic": "Heat Transfer",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electrostatics & Coulomb Law",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Capacitors",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Current Electricity & Kirchhoff Laws",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Magnetic Effects of Current",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Electromagnetism",
+      "topic": "Electromagnetic Induction",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Ray Optics & Lenses",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Wave Optics & Interference",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Simple Harmonic Motion",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Optics & Waves",
+      "topic": "Sound Waves & Doppler Effect",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Photoelectric Effect",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Bohr Model of Atom",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Nuclear Physics & Radioactivity",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Modern Physics",
+      "topic": "Semiconductors & Logic Gates",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Mole Concept & Stoichiometry",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Atomic Structure",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical Thermodynamics",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Chemical & Ionic Equilibrium",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Periodic Table & Periodicity",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Chemical Bonding & Molecular Structure",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "p-Block Elements",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "d & f-Block Elements",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Inorganic Chemistry",
+      "topic": "Coordination Compounds",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "General Organic Chemistry (GOC)",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Hydrocarbons",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Haloalkanes & Haloarenes",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Alcohols Phenols Ethers",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Limits Continuity & Differentiability",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Aldehydes Ketones & Carboxylic Acids",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Chemistry",
+      "chapter": "Organic Chemistry",
+      "topic": "Biomolecules & Polymers",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Quadratic Equations",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Complex Numbers",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Algebra",
+      "topic": "Matrices & Determinants",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives (AOD)",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Differential Equations",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Circles",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Coordinate Geometry",
+      "topic": "Ellipse & Hyperbola",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "Vector Algebra & Dot/Cross Product",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D Geometry",
+      "topic": "3D Lines & Planes",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Medium)",
+      "current_count": 9,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Advanced Mechanics",
+      "topic": "Rigid Body Rotation & Angular Impulse",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Physics",
+      "chapter": "Electrodynamics",
+      "topic": "Electromagnetic Induction & Mutual Inductance",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Organic Synthesis",
+      "topic": "Reaction Mechanisms & Stereochemistry",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Chemistry",
+      "chapter": "Physical Chemistry",
+      "topic": "Electrochemistry & Nernst Equation",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Advanced Calculus",
+      "topic": "Differential Equations & Orthogonal Trajectories",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "JEE_ADVANCED",
+      "subject": "Mathematics",
+      "chapter": "Vectors & 3D",
+      "topic": "Shortest Distance Between Skew Lines",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Hard)",
+      "current_count": 11,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Genetics & Evolution",
+      "topic": "Mendelian Genetics & Dihybrid Cross",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Neural Control & Signal Transmission",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Plant Physiology",
+      "topic": "Photosynthesis & Calvin Cycle",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Cell Biology",
+      "topic": "Mitosis & Meiosis Cell Division",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Ray Optics",
+      "topic": "Total Internal Reflection & Prism Dispersion",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Chemistry",
+      "chapter": "Biomolecules",
+      "topic": "Amino Acids & Protein Structures",
+      "reason": "DIFFICULTY_IMBALANCE (Active levels: Easy)",
+      "current_count": 10,
+      "target_direction": "Add missing difficulty levels (Easy/Medium/Hard balance)"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Network Layer",
+      "topic": "Subnetting & CIDR",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Computer Networks",
+      "chapter": "Transport Layer",
+      "topic": "TCP Congestion Control",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Database Management Systems",
+      "chapter": "Relational Model",
+      "topic": "Normalization & BCNF",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024, 2025, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Theory of Computation",
+      "chapter": "Regular Languages",
+      "topic": "Finite Automata & Pumping Lemma",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2023, 2024, 2025, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Compiler Design",
+      "chapter": "Parsing",
+      "topic": "LR Parsing & Shift-Reduce Conflicts",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2022, 2023, 2024, 2025, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Mathematics",
+      "chapter": "Calculus",
+      "topic": "Application of Derivatives",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "JEE_MAIN",
+      "subject": "Physics",
+      "chapter": "Kinematics",
+      "topic": "Projectile Motion",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Biology",
+      "chapter": "Human Physiology",
+      "topic": "Excretory System & Nephron",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "NEET_UG",
+      "subject": "Physics",
+      "chapter": "Optics",
+      "topic": "Ray Optics & Refraction",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Algorithms",
+      "chapter": "Dynamic Programming",
+      "topic": "0/1 Knapsack & Subset Sum",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2025, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Probability & Statistics",
+      "chapter": "Random Variables",
+      "topic": "Normal Distribution & Z-Score",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2024, 2025)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_CSE",
+      "subject": "Discrete Mathematics",
+      "chapter": "Mathematical Logic",
+      "topic": "Propositional Equivalence",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    },
+    {
+      "exam": "GATE_DA",
+      "subject": "Machine Learning",
+      "chapter": "Dimensionality Reduction",
+      "topic": "Principal Component Analysis (PCA)",
+      "reason": "MISSING_YEAR_CONTENT (Missing: 2024, 2026)",
+      "current_count": 1,
+      "target_direction": "Ingest PYQs from missing exam years"
+    }
+  ]
+}

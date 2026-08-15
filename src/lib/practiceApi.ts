@@ -162,6 +162,13 @@ export async function recordQuestionAttempt(attempt: Omit<UserQuestionAttempt, '
     localAttempts.unshift(newAttempt);
     localStorage.setItem(ATTEMPTS_LOCAL_KEY, JSON.stringify(localAttempts.slice(0, 200)));
 
+    // Auto-store mistakes locally if incorrect
+    if (!attempt.is_correct) {
+      const list = getLocalSavedMistakes();
+      const updated = Array.from(new Set([...list, attempt.question_id]));
+      localStorage.setItem(MISTAKES_LOCAL_KEY, JSON.stringify(updated));
+    }
+
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
       await supabase.from('user_question_attempts').insert([
@@ -170,6 +177,22 @@ export async function recordQuestionAttempt(attempt: Omit<UserQuestionAttempt, '
           user_id: user.id,
         },
       ]);
+
+      if (!attempt.is_correct) {
+        try {
+          await supabase.from('mistake_notebook').insert([
+            {
+              user_id: user.id,
+              question_id: attempt.question_id,
+              user_answer: attempt.user_answer,
+              notes: `Incorrect attempt on ${attempt.topic}`,
+              created_at: new Date().toISOString()
+            }
+          ]);
+        } catch {
+          // ignore duplicate mistake notebook entries
+        }
+      }
     }
 
     // Trigger Phase 2 Intelligence Pipeline processing asynchronously
@@ -213,6 +236,20 @@ export async function toggleSaveMistake(questionId: string, saved: boolean): Pro
         .update({ saved_as_mistake: saved })
         .eq('user_id', user.id)
         .eq('question_id', questionId);
+
+      try {
+        if (saved) {
+          await supabase.from('saved_questions').insert([
+            { user_id: user.id, question_id: questionId }
+          ]);
+        } else {
+          await supabase.from('saved_questions').delete()
+            .eq('user_id', user.id)
+            .eq('question_id', questionId);
+        }
+      } catch {
+        // ignore duplicate saved questions
+      }
     }
     return true;
   } catch (err) {
